@@ -313,12 +313,12 @@
     .group-btn.get-code { background: linear-gradient(135deg, #ff9800, #e65100); }
     .group-btn small { display: block; font-size: 11px; opacity: 0.95; font-weight: 500; margin-top: 3px; }
 
-    .betting-closed-box { display: none; background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%); border: 2px solid #EF4444; border-radius: 14px; padding: 12px 14px; margin: 12px 0; animation: slideInDown 0.4s ease-out; }
-    .betting-closed-box .header-row { display: flex; align-items: center; gap: 10px; }
-    .betting-closed-box .icon { font-size: 28px; flex-shrink: 0; animation: shake 0.8s ease-in-out infinite; }
-    .betting-closed-box .title { color: #991B1B; font-weight: 800; font-size: clamp(12px, 1.4vw, 14px); }
-    .betting-closed-box .open-time { color: #991B1B; font-size: clamp(11px, 1.3vw, 12.5px); font-weight: 700; margin-top: 3px; }
-    .betting-closed-box .open-time strong { background: #FFF; padding: 2px 10px; border-radius: 6px; color: #991B1B; border: 1px solid #FCA5A5; }
+    .betting-closed-compact { display: none; background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%); border: 2px solid #EF4444; border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; animation: slideInDown 0.4s ease-out; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15); }
+    .betting-closed-compact .left-side { display: flex; align-items: center; gap: 10px; }
+    .betting-closed-compact .icon { font-size: 24px; animation: shake 0.8s ease-in-out infinite; }
+    .betting-closed-compact .title { color: #991B1B; font-weight: 800; font-size: clamp(12px, 1.4vw, 14px); }
+    .betting-closed-compact .right-side { background: white; padding: 6px 12px; border-radius: 8px; border: 1px solid #FCA5A5; display: flex; align-items: center; gap: 6px; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; color: #991B1B; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .betting-closed-compact .right-side span.time { font-family: 'Courier New', monospace; font-size: clamp(13px, 1.5vw, 15px); color: #dc2626; }
 
     .win-badge { display: inline-block; background: linear-gradient(135deg, #ff1744, #d50000); color: white; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 10px; margin-left: 6px; animation: badgePulse 1.5s ease-in-out infinite; box-shadow: 0 0 12px rgba(255,23,68,0.7); }
     .btn-withdraw.has-win { background: linear-gradient(135deg, #ff1744, #d50000) !important; animation: glowRed 1.5s ease-in-out infinite; }
@@ -355,6 +355,9 @@
     body.dark-mode .confirm-modal-content { background: linear-gradient(135deg, #252b3d 0%, #1a1f2e 100%); }
     body.dark-mode .confirm-title { color: #e8eaf0; }
     body.dark-mode .confirm-info-box { background: linear-gradient(135deg, #1e2a3f, #163d29); border-color: #4a8bc7; }
+    body.dark-mode .betting-closed-compact { background: linear-gradient(135deg, #3f1d1d, #2a1313); border-color: #7f1d1d; }
+    body.dark-mode .betting-closed-compact .right-side { background: #1a0f1f; border-color: #7f1d1d; color: #fca5a5; }
+    body.dark-mode .betting-closed-compact .title { color: #fca5a5; }
 
     @media (max-width: 768px) {
       .numbers div { padding: 10px 4px; font-size: 14px; }
@@ -369,6 +372,8 @@
       .nav-bar { top: 60px; }
       .results-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
       .result-card .num-cell .value { font-size: 18px; }
+      .betting-closed-compact { flex-direction: column; align-items: flex-start; }
+      .betting-closed-compact .right-side { width: 100%; justify-content: center; }
     }
     @media (max-width: 480px) {
       .countdown .time-display { font-size: 28px; }
@@ -385,17 +390,7 @@
     ::-webkit-scrollbar-track { background: #f0f4f8; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #0078D7, #6f42c1); border-radius: 4px; }
 
-    .tv-mode-active .section { max-width: 100%; padding: 20px; }
-    .tv-mode-active .nav-bar, .tv-mode-active .mode-tabs, .tv-mode-active .user-info-bar, .tv-mode-active .clock-box, .tv-mode-active .status-bar { display: none !important; }
-    .tv-mode-active #classicMode .bet-box, .tv-mode-active #rapidMode .bet-box { display: none !important; }
-    .tv-mode-active .lottery-box { margin: 10px 0; padding: 20px; border-width: 4px; }
-    .tv-mode-active .numbers div { padding: 20px 10px; font-size: 32px; }
-    .tv-mode-active .numbers div .letter { font-size: 24px; }
-    .tv-mode-active .number-result { font-size: 48px; }
-    .tv-mode-active .countdown-rapid { padding: 30px; }
-    .tv-mode-active .countdown-rapid .time-display { font-size: 120px; }
-    .tv-mode-active .countdown-rapid .ring-container { width: 300px; height: 300px; }
-    .tv-mode-active .countdown-rapid .ring-text .time { font-size: 60px; }
+    /* TV Mode ត្រូវបានកែឱ្យបង្ហាញគ្រប់យ៉ាង */
     .tv-mode-active #tvModeExitBtn { display: block; position: fixed; top: 20px; right: 20px; z-index: 9999; }
     #tvModeExitBtn { display: none; position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 15px 30px; font-size: 20px; border-radius: 50px; background: #dc3545; color: white; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(220,53,69,0.5); }
   </style>
@@ -425,6 +420,13 @@
           <label>🔐 បង្កើតលេខ PIN 4 ខ្ទង់</label>
           <input type="tel" id="regPin" placeholder="----" maxlength="4" inputmode="numeric">
         </div>
+        
+        <div style="background:linear-gradient(135deg,#d4edda,#a8e6c0); border:2px solid #28a745; border-radius:10px; padding:12px; margin-top:10px; font-size:12px; color:#155724; line-height:1.7; font-weight:700; text-align:center;">
+          🎁 <b>ប្រាក់រង្វាន់ស្វាគមន៍!</b><br>
+          គណនីថ្មីទទួលបាន <b style="color:#d63000;">10.00$ និង 40,000៛</b> ភ្លាមៗ!<br>
+          <span style="font-size:11px; color:#856404; font-weight:600;">💰 សមតុល្យចាប់ផ្តើម: 10.00$ / 40,000៛</span>
+        </div>
+        
         <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:10px; font-size:11.5px; color:#856404; line-height:1.7; font-weight:600;">
           ⚠️ <b>ការព្រមាន!</b><br>• អ្នកត្រូវចងចាំ <b>PIN 4 ខ្ទង់</b><br>• <b>កុំប្រាប់អ្នកដទៃ</b> អំពី PIN
         </div>
@@ -551,10 +553,7 @@
 
         <div class="bet-box">
           <h2>🎯 ទិញលេខចាក់ (A, B, C, D, E)</h2>
-          <div class="betting-closed-box" id="bettingClosedTop">
-            <div class="header-row"><div class="icon">⏰</div><div><div class="title" id="bettingClosedTitle">🔒 ការចាក់ត្រូវបានបិទ!</div><div class="open-time">⏰ បើកវិញ <strong>00:00 រំលងយប់នេះ</strong></div></div></div>
-          </div>
-
+          
           <div class="balance-box" id="balanceBox">
             <div style="margin-bottom:10px; font-weight:800; color:#155724; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -578,6 +577,16 @@
           </table>
 
           <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ffb3b3; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;"><span style="color:#d63000; font-weight:800; font-size:13px;">⚠️ ចាក់ពី 500៛/0.25$ ដល់ 40,000៛/10$</span></div>
+
+          <div class="betting-closed-compact" id="bettingClosedCompact">
+            <div class="left-side">
+              <span class="icon">🔒</span>
+              <span class="title" id="bettingClosedText">ការចាក់ត្រូវបានបិទជាបណ្ដោះអាសន្ន!</span>
+            </div>
+            <div class="right-side">
+              ⏰ បើកវិញ <span class="time" id="reopenCountdown">--:--:--</span>
+            </div>
+          </div>
 
           <div style="font-weight:800; color:#0078D7; font-size:14px; margin-bottom:8px;">⏰ ជ្រើសរើស ពេលវេលា និង ប្រភេទ</div>
           <div class="time-selector">
@@ -762,7 +771,7 @@
       </div>
 
       <div class="lottery-box" id="historySection" style="display:block; margin-top:20px;">
-        <div class="time-box">📊 ប្រវត្តិទាំងអស់</div>
+        <div class="time-box">📊 ប្រវត្តិទាំងអស់ <span style="font-size:10px; color:#dc3545; margin-left:8px; font-weight:800; background:#fee2e2; padding:2px 8px; border-radius:6px;">រក្សាទុក ២ ថ្ងៃ</span></div>
         
         <div class="history-tabs-container" id="historyTabsContainer">
           <button class="history-tab active" data-tab="bets-classic" data-mode="classic" onclick="N98.switchHistoryTab('bets-classic', event)">📊 ប្រវត្តិចាក់ 12/16</button>
@@ -809,30 +818,65 @@
             <p>៤. បញ្ចូលលេខ (ឧ. 01, 02, 03)</p>
             <p>៥. ជ្រើសរើសចំនួនទឹកប្រាក់ក្នុងមួយលេខ</p>
             <p>៦. ចុច "ដាក់ភ្នាល់"</p>
+
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ២. អត្រារង្វាន់</h4>
             <p>• <strong>២ខ្ទង់ (A-E)</strong> – 1$ → 70$</p>
             <p>• <strong>៣ខ្ទង់ (A-E)</strong> – 1$ → 500$</p>
             <p>• ចាក់ពី 500៛/0.25$ ដល់ 40,000៛/10$</p>
+
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚡ ៣. ឆ្នោត 10 នាទី</h4>
             <p>• ចុច Tab <strong>⚡ 10 នាទី</strong> ខាងលើ</p>
             <p>• ប្រកាសលទ្ធផលរៀងរាល់ 10 នាទី</p>
             <p>• ដំណើរការ 24/7</p>
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🏦 ៤. របៀបដកប្រាក់</h4>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🎁 ៤. ប្រាក់រង្វាន់ស្វាគមន៍</h4>
+            <p>• គណនីថ្មីទទួលបាន <strong style="color:#d63000;">10.00$ និង 40,000៛</strong> ភ្លាមៗ</p>
+            <p>• <strong style="color:#dc3545;">មិនអាចដកបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង និងរង់ចាំ ២៤ ម៉ោង</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🏦 ៥. របៀបដកប្រាក់</h4>
             <p>• ដកប្រាក់បានគ្រប់ពេល 24/7</p>
+            <p>• <strong style="color:#d63000;">សមតុល្យអប្បបរមាសម្រាប់ដក: 10$ ឬ 40,000៛</strong></p>
+            <p>• <strong style="color:#dc3545;">លក្ខខណ្ឌដកប្រាក់៖</strong></p>
+            <p style="padding-left:20px;">១. បញ្ចូលប្រាក់ពិតប្រាកដយ៉ាងតិច 10$ ឬ 40,000៛</p>
+            <p style="padding-left:20px;">២. ចាក់ឆ្នោតយ៉ាងតិច ១ ដង</p>
+            <p style="padding-left:20px;">៣. រង់ចាំយ៉ាងតិច ២៤ ម៉ោង ក្រោយការបញ្ចូលប្រាក់លើកដំបូង</p>
             <p>• ចុចប៊ូតុង "🏦 ដកប្រាក់" ក្នុងប្រអប់សមតុល្យ</p>
             <p>• បញ្ចូលចំនួន + ជ្រើសរូបិយប័ណ្ណ (USD/KHR)</p>
             <p>• បញ្ជូន QR Code → Admin នឹងអនុម័ត</p>
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🔐 ៥. សុវត្ថិភាព</h4>
+            <p>• ប្រសិនបើ Admin បដិសេធ → ប្រាក់នឹងបង្វិលចូលវិញ</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ៦. របៀបបញ្ចូលប្រាក់</h4>
+            <p>• អប្បបរមា: 5.00$ ឬ 20,000៛</p>
+            <p>• ចុចប៊ូតុង "💰 បញ្ចូលទឹកប្រាក់"</p>
+            <p>• បង់តាម ABA Bank (KHQR)</p>
+            <p>• បញ្ជូន Screenshot → Admin នឹងអនុម័ត</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⏰ ៧. ការបិទចាក់</h4>
+            <p>• ម៉ោង 12:00: បិទនៅ 11:59 (១ នាទីមុនលទ្ធផល)</p>
+            <p>• ម៉ោង 16:00: បិទនៅ 15:59 (១ នាទីមុនលទ្ធផល)</p>
+            <p>• ឆ្នោត 10 នាទី: បិទ ១ នាទីមុនលទ្ធផល</p>
+            <p>• បន្ទាប់ពីលទ្ធផលចេញ → បើកចាក់វិញនៅ 00:00 រំលងយប់នេះ</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">📊 ៨. ប្រវត្តិ និងលទ្ធផល</h4>
+            <p>• ប្រវត្តិចាក់ និងលទ្ធផលរក្សាទុក <strong>២ ថ្ងៃ</strong> ចុងក្រោយ</p>
+            <p>• លទ្ធផលចាស់ៗនឹងលុបដោយស្វ័យប្រវត្តិ</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🔐 ៩. សុវត្ថិភាព</h4>
             <p>• PIN 4 ខ្ទង់ ត្រូវចងចាំ</p>
             <p>• ភ្លេច PIN → ទាក់ទង Admin</p>
             <p>• កុំប្រាប់ PIN អ្នកដទៃ</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚠️ ១០. ការព្រមាន</h4>
+            <p>• ការចាក់ឆ្នោតមានហានិភ័យ — សូមលេងដោយការទទួលខុសត្រូវ</p>
+            <p>• មិនអនុញ្ញាតឱ្យអ្នកក្រោមអាយុ 18 ឆ្នាំ</p>
+            <p>• ការកេងប្រវ័ញ្ចនឹងត្រូវបានផ្អាកគណនីភ្លាមៗ</p>
           </div>
         </div>
       </div>
 
     </div> 
 
-    <div class="footer"><span class="emoji-dice">🎲</span> © 2026 Khmer Lottery N98 — Classic + Rapid Edition 🏆</div>
+    <div class="footer"><span class="emoji-dice">🎲</span> © 2026 Khmer Lottery N98 — រក្សាសិទ្ធិគ្រប់យ៉ាងពីឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></div>
   </div>
 
   <div class="modal" id="depositModal">
@@ -866,7 +910,6 @@
         <input type="number" id="depAmount" required placeholder="បញ្ចូលចំនួន" step="any" min="0.01" oninput="N98.checkContinueButtonState()">
         <div style="font-size:11px; color:#dc3545; font-weight:800; margin-bottom:8px; text-align:left;" id="depMinHint">⚠️ ចំនួនអប្បបរមា USD ≥ 5.00$</div>
         
-        <!-- ប៊ូតុងបន្ត -->
         <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:14px; text-align:left;">
             <div style="font-weight:800; color:#856404; font-size:12px; margin-bottom:8px;">បន្ទាប់ពីបង់ប្រាក់រួច សូមចុចបន្ត ដើម្បីបើកការបញ្ចូលរូបភាពនៃប្រតិបត្តិការបង់ប្រាក់របស់អ្នក!</div>
             <button type="button" id="depContinueBtn" onclick="N98.enableScreenshotUpload()" disabled style="width:100%; padding:12px; background:#ced4da; color:#6c757d; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:not-allowed;">👉 បន្ត</button>
@@ -911,7 +954,7 @@
     <div class="modal-content">
       <span class="close" onclick="N98.closeModal('withdrawModal')">&times;</span>
       <h2>🏦 ដកប្រាក់</h2>
-      <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); border:2px solid #0078D7; padding:12px; border-radius:10px; margin-bottom:14px; text-align:center; font-weight:800; color:#005fa3; font-size:13px;">💡 អ្នកអាចដកប្រាក់បានគ្រប់ពេល 24/7</div>
+      
       <form id="withdrawNewForm">
         <label>💰 សមតុល្យរបស់អ្នក</label>
         <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
@@ -1003,7 +1046,9 @@
         BEEP_COUNT: 3,
         BEEP_INTERVAL_SEC: 3,
         MIN_DEPOSIT_USD: 5.00,
-        MIN_DEPOSIT_KHR: 20000
+        MIN_DEPOSIT_KHR: 20000,
+        MIN_WITHDRAW_USD: 10.00,
+        MIN_WITHDRAW_KHR: 40000
       };
 
       var ADMIN_PHONES = ['066817407', '098765432'];
@@ -1042,7 +1087,6 @@
 
       var confirmCallback = null;
       
-      // អថេរសម្រាប់តាមដានសកម្មភាពក្នុង Modal ដាក់ប្រាក់
       var hasClickedAba = false;
       var hasClickedDownload = false;
 
@@ -1226,16 +1270,14 @@
         var m = now.getMinutes();
         var s = now.getSeconds();
         
-        if (h === 11 && m === 59 && (s === 53 || s === 56 || s === 59)) {
-          var slot = '12_' + s;
-          if (lastBeepSlot12 !== slot) { lastBeepSlot12 = slot; playBeep(); }
+        if (h === 11 && m === 59 && s === 45) {
+          if (lastBeepSlot12 !== '12_main') { lastBeepSlot12 = '12_main'; playBeep(); }
         }
-        if (h === 15 && m === 59 && (s === 53 || s === 56 || s === 59)) {
-          var slot2 = '16_' + s;
-          if (lastBeepSlot16 !== slot2) { lastBeepSlot16 = slot2; playBeep(); }
+        if (h === 15 && m === 59 && s === 45) {
+          if (lastBeepSlot16 !== '16_main') { lastBeepSlot16 = '16_main'; playBeep(); }
         }
-        if (m % 10 === 9 && (s === 21 || s === 24 || s === 27)) {
-          var slot3 = 'r_' + m + '_' + s;
+        if (m % 10 === 9 && s === 45) {
+          var slot3 = 'r_' + m;
           if (lastBeepSlot10 !== slot3) { lastBeepSlot10 = slot3; playBeep(); }
         }
       }
@@ -1760,24 +1802,14 @@
         updateBettingClosed10();
         
         try {
-          // បង្ខំឱ្យបង្ហាញ Classic ជានិច្ចនៅពេល Login ចូល
           updateHistoryTabsForMode('classic');
-          // បើចង់រក្សាទុកម៉ូដចាស់ សូមប្រើកូដខាងក្រោមវិញ
-          /*
-          var savedMode = localStorage.getItem(CFG.MAIN_MODE_KEY);
-          if (savedMode === 'rapid') {
-            var rapidTab = document.querySelector('.mode-tab[data-mode="rapid"]');
-            switchMainMode('rapid', { target: rapidTab });
-          } else {
-            updateHistoryTabsForMode('classic');
-          }
-          */
         } catch (e) { updateHistoryTabsForMode('classic'); }
 
         clearIntervals();
         intervals.clock = setInterval(function() {
           updateClock();
           checkBeepBeforeDraw();
+          updateBettingStatus(); // ហៅដើម្បីគណនា Countdown បិទចាក់
         }, CFG.CLOCK_MS);
         intervals.refresh = setInterval(function() {
           fetchResults();
@@ -1925,6 +1957,7 @@
                 '💰 ដាក់ប្រាក់: <b>' + s.totalDeposits + '</b><br>' +
                 '💰 សំណើដាក់ប្រាក់: <b>' + (s.totalDepositReq || 0) + '</b><br>' +
                 '🏦 ដកប្រាក់: <b>' + s.totalWithdrawals + '</b><br>' +
+                '🏦 ដកប្រាក់ (10 នាទី): <b>' + (s.totalWithdrawals10 || 0) + '</b><br>' +
                 '📊 លទ្ធផល: <b>' + s.totalResults + '</b><br>' +
                 '📊 លទ្ធផល 10 នាទី: <b>' + s.totalResults10 + '</b>';
             } else { el.innerHTML = '❌ មិនអាចទាញបាន'; }
@@ -2386,7 +2419,6 @@
           label.innerHTML = 'បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) *';
         }
         
-        // Reset state ពេលបើក Modal ឡើងវិញ
         hasClickedAba = false;
         hasClickedDownload = false;
         var btn = $('depContinueBtn');
@@ -2459,7 +2491,6 @@
         var btn = $('depContinueBtn');
         if (!btn) return;
 
-        // លក្ខខណ្ឌ៖ ត្រូវចុច ABA ឬ ទាញយក QR ហើយ ត្រូវបំពេញចំនួនទឹកប្រាក់ត្រឹមត្រូវ
         if ((hasClickedAba || hasClickedDownload) && amountOk) {
           btn.disabled = false;
           btn.style.background = 'linear-gradient(135deg,#ff9800,#e65100)';
@@ -2529,38 +2560,56 @@
         return false;
       }
 
+      // គណនាម៉ោងរាប់ថយក្រោយសម្រាប់ការបិទចាក់ (កែឱ្យបើកវិញម៉ោង 00:00 រំលងយប់នេះ)
       function updateBettingStatus() {
-        var isClosed = isBettingClosed(selectedTime);
-        var topBox = $('bettingClosedTop');
-        var titleEl = $('bettingClosedTitle');
-        if (topBox && titleEl) {
-          if (isClosed) {
-            topBox.style.display = 'block';
-            var h = new Date().getHours();
-            if (h >= 16) {
-              titleEl.innerHTML = '🔒 ការចាក់ម៉ោង <strong style="color:#dc2626;">12:00</strong> និង <strong style="color:#dc2626;">16:00</strong> បានបិទ!';
-            } else if (h >= 11) {
-              titleEl.innerHTML = '🔒 ការចាក់ម៉ោង <strong style="color:#dc2626;">12:00</strong> បានបិទ! (បិទ ១ នាទីមុនលទ្ធផល)';
-            }
-          } else {
-            topBox.style.display = 'none';
+        var now = new Date();
+        var h = now.getHours();
+        var m = now.getMinutes();
+        var s = now.getSeconds();
+
+        var closed12 = isBettingClosed('12:00');
+        var closed16 = isBettingClosed('16:00');
+        
+        var box = $('bettingClosedCompact');
+        var textEl = $('bettingClosedText');
+        var countdownEl = $('reopenCountdown');
+
+        if (closed12 || closed16) {
+          if (box) box.style.display = 'flex';
+          
+          var nextOpenTime = new Date(now);
+          nextOpenTime.setHours(24, 0, 0, 0); // បើកវិញម៉ោង 00:00 រំលងយប់នេះ (ថ្ងៃស្អែក)
+          
+          var closedText = '';
+
+          if (closed12 && closed16) {
+            closedText = 'ការចាក់ម៉ោង 12:00 និង 16:00 ត្រូវបានបិទជាបណ្ដោះអាសន្ន!';
+          } else if (closed12) {
+            closedText = 'ការចាក់ម៉ោង 12:00 ត្រូវបានបិទជាបណ្ដោះអាសន្ន!';
+          } else if (closed16) {
+            closedText = 'ការចាក់ម៉ោង 16:00 ត្រូវបានបិទជាបណ្ដោះអាសន្ន!';
           }
+
+          if (textEl) textEl.textContent = closedText;
+          
+          if (nextOpenTime && countdownEl) {
+            var diff = Math.floor((nextOpenTime - now) / 1000);
+            if (diff > 0) {
+              var hours = String(Math.floor(diff / 3600)).padStart(2, '0');
+              var mins = String(Math.floor((diff % 3600) / 60)).padStart(2, '0');
+              var secs = String(diff % 60).padStart(2, '0');
+              countdownEl.textContent = hours + ':' + mins + ':' + secs;
+            } else {
+              countdownEl.textContent = '00:00:00';
+            }
+          }
+        } else {
+          if (box) box.style.display = 'none';
         }
+
         updateTimeButtons();
         updateSubmitButton();
         updateBalanceStatusBox();
-      }
-
-      function updateTimeButtons() {
-        var btns = document.querySelectorAll('.time-selector .time-btn');
-        for (var i = 0; i < btns.length; i++) {
-          var dt = btns[i].getAttribute('data-time') || btns[i].textContent;
-          var slot = '';
-          if (dt.indexOf('12:00') !== -1) slot = '12:00';
-          else if (dt.indexOf('16:00') !== -1) slot = '16:00';
-          if (slot && isBettingClosed(slot)) btns[i].classList.add('closed');
-          else btns[i].classList.remove('closed');
-        }
       }
 
       function updateTimeButtons() {
@@ -2579,7 +2628,6 @@
           else btns[i].classList.remove('closed');
         }
 
-        // ប្រសិនបើ 12:00 បិទ តែ 16:00 មិនទាន់បិទ ហើយអ្នកប្រើកំពុងជ្រើស 12:00 សូមប្តូរទៅ 16:00 ស្វ័យប្រវត្តិ
         if (closed12 && !closed16 && selectedTime === '12:00') {
           setTime('16:00', null);
         }
@@ -2599,6 +2647,12 @@
         var bal = cur === 'USD' ? balanceUSD : balanceKHR;
         if (bal <= 0) {
           showToast('គ្មានសមតុល្យ ' + cur + ' ទេ!', 'warning');
+          return;
+        }
+        var minWithdraw = cur === 'USD' ? CFG.MIN_WITHDRAW_USD : CFG.MIN_WITHDRAW_KHR;
+        var curLabel = cur === 'USD' ? '$' : '៛';
+        if (bal < minWithdraw) {
+          showToast('សមតុល្យអប្បបរមាសម្រាប់ដក ' + cur + ' គឺ ' + minWithdraw.toFixed(2) + curLabel + ' (សមតុល្យបច្ចុប្បន្ន: ' + (cur === 'USD' ? bal.toFixed(2) : Math.round(bal).toLocaleString()) + curLabel + ')', 'warning', '⚠️');
           return;
         }
         withdrawCurrency = cur;
@@ -3233,18 +3287,24 @@
             badge = '<span class="status-badge status-loss">❌ មិនត្រូវ</span>';
           }
 
-          var modeBadge = b.payMethod === 'direct' ? '<span style="color:#28a745; font-size:10px; font-weight:800;">💵 ផ្ទាល់</span>' : '<span style="color:#0078D7; font-size:10px; font-weight:800;">🌐 អនឡាញ</span>';
+          // កែសម្រួលពាក្យ "ចាក់សម្រាប់ម៉ោង..." ជំនួសឱ្យ "ផ្ទាល់"
+          var modeBadge = '';
+          if (mode === 'classic') {
+            var slot = b.drawTime ? (b.drawTime.indexOf('12:00') !== -1 ? '12:00' : '16:00') : '12:00';
+            modeBadge = '<span style="color:#0078D7; font-size:10px; font-weight:800;">🕛 ចាក់សម្រាប់ម៉ោង ' + slot + '</span>';
+          } else {
+            modeBadge = '<span style="color:#e91e63; font-size:10px; font-weight:800;">⚡ ចាក់ 10 នាទី</span>';
+          }
           
           var timeBadge = '';
           if (mode === 'rapid' && b.drawId) {
             timeBadge = '<div style="font-size:10px; color:#e91e63; font-weight:800; margin-top:2px;">🎯 វគ្គ: ' + esc(b.drawId) + '</div>';
           }
 
-          // កាត់យកតែម៉ោង និងនាទីពី b.date (ឧទាហរណ៍៖ "24/10/2026 14:45:17" កាត់យក "14:45")
           var betTimeOnly = '';
           if (b.date && b.date.indexOf(' ') !== -1) {
-            var timePart = b.date.split(' ')[1]; // យកផ្នែកខាងក្រោយដកឃ្លា
-            betTimeOnly = timePart.substring(0, 5); // កាត់យកត្រឹម 5 តួអក្សរ (HH:mm)
+            var timePart = b.date.split(' ')[1];
+            betTimeOnly = timePart.substring(0, 5);
           }
 
           html += '<tr>' +
@@ -3445,6 +3505,12 @@
             if (!qrInput.files[0]) { showToast('សូមភ្ជាប់ QR Code!', 'warning'); return; }
             
             var currentBal = withdrawCurrency === 'USD' ? balanceUSD : balanceKHR;
+            var minWithdraw = withdrawCurrency === 'USD' ? CFG.MIN_WITHDRAW_USD : CFG.MIN_WITHDRAW_KHR;
+            var curLabel = withdrawCurrency === 'USD' ? '$' : '៛';
+            if (currentBal < minWithdraw) {
+              showToast('សមតុល្យអប្បបរមាសម្រាប់ដក ' + withdrawCurrency + ' គឺ ' + minWithdraw.toFixed(2) + curLabel, 'error', '⚠️');
+              return;
+            }
             if (wdAmount > currentBal) { 
               showToast('សមតុល្យមិនគ្រប់! (មាន: ' + fmtAmount(currentBal, withdrawCurrency) + ')', 'error', '💰'); 
               return; 
