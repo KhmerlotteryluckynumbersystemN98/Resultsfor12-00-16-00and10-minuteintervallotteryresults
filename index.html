@@ -32,6 +32,7 @@
     @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
     @keyframes particleFloat { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
     @keyframes livePulse { 0%, 100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.05); filter: brightness(1.3); } }
+    @keyframes borderGlow { 0%, 100% { border-color: #fbbf24; box-shadow: 0 0 10px rgba(251,191,36,0.5); } 50% { border-color: #f59e0b; box-shadow: 0 0 25px rgba(245,158,11,0.9); } }
 
     .anim-bounce { animation: bounce 1.5s ease-in-out infinite; display: inline-block; }
     .anim-pulse { animation: pulse 1.2s ease-in-out infinite; display: inline-block; }
@@ -191,9 +192,9 @@
     /* DICE GAME CUSTOM CSS */
     .dice-box-container { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
     
-    /* តារាងចាក់អាប៉ោង ៦ ប្រអប់ */
-    .dice-board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
-    .dice-board-box { border: 3px solid #dc2626; border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.3s; background: white; overflow: hidden; }
+    /* តារាងចាក់អាប៉ោង (Layout ថ្មី) */
+    .dice-board-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; }
+    .dice-board-box { border: 3px solid #dc2626; border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.3s; background: white; overflow: hidden; position: relative; }
     .dice-board-box:hover { background: #fef2f2; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(220,38,38,0.2); }
     .dice-board-box.active { border-width: 4px; box-shadow: 0 0 20px rgba(220,38,38,0.6); background: #dbeafe; }
     .dice-board-box .box-title { font-size: 18px; font-weight: 800; color: #dc2626; }
@@ -210,7 +211,9 @@
 
     /* DICE HISTORY CARD */
     .dice-history-grid { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; }
-    .dice-history-card { min-width: 140px; background: linear-gradient(135deg, #ffffff, #f0f9ff); border: 2px solid #3b82f6; border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-shrink: 0; }
+    .dice-history-card { min-width: 140px; background: linear-gradient(135deg, #ffffff, #f0f9ff); border: 2px solid #3b82f6; border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-shrink: 0; position: relative; }
+    .dice-history-card.latest { border: 3px solid #fbbf24; animation: borderGlow 2s infinite; background: linear-gradient(135deg, #fffbeb, #fef3c7); }
+    .dice-history-card.latest::after { content: '🌟 លទ្ធផលចុងក្រោយ'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #f59e0b; color: white; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; white-space: nowrap; box-shadow: 0 2px 6px rgba(245,158,11,0.5); }
     .dice-history-card .draw-id { font-size: 10px; color: #64748b; font-weight: 700; margin-bottom: 8px; }
     .dice-history-card .balls { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 10px 0; }
     .dice-history-card .mini-ball { width: 18px; height: 18px; border-radius: 50%; }
@@ -317,6 +320,9 @@
       .betting-closed-compact { flex-direction: column; align-items: flex-start; }
       .betting-closed-compact .right-side { width: 100%; justify-content: center; }
       .dice-board-box .mini-ball { width: 12px; height: 12px; }
+      .dice-board-grid { gap: 5px; } /* បង្រួមគម្លាតនៅលើទូរស័ព្ទ */
+      .dice-board-box { padding: 6px; }
+      .dice-board-box .box-title { font-size: 16px; }
     }
     @media (max-width: 480px) {
       .countdown .time-display { font-size: 28px; }
@@ -325,7 +331,7 @@
       .results-grid { grid-template-columns: 1fr; }
       .result-card .num-cell .value { font-size: 16px; }
       .result-card .num-cell { padding: 8px 3px; }
-      .dice-board-grid { grid-template-columns: repeat(2, 1fr); }
+      .dice-board-grid { grid-template-columns: repeat(2, 1fr); } /* បង្ហាញ ២ ជួរនៅលើទូរស័ព្ទ */
     }
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #f0f4f8; }
@@ -593,6 +599,9 @@
         </div>
 
         <div class="bet-box rapid">
+          <h2>🎯
+
+                    <div class="bet-box rapid">
           <h2>🎯 លទ្ធផល ៣ វគ្គចុងក្រោយ</h2>
           <div class="results-grid" id="resultsGrid"><div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div></div>
         </div>
@@ -693,43 +702,41 @@
             <div style="color:#fca5a5; font-weight:800; font-size:13px;">🔒 ការចាក់ត្រូវបានបិទ! បើកវិញ <strong id="diceReopenTime">--:--</strong></div>
           </div>
 
-          <!-- តារាងចាក់អាប៉ោង ៦ ប្រអប់ -->
-          <div class="dice-board-grid">
-            <!-- 1 -->
-            <div class="dice-board-box" id="box_exact_1" onclick="N98.selectDiceOption('exact', '1', event)">
+          <!-- តារាងចាក់អាប៉ោង (Layout តាមរូបភាព) -->
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-template-rows: auto auto auto; gap:10px; margin-bottom:15px;">
+            <!-- ជួរទី១: ប្រអប់ ១ (ឆ្វេង) និង ៦ (ស្តាំ) -->
+            <div class="dice-board-box" id="box_exact_1" onclick="N98.selectDiceOption('exact', '1', event)" style="grid-column: 1 / 3; grid-row: 1;">
               <div class="box-title">1</div>
               <div class="box-rate">1×5</div>
               <div class="balls-container"><div class="mini-ball red"></div></div>
             </div>
-            <!-- 2 -->
-            <div class="dice-board-box" id="box_exact_2" onclick="N98.selectDiceOption('exact', '2', event)">
+            <div class="dice-board-box" id="box_exact_6" onclick="N98.selectDiceOption('exact', '6', event)" style="grid-column: 3 / 5; grid-row: 1;">
+              <div class="box-title">6</div>
+              <div class="box-rate">1×5</div>
+              <div class="balls-container"><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div></div>
+            </div>
+            
+            <!-- ជួរទី២: ប្រអប់ ២ (ក្រោម ១) និង ៣ (កណ្តាល) -->
+            <div class="dice-board-box" id="box_exact_2" onclick="N98.selectDiceOption('exact', '2', event)" style="grid-column: 1; grid-row: 2;">
               <div class="box-title">2</div>
               <div class="box-rate">1×5</div>
               <div class="balls-container"><div class="mini-ball blue"></div><div class="mini-ball blue"></div></div>
             </div>
-            <!-- 3 -->
-            <div class="dice-board-box" id="box_exact_3" onclick="N98.selectDiceOption('exact', '3', event)">
+            <div class="dice-board-box" id="box_exact_3" onclick="N98.selectDiceOption('exact', '3', event)" style="grid-column: 2; grid-row: 2;">
               <div class="box-title">3</div>
               <div class="box-rate">1×5</div>
               <div class="balls-container"><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div></div>
             </div>
-            <!-- 4 -->
-            <div class="dice-board-box" id="box_exact_4" onclick="N98.selectDiceOption('exact', '4', event)">
+            <!-- ជួរទី២: ប្រអប់ ៤ (ក្រោម ៦) និង ៥ (ស្តាំ) -->
+            <div class="dice-board-box" id="box_exact_4" onclick="N98.selectDiceOption('exact', '4', event)" style="grid-column: 3; grid-row: 2;">
               <div class="box-title">4</div>
               <div class="box-rate">1×5</div>
               <div class="balls-container"><div class="mini-ball red"></div><div class="mini-ball red"></div><div class="mini-ball red"></div><div class="mini-ball red"></div></div>
             </div>
-            <!-- 5 -->
-            <div class="dice-board-box" id="box_exact_5" onclick="N98.selectDiceOption('exact', '5', event)">
+            <div class="dice-board-box" id="box_exact_5" onclick="N98.selectDiceOption('exact', '5', event)" style="grid-column: 4; grid-row: 2;">
               <div class="box-title">5</div>
               <div class="box-rate">1×5</div>
               <div class="balls-container"><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div></div>
-            </div>
-            <!-- 6 -->
-            <div class="dice-board-box" id="box_exact_6" onclick="N98.selectDiceOption('exact', '6', event)">
-              <div class="box-title">6</div>
-              <div class="box-rate">1×5</div>
-              <div class="balls-container"><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div><div class="mini-ball blue"></div></div>
             </div>
           </div>
 
@@ -842,12 +849,19 @@
         <div class="time-box">📊 ប្រវត្តិទាំងអស់ <span style="font-size:10px; color:#dc3545; margin-left:8px; font-weight:800; background:#fee2e2; padding:2px 8px; border-radius:6px;">រក្សាទុក ២ ថ្ងៃ</span></div>
         
         <div class="history-tabs-container" id="historyTabsContainer">
+          <!-- Classic Tabs (បង្ហាញតែពេលនៅ Tab Classic) -->
           <button class="history-tab active" data-tab="bets-classic" data-mode="classic" onclick="N98.switchHistoryTab('bets-classic', event)">📊 ប្រវត្តិចាក់ 12/16</button>
           <button class="history-tab" data-tab="results-classic" data-mode="classic" onclick="N98.switchHistoryTab('results-classic', event)">🎯 លទ្ធផល 12/16</button>
+          
+          <!-- Rapid Tabs (បង្ហាញតែពេលនៅ Tab Rapid) -->
           <button class="history-tab" data-tab="bets-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('bets-rapid', event)" style="display:none;">⚡ ប្រវត្តិចាក់ 10នាទី</button>
           <button class="history-tab" data-tab="results-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('results-rapid', event)" style="display:none;">🎯 លទ្ធផល 10នាទី</button>
+          
+          <!-- Dice Tabs (បង្ហាញតែពេលនៅ Tab Dice) -->
           <button class="history-tab" data-tab="bets-dice" data-mode="dice" onclick="N98.switchHistoryTab('bets-dice', event)" style="display:none;">🎲 ប្រវត្តិអាប៉ោង</button>
           <button class="history-tab" data-tab="results-dice" data-mode="dice" onclick="N98.switchHistoryTab('results-dice', event)" style="display:none;">🎲 លទ្ធផលអាប៉ោង</button>
+          
+          <!-- Both Tabs (បង្ហាញគ្រប់ពេល) -->
           <button class="history-tab" data-tab="deposits" data-mode="both" onclick="N98.switchHistoryTab('deposits', event)">💰 ប្រវត្តិដាក់ប្រាក់</button>
           <button class="history-tab" data-tab="withdrawals" data-mode="both" onclick="N98.switchHistoryTab('withdrawals', event)">🏦 ប្រវត្តិដកប្រាក់</button>
         </div>
@@ -1063,10 +1077,9 @@
       <span class="close" onclick="N98.closeModal('groupModal')">&times;</span>
       <h2>ចូលក្រុម និង Channel</h2>
       <p style="font-size:13px; color:#4a5568; margin:12px 0; font-weight:600;">ទទួលបានព័ត៌មានថ្មីៗ!</p>
-      <a href="https://t.me/+ErJaYtpHWwE1YWI1" target="_blank" rel="noopener" class="group-btn" style="display:block; padding:12px; background:linear-gradient(135deg,#0078D7,#005fa3); color:white; border-radius:10px; text-decoration:none; font-weight:800; text-align:center; font-size:13px; margin-bottom:8px;">🎯 ចូលក្រុមចាក់សម្រាប់ឆ្នោត 12:00 / 16:00 / ឆ្នោត 10 នាទី</a>
+      <a href="https://t.me/+ErJaYtpHWwE1YWI1" target="_blank" rel="noopener" class="group-btn" style="display:block; padding:12px; background:linear-gradient(135deg,#0078D7,#005fa3); color:white; border-radius:10px; text-decoration:none; font-weight:800; text-align:center; font-size:13px; margin-bottom:8px;">🎯 ចូល Channel ប្រកាសលទ្ធផលអាប៉ោង Live</a>
       <a href="https://t.me/lekhchhnaotN98" target="_blank" rel="noopener" class="group-btn" style="display:block; padding:12px; background:linear-gradient(135deg,#28a745,#1e7e34); color:white; border-radius:10px; text-decoration:none; font-weight:800; text-align:center; font-size:13px; margin-bottom:8px;">📢 ចូល Channel ប្រកាសលទ្ធផលឆ្នោត 12:00 / 16:00</a>
       <a href="https://t.me/Livelotteryevery10minutes" target="_blank" rel="noopener" class="group-btn" style="display:block; padding:12px; background:linear-gradient(135deg,#e91e63,#880e4f); color:white; border-radius:10px; text-decoration:none; font-weight:800; text-align:center; font-size:13px; margin-bottom:8px;">⚡ ចូល Channel លទ្ធផលឆ្នោត N98 រៀងរាល់ 10 នាទី</a>
-      <a href="https://t.me/+UwX-YZZieXQ0N2E1" target="_blank" rel="noopener" class="group-btn" style="display:block; padding:12px; background:linear-gradient(135deg,#6f42c1,#5a32a3); color:white; border-radius:10px; text-decoration:none; font-weight:800; text-align:center; font-size:13px; margin-bottom:8px;">💰 ចូលក្រុមទទួលសំណើដកប្រាក់រង្វាន់</a>
     </div>
   </div>
 
@@ -1096,7 +1109,7 @@
     </div>
   </div>
 
-  <script>
+      <script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
@@ -1642,7 +1655,7 @@
         var activeTab = null;
         for (var i = 0; i < tabs.length; i++) {
           var tabMode = tabs[i].getAttribute('data-mode');
-          // កែសម្រួល៖ បង្ហាញតែ Tab ដែលត្រូវនឹង Mode ប៉ុណ្ណោះ (មិនឱ្យលាយឡំ)
+          // បង្ហាញតែ Tab ដែលត្រូវនឹង Mode ប៉ុណ្ណោះ (មិនឱ្យលាយឡំ)
           if (tabMode === mode || (mode === 'dice' && tabMode === 'both')) {
             tabs[i].style.display = 'flex';
             if (tabs[i].classList.contains('active')) activeTab = tabs[i];
@@ -2698,7 +2711,7 @@
         if (!cachedDiceResults || cachedDiceResults.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="color:#6c757d; padding:12px; font-weight:600;">មិនមានលទ្ធផលអាប៉ោង</td></tr>'; return; }
         var html = '';
         for (var i = 0; i < cachedDiceResults.length; i++) {
-          var r = cachedDiceResults[i]; var color = r.result <= 3 ? '#10b981' : '#f97316'; var type = r.result <= 3 ? 'ស្តើង' : 'ក្រាស់';
+          var r = cachedDiceResults[i]; var color = (r.result === 1 || r.result === 4) ? '#dc2626' : '#2563eb'; var type = (r.result === 1 || r.result === 4) ? 'ក្រាស់' : 'ស្តើង';
           html += '<tr style="border-bottom: 1px solid #e9ecef;"><td style="text-align:center;"><div style="font-weight:800; color:#1e293b;">' + esc(r.date || '--') + '</div></td><td style="text-align:center;"><span class="badge" style="background:#3b82f6; color:#fff; border-radius:6px; font-size:11px; padding:4px 8px;">#' + esc(r.drawId || '--') + '</span></td><td style="text-align:center; font-size:11px; color:#6c757d; font-weight:700;">' + esc(r.time || '--') + '</td><td style="text-align:center; font-size:24px; font-weight:800; color:' + color + ';">' + r.result + ' <span style="font-size:12px;">' + type + '</span></td><td style="text-align:center; font-size:11px; color:#005fa3; font-weight:700;">' + esc(r.publishedAt || '--') + '</td></tr>';
         }
         tbody.innerHTML = html;
@@ -2745,12 +2758,14 @@
         if (!cachedDiceResults || cachedDiceResults.length === 0) { grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:20px; color:#a0a8b8;">មិនទាន់មានលទ្ធផល</div>'; return; }
         var html = ''; var count = Math.min(4, cachedDiceResults.length);
         for (var i = 0; i < count; i++) {
-          var r = cachedDiceResults[i]; var color = r.result <= 3 ? '#3b82f6' : '#ef4444'; var type = r.result <= 3 ? 'ស្តើង' : 'ក្រាស់';
+          var r = cachedDiceResults[i]; 
+          var isLatest = (i === 0);
+          var color = (r.result === 1 || r.result === 4) ? '#3b82f6' : '#ef4444'; 
           var ballsHtml = '';
           for (var j = 0; j < r.result; j++) {
-            ballsHtml += '<div class="mini-ball ' + (r.result <= 3 ? 'blue' : 'red') + '"></div>';
+            ballsHtml += '<div class="mini-ball ' + (((r.result === 1 || r.result === 4) ? 'blue' : 'red')) + '"></div>';
           }
-          html += '<div class="dice-history-card">' +
+          html += '<div class="dice-history-card ' + (isLatest ? 'latest' : '') + '">' +
             '<div class="draw-id">#' + esc(r.drawId) + '</div>' +
             '<div class="balls">' + ballsHtml + '</div>' +
             '<div style="font-size:16px; font-weight:800; color:' + color + ';">' + r.result + ' គ្រាប់</div>' +
@@ -2765,7 +2780,9 @@
         if (!cachedDiceResults || cachedDiceResults.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="color:#6c757d; padding:12px; font-weight:600;">មិនមានប្រវត្តិ</td></tr>'; return; }
         var html = '';
         for (var i = 0; i < cachedDiceResults.length; i++) {
-          var r = cachedDiceResults[i]; var type = r.result <= 3 ? 'ស្តើង' : 'ក្រាស់'; var sign = r.result <= 3 ? '<span class="sign-blue">🔵</span>' : '<span class="sign-red">🔴</span>';
+          var r = cachedDiceResults[i]; 
+          var type = (r.result === 1 || r.result === 4) ? 'ក្រាស់' : 'ស្តើង'; 
+          var sign = (r.result === 1 || r.result === 4) ? '<span class="sign-blue">🔵</span>' : '<span class="sign-red">🔴</span>';
           html += '<tr><td>#' + esc(r.drawId) + '</td><td>' + esc(r.time) + '</td><td><strong>' + r.result + ' ' + type + '</strong></td><td>' + sign + '</td></tr>';
         }
         tbody.innerHTML = html;
@@ -3106,5 +3123,5 @@
     })();
   </script>
 </body>
-</html>  
+</html>
   
