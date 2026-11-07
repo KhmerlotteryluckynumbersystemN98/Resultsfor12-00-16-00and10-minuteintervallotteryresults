@@ -846,19 +846,15 @@
         <div class="time-box">📊 ប្រវត្តិទាំងអស់ <span style="font-size:10px; color:#dc3545; margin-left:8px; font-weight:800; background:#fee2e2; padding:2px 8px; border-radius:6px;">រក្សាទុក ២ ថ្ងៃ</span></div>
         
         <div class="history-tabs-container" id="historyTabsContainer">
-          <!-- Classic Tabs -->
           <button class="history-tab active" data-tab="bets-classic" data-mode="classic" onclick="N98.switchHistoryTab('bets-classic', event)">📊 ប្រវត្តិចាក់ 12/16</button>
           <button class="history-tab" data-tab="results-classic" data-mode="classic" onclick="N98.switchHistoryTab('results-classic', event)">🎯 លទ្ធផល 12/16</button>
           
-          <!-- Rapid Tabs -->
           <button class="history-tab" data-tab="bets-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('bets-rapid', event)" style="display:none;">⚡ ប្រវត្តិចាក់ 10នាទី</button>
           <button class="history-tab" data-tab="results-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('results-rapid', event)" style="display:none;">🎯 លទ្ធផល 10នាទី</button>
           
-          <!-- Dice Tabs -->
           <button class="history-tab" data-tab="bets-dice" data-mode="dice" onclick="N98.switchHistoryTab('bets-dice', event)" style="display:none;">🎲 ប្រវត្តិអាប៉ោង</button>
           <button class="history-tab" data-tab="results-dice" data-mode="dice" onclick="N98.switchHistoryTab('results-dice', event)" style="display:none;">🎲 លទ្ធផលអាប៉ោង</button>
           
-          <!-- Both Tabs -->
           <button class="history-tab" data-tab="deposits" data-mode="both" onclick="N98.switchHistoryTab('deposits', event)">💰 ប្រវត្តិដាក់ប្រាក់</button>
           <button class="history-tab" data-tab="withdrawals" data-mode="both" onclick="N98.switchHistoryTab('withdrawals', event)">🏦 ប្រវត្តិដកប្រាក់</button>
         </div>
@@ -1652,7 +1648,8 @@
         var activeTab = null;
         for (var i = 0; i < tabs.length; i++) {
           var tabMode = tabs[i].getAttribute('data-mode');
-          if (tabMode === mode || (mode === 'dice' && tabMode === 'both')) {
+          // បង្ហាញ Tab តាម Mode និង Tab 'both' (ដាក់ប្រាក់/ដកប្រាក់) គ្រប់ពេល
+          if (tabMode === mode || tabMode === 'both') {
             tabs[i].style.display = 'flex';
             if (tabs[i].classList.contains('active')) activeTab = tabs[i];
           } else {
