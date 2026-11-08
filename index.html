@@ -832,66 +832,58 @@
 
           <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (អាចជ្រើសបានច្រើន)<br>២. បញ្ចូលចំនួនទឹកប្រាក់សម្រាប់ជម្រើសនីមួយៗ<br>៣. ចុច <strong>"បន្ថែមចូលបញ្ជី"</strong> រួចចុច <strong>"ដាក់ភ្នាល់"</strong></div>
 
-          <div class="type-selector" style="margin-bottom:10px;">
-            <button class="type-btn active" data-dice-type="exact" onclick="N98.setDiceType('exact', event)">🎯 ទាយគ្រាប់</button>
-            <button class="type-btn" data-dice-type="thin_thick" onclick="N98.setDiceType('thin_thick', event)">📊 ស្តើង / ក្រាស់</button>
-          </div>
+          <!-- តារាងចាក់អាប៉ោង ៦ គ្រាប់ រៀបតាមទម្រង់រូបភាព -->
+          <div class="dice-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <!-- ជួរទី១: គ្រាប់ 1 និង គ្រាប់ 6 -->
+            <div class="dice-box" id="diceBox1" onclick="N98.toggleDiceSelection(1, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
+              <div class="dice-title" style="color: #ef4444;">1</div>
+              <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
+              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div></div>
+            </div>
+            <div class="dice-box" id="diceBox6" onclick="N98.toggleDiceSelection(6, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
+              <div class="dice-title" style="color: #ef4444;">6</div>
+              <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
+              <div class="dice-dots" style="margin-top: 5px;">
+                <div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div>
+              </div>
+            </div>
 
-          <div id="diceExactPanel">
-            <!-- រៀបចំថ្មីតាមតម្រូវការ: ១ និង ៦ ខាងលើ, ២ ៣ ក្រោម ១, ៤ ៥ ក្រោម ៦ -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-              <!-- ជួរទី១: គ្រាប់ 1 (ក្រហម) និង គ្រាប់ 6 (ខៀវ) -->
-              <div class="dice-box" id="diceBox1" onclick="N98.toggleDiceSelection(1, event)">
-                <div class="dice-title">ទាយគ្រាប់ 1</div>
-                <div class="dice-dots"><div class="dice-dot red"></div></div>
-                <div class="dice-sub">អត្រា x5</div>
+            <!-- ជួរទី២: គ្រាប់ 2 និង 3 (ក្រោម 1), គ្រាប់ 4 និង 5 (ក្រោម 6) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div class="dice-box" id="diceBox2" onclick="N98.toggleDiceSelection(2, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
+                <div class="dice-title" style="color: #3b82f6;">2</div>
+                <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
+                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
               </div>
-              <div class="dice-box" id="diceBox6" onclick="N98.toggleDiceSelection(6, event)">
-                <div class="dice-title">ទាយគ្រាប់ 6</div>
-                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-                <div class="dice-sub">អត្រា x5</div>
+              <div class="dice-box" id="diceBox3" onclick="N98.toggleDiceSelection(3, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
+                <div class="dice-title" style="color: #3b82f6;">3</div>
+                <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
+                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-              <!-- ជួរទី២: គ្រាប់ 2,3 (ខៀវ) ក្រោមគ្រាប់ 1 -->
-              <div class="dice-box" id="diceBox2" onclick="N98.toggleDiceSelection(2, event)">
-                <div class="dice-title">ទាយគ្រាប់ 2</div>
-                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-                <div class="dice-sub">អត្រា x5</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div class="dice-box" id="diceBox4" onclick="N98.toggleDiceSelection(4, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
+                <div class="dice-title" style="color: #ef4444;">4</div>
+                <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
+                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
               </div>
-              <!-- ជួរទី២: គ្រាប់ 4,5 (ក្រហម/ខៀវ) ក្រោមគ្រាប់ 6 -->
-              <div class="dice-box" id="diceBox4" onclick="N98.toggleDiceSelection(4, event)">
-                <div class="dice-title">ទាយគ្រាប់ 4</div>
-                <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
-                <div class="dice-sub">អត្រា x5</div>
+              <div class="dice-box" id="diceBox5" onclick="N98.toggleDiceSelection(5, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
+                <div class="dice-title" style="color: #3b82f6;">5</div>
+                <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
+                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
               </div>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-              <div class="dice-box" id="diceBox3" onclick="N98.toggleDiceSelection(3, event)">
-                <div class="dice-title">ទាយគ្រាប់ 3</div>
-                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-                <div class="dice-sub">អត្រា x5</div>
-              </div>
-              <div class="dice-box" id="diceBox5" onclick="N98.toggleDiceSelection(5, event)">
-                <div class="dice-title">ទាយគ្រាប់ 5</div>
-                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-                <div class="dice-sub">អត្រា x5</div>
-              </div>
-            </div>
-          </div>
 
-          <div id="diceThinThickPanel" style="display:none;">
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <div class="dice-box" id="diceBoxThin" onclick="N98.toggleDiceSelection('thin', event)" style="flex:1;">
-                <div class="dice-title">ស្តើង (1,2,3)</div>
-                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-                <div class="dice-sub">អត្រា x0.85</div>
-              </div>
-              <div class="dice-box" id="diceBoxThick" onclick="N98.toggleDiceSelection('thick', event)" style="flex:1;">
-                <div class="dice-title">ក្រាស់ (4,5,6)</div>
-                <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
-                <div class="dice-sub">អត្រា x0.85</div>
-              </div>
+            <!-- ជួរទី៣: ស្តើង និង ក្រាស់ (ពណ៌ស្វាយ) -->
+            <div class="dice-box" id="diceBoxThin" onclick="N98.toggleDiceSelection('thin', event)" style="border: 2px solid #6f42c1; background: #f3e8ff;">
+              <div class="dice-title" style="color: #6f42c1; font-size: 13px;">ស្តើង (1-3)</div>
+              <div class="dice-sub" style="color: #6f42c1; font-size: 10px;">1x0.85</div>
+              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div></div>
+            </div>
+            <div class="dice-box" id="diceBoxThick" onclick="N98.toggleDiceSelection('thick', event)" style="border: 2px solid #6f42c1; background: #f3e8ff;">
+              <div class="dice-title" style="color: #6f42c1; font-size: 13px;">ក្រាស់ (4-6)</div>
+              <div class="dice-sub" style="color: #6f42c1; font-size: 10px;">1x0.85</div>
+              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div></div>
             </div>
           </div>
 
@@ -899,12 +891,11 @@
           <div style="margin-top: 15px;">
             <label style="color:#d8b4fe; font-weight:800; font-size:13px; display:block; margin-bottom:6px;">💰 ចំនួនទឹកប្រាក់សម្រាប់ជម្រើសដែលបានជ្រើស</label>
             <div class="dice-input-row">
-              <input type="number" id="diceBetAmountInput" placeholder="បញ្ចូលចំនួន" min="0.01" step="any">
-              <select id="diceCurrencySelect" style="background: rgba(0,0,0,0.3); color: white; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; padding: 10px; font-weight:800;">
+              <input type="number" id="diceBetAmountInput" placeholder="បញ្ចូលចំនួន" min="0.01" step="any" style="flex: 2;">
+              <select id="diceCurrencySelect" style="flex: 1; background: rgba(0,0,0,0.3); color: white; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; padding: 10px; font-weight:800;">
                 <option value="USD">ដុល្លារ ($)</option>
                 <option value="KHR">រៀល (៛)</option>
               </select>
-              <button onclick="N98.addDiceSelectionToBet()">➕ បន្ថែមចូលបញ្ជី</button>
             </div>
           </div>
 
@@ -1284,7 +1275,7 @@
     </div>
   </div>
 
-<script>
+    <script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
@@ -1338,10 +1329,7 @@
       var currentDrawId10 = '';
 
       // ===== DICE VARIABLES =====
-      var diceTypeMode = 'exact'; // 'exact' or 'thin_thick'
-      var diceSelectedOptions = []; // Array of {type, value, amount, currency, label}
-      var diceAmountInput = 0;
-      var diceCurrency = 'USD';
+      var diceSelectedOptions = []; 
       var currentDrawIdDice = '';
       var cachedDiceResults = [];
       var cachedDiceBets = [];
@@ -3576,7 +3564,8 @@
         }
         
         var html = '';
-        for (var i = 0; i < cachedDiceResults.length; i++) {
+        // បង្ហាញ ៤០ ដងចុងក្រោយ
+        for (var i = 0; i < Math.min(40, cachedDiceResults.length); i++) {
           var r = cachedDiceResults[i];
           var emoji = '';
           if (r.result === 1) emoji = '🔴';
@@ -4063,7 +4052,7 @@
           try { localStorage.setItem(CFG.MAIN_MODE_KEY, mode); } catch (e) {}
         },
         fetchDiceResults: function() {
-          fetchWithTimeout(WEB_APP_URL + '?action=getDiceResults&limit=10&t=' + Date.now(), { cache: 'no-store' })
+          fetchWithTimeout(WEB_APP_URL + '?action=getDiceResults&limit=40&t=' + Date.now(), { cache: 'no-store' })
             .then(safeJsonParse).then(function(data) {
               if (data && data.ok && Array.isArray(data.results)) { 
                 cachedDiceResults = data.results; 
@@ -4079,6 +4068,7 @@
             return; 
           }
           var html = '';
+          // បង្ហាញ ៤ វគ្គចុងក្រោយ
           for (var i = 0; i < Math.min(4, cachedDiceResults.length); i++) {
             var r = cachedDiceResults[i]; 
             var isNew = (i === 0); 
@@ -4090,32 +4080,22 @@
             else if (r.result === 5) emoji = '🔵🔵🔵🔵🔵'; 
             else if (r.result === 6) emoji = '🔵🔵🔵🔵🔵🔵';
             
+            // ធ្វើឱ្យគ្រាប់តូចជាងមុន
+            var dotHtml = '';
+            for (var k=0; k<r.result; k++) dotHtml += '<div class="dice-dot-lg ' + (r.result===1||r.result===4?'red':'blue') + '" style="width:20px;height:20px;margin:0 2px;"></div>';
+
             html += '<div class="dice-result-card' + (isNew ? ' new-result' : '') + '">' +
               '<div class="header">' +
                 '<span class="draw-id">#' + esc(r.drawId) + '</span>' +
                 '<span class="time">' + esc(r.time) + '</span>' +
               '</div>' +
-              '<div style="text-align:center; padding:15px 0;">' +
-                '<div style="font-size:40px; margin-bottom:5px;">' + emoji + '</div>' +
-                '<div style="font-size:32px; font-weight:800; color:#d8b4fe;">' + r.result + '</div>' +
+              '<div style="text-align:center; padding:10px 0;">' +
+                '<div class="dice-dots-row" style="display:flex; justify-content:center; gap:4px;">' + dotHtml + '</div>' +
+                '<div style="font-size:24px; font-weight:800; color:#d8b4fe; margin-top:8px;">' + r.result + '</div>' +
               '</div>' +
             '</div>';
           }
           grid.innerHTML = html;
-        },
-        setDiceType: function(type, evt) {
-          diceTypeMode = type;
-          var btns = document.querySelectorAll('#diceMode .type-btn');
-          for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
-          if (evt && evt.target) evt.target.classList.add('active');
-          
-          if (type === 'exact') {
-            $('diceExactPanel').style.display = 'block';
-            $('diceThinThickPanel').style.display = 'none';
-          } else {
-            $('diceExactPanel').style.display = 'none';
-            $('diceThinThickPanel').style.display = 'block';
-          }
         },
         toggleDiceSelection: function(val, evt) {
           var type = 'exact';
@@ -4160,7 +4140,7 @@
           N98.updateSubmitDiceButton();
         },
         addDiceSelectionToBet: function() {
-          showToast('សូមជ្រើសរើសគ្រាប់ជាមុនសិន ដើម្បីបន្ថែមចូលបញ្ជី!', 'info');
+          // មិនប្រើទៀតទេ ព្រោះវាដំណើរការស្វ័យប្រវត្តិ
         },
         removeDiceSelection: function(idx) {
           diceSelectedOptions.splice(idx, 1);
