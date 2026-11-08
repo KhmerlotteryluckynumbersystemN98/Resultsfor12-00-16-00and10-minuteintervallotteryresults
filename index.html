@@ -35,6 +35,7 @@
 
     .anim-bounce { animation: bounce 1.5s ease-in-out infinite; display: inline-block; }
     .anim-pulse { animation: pulse 1.2s ease-in-out infinite; display: inline-block; }
+    .anim-shake { animation: shake 0.8s ease-in-out infinite; display: inline-block; }
     .anim-spin { animation: spin 1.5s linear infinite; display: inline-block; }
     .emoji-dice { animation: spin 4s linear infinite; display: inline-block; }
     .emoji-money { animation: bounce 1.5s ease-in-out infinite; display: inline-block; }
@@ -47,8 +48,11 @@
     header { background: linear-gradient(135deg, #0078D7 0%, #005fa3 50%, #6f42c1 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; color: white; padding: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,120,215,0.3); transition: all 0.5s; }
     header.mode-10 { background: linear-gradient(135deg, #e91e63 0%, #c2185b 50%, #880e4f 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(233,30,99,0.4); }
     header h1 { font-size: clamp(24px, 5vw, 38px); font-weight: 800; margin: 8px 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); position: relative; z-index: 1; }
+    header p { font-size: clamp(13px, 2vw, 16px); opacity: 0.95; position: relative; z-index: 1; font-weight: 600; }
+
     .mode-tabs { background: white; padding: 12px 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 110; box-shadow: 0 2px 12px rgba(0,0,0,0.1); border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #0078D7, #28a745, #ff9800, #6f42c1, #e91e63, #0078D7) 1; }
     .mode-tab { flex: 1; min-width: 140px; max-width: 240px; padding: 14px 16px; border: 3px solid #dee2e6; background: white; border-radius: 14px; font-weight: 800; font-size: clamp(13px, 1.6vw, 15px); cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: #2d3748; display: flex; align-items: center; justify-content: center; gap: 8px; position: relative; }
+    .mode-tab:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
     .mode-tab.active[data-mode="classic"] { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; border-color: #0078D7; box-shadow: 0 6px 20px rgba(0,120,215,0.5); animation: glow 2s ease-in-out infinite; }
     .mode-tab.active[data-mode="rapid"] { background: linear-gradient(135deg, #e91e63, #880e4f); color: white; border-color: #e91e63; box-shadow: 0 6px 20px rgba(233,30,99,0.5); animation: glowPink 2s ease-in-out infinite; }
     .mode-tab .badge-live { background: #ff1744; color: white; font-size: 9px; padding: 2px 6px; border-radius: 6px; animation: blink 1s linear infinite; font-weight: 800; }
@@ -58,23 +62,47 @@
     .nav-bar a:hover, .nav-bar button:hover { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; transform: translateY(-2px); }
     .nav-bar a.active { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; }
     .btn-share { background: linear-gradient(135deg, #ff9800, #e65100) !important; color: white !important; }
+    .btn-group { background: linear-gradient(135deg, #0088cc, #006699) !important; color: white !important; }
+    .btn-logout { background: linear-gradient(135deg, #dc3545, #a71d2a) !important; color: white !important; }
     .btn-theme { background: linear-gradient(135deg, #6f42c1, #5a32a3) !important; color: white !important; }
     .btn-contact-admin { background: linear-gradient(135deg, #17a2b8, #117a8b) !important; color: white !important; }
     .btn-tv { background: linear-gradient(135deg, #ff1744, #d50000) !important; color: white !important; box-shadow: 0 0 10px rgba(255,23,68,0.5); animation: pulse 2s infinite; }
 
+    .section { padding: 12px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
     .user-info-bar { background: linear-gradient(135deg, #d4edda, #a8e6c0); padding: 12px 16px; border-radius: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border: 2px solid #28a745; box-shadow: 0 4px 14px rgba(40,167,69,0.2); }
+    .user-info-bar .label { color: #155724; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; }
     .user-info-bar .value { color: #28a745; font-size: clamp(13px, 1.5vw, 16px); font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 1px; }
+
     .clock-box { background: linear-gradient(135deg, #ffffff, #e8f4fd); border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 2px solid #0078D7; flex-wrap: wrap; gap: 10px; box-shadow: 0 4px 16px rgba(0,120,215,0.15); }
     .clock-title { color: #4a5568; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; }
+    .clock-time { color: #0078D7; font-size: clamp(22px, 3.5vw, 30px); font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 12px rgba(0,120,215,0.3); }
     .clock-date { color: #2d3748; font-size: clamp(11px, 1.3vw, 13px); font-weight: 700; }
+
+    .status-bar { background: linear-gradient(135deg, #e8f4fd, #d4edda); padding: 8px 12px; border-radius: 10px; margin: 6px 0; border-left: 4px solid #0078D7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-weight: 700; }
+    .status-bar .label { font-weight: 800; color: #005fa3; font-size: clamp(11px, 1.3vw, 13px); }
+    .status-bar .value { font-weight: 800; color: #28a745; font-size: clamp(12px, 1.4vw, 14px); }
     .status-bar .pending { color: #dc3545; animation: pulse 1.5s ease-in-out infinite; }
+
     .countdown { background: linear-gradient(135deg, #ffffff, #fff5f5); padding: 16px; border-radius: 14px; margin: 10px 0; border: 3px solid #dc3545; text-align: center; box-shadow: 0 4px 18px rgba(220,53,69,0.2); }
     .countdown .time-display { font-size: clamp(32px, 6vw, 46px); color: #dc3545; background: #fff5f5; padding: 6px 18px; border-radius: 10px; display: inline-block; margin-top: 6px; font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(220,53,69,0.4); animation: pulse 2s ease-in-out infinite; }
     .countdown .next-time { font-size: clamp(12px, 1.4vw, 14px); color: #4a5568; margin-top: 6px; font-weight: 800; }
+    .countdown .status-time { font-size: clamp(11px, 1.3vw, 13px); color: #0078D7; margin-top: 4px; font-weight: 700; }
+
     .countdown-rapid { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 3px solid #e91e63; border-radius: 20px; padding: 20px; margin: 12px 0; text-align: center; box-shadow: 0 8px 32px rgba(233,30,99,0.4); animation: glowPink 2s ease-in-out infinite; }
     .countdown-rapid .label { color: #ff8bb5; font-size: clamp(12px, 1.5vw, 14px); font-weight: 800; margin-bottom: 8px; }
     .countdown-rapid .time-display { font-size: clamp(44px, 9vw, 72px); color: #ff1744; background: #1a0f1f; padding: 12px 24px; border-radius: 16px; display: inline-block; font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 25px rgba(255,23,68,0.7); letter-spacing: 2px; animation: pulse 2s ease-in-out infinite; }
     .countdown-rapid .next-draw { color: #e8eaf0; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; margin-top: 10px; }
+    .countdown-rapid .draw-number { color: #ff8bb5; font-weight: 800; }
+
+    .ring-container { position: relative; width: 160px; height: 160px; margin: 12px auto; }
+    .ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 8; }
+    .ring-progress { fill: none; stroke: url(#ringGradient); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+    .ring-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .ring-text .time { font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); }
+    .ring-text .label { font-size: 11px; color: #ff8bb5; font-weight: 700; margin-top: 2px; }
+
     .lottery-box { background: white; padding: 16px; margin: 12px 0; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.04); animation: slideInUp 0.5s ease-out; transition: all 0.3s ease; }
     .lottery-box:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
     .time-box { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px dashed #cbd5e1; }
@@ -101,9 +129,14 @@
     .bet-box.rapid h2 { color: #ff8bb5; border-bottom-color: rgba(233,30,99,0.3); }
 
     .reward-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden; font-size: clamp(11px, 1.3vw, 13px); }
+    .reward-table th { background: linear-gradient(135deg, #e8f4fd, #d4edda); color: #0078D7; padding: 8px 6px; font-weight: 800; }
     .reward-table td { padding: 7px 6px; text-align: center; font-weight: 700; border: 1px solid #dee2e6; }
     .text-respond { color: #d63000; font-weight: 800; }
+
+    .mode-selector, .type-selector, .time-selector { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .mode-btn, .type-btn, .time-btn { flex: 1; min-width: 80px; padding: 10px 8px; border: 2px solid #dee2e6; background: white; font-weight: 800; border-radius: 10px; cursor: pointer; font-size: clamp(12px, 1.5vw, 14px); transition: all 0.3s; }
     .mode-btn:hover, .type-btn:hover, .time-btn:hover:not(.closed) { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,120,215,0.2); border-color: #0078D7; }
+    .mode-btn.active, .type-btn.active, .time-btn.active { border-color: #0078D7; background: linear-gradient(135deg, #e8f4fd, #d4edda); color: #0078D7; }
     .time-btn.closed { opacity: 0.45; cursor: not-allowed; background: #f8f9fa !important; color: #999 !important; }
 
     .balance-box { background: linear-gradient(135deg, #d4edda, #a8e6c0); border: 2px solid #28a745; border-radius: 14px; padding: 14px; margin: 12px 0; text-align: center; box-shadow: 0 4px 14px rgba(40,167,69,0.2); }
@@ -115,8 +148,20 @@
     .letter-circle { width: clamp(42px, 6vw, 52px); height: clamp(42px, 6vw, 52px); border-radius: 50%; border: 3px solid #dee2e6; background: linear-gradient(135deg, #f8f9fa, #e9ecef); color: #2d3748; font-size: clamp(15px, 2vw, 18px); font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.35s; }
     .letter-circle:hover { border-color: #0078D7; background: linear-gradient(135deg, #e8f4fd, #d4edda); transform: translateY(-3px) scale(1.05); }
     .letter-circle.active { background: linear-gradient(135deg, #0078D7, #6f42c1); color: white; border-color: #0078D7; transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,120,215,0.5); animation: glow 2s ease-in-out infinite; }
+    .bet-box.rapid .letter-circle { border-color: rgba(233,30,99,0.4); background: rgba(255,255,255,0.05); color: #e8eaf0; }
+    .bet-box.rapid .letter-circle.active { background: linear-gradient(135deg, #e91e63, #880e4f); border-color: #e91e63; }
+
     .input-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; background: #f8f9fa; padding: 10px; border-radius: 10px; border: 2px dashed #0078D7; flex-wrap: wrap; }
     .bet-box.rapid .input-row { background: rgba(255,255,255,0.05); border-color: rgba(233,30,99,0.4); }
+    .input-row input { flex: 1 1 120px; padding: 12px 14px; border: 2px solid #dee2e6; border-radius: 8px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 800; min-width: 80px; letter-spacing: 2px; background: white; }
+    .bet-box.rapid .input-row input { background: rgba(0,0,0,0.3); color: #ffffff; border-color: rgba(233,30,99,0.3); text-align: center; }
+    .input-row input:focus { border-color: #0078D7; outline: none; box-shadow: 0 0 0 4px rgba(0,120,215,0.15); }
+
+    .selected-display { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; min-height: 36px; padding: 8px; background: #f8f9fa; border-radius: 8px; border: 2px dashed #dee2e6; align-items: center; }
+    .bet-box.rapid .selected-display { background: rgba(255,255,255,0.05); border-color: rgba(233,30,99,0.4); }
+    .selected-tag { background: linear-gradient(135deg, #0078D7, #6f42c1); color: white; padding: 4px 12px; border-radius: 14px; font-size: clamp(12px, 1.4vw, 13px); display: inline-flex; align-items: center; gap: 5px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,120,215,0.3); animation: fadeIn 0.3s ease-out; }
+    .bet-box.rapid .selected-tag { background: linear-gradient(135deg, #e91e63, #880e4f); }
+    .selected-tag .remove { cursor: pointer; font-weight: 800; color: #ff6b6b; font-size: 16px; background: rgba(255,255,255,0.25); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
     .selected-tag .remove:hover { background: #ff1744; color: white; transform: rotate(90deg); }
 
     .amount-buttons { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
@@ -131,25 +176,43 @@
 
     .bet-summary { background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 10px 14px; border-radius: 10px; margin: 10px 0; border: 2px solid #0078D7; }
     .bet-box.rapid .bet-summary { background: rgba(255,255,255,0.05); border-color: rgba(233,30,99,0.4); }
+    .bet-summary-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #dee2e6; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; }
+    .bet-box.rapid .bet-summary-item { border-bottom-color: rgba(233,30,99,0.2); color: #e8eaf0; }
+    .bet-summary-item:last-child { border-bottom: none; }
     .bet-summary .total { font-weight: 800; color: #d63000; font-size: clamp(15px, 1.8vw, 17px); }
     .bet-box.rapid .bet-summary .total { color: #ff8bb5; }
+
+    .balance-status-box { margin-top: 12px; padding: 12px 14px; border-radius: 12px; border: 2px solid; display: none; animation: slideInUp 0.4s ease-out; }
+    .balance-status-box.ok { background: linear-gradient(135deg, #d4edda, #a8e6c0); border-color: #28a745; }
     .balance-status-box.warn { background: linear-gradient(135deg, #fff5f5, #ffe0e0); border-color: #dc3545; animation: shake 0.5s ease-out; }
     .balance-status-box .header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-weight: 800; font-size: 13px; }
     .balance-status-box.ok .header-row { color: #155724; }
+    .balance-status-box.warn .header-row { color: #721c24; }
     .balance-status-box .rows { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 12px; font-weight: 700; }
+    .balance-status-box .rows .label { color: #4a5568; }
+    .balance-status-box .rows .value { color: #2d3748; font-family: 'Courier New', monospace; }
+    .balance-status-box .rows .value.success { color: #28a745; }
     .balance-status-box .rows .value.danger { color: #dc3545; }
     .balance-status-box .progress-bar { margin-top: 10px; height: 8px; background: rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden; }
+    .balance-status-box .progress-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+    .balance-status-box.ok .progress-fill { background: linear-gradient(90deg, #28a745, #4ade80); }
     .balance-status-box.warn .progress-fill { background: linear-gradient(90deg, #dc3545, #a71d2a); }
     .balance-status-box .hint { margin-top: 8px; font-size: 11px; font-weight: 700; text-align: center; padding: 6px; border-radius: 8px; background: rgba(255,255,255,0.5); animation: none !important; }
     .balance-status-box.warn .hint { color: #721c24; }
 
     .btn { color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: clamp(12px, 1.4vw, 13px); margin: 3px; font-weight: 800; transition: all 0.3s; }
+    .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
     .btn:disabled { background: #ced4da !important; color: #6c757d !important; cursor: not-allowed; }
     .btn-success { background: linear-gradient(135deg, #28a745, #1e7e34); width: 100%; padding: 14px; font-size: clamp(13px, 1.5vw, 15px); }
+    .btn-withdraw { background: linear-gradient(135deg, #6f42c1, #5a32a3); }
+    .btn-primary { background: linear-gradient(135deg, #0078D7, #005fa3); }
+    .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); }
+
     .guide-box { background: linear-gradient(135deg, #eef7ff, #e8f4fd); border: 1px solid #b6d4fe; padding: 10px 12px; border-radius: 10px; margin-bottom: 10px; font-size: clamp(11px, 1.3vw, 13px); color: #084298; line-height: 1.7; font-weight: 600; }
     .bet-box.rapid .guide-box { background: rgba(233,30,99,0.15); border-color: rgba(233,30,99,0.4); color: #ff8bb5; }
 
     .history-tabs-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; padding: 8px; background: #f8fafc; border-radius: 12px; border: 2px solid #e2e8f0; }
+    @media (max-width: 600px) { .history-tabs-container { grid-template-columns: repeat(2, 1fr); } }
     .history-tab { padding: 10px 8px; border: 2px solid transparent; background: white; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; transition: all 0.3s; color: #475569; display: flex; align-items: center; justify-content: center; gap: 6px; text-align: center; }
     .history-tab:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .history-tab.active { color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
@@ -159,15 +222,19 @@
     .history-tab[data-tab="deposits"].active { background: linear-gradient(135deg, #28a745, #1e7e34); }
     .history-tab[data-tab="results-classic"].active { background: linear-gradient(135deg, #ff9800, #e65100); }
     .history-tab[data-tab="results-rapid"].active { background: linear-gradient(135deg, #ff1744, #d50000); }
+
+    .history-panel { display: none; animation: fadeIn 0.4s ease-out; }
     .history-panel.active { display: block; }
 
     .history-table { width: 100%; border-collapse: collapse; margin-top: 6px; border-radius: 8px; overflow: hidden; font-size: clamp(10px, 1.2vw, 12px); }
+    .history-table th { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; padding: 8px 5px; text-align: center; font-weight: 800; }
     .history-table td { padding: 8px 5px; text-align: center; border-bottom: 1px solid #e9ecef; font-weight: 600; }
     .history-table tbody tr:hover { background: #f8f9fa; }
 
     .status-badge { padding: 3px 8px; border-radius: 6px; font-weight: 800; font-size: 10px; display: inline-block; white-space: nowrap; }
     .status-pending { background: #ffeeba; color: #856404; }
     .status-win { background: #d4edda; color: #155724; animation: winGlow 1s infinite alternate; }
+    .status-loss { background: #f8d7da; color: #721c24; }
     .status-paid { background: #cce5ff; color: #004085; }
     .status-approved { background: #d4edda; color: #155724; }
     .status-rejected { background: #f8d7da; color: #721c24; }
@@ -203,22 +270,49 @@
     .confirm-title { font-size: clamp(18px, 2.2vw, 22px); font-weight: 800; margin-bottom: 14px; color: #1e293b; }
     .confirm-info-box { background: linear-gradient(135deg, #e8f4fd, #d4edda); border: 2px dashed #0078D7; border-radius: 14px; padding: 16px; margin-bottom: 18px; text-align: left; }
     .confirm-info-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(0,120,215,0.15); font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; }
+    .confirm-info-row:last-child { border-bottom: none; }
+    .confirm-info-row .label { color: #475569; }
     .confirm-info-row .value { color: #0078D7; font-weight: 800; font-family: 'Courier New', monospace; }
     .confirm-info-row.total .value { color: #d63000; font-size: clamp(15px, 1.7vw, 17px); }
     .confirm-message { font-size: clamp(13px, 1.5vw, 15px); color: #4a5568; margin-bottom: 20px; line-height: 1.6; font-weight: 600; white-space: pre-line; }
+    .confirm-buttons { display: flex; gap: 10px; }
     .confirm-buttons .btn { flex: 1; padding: 14px; font-size: clamp(13px, 1.5vw, 15px); border-radius: 12px; font-weight: 800; }
     .btn-confirm-ok { background: linear-gradient(135deg, #28a745, #1e7e34); }
     .btn-confirm-cancel { background: linear-gradient(135deg, #dc3545, #a71d2a); }
+
+    .reg-modal-content { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-radius: 24px; box-shadow: 0 25px 70px rgba(0,0,0,0.35); }
+    .reg-step { display: none; animation: fadeIn 0.4s ease-out; }
+    .reg-step.active { display: block; }
+    .reg-header { text-align: center; margin-bottom: 20px; }
+    .reg-header .icon { font-size: 70px; margin-bottom: 10px; display: inline-block; animation: bounce 2s ease-in-out infinite; }
+    .reg-header h2 { color: #0078D7; font-size: clamp(20px, 2.6vw, 26px); margin-bottom: 6px; font-weight: 800; }
+    .reg-header p { color: #64748b; font-size: clamp(12px, 1.4vw, 14px); font-weight: 600; }
+    .reg-input-group { margin: 16px 0; }
+    .reg-input-group label { display: block; font-weight: 800; margin-bottom: 8px; color: #2d3748; font-size: clamp(12px, 1.4vw, 14px); }
     .reg-input-group input { width: 100%; padding: 14px 16px; border: 2px solid #dee2e6; border-radius: 12px; font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; text-align: center; letter-spacing: 3px; }
     .reg-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #0078D7, #6f42c1); color: white; border: none; border-radius: 12px; font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; cursor: pointer; margin-top: 12px; box-shadow: 0 6px 20px rgba(0,120,215,0.35); }
     .reg-btn.success { background: linear-gradient(135deg, #28a745, #1e7e34); }
+
     .id-display-box { background: linear-gradient(135deg, #fff3cd, #ffe69c); border: 3px solid #ffc107; border-radius: 16px; padding: 22px; text-align: center; margin: 16px 0; animation: glow 2s ease-in-out infinite; }
     .id-display-box .label { color: #856404; font-size: clamp(12px, 1.4vw, 14px); font-weight: 800; margin-bottom: 10px; }
     .id-display-box .id-value { color: #856404; font-size: clamp(34px, 6.5vw, 46px); font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 8px; background: white; padding: 14px; border-radius: 12px; margin: 10px 0; }
     .id-display-box .warning { color: #721c24; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; margin-top: 12px; padding: 10px; background: #fff5f5; border-radius: 8px; }
+
     .code-input { width: 100%; padding: 22px; border: 3px solid #0078D7; border-radius: 14px; font-size: clamp(26px, 4.5vw, 34px); font-weight: 800; text-align: center; letter-spacing: 12px; font-family: 'Courier New', monospace; text-transform: uppercase; }
 
     .forgot-pin-box { text-align: center; margin-top: 16px; padding: 12px; background: #fff5f5; border: 1px dashed #ffb3b3; border-radius: 10px; font-size: 12px; font-weight: 700; }
+    .forgot-pin-box a { color: #dc3545; font-weight: 800; text-decoration: none; }
+
+    .group-buttons-box { margin-top: 18px; padding: 16px; background: linear-gradient(135deg, #e8f4fd, #d4edda); border-radius: 14px; border: 1px solid #b6d4fe; }
+    .group-buttons-box .title { font-weight: 800; color: #005fa3; font-size: 14px; margin-bottom: 12px; text-align: center; animation: pulse 2s ease-in-out infinite; }
+    .group-btn { display: block; text-decoration: none; padding: 14px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 13px; color: white; margin-bottom: 10px; transition: all 0.3s; line-height: 1.5; }
+    .group-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .group-btn.main { background: linear-gradient(135deg, #0088cc, #006699); }
+    .group-btn.channel { background: linear-gradient(135deg, #28a745, #1e7e34); }
+    .group-btn.withdraw-group { background: linear-gradient(135deg, #6f42c1, #5a32a3); }
+    .group-btn.get-code { background: linear-gradient(135deg, #ff9800, #e65100); }
+    .group-btn small { display: block; font-size: 11px; opacity: 0.95; font-weight: 500; margin-top: 3px; }
+
     .betting-closed-compact { display: none; background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%); border: 2px solid #EF4444; border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; animation: slideInDown 0.4s ease-out; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15); }
     .betting-closed-compact .left-side { display: flex; align-items: center; gap: 10px; }
     .betting-closed-compact .icon { font-size: 24px; animation: shake 0.8s ease-in-out infinite; }
@@ -230,9 +324,16 @@
     .btn-withdraw.has-win { background: linear-gradient(135deg, #ff1744, #d50000) !important; animation: glowRed 1.5s ease-in-out infinite; }
 
     .amount-tag { background: linear-gradient(135deg, #28a745, #1e7e34); color: white; padding: 2px 10px; border-radius: 10px; font-size: 10px; font-weight: 800; display: inline-block; margin-top: 3px; }
+    .date-badge { background: linear-gradient(135deg, #e8f4fd, #d4edda); color: #005fa3; padding: 2px 10px; border-radius: 8px; font-size: 10px; font-weight: 800; display: inline-block; margin-top: 3px; }
+    .time-badge { background: linear-gradient(135deg, #ff9800, #e65100); color: white; padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; display: inline-block; }
+
     .footer { background: linear-gradient(135deg, #1a2634, #0f1420); color: #adb5bd; text-align: center; padding: 16px; margin-top: 14px; border-top: 3px solid transparent; border-image: linear-gradient(90deg, #0078D7, #28a745, #ff9800, #6f42c1, #e91e63) 1; font-size: clamp(11px, 1.3vw, 13px); font-weight: 600; }
 
     .toast-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+    .toast { background: white; color: #2d3748; padding: 14px 18px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13px; min-width: 260px; max-width: 360px; pointer-events: auto; animation: slideInDown 0.4s ease-out; border-left: 4px solid #0078D7; }
+    .toast.success { border-left-color: #28a745; }
+    .toast.error { border-left-color: #dc3545; }
+    .toast.warning { border-left-color: #ffc107; }
     .toast.info { border-left-color: #17a2b8; }
     .toast .toast-icon { font-size: 22px; flex-shrink: 0; animation: bounce 1.5s ease-in-out infinite; }
     .toast .toast-text { flex: 1; line-height: 1.4; }
@@ -244,6 +345,7 @@
     .sound-toggle { background: linear-gradient(135deg, #17a2b8, #117a8b) !important; color: white !important; }
     .sound-toggle.muted { background: linear-gradient(135deg, #6c757d, #495057) !important; }
 
+    body.dark-mode { background: linear-gradient(135deg, #0f1420 0%, #1a1f2e 50%, #0f1420 100%); color: #e8eaf0; }
     body.dark-mode .lottery-box, body.dark-mode .bet-box, body.dark-mode .modal-content, body.dark-mode .clock-box, body.dark-mode .nav-bar, body.dark-mode .mode-tabs { background: #252b3d; color: #e8eaf0; }
     body.dark-mode .numbers div, body.dark-mode .input-row, body.dark-mode .selected-display, body.dark-mode .bet-summary { background: #2f3548; border-color: #4a5268; color: #e8eaf0; }
     body.dark-mode .history-tab { background: #2f3548; color: #e8eaf0; }
@@ -265,6 +367,7 @@
       .type-btn, .time-btn { min-width: 100%; }
       .history-tab { font-size: 11px; padding: 8px 4px; }
       .toast-container { top: 10px; right: 10px; left: 10px; }
+      .toast { min-width: auto; width: 100%; }
       .mode-tab { min-width: 120px; font-size: 12px; padding: 12px; }
       .nav-bar { top: 60px; }
       .results-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
@@ -281,6 +384,8 @@
       .results-grid { grid-template-columns: 1fr; }
       .result-card .num-cell .value { font-size: 16px; }
       .result-card .num-cell { padding: 8px 3px; }
+    }
+
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #f0f4f8; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #0078D7, #6f42c1); border-radius: 4px; }
@@ -348,17 +453,22 @@
         <div class="reg-header"><div class="icon">🔑</div><h2>បញ្ជាក់ Code</h2><p>វាយ Code 4 ខ្ទង់ដែលបានពី Channel</p></div>
         <div class="reg-input-group"><label>🔑 Code 4 ខ្ទង់</label><input type="text" class="code-input" id="regCode" placeholder="----" maxlength="4" autocomplete="off"></div>
         <button class="reg-btn" id="regVerifyBtn" onclick="N98.handleVerify()">បញ្ជាក់ ✓</button>
+        
         <div class="group-buttons-box" style="margin-top:16px;">
           <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 មិនទាន់មាន Code? ចុចទីនេះ<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
+        </div>
         <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;"><a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7;">← ត្រឡប់ក្រោយ</a></div>
       </div>
       <div class="reg-step" id="regLoginStep">
         <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
         <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
+        <div class="reg-input-group"><label>🔐 PIN 4 ខ្ទង់</label><input type="tel" id="loginPin" placeholder="----" maxlength="4" inputmode="numeric"></div>
         <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
         <div class="forgot-pin-box">🔐 ភ្លេច PIN? <a href="#" onclick="N98.contactAdmin(); return false;">ទាក់ទង Admin</a></div>
         <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មិនមានគណនី? <a href="#" onclick="N98.showRegisterStep(); return false;" style="color:#0078D7; font-weight:800;">ចុះឈ្មោះ</a></div>
       </div>
+    </div>
+  </div>
 
   <div id="mainApp" style="display:none;">
     <header id="mainHeader">
@@ -398,60 +508,133 @@
       </div>
 
       <div class="status-bar"><span class="label">📊 ស្ថានភាព</span><span class="value" id="resultStatusText">កំពុងផ្ទុក...</span></div>
+
+      <div id="classicMode">
+        <div class="countdown">
           <div style="display:flex; justify-content:center; align-items:center; gap:8px;"><span style="font-size:26px;" class="emoji-dice">🎲</span><span style="font-size:16px; color:#dc3545; font-weight:800;"><span class="anim-pulse">⏳</span> ម៉ោងប្រកាសលទ្ធផលបន្ទាប់</span></div>
           <div class="time-display" id="countdownDisplay">--:--:--</div>
           <div class="next-time" id="nextTimeLabel">🎯 ពេលបន្ទាប់...</div>
           <div class="status-time" id="statusTimeLabel"></div>
+        </div>
+
         <div class="lottery-box" id="box12Container">
           <div class="time-box"><span class="anim-pulse">🕛</span> លទ្ធផល 12:00 <span class="badge" id="badge12">ព្រឹកពីរ</span> <span id="badge12Latest"></span></div>
           <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
           <div class="numbers" id="box12">
             <div><span class="letter">A:</span> <span id="r12_A">--</span></div><div><span class="letter">B:</span> <span id="r12_B">--</span></div>
             <div><span class="letter">C:</span> <span id="r12_C">--</span></div><div><span class="letter">D:</span> <span id="r12_D">--</span></div>
-          <div class="time-box"><span class="anim-pulse">🕓</span> លទ្ធផល 16:00 <span class="badge" id="badge16">ល្ងាចបី</span> <span id="badge16Latest"></span></div>
-          <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
+            <div><span class="letter">E:</span> <span id="r12_E">--</span></div>
           </div>
           <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
+          <div class="numbers" id="box12_3d">
+            <div><span class="letter">A:</span> <span id="r12_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r12_3d_B">--</span></div>
+            <div><span class="letter">C:</span> <span id="r12_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r12_3d_D">--</span></div>
+            <div><span class="letter">E:</span> <span id="r12_3d_E">--</span></div>
+          </div>
+          <div style="margin-top:8px;" id="date12"></div>
+        </div>
+
+        <div class="lottery-box" id="box16Container">
+          <div class="time-box"><span class="anim-pulse">🕓</span> លទ្ធផល 16:00 <span class="badge" id="badge16">ល្ងាចបី</span> <span id="badge16Latest"></span></div>
+          <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
+          <div class="numbers" id="box16">
+            <div><span class="letter">A:</span> <span id="r16_A">--</span></div><div><span class="letter">B:</span> <span id="r16_B">--</span></div>
+            <div><span class="letter">C:</span> <span id="r16_C">--</span></div><div><span class="letter">D:</span> <span id="r16_D">--</span></div>
+            <div><span class="letter">E:</span> <span id="r16_E">--</span></div>
+          </div>
+          <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
+          <div class="numbers" id="box16_3d">
             <div><span class="letter">A:</span> <span id="r16_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r16_3d_B">--</span></div>
+            <div><span class="letter">C:</span> <span id="r16_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r16_3d_D">--</span></div>
+            <div><span class="letter">E:</span> <span id="r16_3d_E">--</span></div>
           </div>
           <div style="margin-top:8px;" id="date16"></div>
+        </div>
+
         <div class="bet-box">
           <h2>🎯 ទិញលេខចាក់ (A, B, C, D, E)</h2>
+          
+          <div class="balance-box" id="balanceBox">
             <div style="margin-bottom:10px; font-weight:800; color:#155724; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceAmountUSD" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
               <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceAmountKHR" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+            </div>
+            <div class="balance-buttons-row">
               <button class="btn btn-primary" onclick="N98.openDepositModal()">💰 បញ្ចូលទឹកប្រាក់</button>
               <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
+            </div>
+          </div>
+
           <div class="guide-box">💡 <strong>របៀបប្រើ៖</strong><br>១. ជ្រើស <strong>ពេលវេលា</strong> និង <strong>ប្រភេទ</strong><br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01,02,03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+
           <table class="reward-table">
+            <thead><tr><th>ប្រភេទ</th><th>ម៉ោង</th><th>អត្រា</th></tr></thead>
+            <tbody>
+              <tr><td>២ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">70$</span></td></tr>
+              <tr><td>៣ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">500$</span></td></tr>
             </tbody>
+          </table>
+
+          <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ffb3b3; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;"><span style="color:#d63000; font-weight:800; font-size:13px;">⚠️ ចាក់ពី 500៛/0.25$ ដល់ 40,000៛/10$</span></div>
+
+          <div class="betting-closed-compact" id="bettingClosedCompact">
+            <div class="left-side">
+              <span class="icon">🔒</span>
               <span class="title" id="bettingClosedText">ការចាក់ត្រូវបានបិទជាបណ្ដោះអាសន្ន!</span>
             </div>
             <div class="right-side">
+              ⏰ បើកវិញ <span class="time" id="reopenCountdown">--:--:--</span>
             </div>
+          </div>
+
+          <div style="font-weight:800; color:#0078D7; font-size:14px; margin-bottom:8px;">⏰ ជ្រើសរើស ពេលវេលា និង ប្រភេទ</div>
+          <div class="time-selector">
+            <button class="time-btn active" data-time="12:00" onclick="N98.setTime('12:00', event)">🕛 12:00</button>
             <button class="time-btn" data-time="16:00" onclick="N98.setTime('16:00', event)">🕓 16:00</button>
           </div>
+          <div class="type-selector">
             <button class="type-btn active" data-type="two" onclick="N98.setType('two', event)">🔢 ២ខ្ទង់</button>
             <button class="type-btn" data-type="three" onclick="N98.setType('three', event)">🔢 ៣ខ្ទង់</button>
+          </div>
 
           <div style="font-weight:800; color:#0078D7; font-size:14px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, E</div>
           <div class="letter-selector">
             <div class="letter-circle" data-letter="A" onclick="N98.selectLetter('A', event)">A</div>
+            <div class="letter-circle" data-letter="B" onclick="N98.selectLetter('B', event)">B</div>
             <div class="letter-circle" data-letter="C" onclick="N98.selectLetter('C', event)">C</div>
             <div class="letter-circle" data-letter="D" onclick="N98.selectLetter('D', event)">D</div>
             <div class="letter-circle" data-letter="E" onclick="N98.selectLetter('E', event)">E</div>
+          </div>
+
           <div class="input-row"><input type="text" id="numInput" placeholder="បញ្ចូលលេខ (ឧ. 01,02,03)" disabled inputmode="numeric"></div>
           <div class="selected-display" id="selectedDisplay"><span style="color:#6c757d; font-size:12px; font-weight:600;">មិនទាន់មានលេខ</span></div>
           <div style="color:#6c757d; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay" style="color:#0078D7; font-size:15px;">0</strong> / 10</div>
 
           <label style="font-weight:800; color:#0078D7; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
           <div class="amount-buttons">
+            <button class="btn-amount" onclick="N98.setAmount(500,'៛')">500៛</button><button class="btn-amount" onclick="N98.setAmount(1000,'៛')">1000៛</button>
             <button class="btn-amount" onclick="N98.setAmount(5000,'៛')">5000៛</button><button class="btn-amount" onclick="N98.setAmount(10000,'៛')">10000៛</button>
+            <button class="btn-amount" onclick="N98.setAmount(0.25,'$')">0.25$</button><button class="btn-amount" onclick="N98.setAmount(1,'$')">1$</button>
             <button class="btn-amount" onclick="N98.setAmount(5,'$')">5$</button><button class="btn-amount" onclick="N98.setAmount(10,'$')">10$</button>
+          </div>
+          <div class="custom-amount">
             <input type="number" id="amountInput" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmount()">
+            <select id="currencySelect" onchange="N98.updateAmount()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
+          </div>
+
+          <div class="bet-summary">
             <div class="bet-summary-item"><span>📊 ចំនួនលេខសរុប៖</span><span id="totalCount">0</span></div>
             <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="totalAmountDisplay">0</span></div>
+          </div>
+
+          <button class="btn btn-success" id="btnSubmit" onclick="N98.submitBet()" disabled>💳 ដាក់ភ្នាល់ឥឡូវ</button>
+
+          <div class="balance-status-box" id="balanceStatusBox">
+            <div class="header-row"><span id="balanceStatusIcon">💰</span><span id="balanceStatusTitle">ស្ថានភាពសមតុល្យ</span></div>
+            <div class="rows">
+              <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrent">0៛</span>
+              <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeeded">0៛</span>
               <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShort">0៛</span>
             </div>
             <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill" style="width:0%;"></div></div>
@@ -483,6 +666,16 @@
           <h2>⚡ ចាក់លេខវគ្គបន្ទាប់</h2>
           <div class="balance-box" id="balanceBoxRapid" style="background:linear-gradient(135deg,#1e3a2f,#163d29); border-color:#4ade80;">
             <div style="margin-bottom:10px; font-weight:800; color:#7dd89a; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceRapidUSD" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceRapidKHR" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+            </div>
+            <div class="balance-buttons-row">
+              <button class="btn btn-primary" onclick="N98.openDepositModal()" style="background:linear-gradient(135deg,#e91e63,#880e4f);">💰 បញ្ចូលទឹកប្រាក់</button>
+              <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
+            </div>
+          </div>
+
           <div class="guide-box">💡 <strong>របៀបចាក់ 10 នាទី៖</strong><br>១. ជ្រើស <strong>ប្រភេទ</strong> (២ ឬ ៣ ខ្ទង់)<br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01, 02, 03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
 
           <div id="bettingClosedBox10" style="display:none; background:linear-gradient(135deg,rgba(255,23,68,0.15),rgba(136,14,79,0.15)); border:2px solid #ff1744; border-radius:12px; padding:12px; margin-bottom:12px;">
@@ -491,6 +684,14 @@
 
           <div class="type-selector">
             <button class="type-btn active" data-type10="two" onclick="N98.setType10('two', event)">🔢 ២ខ្ទង់</button>
+            <button class="type-btn" data-type10="three" onclick="N98.setType10('three', event)">🔢 ៣ខ្ទង់</button>
+          </div>
+
+          <div style="color:#ff8bb5; font-weight:800; font-size:13px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសប៉ុស្តិ៍ A-E</div>
+          <div class="letter-selector">
+            <div class="letter-circle" data-letter10="A" onclick="N98.selectLetter10('A', event)">A</div>
+            <div class="letter-circle" data-letter10="B" onclick="N98.selectLetter10('B', event)">B</div>
+            <div class="letter-circle" data-letter10="C" onclick="N98.selectLetter10('C', event)">C</div>
             <div class="letter-circle" data-letter10="D" onclick="N98.selectLetter10('D', event)">D</div>
             <div class="letter-circle" data-letter10="E" onclick="N98.selectLetter10('E', event)">E</div>
           </div>
@@ -527,13 +728,21 @@
             </div>
             <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill10" style="width:0%;"></div></div>
             <div class="hint" id="balanceStatusHint10" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
+          </div>
+        </div>
+      </div>
+
       <div class="lottery-box" id="adminPanel" style="display:none; border:2px solid #dc3545;">
         <div class="time-box" style="color:#dc3545;"><span class="anim-pulse">👑</span> ADMIN PANEL</div>
         <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px dashed #ff8b8b; padding:10px; border-radius:10px; margin:10px 0; font-size:12px; color:#721c24; font-weight:700;">🔐 ផ្ទាំងនេះសម្រាប់ Admin ប៉ុណ្ណោះ</div>
+        
         <div style="margin-top:12px;">
           <label style="font-weight:800; color:#dc3545; font-size:13px;">💰 បញ្ចូលទឹកប្រាក់ជូនសមាជិក (ផ្ទាល់)</label>
+          <input type="tel" id="adminPhone" placeholder="លេខទូរស័ព្ទ (ឧ. 012345678)" inputmode="numeric" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; margin-top:6px;">
+          <div style="display:flex; gap:6px; margin-top:8px;">
             <input type="number" id="adminAmount" placeholder="ចំនួន" step="any" min="0.01" style="flex:2; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700;">
             <select id="adminCurrency" style="flex:1; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; background:#f8f9fa; color:#0078D7;"><option value="USD">$ USD</option><option value="KHR">៛ KHR</option></select>
+          </div>
           <input type="text" id="adminNote" placeholder="ចំណាំ (ឧ. Bonus, Top-up)" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:13px; margin-top:8px;">
           <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;">
             <button class="btn btn-success" onclick="N98.adminQuickAdd(0.25, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+0.25$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+1$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+5$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+1K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+5K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(10000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+10K៛</button>
@@ -549,6 +758,9 @@
         </div>
 
         <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:12px; border-radius:10px; margin-top:12px;">
+          <div style="font-weight:800; color:#005fa3; font-size:13px; margin-bottom:8px;">📊 ស្ថិតិប្រព័ន្ធ</div>
+          <button class="btn btn-primary" onclick="N98.adminLoadStats()" style="width:100%; padding:10px; font-size:13px;">📈 ទាញស្ថិតិ</button>
+          <div id="adminStats" style="margin-top:8px; font-size:12px; font-weight:700; color:#005fa3; line-height:1.8;"></div>
         </div>
 
         <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); padding:12px; border-radius:10px; margin-top:12px; border:1px solid #ff8b8b;">
@@ -589,6 +801,20 @@
         <div class="history-panel" id="panel-results-classic">
           <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff9800,#e65100);"><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyClassic"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
         </div>
+
+        <div class="history-panel" id="panel-results-rapid">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff1744,#d50000);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyRapid"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <div id="rulesSection" style="display:none;">
+        <div class="bet-box">
+          <h2>📋 ច្បាប់ និងរបៀបប្រើប្រាស់</h2>
+          <div style="padding:8px; font-size:13px; line-height:1.9; font-weight:600;">
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px;">🎯 ១. របៀបចាក់ឆ្នោត</h4>
+            <p>១. ជ្រើសរើសពេលវេលា (12:00 ឬ 16:00 ឬ 10 នាទី)</p>
+            <p>២. ជ្រើសរើសប្រភេទ (២ ឬ ៣ ខ្ទង់)</p>
+            <p>៣. ចុចជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, ឬ E</p>
             <p>៤. បញ្ចូលលេខ (ឧ. 01, 02, 03)</p>
             <p>៥. ជ្រើសរើសចំនួនទឹកប្រាក់ក្នុងមួយលេខ</p>
             <p>៦. ចុច "ដាក់ភ្នាល់"</p>
@@ -600,6 +826,7 @@
 
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚡ ៣. ឆ្នោត 10 នាទី</h4>
             <p>• ចុច Tab <strong>⚡ 10 នាទី</strong> ខាងលើ</p>
+            <p>• ប្រកាសលទ្ធផលរៀងរាល់ 10 នាទី</p>
             <p>• ដំណើរការ 24/7</p>
 
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🎁 ៤. ប្រាក់រង្វាន់ស្វាគមន៍</h4>
@@ -608,6 +835,12 @@
 
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🏦 ៥. របៀបដកប្រាក់</h4>
             <p>• ដកប្រាក់បានគ្រប់ពេល 24/7</p>
+            <p>• <strong style="color:#d63000;">សមតុល្យអប្បបរមាសម្រាប់ដក: 10$ ឬ 40,000៛</strong></p>
+            <p>• <strong style="color:#dc3545;">លក្ខខណ្ឌដកប្រាក់៖</strong></p>
+            <p style="padding-left:20px;">១. បញ្ចូលប្រាក់ពិតប្រាកដយ៉ាងតិច 10$ ឬ 40,000៛</p>
+            <p style="padding-left:20px;">២. ចាក់ឆ្នោតយ៉ាងតិច ១ ដង</p>
+            <p style="padding-left:20px;">៣. រង់ចាំយ៉ាងតិច ២៤ ម៉ោង ក្រោយការបញ្ចូលប្រាក់លើកដំបូង</p>
+            <p>• ចុចប៊ូតុង "🏦 ដកប្រាក់" ក្នុងប្រអប់សមតុល្យ</p>
             <p>• បញ្ចូលចំនួន + ជ្រើសរូបិយប័ណ្ណ (USD/KHR)</p>
             <p>• បញ្ជូន QR Code → Admin នឹងអនុម័ត</p>
             <p>• ប្រសិនបើ Admin បដិសេធ → ប្រាក់នឹងបង្វិលចូលវិញ</p>
@@ -649,6 +882,8 @@
   <div class="modal" id="depositModal">
     <div class="modal-content">
       <span class="close" onclick="N98.closeModal('depositModal')">&times;</span>
+      <h2>💰 បញ្ចូលទឹកប្រាក់ (ABA Bank)</h2>
+      <form id="depositForm">
         <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); border:2px dashed #0078D7; padding:16px; border-radius:12px; text-align:center; margin-top:12px;">
           <div style="font-weight:800; color:#005fa3; font-size:14px; margin-bottom:12px;">👇 ចុចខាងក្រោមដើម្បីបង់ប្រាក់</div>
           <a href="https://pay.ababank.com/oRF8/yhtm93ei" target="_blank" rel="noopener" id="abaBankBtn" onclick="N98.handleAbaClick(event)" style="font-size:15px; padding:16px; display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,#005fa3,#0078D7); color:white; text-decoration:none; border-radius:10px; font-weight:800;">
@@ -667,6 +902,15 @@
         
         <label>រូបិយប័ណ្ណ *</label>
         <select id="depCurrency" required style="width:100%; padding:12px; border:2px solid #dee2e6; border-radius:10px; font-size:14px; font-weight:800; background:#f8f9fa; margin-bottom:6px;">
+          <option value="USD">ដុល្លារ ($ USD)</option>
+          <option value="KHR">រៀល (៛ KHR)</option>
+        </select>
+        
+        <label>បញ្ជាក់ចំនួនទឹកប្រាក់របស់អ្នក *</label>
+        <input type="number" id="depAmount" required placeholder="បញ្ចូលចំនួន" step="any" min="0.01" oninput="N98.checkContinueButtonState()">
+        <div style="font-size:11px; color:#dc3545; font-weight:800; margin-bottom:8px; text-align:left;" id="depMinHint">⚠️ ចំនួនអប្បបរមា USD ≥ 5.00$</div>
+        
+        <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:14px; text-align:left;">
             <div style="font-weight:800; color:#856404; font-size:12px; margin-bottom:8px;">បន្ទាប់ពីបង់ប្រាក់រួច សូមចុចបន្ត ដើម្បីបើកការបញ្ចូលរូបភាពនៃប្រតិបត្តិការបង់ប្រាក់របស់អ្នក!</div>
             <button type="button" id="depContinueBtn" onclick="N98.enableScreenshotUpload()" disabled style="width:100%; padding:12px; background:#ced4da; color:#6c757d; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:not-allowed;">👉 បន្ត</button>
         </div>
@@ -713,6 +957,12 @@
       
       <form id="withdrawNewForm">
         <label>💰 សមតុល្យរបស់អ្នក</label>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+          <div class="balance-item" id="wdBalUSDBtn" onclick="N98.selectWithdrawCurrency('USD')" style="cursor:pointer; opacity:0.5;">
+            <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">💵 USD</div>
+            <div id="wdBalanceUSD" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div>
+            <div style="font-size:10px; color:#155724; margin-top:4px;">ចុចដើម្បីជ្រើស</div>
+          </div>
           <div class="balance-item" id="wdBalKHRBtn" onclick="N98.selectWithdrawCurrency('KHR')" style="cursor:pointer; opacity:0.5;">
             <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">🇰🇭 KHR</div>
             <div id="wdBalanceKHR" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div>
@@ -724,17 +974,40 @@
         <input type="number" id="wdAmount" required placeholder="បញ្ចូលចំនួន" min="0.01" step="any">
         <label>📱 លេខទូរស័ព្ទ *</label>
         <input type="tel" id="wdPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" inputmode="numeric">
+        <label>📷 បញ្ចូលរូបភាព QR Code ទទួលប្រាក់របស់អ្នក *</label>
+        <input type="file" id="wdQrCode" accept="image/*" required>
         <button type="submit" class="btn btn-withdraw" id="wdSubmitBtn" style="width:100%; margin-top:12px; padding:14px;">🏦 បញ្ជាក់ការដកប្រាក់</button>
         <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ff8b8b; border-radius:10px; padding:10px; margin-top:12px; font-size:11.5px; color:#721c24; line-height:1.7; font-weight:600;">⚠️ ប្រាក់នឹងកាត់ចេញពីសមតុល្យភ្លាមៗ<br>ប្រសិនបើ Admin បដិសេធ → ប្រាក់នឹងបង្វិលចូលវិញ</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="groupModal">
+    <div class="modal-content" style="text-align:center;">
+      <span class="close" onclick="N98.closeModal('groupModal')">&times;</span>
+      <div style="font-size:60px;" class="anim-bounce">📢</div>
       <h2>ចូលក្រុម និង Channel</h2>
       <p style="font-size:13px; color:#4a5568; margin:12px 0; font-weight:600;">ទទួលបានព័ត៌មានថ្មីៗ!</p>
       <a href="https://t.me/+ErJaYtpHWwE1YWI1" target="_blank" rel="noopener" class="group-btn main">🎯 ចូលក្រុមចាក់សម្រាប់ឆ្នោត 12:00 / 16:00 / ឆ្នោត 10 នាទី<small>ពិភាក្សា និងចាក់លេខឆ្នោត</small></a>
       <a href="https://t.me/lekhchhnaotN98" target="_blank" rel="noopener" class="group-btn channel">📢 ចូល Channel ប្រកាសលទ្ធផលឆ្នោត 12:00 / 16:00</a>
       <a href="https://t.me/Livelotteryevery10minutes" target="_blank" rel="noopener" class="group-btn" style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ចូល Channel លទ្ធផលឆ្នោត N98 រៀងរាល់ 10 នាទី<small>ចេញលទ្ធផលរៀងរាល់ 10 នាទី</small></a>
       <a href="https://t.me/+UwX-YZZieXQ0N2E1" target="_blank" rel="noopener" class="group-btn withdraw-group">💰 ចូលក្រុមទទួលសំណើដកប្រាក់រង្វាន់<small>សម្រាប់ស្នើសុំដកប្រាក់</small></a>
+      <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ទទួលលេខ Code ចុះឈ្មោះ N98<small>Channel ផ្តល់ Code ចុះឈ្មោះ</small></a>
     </div>
   </div>
 
+  <div class="modal" id="alertModal">
+    <div class="modal-content alert-modal">
+      <span class="alert-icon" id="alertIcon">🔔</span>
+      <h3 class="alert-title" id="alertTitle">ការជូនដំណឹង</h3>
+      <p class="alert-message" id="alertMessage">សារ...</p>
+      <button class="btn btn-primary" onclick="N98.closeModal('alertModal')" style="padding:12px 32px; border-radius:22px; font-size:14px;">យល់ព្រម</button>
+    </div>
+  </div>
+
+  <div class="modal" id="confirmModal">
+    <div class="modal-content confirm-modal-content">
+      <span class="confirm-icon" id="confirmIcon">❓</span>
       <h3 class="confirm-title" id="confirmTitle">តើអ្នកប្រាកដឬ?</h3>
       <div id="confirmInfoContainer" style="display:none;">
         <div class="confirm-info-box" id="confirmInfoBox"></div>
@@ -3408,5 +3681,3 @@
   </script>
 </body>
 </html>
-
-
