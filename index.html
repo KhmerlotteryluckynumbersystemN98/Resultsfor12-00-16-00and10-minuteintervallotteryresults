@@ -672,7 +672,6 @@
           <div style="color:#6c757d; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay" style="color:#0078D7; font-size:15px;">0</strong> / 10</div>
 
           <label style="font-weight:800; color:#0078D7; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
-          <!-- ✅ ប៊ូតុងចំនួនទឹកប្រាក់ថ្មីសម្រាប់ 12:00/16:00 -->
           <div class="amount-buttons">
             <button class="btn-amount" onclick="N98.setAmount(500,'៛')">500៛</button>
             <button class="btn-amount" onclick="N98.setAmount(1000,'៛')">1000៛</button>
@@ -773,7 +772,6 @@
           <div style="color:#a0a8b8; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay10" style="color:#ff8bb5; font-size:14px;">0</strong> / 10</div>
 
           <label style="color:#ff8bb5; font-weight:800; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
-          <!-- ✅ ប៊ូតុងចំនួនទឹកប្រាក់ថ្មីសម្រាប់ 10 នាទី -->
           <div class="amount-buttons">
             <button class="btn-amount" onclick="N98.setAmount10(500,'៛')">500៛</button>
             <button class="btn-amount" onclick="N98.setAmount10(1000,'៛')">1000៛</button>
@@ -910,6 +908,19 @@
             </div>
           </div>
 
+          <!-- ✅ រៀបចំប្រអប់ "បញ្ជីជម្រើសដែលបានជ្រើស" ឡើងទៅលើ "ចំនួនទឹកប្រាក់" -->
+          <div style="margin-top: 15px;">
+            <div style="font-weight:800; color:#d8b4fe; font-size:13px; margin-bottom:8px;">📋 បញ្ជីជម្រើសដែលបានជ្រើស (អាចជ្រើសបានច្រើន)</div>
+            <div class="dice-selection-list" id="diceSelectionList">
+              <div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>
+            </div>
+          </div>
+
+          <div class="bet-summary" style="background: rgba(255,255,255,0.05); border-color: rgba(111,66,193,0.4);">
+            <div class="bet-summary-item" style="color:#d8b4fe;"><span>🎲 ចំនួនជម្រើសសរុប៖</span><span id="diceTotalSelections">0</span></div>
+            <div class="bet-summary-item total" style="color:#d8b4fe; border-bottom:none;"><span>💵 សរុប៖</span><span id="diceTotalAmount">0</span></div>
+          </div>
+
           <div style="margin-top: 15px;">
             <label style="color:#d8b4fe; font-weight:800; font-size:13px; display:block; margin-bottom:6px;">💰 ចំនួនទឹកប្រាក់សម្រាប់ជម្រើសដែលបានជ្រើស</label>
             <div class="dice-input-row">
@@ -921,7 +932,6 @@
             </div>
           </div>
 
-          <!-- ✅ បន្ថែមប៊ូតុងចំនួនទឹកប្រាក់សម្រាប់អាប៉ោង -->
           <div class="amount-buttons" style="margin-top: 10px; margin-bottom: 10px;">
             <button class="btn-amount" onclick="N98.setDiceAmount(500,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">500៛</button>
             <button class="btn-amount" onclick="N98.setDiceAmount(1000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">1000៛</button>
@@ -939,19 +949,19 @@
             <button class="btn-amount" onclick="N98.setDiceAmount(50,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">50$</button>
           </div>
 
-          <div style="margin-top: 15px;">
-            <div style="font-weight:800; color:#d8b4fe; font-size:13px; margin-bottom:8px;">📋 បញ្ជីជម្រើសដែលបានជ្រើស (អាចជ្រើសបានច្រើន)</div>
-            <div class="dice-selection-list" id="diceSelectionList">
-              <div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>
-            </div>
-          </div>
-
-          <div class="bet-summary" style="background: rgba(255,255,255,0.05); border-color: rgba(111,66,193,0.4);">
-            <div class="bet-summary-item" style="color:#d8b4fe;"><span>🎲 ចំនួនជម្រើសសរុប៖</span><span id="diceTotalSelections">0</span></div>
-            <div class="bet-summary-item total" style="color:#d8b4fe; border-bottom:none;"><span>💵 សរុប៖</span><span id="diceTotalAmount">0</span></div>
-          </div>
-
           <button class="btn btn-success" id="btnSubmitDice" onclick="N98.submitDiceBets()" disabled style="background:linear-gradient(135deg,#6f42c1,#4a148c); width:100%; padding:14px; font-size:15px;">🎲 ដាក់ភ្នាល់ឥឡូវ</button>
+
+          <!-- ✅ បន្ថែមប្រអប់សមតុល្យគ្រប់គ្រាន់/មិនគ្រប់គ្រាន់ សម្រាប់ការចាក់អាប៉ោង -->
+          <div class="balance-status-box" id="balanceStatusBoxDice">
+            <div class="header-row"><span id="balanceStatusIconDice">💰</span><span id="balanceStatusTitleDice">ស្ថានភាពសមតុល្យ</span></div>
+            <div class="rows">
+              <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrentDice">0៛</span>
+              <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeededDice">0៛</span>
+              <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShortDice">0៛</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="balanceProgressFillDice" style="width:0%;"></div></div>
+            <div class="hint" id="balanceStatusHintDice" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
+          </div>
         </div>
       </div>
 
@@ -1257,7 +1267,7 @@
     </div>
   </div>
 
-  <!-- ================= PROMO POPUP (បានបន្ថែម 🎲 អាប៉ោង ៥ នាទី) ================= -->
+  <!-- ================= PROMO POPUP ================= -->
   <div class="modal" id="promoModal" style="display:none; align-items:center; justify-content:center; z-index: 2000;">
     <div class="modal-content" style="max-width: 420px; background: linear-gradient(135deg, #0f1420, #1a1f2e); border: 3px solid #0078D7; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,120,215,0.4); padding: 25px; position: relative;">
       <span class="close" onclick="N98.closePromoPopup()" style="color: #adb5bd; position: absolute; top: 15px; right: 20px;">&times;</span>
@@ -1567,7 +1577,6 @@
         } catch (e) {}
       }
 
-      // ✅ កែសំឡេងរោទ៍ ៣ ដង
       function playBeep() {
         if (!soundEnabled) return;
         var count = 0;
@@ -1587,7 +1596,6 @@
         beepOnce();
       }
 
-      // ✅ កែសំឡេងរោទ៍ ១៥ វិនាទីមុនចេញលទ្ធផល
       function checkBeepBeforeDraw() {
         if (!soundEnabled) return;
         var now = new Date();
@@ -1595,20 +1603,16 @@
         var m = now.getMinutes();
         var s = now.getSeconds();
         
-        // 12:00 រោទ៍នៅ 11:59:45 (១៥ វិនាទីមុន)
         if (h === 11 && m === 59 && s === 45) {
           if (lastBeepSlot12 !== '12_main') { lastBeepSlot12 = '12_main'; playBeep(); }
         }
-        // 16:00 រោទ៍នៅ 15:59:45 (១៥ វិនាទីមុន)
         if (h === 15 && m === 59 && s === 45) {
           if (lastBeepSlot16 !== '16_main') { lastBeepSlot16 = '16_main'; playBeep(); }
         }
-        // 10 នាទី រោទ៍នៅវិនាទីទី 45 នៃនាទីទី 9 (១៥ វិនាទីមុន)
         if (m % 10 === 9 && s === 45) {
           var slot3 = 'r_' + m;
           if (lastBeepSlot10 !== slot3) { lastBeepSlot10 = slot3; playBeep(); }
         }
-        // 🎲 អាប៉ោង 5 នាទី រោទ៍នៅវិនាទីទី 45 នៃនាទីទី 4 (១៥ វិនាទីមុន)
         if (m % 5 === 4 && s === 45) {
           var slotDice = 'd_' + m;
           if (lastBeepSlotDice !== slotDice) { lastBeepSlotDice = slotDice; playBeep(); }
@@ -1725,6 +1729,7 @@
         N98.updateSubmitDiceButton();
         updateBalanceStatusBox();
         updateBalanceStatusBox10();
+        N98.updateBalanceStatusBoxDice(); // ✅ ហៅ update សម្រាប់អាប៉ោង
         updateWithdrawCurrencyButtons();
       }
 
@@ -2114,7 +2119,7 @@
           updateBettingClosed10();
         }, CFG.STATUS_MS);
         
-        // ✅ កែសម្រួលឲ្យ Ring អាប៉ោងវិលថយក្រោយ
+        // ✅ កែសម្រួលឲ្យ Ring អាប៉ោងវិលថយក្រោយត្រឹមត្រូវ
         intervals.dice = setInterval(function() {
           if (mainMode === 'dice') {
             N98.fetchDiceResults();
@@ -2128,10 +2133,10 @@
             var ss = String(secondsLeft % 60).padStart(2, '0');
             if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
             
-            // Update ring វិលថយក្រោយ
+            // ✅ Update ring វិលថយក្រោយ (កែតម្រូវឲ្យដំណើរការត្រឹមត្រូវ)
             var totalDiceCycle = 5 * 60;
             var percentDice = secondsIntoCycle / totalDiceCycle;
-            var circumferenceDice = 2 * Math.PI * 70; // រង្វង់មានកាំ 70
+            var circumferenceDice = 2 * Math.PI * 70; // 439.82
             var offsetDice = circumferenceDice * percentDice;
             if ($('ringProgressDice')) {
               $('ringProgressDice').style.strokeDashoffset = offsetDice;
@@ -2151,6 +2156,7 @@
               if ($('reopenTimeDice')) $('reopenTimeDice').textContent = '00:' + String(reopenSec).padStart(2, '0');
             }
             N98.updateSubmitDiceButton();
+            N98.updateBalanceStatusBoxDice(); // ✅ Update balance box រៀងរាល់វិនាទី
           }
         }, 1000);
         
@@ -4213,6 +4219,7 @@
           
           N98.renderDiceSelectedList();
           N98.updateSubmitDiceButton();
+          N98.updateBalanceStatusBoxDice();
         },
         removeDiceSelection: function(idx) {
           diceSelectedOptions.splice(idx, 1);
@@ -4229,6 +4236,7 @@
           }
           N98.renderDiceSelectedList();
           N98.updateSubmitDiceButton();
+          N98.updateBalanceStatusBoxDice();
         },
         renderDiceSelectedList: function() {
           var el = $('diceSelectionList');
@@ -4259,10 +4267,12 @@
             }
           }
           N98.updateSubmitDiceButton();
+          N98.updateBalanceStatusBoxDice();
         },
         setDiceAmount: function(val, cur) {
           if ($('diceBetAmountInput')) $('diceBetAmountInput').value = val;
           if ($('diceCurrencySelect')) $('diceCurrencySelect').value = cur;
+          N98.updateBalanceStatusBoxDice();
         },
         updateSubmitDiceButton: function() {
           var btn = $('btnSubmitDice'); if (!btn) return;
@@ -4277,6 +4287,75 @@
           }
           var balanceOk = balanceUSD >= totalUSD && balanceKHR >= totalKHR;
           btn.disabled = !(hasOptions && balanceOk && !isClosed);
+        },
+        updateBalanceStatusBoxDice: function() {
+          var box = $('balanceStatusBoxDice');
+          if (!box) return;
+          
+          var totalUSD = 0, totalKHR = 0;
+          for (var i = 0; i < diceSelectedOptions.length; i++) {
+            var opt = diceSelectedOptions[i];
+            if (opt.currency === 'USD') totalUSD += opt.amount;
+            else totalKHR += opt.amount;
+          }
+          
+          if (diceSelectedOptions.length === 0) {
+            box.style.display = 'none';
+            return;
+          }
+          box.style.display = 'block';
+          
+          // ពិនិត្យថាតើមានជម្រើសណា (USD ឬ KHR) ដែលខ្វះ
+          var hasUSD = totalUSD > 0;
+          var hasKHR = totalKHR > 0;
+          
+          var currentUSD = balanceUSD;
+          var currentKHR = balanceKHR;
+          var neededUSD = totalUSD;
+          var neededKHR = totalKHR;
+          
+          var shortUSD = Math.max(0, neededUSD - currentUSD);
+          var shortKHR = Math.max(0, neededKHR - currentKHR);
+          
+          var isEnough = shortUSD === 0 && shortKHR === 0;
+          
+          // បង្ហាញព័ត៌មាន
+          var fmt = function(v, cur) {
+            return cur === 'USD' ? Number(v).toFixed(2) + '$' : Math.round(v).toLocaleString() + '៛';
+          };
+          
+          var currentDisplay = fmt(currentUSD, 'USD') + ' / ' + fmt(currentKHR, 'KHR');
+          var neededDisplay = fmt(neededUSD, 'USD') + ' / ' + fmt(neededKHR, 'KHR');
+          var shortDisplay = fmt(shortUSD, 'USD') + ' / ' + fmt(shortKHR, 'KHR');
+          
+          if ($('balanceStatusCurrentDice')) $('balanceStatusCurrentDice').textContent = currentDisplay;
+          if ($('balanceStatusNeededDice')) $('balanceStatusNeededDice').textContent = neededDisplay;
+          
+          if (isEnough) {
+            box.className = 'balance-status-box ok';
+            if ($('balanceStatusIconDice')) $('balanceStatusIconDice').textContent = '✅';
+            if ($('balanceStatusTitleDice')) $('balanceStatusTitleDice').textContent = 'សមតុល្យគ្រប់គ្រាន់!';
+            if ($('balanceStatusShortDice')) { $('balanceStatusShortDice').textContent = '0'; $('balanceStatusShortDice').className = 'value success'; }
+            if ($('balanceStatusHintDice')) {
+              $('balanceStatusHintDice').textContent = '🎉 អ្នកអាចដាក់ភ្នាល់បាន!';
+              $('balanceStatusHintDice').style.animation = 'none';
+            }
+            if ($('balanceProgressFillDice')) $('balanceProgressFillDice').style.width = '100%';
+          } else {
+            box.className = 'balance-status-box warn';
+            if ($('balanceStatusIconDice')) $('balanceStatusIconDice').textContent = '⚠️';
+            if ($('balanceStatusTitleDice')) $('balanceStatusTitleDice').textContent = 'សមតុល្យមិនគ្រប់គ្រាន់!';
+            if ($('balanceStatusShortDice')) { $('balanceStatusShortDice').textContent = shortDisplay; $('balanceStatusShortDice').className = 'value danger'; }
+            if ($('balanceStatusHintDice')) {
+              $('balanceStatusHintDice').textContent = '💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់';
+              $('balanceStatusHintDice').style.animation = 'none';
+            }
+            // គណនា percent សម្រាប់ progress
+            var totalNeeded = neededUSD + (neededKHR / 4100);
+            var totalCurrent = currentUSD + (currentKHR / 4100);
+            var percent = totalNeeded > 0 ? Math.min(100, (totalCurrent / totalNeeded) * 100) : 0;
+            if ($('balanceProgressFillDice')) $('balanceProgressFillDice').style.width = percent + '%';
+          }
         },
         submitDiceBets: function() {
           if (diceSelectedOptions.length === 0) { showToast('សូមជ្រើសរើសជម្រើសចាក់!', 'warning'); return; }
@@ -4333,6 +4412,7 @@
                 N98.renderDiceSelectedList();
                 fetchBalance(currentUser.phone); 
                 N98.updateSubmitDiceButton(); 
+                N98.updateBalanceStatusBoxDice();
               }
               else showToast(data.error || 'មានបញ្ហា!', 'error');
             }).catch(function(err) { 
