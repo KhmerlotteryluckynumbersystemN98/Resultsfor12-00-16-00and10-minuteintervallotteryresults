@@ -1275,7 +1275,7 @@
     </div>
   </div>
 
-    <script>
+  <script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
@@ -2404,7 +2404,7 @@
                   '<div style="font-weight:800; color:#6c757d; font-size:13px;">🆔 ' + esc(req.id) + '</div>' +
                   '<div style="font-size:12px; margin-top:4px; color:#6c757d;">📱 លេខ: <b>' + esc(req.phone) + '</b></div>' +
                   '<div style="font-size:12px; color:#6c757d;">💰 ចំនួន: <b>' + esc(amtStr) + '</b></div>' +
-                  '<div style="margin-top:8px; display:flex; align-items:center; justify-content:center; background:#ced4da; color:#6c757d; padding:10px; border-radius:6px; font-weight:800; font-size:12px;">' +
+                  '<div style="margin-top:8px; display:flex; align-items: center; justify-content: center; background:#ced4da; color:#6c757d; padding:10px; border-radius:6px; font-weight:800; font-size:12px;">' +
                     'ស្ថានភាពត្រូវបានដោះស្រាយរួចហើយ' +
                   '</div>' +
                 '</div>';
@@ -4084,9 +4084,11 @@
             var dotHtml = '';
             for (var k=0; k<r.result; k++) dotHtml += '<div class="dice-dot-lg ' + (r.result===1||r.result===4?'red':'blue') + '" style="width:20px;height:20px;margin:0 2px;"></div>';
 
+            var latestBadge = isNew ? ' <span class="latest-dice-badge">លទ្ធផលចុងក្រោយ</span>' : '';
+
             html += '<div class="dice-result-card' + (isNew ? ' new-result' : '') + '">' +
               '<div class="header">' +
-                '<span class="draw-id">#' + esc(r.drawId) + '</span>' +
+                '<span class="draw-id">#' + esc(r.drawId) + latestBadge + '</span>' +
                 '<span class="time">' + esc(r.time) + '</span>' +
               '</div>' +
               '<div style="text-align:center; padding:10px 0;">' +
