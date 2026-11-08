@@ -460,7 +460,7 @@
 
   <button id="tvModeExitBtn" onclick="N98.toggleTVMode()">❌ ចាកចេញពី TV Mode</button>
 
-  <div class="modal" id="registerModal" style="display:block;">
+    <div class="modal" id="registerModal" style="display:block;">
     <div class="modal-content reg-modal-content" style="max-width:520px;">
       <div class="reg-step active" id="regStep1">
         <div class="reg-header">
@@ -479,8 +479,8 @@
         
         <div style="background:linear-gradient(135deg,#d4edda,#a8e6c0); border:2px solid #28a745; border-radius:10px; padding:12px; margin-top:10px; font-size:12px; color:#155724; line-height:1.7; font-weight:700; text-align:center;">
           🎁 <b>ប្រាក់រង្វាន់ស្វាគមន៍!</b><br>
-          គណនីថ្មីទទួលបាន <b style="color:#d63000;">5.00$ និង 40,000៛</b> ភ្លាមៗ!<br>
-          <span style="font-size:11px; color:#856404; font-weight:600;">💰 សមតុល្យចាប់ផ្តើម: 5.00$ / 40,000៛</span>
+          គណនីថ្មីទទួលបាន <b style="color:#d63000;">5.00$ និង 20,000៛</b> ភ្លាមៗ!<br>
+          <span style="font-size:11px; color:#856404; font-weight:600;">💰 សមតុល្យចាប់ផ្តើម: 5.00$ / 20,000៛</span>
         </div>
         
         <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:10px; font-size:11.5px; color:#856404; line-height:1.7; font-weight:600;">
@@ -830,11 +830,9 @@
             <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#d8b4fe; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#d8b4fe; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTimeDice" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--</strong></div></div></div>
           </div>
 
-          <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (អាចជ្រើសបានច្រើន)<br>២. បញ្ចូលចំនួនទឹកប្រាក់សម្រាប់ជម្រើសនីមួយៗ<br>៣. ចុច <strong>"បន្ថែមចូលបញ្ជី"</strong> រួចចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+          <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. បញ្ចូល <strong>ចំនួនទឹកប្រាក់</strong> ខាងក្រោម<br>២. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (អាចជ្រើសបានច្រើន)<br>៣. ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
 
-          <!-- តារាងចាក់អាប៉ោង ៦ គ្រាប់ រៀបតាមទម្រង់រូបភាព -->
           <div class="dice-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <!-- ជួរទី១: គ្រាប់ 1 និង គ្រាប់ 6 -->
             <div class="dice-box" id="diceBox1" onclick="N98.toggleDiceSelection(1, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
               <div class="dice-title" style="color: #ef4444;">1</div>
               <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
@@ -848,7 +846,6 @@
               </div>
             </div>
 
-            <!-- ជួរទី២: គ្រាប់ 2 និង 3 (ក្រោម 1), គ្រាប់ 4 និង 5 (ក្រោម 6) -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
               <div class="dice-box" id="diceBox2" onclick="N98.toggleDiceSelection(2, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
                 <div class="dice-title" style="color: #3b82f6;">2</div>
@@ -874,7 +871,6 @@
               </div>
             </div>
 
-            <!-- ជួរទី៣: ស្តើង និង ក្រាស់ (ពណ៌ស្វាយ) -->
             <div class="dice-box" id="diceBoxThin" onclick="N98.toggleDiceSelection('thin', event)" style="border: 2px solid #6f42c1; background: #f3e8ff;">
               <div class="dice-title" style="color: #6f42c1; font-size: 13px;">ស្តើង (1-3)</div>
               <div class="dice-sub" style="color: #6f42c1; font-size: 10px;">1x0.85</div>
@@ -887,7 +883,6 @@
             </div>
           </div>
 
-          <!-- ប្រអប់បញ្ចូលទឹកប្រាក់ -->
           <div style="margin-top: 15px;">
             <label style="color:#d8b4fe; font-weight:800; font-size:13px; display:block; margin-bottom:6px;">💰 ចំនួនទឹកប្រាក់សម្រាប់ជម្រើសដែលបានជ្រើស</label>
             <div class="dice-input-row">
@@ -899,7 +894,6 @@
             </div>
           </div>
 
-          <!-- តារាងបញ្ជីជម្រើសដែលបានជ្រើស -->
           <div style="margin-top: 15px;">
             <div style="font-weight:800; color:#d8b4fe; font-size:13px; margin-bottom:8px;">📋 បញ្ជីជម្រើសដែលបានជ្រើស (អាចជ្រើសបានច្រើន)</div>
             <div class="dice-selection-list" id="diceSelectionList">
@@ -983,7 +977,7 @@
         </div>
 
         <div class="history-panel" id="panel-deposits">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#28a745,#1e7e34);"><th>កាលបរិច្ឆេទ</th><th>ចំនួន</th><th>រូបិយប័ណ្ណ</th><th>សមតុល្យក្រោយ</th><th>កំណត់សម្គាល់</th></tr></thead><tbody id="userDepositBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#28a745,#1e7e34);"><th>កាលបរិច្ឆេទ</th><th>ចំនួន</th><th>រូបិយបណ្ណ</th><th>សមតុល្យក្រោយ</th><th>កំណត់សម្គាល់</th></tr></thead><tbody id="userDepositBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
         </div>
 
         <div class="history-panel" id="panel-results-classic">
@@ -994,12 +988,10 @@
           <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff1744,#d50000);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyRapid"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
         </div>
 
-        <!-- ប្រវត្តិចាក់អាប៉ោង -->
         <div class="history-panel" id="panel-bets-dice">
           <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#4a148c);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>ជម្រើសចាក់</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyDice"><tr><td colspan="6" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
         </div>
 
-        <!-- ប្រវត្តិលទ្ធផលអាប៉ោង -->
         <div class="history-panel" id="panel-results-dice">
           <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#9c27b0,#6a1b9a);"><th>វគ្គ</th><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល</th><th>គ្រាប់</th></tr></thead><tbody id="historyBodyDice"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
         </div>
@@ -1030,7 +1022,7 @@
             <p>• ដំណើរការ 24/7</p>
 
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🎁 ៤. ប្រាក់រង្វាន់ស្វាគមន៍</h4>
-            <p>• គណនីថ្មីទទួលបាន <strong style="color:#d63000;">5.00$ និង 40,000៛</strong> ភ្លាមៗ</p>
+            <p>• គណនីថ្មីទទួលបាន <strong style="color:#d63000;">5.00$ និង 20,000៛</strong> ភ្លាមៗ</p>
             <p>• <strong style="color:#dc3545;">មិនអាចដកបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង និងរង់ចាំ ២៤ ម៉ោង</p>
             <p>• <strong style="color:#dc3545;">អាចចាក់អាប៉ោងបាន</strong> បន្ទាប់ពីបញ្ចូលប្រាក់ពិតប្រាកដ</p>
 
@@ -1220,7 +1212,7 @@
     </div>
   </div>
 
-  <!-- ================= PROMO POPUP ================= -->
+  <!-- ================= PROMO POPUP (បានបន្ថែម 🎲 អាប៉ោង ៥ នាទី) ================= -->
   <div class="modal" id="promoModal" style="display:none; align-items:center; justify-content:center; z-index: 2000;">
     <div class="modal-content" style="max-width: 420px; background: linear-gradient(135deg, #0f1420, #1a1f2e); border: 3px solid #0078D7; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,120,215,0.4); padding: 25px; position: relative;">
       <span class="close" onclick="N98.closePromoPopup()" style="color: #adb5bd; position: absolute; top: 15px; right: 20px;">&times;</span>
@@ -1267,6 +1259,18 @@
           </div>
           <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #ff8bb5;" id="promoCountdown10">00:00</div>
         </div>
+
+        <!-- 🎲 អាប៉ោង 5 នាទី (បន្ថែមថ្មី) -->
+        <div style="background: rgba(111,66,193,0.1); border: 1px solid rgba(111,66,193,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 24px;">🎲</span>
+            <div>
+              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">អាប៉ោង 5 នាទី</div>
+              <div style="color: #adb5bd; font-size: 11px;" id="promoStatusDice">កំពុងដំណើរការ</div>
+            </div>
+          </div>
+          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #d8b4fe;" id="promoCountdownDice">00:00</div>
+        </div>
       </div>
 
       <button onclick="N98.closePromoPopup()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(40,167,69,0.4);">
@@ -1275,7 +1279,7 @@
     </div>
   </div>
 
-  <script>
+    <script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
@@ -1328,7 +1332,6 @@
       var currency10 = 'USD';
       var currentDrawId10 = '';
 
-      // ===== DICE VARIABLES =====
       var diceSelectedOptions = []; 
       var currentDrawIdDice = '';
       var cachedDiceResults = [];
@@ -1781,52 +1784,6 @@
         }
       }
 
-      function manualCaptureScreenshot(timeSlot) {
-        var targetId = timeSlot === '12:00' ? 'box12Container' : 'box16Container';
-        var targetEl = $(targetId);
-        if (!targetEl) return;
-        
-        if (typeof html2canvas === 'undefined') {
-          showToast('html2canvas មិនទាន់ផ្ទុក', 'error');
-          return;
-        }
-        
-        showToast('កំពុងថតអេក្រង់...', 'info', '📸');
-        
-        html2canvas(targetEl, {
-          backgroundColor: '#ffffff',
-          scale: 2,
-          useCORS: true,
-          logging: false
-        }).then(function(canvas) {
-          var base64 = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
-          var caption = '📸 <b>លទ្ធផលឆ្នោត N98 - ' + timeSlot + ' (Manual)</b>\n📅 ' + new Date().toLocaleDateString('en-GB') + '\n⏰ ' + new Date().toLocaleTimeString('en-GB');
-          
-          fetch(WEB_APP_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-              action: 'uploadScreenshot',
-              imageBase64: base64,
-              caption: caption,
-              target: 'result'
-            }),
-            headers: { 'Content-Type': 'text/plain' }
-          })
-          .then(safeJsonParse)
-          .then(function(data) {
-            if (data.ok) showToast('ថតអេក្រង់ និងផ្ញើជោគជ័យ!', 'success', '📸');
-            else showToast('បរាជ័យ: ' + (data.error || ''), 'error');
-          })
-          .catch(function(err) {
-            console.error(err);
-            showToast('មានបញ្ហាតភ្ជាប់!', 'error');
-          });
-        }).catch(function(err) {
-          console.error(err);
-          showToast('មានបញ្ហាក្នុងការថតអេក្រង់!', 'error');
-        });
-      }
-
       function updateHistoryTabsForMode(mode) {
         var tabs = document.querySelectorAll('.history-tab');
         var activeTab = null;
@@ -2091,6 +2048,7 @@
           updateBettingClosed10();
         }, CFG.STATUS_MS);
         
+        // ===== DICE INTERVAL: បានកែឲ្យ ring វិល =====
         intervals.dice = setInterval(function() {
           if (mainMode === 'dice') {
             N98.fetchDiceResults();
@@ -2103,6 +2061,13 @@
             var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
             var ss = String(secondsLeft % 60).padStart(2, '0');
             if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
+            
+            // ✅ Update ring វិលថយក្រោយ
+            var totalDiceCycle = 5 * 60;
+            var percentDice = secondsIntoCycle / totalDiceCycle;
+            var circumferenceDice = 2 * Math.PI * 70;
+            var offsetDice = circumferenceDice * percentDice;
+            if ($('ringProgressDice')) $('ringProgressDice').style.strokeDashoffset = offsetDice;
             
             var yy = String(now.getFullYear()).slice(-2);
             var startOfYear = new Date(now.getFullYear(), 0, 0);
@@ -2263,7 +2228,7 @@
           .catch(function() { el.innerHTML = '❌ កើតហត្ថកម្ម!'; });
       }
 
-      function adminLoadWithdrawals() {
+            function adminLoadWithdrawals() {
         var el = $('adminWithdrawalsList');
         if (!el) return;
         el.innerHTML = '<span class="anim-spin">⏳</span> កំពុងទាញ...';
@@ -3193,7 +3158,7 @@
         });
       }
 
-      function resetForm10() {
+            function resetForm10() {
         numbers10 = [];
         selectedLetter10 = '';
         var circles = document.querySelectorAll('#rapidMode .letter-circle');
@@ -3564,7 +3529,6 @@
         }
         
         var html = '';
-        // បង្ហាញ ៤០ ដងចុងក្រោយ
         for (var i = 0; i < Math.min(40, cachedDiceResults.length); i++) {
           var r = cachedDiceResults[i];
           var emoji = '';
@@ -3964,6 +3928,52 @@
         updateBalanceStatusBox();
       }
 
+      function manualCaptureScreenshot(timeSlot) {
+        var targetId = timeSlot === '12:00' ? 'box12Container' : 'box16Container';
+        var targetEl = $(targetId);
+        if (!targetEl) return;
+        
+        if (typeof html2canvas === 'undefined') {
+          showToast('html2canvas មិនទាន់ផ្ទុក', 'error');
+          return;
+        }
+        
+        showToast('កំពុងថតអេក្រង់...', 'info', '📸');
+        
+        html2canvas(targetEl, {
+          backgroundColor: '#ffffff',
+          scale: 2,
+          useCORS: true,
+          logging: false
+        }).then(function(canvas) {
+          var base64 = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+          var caption = '📸 <b>លទ្ធផលឆ្នោត N98 - ' + timeSlot + ' (Manual)</b>\n📅 ' + new Date().toLocaleDateString('en-GB') + '\n⏰ ' + new Date().toLocaleTimeString('en-GB');
+          
+          fetch(WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+              action: 'uploadScreenshot',
+              imageBase64: base64,
+              caption: caption,
+              target: 'result'
+            }),
+            headers: { 'Content-Type': 'text/plain' }
+          })
+          .then(safeJsonParse)
+          .then(function(data) {
+            if (data.ok) showToast('ថតអេក្រង់ និងផ្ញើជោគជ័យ!', 'success', '📸');
+            else showToast('បរាជ័យ: ' + (data.error || ''), 'error');
+          })
+          .catch(function(err) {
+            console.error(err);
+            showToast('មានបញ្ហាតភ្ជាប់!', 'error');
+          });
+        }).catch(function(err) {
+          console.error(err);
+          showToast('មានបញ្ហាក្នុងការថតអេក្រង់!', 'error');
+        });
+      }
+
       function startApp() {
         init();
         setupFormHandlers();
@@ -3997,7 +4007,7 @@
         });
       }
 
-      // ===== DICE LOGIC & N98 GLOBAL OBJECT =====
+      // ===== N98 GLOBAL OBJECT =====
       window.N98 = {
         handleRegister: handleRegister,
         handleVerify: handleVerify,
@@ -4068,7 +4078,6 @@
             return; 
           }
           var html = '';
-          // បង្ហាញ ៤ វគ្គចុងក្រោយ
           for (var i = 0; i < Math.min(4, cachedDiceResults.length); i++) {
             var r = cachedDiceResults[i]; 
             var isNew = (i === 0); 
@@ -4080,7 +4089,6 @@
             else if (r.result === 5) emoji = '🔵🔵🔵🔵🔵'; 
             else if (r.result === 6) emoji = '🔵🔵🔵🔵🔵🔵';
             
-            // ធ្វើឱ្យគ្រាប់តូចជាងមុន
             var dotHtml = '';
             for (var k=0; k<r.result; k++) dotHtml += '<div class="dice-dot-lg ' + (r.result===1||r.result===4?'red':'blue') + '" style="width:20px;height:20px;margin:0 2px;"></div>';
 
@@ -4125,24 +4133,19 @@
               if (b2) b2.classList.remove('active');
             }
           } else {
+            // ✅ អនុញ្ញាតជ្រើសមុនបញ្ចូលចំនួន (default 0.25$ ឬ 500៛)
             var inputAmt = parseFloat($('diceBetAmountInput').value);
-            if (!inputAmt || inputAmt <= 0) {
-              showToast('សូមបញ្ចូលចំនួនទឹកប្រាក់ជាមុនសិន!', 'warning');
-              if (evt && evt.target) {
-                var b3 = evt.target.closest('.dice-box');
-                if (b3) b3.classList.remove('active');
-              }
-              return;
-            }
             var cur = $('diceCurrencySelect').value;
+            if (!inputAmt || inputAmt <= 0) {
+              inputAmt = (cur === 'KHR') ? 500 : 0.25;
+              if ($('diceBetAmountInput')) $('diceBetAmountInput').value = inputAmt;
+              showToast('ប្រើចំនួនលំនាំដើម ' + (cur === 'KHR' ? '500៛' : '0.25$'), 'info', '💡');
+            }
             diceSelectedOptions.push({ type: type, value: value, amount: inputAmt, currency: cur, label: label });
           }
           
           N98.renderDiceSelectedList();
           N98.updateSubmitDiceButton();
-        },
-        addDiceSelectionToBet: function() {
-          // មិនប្រើទៀតទេ ព្រោះវាដំណើរការស្វ័យប្រវត្តិ
         },
         removeDiceSelection: function(idx) {
           diceSelectedOptions.splice(idx, 1);
@@ -4165,6 +4168,9 @@
           if (!el) return;
           if (diceSelectedOptions.length === 0) {
             el.innerHTML = '<div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>';
+            // ✅ Reset total ពេល list ទទេ
+            if ($('diceTotalSelections')) $('diceTotalSelections').textContent = '0';
+            if ($('diceTotalAmount')) $('diceTotalAmount').textContent = '0';
           } else {
             var html = '';
             var total = 0;
@@ -4277,6 +4283,14 @@
             if ($('promoCountdown16')) $('promoCountdown16').textContent = String(Math.floor(diff16 / 3600)).padStart(2, '0') + ':' + String(Math.floor((diff16 % 3600) / 60)).padStart(2, '0') + ':' + String(diff16 % 60).padStart(2, '0');
             var secondsIntoCycle = (m % 10) * 60 + s; var secondsLeft10 = (10 * 60) - secondsIntoCycle; if (secondsLeft10 < 0) secondsLeft10 = 0;
             if ($('promoCountdown10')) $('promoCountdown10').textContent = String(Math.floor(secondsLeft10 / 60)).padStart(2, '0') + ':' + String(secondsLeft10 % 60).padStart(2, '0');
+            
+            // ✅ បន្ថែម 🎲 អាប៉ោង 5 នាទី
+            var secondsIntoCycleDice = (m % 5) * 60 + s;
+            var secondsLeftDice = (5 * 60) - secondsIntoCycleDice;
+            if (secondsLeftDice < 0) secondsLeftDice = 0;
+            if ($('promoCountdownDice')) $('promoCountdownDice').textContent = String(Math.floor(secondsLeftDice / 60)).padStart(2, '0') + ':' + String(secondsLeftDice % 60).padStart(2, '0');
+            var closedDice = secondsIntoCycleDice >= (5 * 60 - 10);
+            if ($('promoStatusDice')) $('promoStatusDice').textContent = closedDice ? '🔒 បិទចាក់' : '✅ បើកចាក់';
           }, 1000); modal._timer = timer;
         },
         closePromoPopup: function() { var modal = $('promoModal'); if (modal) { modal.style.display = 'none'; if (modal._timer) clearInterval(modal._timer); } },
