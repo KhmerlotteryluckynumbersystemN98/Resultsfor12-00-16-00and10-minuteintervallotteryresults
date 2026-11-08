@@ -33,6 +33,7 @@
     @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
     @keyframes particleFloat { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
     @keyframes livePulse { 0%, 100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.05); filter: brightness(1.3); } }
+    @keyframes purplePulse { 0%, 100% { box-shadow: 0 0 10px rgba(111,66,193,0.6); transform: scale(1); } 50% { box-shadow: 0 0 25px rgba(111,66,193,1); transform: scale(1.05); } }
 
     .anim-bounce { animation: bounce 1.5s ease-in-out infinite; display: inline-block; }
     .anim-pulse { animation: pulse 1.2s ease-in-out infinite; display: inline-block; }
@@ -225,6 +226,8 @@
     .history-tab[data-tab="deposits"].active { background: linear-gradient(135deg, #28a745, #1e7e34); }
     .history-tab[data-tab="results-classic"].active { background: linear-gradient(135deg, #ff9800, #e65100); }
     .history-tab[data-tab="results-rapid"].active { background: linear-gradient(135deg, #ff1744, #d50000); }
+    .history-tab[data-tab="bets-dice"].active { background: linear-gradient(135deg, #6f42c1, #4a148c); }
+    .history-tab[data-tab="results-dice"].active { background: linear-gradient(135deg, #9c27b0, #6a1b9a); }
 
     .history-panel { display: none; animation: fadeIn 0.4s ease-out; }
     .history-panel.active { display: block; }
@@ -375,6 +378,43 @@
     .dice-box .dice-sub { font-size: 11px; color: #64748b; margin-top: 6px; font-weight: 700; }
     .bet-box.dice { border-color: #6f42c1; box-shadow: 0 4px 20px rgba(111,66,193,0.25); background: linear-gradient(135deg, #2d1b3d, #1a0f1f); color: #e8eaf0; }
     .bet-box.dice h2 { color: #d8b4fe; border-bottom-color: rgba(111,66,193,0.3); }
+    .bet-box.dice .type-btn { background: rgba(255,255,255,0.05); color: #e8eaf0; border-color: rgba(111,66,193,0.4); }
+    .bet-box.dice .type-btn.active { background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; border-color: #6f42c1; }
+
+    /* ===== CSS សម្រាប់ DICE SELECTION MULTI ===== */
+    .dice-selection-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; min-height: 40px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; border: 2px dashed rgba(111,66,193,0.5); }
+    .dice-selection-tag { background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; padding: 6px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(111,66,193,0.4); }
+    .dice-selection-tag .remove { cursor: pointer; font-weight: 800; color: #ff6b6b; font-size: 16px; background: rgba(255,255,255,0.25); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+    .dice-selection-tag .remove:hover { background: #ff1744; color: white; transform: rotate(90deg); }
+    .dice-selection-empty { color: #a0a8b8; font-size: 12px; font-weight: 600; }
+    
+    /* ===== CSS សម្រាប់ DICE RESULT CARD ===== */
+    .dice-result-card { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 2px solid #6f42c1; border-radius: 14px; padding: 16px; box-shadow: 0 6px 20px rgba(111,66,193,0.25); position: relative; }
+    .dice-result-card.new-result { border-color: #4ade80; box-shadow: 0 0 20px rgba(74,222,128,0.6); animation: glowGreen 3s infinite alternate; background: linear-gradient(135deg, #1a3d2f, #0f1f1a); }
+    .dice-result-card .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid rgba(111,66,193,0.4); }
+    .dice-result-card .draw-id { color: #d8b4fe; font-weight: 800; font-size: 15px; letter-spacing: 0.5px; }
+    .dice-result-card .time { color: #ffffff; font-size: 14px; font-weight: 800; background: rgba(111,66,193,0.3); padding: 3px 10px; border-radius: 8px; }
+    .dice-result-card .result-number { text-align: center; padding: 15px 0; font-size: 48px; font-weight: 800; color: #d8b4fe; text-shadow: 0 0 20px rgba(216,180,254,0.6); }
+    .dice-result-card .dice-dots-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 10px 0; }
+    .dice-result-card .dice-dot-lg { width: 28px; height: 28px; border-radius: 50%; box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(0,0,0,0.5); }
+    .dice-result-card .dice-dot-lg.red { background: #ef4444; }
+    .dice-result-card .dice-dot-lg.blue { background: #3b82f6; }
+    
+    /* ===== CSS សម្រាប់ DICE HISTORY TABLE ===== */
+    .dice-history-dots { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; }
+    .dice-history-dot { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset -1px -1px 2px rgba(0,0,0,0.2); }
+    .dice-history-dot.red { background: #ef4444; }
+    .dice-history-dot.blue { background: #3b82f6; }
+    
+    /* ===== ស្លាកលទ្ធផលចុងក្រោយ ===== */
+    .latest-dice-badge { display: inline-block; background: linear-gradient(135deg, #9c27b0, #6a1b9a); color: white; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 10px; margin-left: 8px; animation: purplePulse 1.5s ease-in-out infinite; box-shadow: 0 0 12px rgba(156,39,176,0.7); vertical-align: middle; }
+
+    /* ===== CSS សម្រាប់ DICE INPUT ROW ===== */
+    .dice-input-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; border: 2px dashed rgba(111,66,193,0.4); flex-wrap: wrap; }
+    .dice-input-row input { flex: 1 1 100px; padding: 10px 14px; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; font-size: 14px; font-weight: 800; min-width: 80px; background: rgba(0,0,0,0.3); color: #ffffff; text-align: center; }
+    .dice-input-row input:focus { border-color: #6f42c1; outline: none; box-shadow: 0 0 0 4px rgba(111,66,193,0.2); }
+    .dice-input-row button { padding: 10px 16px; background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; }
+    .dice-input-row button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(111,66,193,0.5); }
 
     @media (max-width: 768px) {
       .numbers div { padding: 10px 4px; font-size: 14px; }
@@ -749,12 +789,13 @@
         </div>
       </div>
 
+      <!-- ================= DICE MODE (កែថ្មី) ================= -->
       <div id="diceMode" style="display:none;">
         <div class="countdown-rapid" style="border-color: #6f42c1; background: linear-gradient(135deg, #1a0f1f, #2d1b3d); box-shadow: 0 8px 32px rgba(111,66,193,0.4);">
           <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
           <div class="ring-container">
             <svg class="ring-svg" viewBox="0 0 160 160">
-              <defs><linearGradient id="ringGradientDice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6f42c1;stop-opacity:1" /><stop offset="50%" style="stop-color:#e91e63;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
+              <defs><linearGradient id="ringGradientDice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6f42c1;stop-opacity:1" /><stop offset="50%" style="stop-color:#9c27b0;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
               <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
               <circle class="ring-progress" id="ringProgressDice" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0" stroke="url(#ringGradientDice)"></circle>
             </svg>
@@ -764,8 +805,10 @@
         </div>
 
         <div class="bet-box dice">
-          <h2>🎲 លទ្ធផលអាប៉ោង ៣ វគ្គចុងក្រោយ</h2>
-          <div class="results-grid" id="diceResultsGrid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));"><div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div></div>
+          <h2>🎲 លទ្ធផលអាប៉ោង ៤ វគ្គចុងក្រោយ</h2>
+          <div class="results-grid" id="diceResultsGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+            <div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div>
+          </div>
         </div>
 
         <div class="bet-box dice">
@@ -787,74 +830,102 @@
             <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#d8b4fe; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#d8b4fe; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTimeDice" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--</strong></div></div></div>
           </div>
 
-          <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (ទាយគ្រាប់ / ស្តើង / ក្រាស់)<br>២. បញ្ចូលចំនួនទឹកប្រាក់<br>៣. ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+          <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (អាចជ្រើសបានច្រើន)<br>២. បញ្ចូលចំនួនទឹកប្រាក់សម្រាប់ជម្រើសនីមួយៗ<br>៣. ចុច <strong>"បន្ថែមចូលបញ្ជី"</strong> រួចចុច <strong>"ដាក់ភ្នាល់"</strong></div>
 
-          <div class="dice-grid">
-            <div class="dice-box" id="diceBox1" onclick="N98.selectDiceOption(1, event)">
-              <div class="dice-title">ទាយគ្រាប់ 1</div>
-              <div class="dice-dots"><div class="dice-dot red"></div></div>
-              <div class="dice-sub">អត្រា x5</div>
+          <div class="type-selector" style="margin-bottom:10px;">
+            <button class="type-btn active" data-dice-type="exact" onclick="N98.setDiceType('exact', event)">🎯 ទាយគ្រាប់</button>
+            <button class="type-btn" data-dice-type="thin_thick" onclick="N98.setDiceType('thin_thick', event)">📊 ស្តើង / ក្រាស់</button>
+          </div>
+
+          <div id="diceExactPanel">
+            <!-- រៀបចំថ្មីតាមតម្រូវការ: ១ និង ៦ ខាងលើ, ២ ៣ ក្រោម ១, ៤ ៥ ក្រោម ៦ -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+              <!-- ជួរទី១: គ្រាប់ 1 (ក្រហម) និង គ្រាប់ 6 (ខៀវ) -->
+              <div class="dice-box" id="diceBox1" onclick="N98.toggleDiceSelection(1, event)">
+                <div class="dice-title">ទាយគ្រាប់ 1</div>
+                <div class="dice-dots"><div class="dice-dot red"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+              <div class="dice-box" id="diceBox6" onclick="N98.toggleDiceSelection(6, event)">
+                <div class="dice-title">ទាយគ្រាប់ 6</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
             </div>
-            <div class="dice-box" id="diceBox2" onclick="N98.selectDiceOption(2, event)">
-              <div class="dice-title">ទាយគ្រាប់ 2</div>
-              <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              <div class="dice-sub">អត្រា x5</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+              <!-- ជួរទី២: គ្រាប់ 2,3 (ខៀវ) ក្រោមគ្រាប់ 1 -->
+              <div class="dice-box" id="diceBox2" onclick="N98.toggleDiceSelection(2, event)">
+                <div class="dice-title">ទាយគ្រាប់ 2</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+              <!-- ជួរទី២: គ្រាប់ 4,5 (ក្រហម/ខៀវ) ក្រោមគ្រាប់ 6 -->
+              <div class="dice-box" id="diceBox4" onclick="N98.toggleDiceSelection(4, event)">
+                <div class="dice-title">ទាយគ្រាប់ 4</div>
+                <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
             </div>
-            <div class="dice-box" id="diceBox3" onclick="N98.selectDiceOption(3, event)">
-              <div class="dice-title">ទាយគ្រាប់ 3</div>
-              <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              <div class="dice-sub">អត្រា x5</div>
-            </div>
-            <div class="dice-box" id="diceBox4" onclick="N98.selectDiceOption(4, event)">
-              <div class="dice-title">ទាយគ្រាប់ 4</div>
-              <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
-              <div class="dice-sub">អត្រា x5</div>
-            </div>
-            <div class="dice-box" id="diceBox5" onclick="N98.selectDiceOption(5, event)">
-              <div class="dice-title">ទាយគ្រាប់ 5</div>
-              <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              <div class="dice-sub">អត្រា x5</div>
-            </div>
-            <div class="dice-box" id="diceBox6" onclick="N98.selectDiceOption(6, event)">
-              <div class="dice-title">ទាយគ្រាប់ 6</div>
-              <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              <div class="dice-sub">អត្រា x5</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+              <div class="dice-box" id="diceBox3" onclick="N98.toggleDiceSelection(3, event)">
+                <div class="dice-title">ទាយគ្រាប់ 3</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+              <div class="dice-box" id="diceBox5" onclick="N98.toggleDiceSelection(5, event)">
+                <div class="dice-title">ទាយគ្រាប់ 5</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
             </div>
           </div>
 
-          <div style="display:flex; gap:10px; margin-top:10px;">
-            <div class="dice-box" id="diceBoxThin" onclick="N98.selectDiceOption('thin', event)" style="flex:1;">
-              <div class="dice-title">ស្តើង (1,2,3)</div>
-              <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              <div class="dice-sub">អត្រា x0.85</div>
+          <div id="diceThinThickPanel" style="display:none;">
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+              <div class="dice-box" id="diceBoxThin" onclick="N98.toggleDiceSelection('thin', event)" style="flex:1;">
+                <div class="dice-title">ស្តើង (1,2,3)</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x0.85</div>
+              </div>
+              <div class="dice-box" id="diceBoxThick" onclick="N98.toggleDiceSelection('thick', event)" style="flex:1;">
+                <div class="dice-title">ក្រាស់ (4,5,6)</div>
+                <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
+                <div class="dice-sub">អត្រា x0.85</div>
+              </div>
             </div>
-            <div class="dice-box" id="diceBoxThick" onclick="N98.selectDiceOption('thick', event)" style="flex:1;">
-              <div class="dice-title">ក្រាស់ (4,5,6)</div>
-              <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
-              <div class="dice-sub">អត្រា x0.85</div>
+          </div>
+
+          <!-- ប្រអប់បញ្ចូលទឹកប្រាក់ -->
+          <div style="margin-top: 15px;">
+            <label style="color:#d8b4fe; font-weight:800; font-size:13px; display:block; margin-bottom:6px;">💰 ចំនួនទឹកប្រាក់សម្រាប់ជម្រើសដែលបានជ្រើស</label>
+            <div class="dice-input-row">
+              <input type="number" id="diceBetAmountInput" placeholder="បញ្ចូលចំនួន" min="0.01" step="any">
+              <select id="diceCurrencySelect" style="background: rgba(0,0,0,0.3); color: white; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; padding: 10px; font-weight:800;">
+                <option value="USD">ដុល្លារ ($)</option>
+                <option value="KHR">រៀល (៛)</option>
+              </select>
+              <button onclick="N98.addDiceSelectionToBet()">➕ បន្ថែមចូលបញ្ជី</button>
             </div>
           </div>
 
-          <label style="color:#d8b4fe; font-weight:800; font-size:13px; margin-top:15px; display:block;">💰 ចំនួនទឹកប្រាក់</label>
-          <div class="amount-buttons">
-            <button class="btn-amount" onclick="N98.setAmountDice(500,'៛')">500៛</button><button class="btn-amount" onclick="N98.setAmountDice(1000,'៛')">1000៛</button>
-            <button class="btn-amount" onclick="N98.setAmountDice(5000,'៛')">5000៛</button><button class="btn-amount" onclick="N98.setAmountDice(0.25,'$')">0.25$</button>
-            <button class="btn-amount" onclick="N98.setAmountDice(1,'$')">1$</button><button class="btn-amount" onclick="N98.setAmountDice(5,'$')">5$</button>
-          </div>
-          <div class="custom-amount">
-            <input type="number" id="amountInputDice" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmountDice()">
-            <select id="currencySelectDice" onchange="N98.updateAmountDice()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
+          <!-- តារាងបញ្ជីជម្រើសដែលបានជ្រើស -->
+          <div style="margin-top: 15px;">
+            <div style="font-weight:800; color:#d8b4fe; font-size:13px; margin-bottom:8px;">📋 បញ្ជីជម្រើសដែលបានជ្រើស (អាចជ្រើសបានច្រើន)</div>
+            <div class="dice-selection-list" id="diceSelectionList">
+              <div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>
+            </div>
           </div>
 
-          <div class="bet-summary">
-            <div class="bet-summary-item"><span>🎲 ជម្រើសដែលបានជ្រើស៖</span><span id="diceSelectedLabel" style="color:#d8b4fe;">មិនទាន់ជ្រើស</span></div>
-            <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="diceTotalAmount">0</span></div>
+          <div class="bet-summary" style="background: rgba(255,255,255,0.05); border-color: rgba(111,66,193,0.4);">
+            <div class="bet-summary-item" style="color:#d8b4fe;"><span>🎲 ចំនួនជម្រើសសរុប៖</span><span id="diceTotalSelections">0</span></div>
+            <div class="bet-summary-item total" style="color:#d8b4fe; border-bottom:none;"><span>💵 សរុប៖</span><span id="diceTotalAmount">0</span></div>
           </div>
 
-          <button class="btn btn-success" id="btnSubmitDice" onclick="N98.submitDiceBet()" disabled style="background:linear-gradient(135deg,#6f42c1,#4a148c);">🎲 ដាក់ភ្នាល់ឥឡូវ</button>
+          <button class="btn btn-success" id="btnSubmitDice" onclick="N98.submitDiceBets()" disabled style="background:linear-gradient(135deg,#6f42c1,#4a148c); width:100%; padding:14px; font-size:15px;">🎲 ដាក់ភ្នាល់ឥឡូវ</button>
         </div>
       </div>
 
+      <!-- ================= ADMIN PANEL ================= -->
       <div class="lottery-box" id="adminPanel" style="display:none; border:2px solid #dc3545;">
         <div class="time-box" style="color:#dc3545;"><span class="anim-pulse">👑</span> ADMIN PANEL</div>
         <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px dashed #ff8b8b; padding:10px; border-radius:10px; margin:10px 0; font-size:12px; color:#721c24; font-weight:700;">🔐 ផ្ទាំងនេះសម្រាប់ Admin ប៉ុណ្ណោះ</div>
@@ -893,6 +964,7 @@
         </div>
       </div>
 
+      <!-- ================= HISTORY SECTION ================= -->
       <div class="lottery-box" id="historySection" style="display:block; margin-top:20px;">
         <div class="time-box">📊 ប្រវត្តិទាំងអស់ <span style="font-size:10px; color:#dc3545; margin-left:8px; font-weight:800; background:#fee2e2; padding:2px 8px; border-radius:6px;">រក្សាទុក ២ ថ្ងៃ</span></div>
         
@@ -903,6 +975,8 @@
           <button class="history-tab" data-tab="withdrawals" data-mode="both" onclick="N98.switchHistoryTab('withdrawals', event)">🏦 ប្រវត្តិដកប្រាក់</button>
           <button class="history-tab" data-tab="bets-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('bets-rapid', event)" style="display:none;">⚡ ប្រវត្តិចាក់ 10នាទី</button>
           <button class="history-tab" data-tab="results-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('results-rapid', event)" style="display:none;">🎯 លទ្ធផល 10នាទី</button>
+          <button class="history-tab" data-tab="bets-dice" data-mode="dice" onclick="N98.switchHistoryTab('bets-dice', event)" style="display:none;">🎲 ប្រវត្តិចាក់អាប៉ោង</button>
+          <button class="history-tab" data-tab="results-dice" data-mode="dice" onclick="N98.switchHistoryTab('results-dice', event)" style="display:none;">🎯 លទ្ធផលអាប៉ោង</button>
         </div>
 
         <div class="history-panel active" id="panel-bets-classic">
@@ -927,6 +1001,16 @@
 
         <div class="history-panel" id="panel-results-rapid">
           <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff1744,#d50000);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyRapid"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <!-- ប្រវត្តិចាក់អាប៉ោង -->
+        <div class="history-panel" id="panel-bets-dice">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#4a148c);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>ជម្រើសចាក់</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyDice"><tr><td colspan="6" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <!-- ប្រវត្តិលទ្ធផលអាប៉ោង -->
+        <div class="history-panel" id="panel-results-dice">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#9c27b0,#6a1b9a);"><th>វគ្គ</th><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល</th><th>គ្រាប់</th></tr></thead><tbody id="historyBodyDice"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
         </div>
       </div>
 
@@ -957,6 +1041,7 @@
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🎁 ៤. ប្រាក់រង្វាន់ស្វាគមន៍</h4>
             <p>• គណនីថ្មីទទួលបាន <strong style="color:#d63000;">10.00$ និង 40,000៛</strong> ភ្លាមៗ</p>
             <p>• <strong style="color:#dc3545;">មិនអាចដកបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង និងរង់ចាំ ២៤ ម៉ោង</p>
+            <p>• <strong style="color:#dc3545;">មិនអាចចាក់អាប៉ោងបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ</p>
 
             <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🏦 ៥. របៀបដកប្រាក់</h4>
             <p>• ដកប្រាក់បានគ្រប់ពេល 24/7</p>
@@ -997,6 +1082,7 @@
     <div class="footer"><span class="emoji-dice">🎲</span> © 2026 Khmer Lottery N98 — រក្សាសិទ្ធិគ្រប់យ៉ាងពីឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></div>
   </div>
 
+  <!-- ================= MODALS ================= -->
   <div class="modal" id="depositModal">
     <div class="modal-content">
       <span class="close" onclick="N98.closeModal('depositModal')">&times;</span>
@@ -1045,7 +1131,7 @@
     </div>
   </div>
 
-    <div class="modal" id="directBetModal">
+  <div class="modal" id="directBetModal">
     <div class="modal-content">
       <span class="close" onclick="N98.closeModal('directBetModal')">&times;</span>
       <h2 style="color:#28a745;">💵 បញ្ជាក់ការចាក់ផ្ទាល់</h2>
@@ -1251,12 +1337,14 @@
       var currency10 = 'USD';
       var currentDrawId10 = '';
 
-      var diceSelectedType = '';
-      var diceSelectedValue = '';
-      var diceAmount = 0;
+      // ===== DICE VARIABLES =====
+      var diceTypeMode = 'exact'; // 'exact' or 'thin_thick'
+      var diceSelectedOptions = []; // Array of {type, value, amount, currency, label}
+      var diceAmountInput = 0;
       var diceCurrency = 'USD';
       var currentDrawIdDice = '';
       var cachedDiceResults = [];
+      var cachedDiceBets = [];
       var hasShownPromoPopup = false;
 
       var cachedResults = [];
@@ -1577,23 +1665,38 @@
         if ($('wdBalanceKHR')) $('wdBalanceKHR').textContent = Math.round(balanceKHR).toLocaleString() + '៛';
         updateSubmitButton();
         updateSubmitButton10();
-        updateSubmitDiceButton();
+        N98.updateSubmitDiceButton();
         updateBalanceStatusBox();
         updateBalanceStatusBox10();
         updateWithdrawCurrencyButtons();
       }
 
-      function fetchUserBets() {
+           function fetchUserBets() {
         if (!currentUser) return;
-        var actionUrl = (currentHistoryTab === 'bets-rapid') ? 'getBets10' : 'getBets';
-        var tbody = (currentHistoryTab === 'bets-rapid') ? $('userHistoryBodyRapid') : $('userHistoryBodyClassic');
+        var actionUrl = 'getBets';
+        var tbody = $('userHistoryBodyClassic');
+        
+        if (currentHistoryTab === 'bets-rapid') {
+          actionUrl = 'getBets10';
+          tbody = $('userHistoryBodyRapid');
+        } else if (currentHistoryTab === 'bets-dice') {
+          actionUrl = 'getDiceBets';
+          tbody = $('userHistoryBodyDice');
+        }
         
         if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="color:#6c757d; padding:12px;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</td></tr>';
         
         fetchWithTimeout(WEB_APP_URL + '?action=' + actionUrl + '&phone=' + encodeURIComponent(fixPhoneNumber(currentUser.phone)) + '&t=' + Date.now(), { cache: 'no-store' })
           .then(safeJsonParse)
           .then(function(data) {
-            if (data.ok) renderUserBetsFromServer(data.bets, actionUrl === 'getBets10' ? 'rapid' : 'classic');
+            if (data.ok) {
+              if (currentHistoryTab === 'bets-dice') {
+                cachedDiceBets = data.bets || [];
+                renderUserDiceBets(data.bets);
+              } else {
+                renderUserBetsFromServer(data.bets, actionUrl === 'getBets10' ? 'rapid' : 'classic');
+              }
+            }
           }).catch(function(e) { console.error('fetchUserBets:', e); });
       }
 
@@ -1813,11 +1916,12 @@
         var panel = $('panel-' + tabName);
         if (panel) panel.classList.add('active');
 
-        if (tabName === 'bets-classic' || tabName === 'bets-rapid') fetchUserBets();
+        if (tabName === 'bets-classic' || tabName === 'bets-rapid' || tabName === 'bets-dice') fetchUserBets();
         else if (tabName === 'withdrawals') fetchUserWithdrawals();
         else if (tabName === 'deposits') fetchUserDeposits();
         else if (tabName === 'results-classic') renderHistoryTableClassic();
         else if (tabName === 'results-rapid') renderHistoryTableRapid();
+        else if (tabName === 'results-dice') renderHistoryTableDice();
       }
 
       function showRegStep(stepId) {
@@ -1936,7 +2040,7 @@
         }, function(confirmed) {
           if (!confirmed) return;
           localStorage.removeItem('lottery_user');
-          currentUser = null; numbers = []; numbers10 = []; diceSelectedType = '';
+          currentUser = null; numbers = []; numbers10 = []; diceSelectedOptions = [];
           if (isTVMode) toggleTVMode();
           clearIntervals();
           $('mainApp').style.display = 'none';
@@ -3462,6 +3566,37 @@
         tbody.innerHTML = html;
       }
 
+      function renderHistoryTableDice() {
+        var tbody = $('historyBodyDice');
+        if (!tbody) return;
+        
+        if (!cachedDiceResults || cachedDiceResults.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" style="color:#6c757d; padding:12px; font-weight:600;">មិនមានប្រវត្តិអាប៉ោង</td></tr>';
+          return;
+        }
+        
+        var html = '';
+        for (var i = 0; i < cachedDiceResults.length; i++) {
+          var r = cachedDiceResults[i];
+          var emoji = '';
+          if (r.result === 1) emoji = '🔴';
+          else if (r.result === 2) emoji = '🔵🔵';
+          else if (r.result === 3) emoji = '🔵🔵🔵';
+          else if (r.result === 4) emoji = '🔴🔴🔴🔴';
+          else if (r.result === 5) emoji = '🔵🔵🔵🔵🔵';
+          else if (r.result === 6) emoji = '🔵🔵🔵🔵🔵🔵';
+
+          html += '<tr style="border-bottom: 1px solid #e9ecef;">' +
+            '<td style="text-align:center; font-size:11px; font-weight:800; color:#6f42c1;">#' + esc(r.drawId) + '</td>' +
+            '<td style="text-align:center; font-size:11px;">' + esc(r.date) + '</td>' +
+            '<td style="text-align:center; font-size:11px;">' + esc(r.time) + '</td>' +
+            '<td style="text-align:center; font-weight:800; font-size:16px; color:#4a148c;">' + r.result + '</td>' +
+            '<td style="text-align:center; font-size:16px;">' + emoji + '</td>' +
+          '</tr>';
+        }
+        tbody.innerHTML = html;
+      }
+
       function renderUserBetsFromServer(serverBets, mode) {
         var tbody = (mode === 'rapid') ? $('userHistoryBodyRapid') : $('userHistoryBodyClassic');
         if (!tbody) return;
@@ -3523,6 +3658,57 @@
             '<td><div style="margin-bottom:2px;">' + modeBadge + '</div><strong style="color:#0078D7;">' + esc(b.numbers) + '</strong></td>' +
             '<td>' + (b.type === 'two' ? '២ខ្ទង់' : '៣ខ្ទង់') + '</td>' +
             '<td><div>' + amt + '</div><div class="amount-tag">💰 ' + totalAmt + '</div></td>' +
+            '<td>' + badge + '</td>' +
+            '<td>' + reward + '</td>' +
+          '</tr>';
+        }
+        tbody.innerHTML = html;
+      }
+
+      function renderUserDiceBets(bets) {
+        var tbody = $('userHistoryBodyDice');
+        if (!tbody) return;
+        if (!bets || bets.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="color:#6c757d; padding:12px; font-weight:600;">មិនទាន់មានប្រវត្តិ</td></tr>';
+          return;
+        }
+        var html = '';
+        for (var i = 0; i < bets.length; i++) {
+          var b = bets[i];
+          var amt = fmtAmount(b.amount, b.currency);
+          
+          var betTypeLabel = '';
+          if (b.betType === 'exact') betTypeLabel = 'ទាយគ្រាប់ ' + b.betValue;
+          else if (b.betType === 'thin') betTypeLabel = 'ស្តើង (1,2,3)';
+          else if (b.betType === 'thick') betTypeLabel = 'ក្រាស់ (4,5,6)';
+          else betTypeLabel = b.betType;
+
+          var badge = '<span class="status-badge status-pending">⏳ រង់ចាំ</span>';
+          var reward = '-';
+
+          if (b.status === 'win') {
+            if (b.paid === 'yes') badge = '<span class="status-badge status-paid">✅ បានសង</span>';
+            else badge = '<span class="status-badge status-win">🎉 ឈ្នះ</span>';
+            reward = '<strong style="color:#28a745;">' + fmtAmount(b.payout, b.currency) + '</strong>';
+          } else if (b.status === 'loss') {
+            badge = '<span class="status-badge status-loss">❌ មិនត្រូវ</span>';
+          }
+
+          var dateShort = b.date;
+          var timeShort = '';
+          if (b.date && b.date.indexOf(' ') !== -1) {
+            dateShort = b.date.split(' ')[0];
+            timeShort = b.date.split(' ')[1].substring(0, 5);
+          }
+
+          html += '<tr>' +
+            '<td style="text-align:left; font-size:10px;">' +
+              '<div style="font-weight:800; color:#1e293b;">' + esc(dateShort) + '</div>' +
+              '<div style="font-weight:700; color:#6c757d;">' + esc(timeShort) + '</div>' +
+            '</td>' +
+            '<td style="text-align:center;"><span class="badge" style="background:#6f42c1; color:#fff; padding:2px 6px; border-radius:6px; font-size:9px;">#' + esc(b.drawId || '-') + '</span></td>' +
+            '<td><strong style="color:#4a148c;">' + esc(betTypeLabel) + '</strong></td>' +
+            '<td><strong>' + amt + '</strong></td>' +
             '<td>' + badge + '</td>' +
             '<td>' + reward + '</td>' +
           '</tr>';
@@ -3822,6 +4008,7 @@
         });
       }
 
+      // ===== DICE LOGIC (កែថ្មី) =====
       window.N98 = {
         handleRegister: handleRegister,
         handleVerify: handleVerify,
@@ -3869,7 +4056,6 @@
           } else {
             $('classicMode').style.display = 'none'; $('rapidMode').style.display = 'none'; $('diceMode').style.display = 'block';
             $('mainHeader').classList.remove('mode-10'); $('mainHeader').classList.add('mode-dice');
-            $('mainHeader').classList.remove('mode-10'); $('mainHeader').classList.add('mode-dice');
             $('headerSubtitle').innerHTML = '<span class="anim-pulse">🎲</span> ប្រព័ន្ធចាក់អាប៉ោង 5 នាទី <span class="anim-pulse">🎉</span>';
             N98.fetchDiceResults();
           }
@@ -3879,48 +4065,229 @@
         fetchDiceResults: function() {
           fetchWithTimeout(WEB_APP_URL + '?action=getDiceResults&limit=10&t=' + Date.now(), { cache: 'no-store' })
             .then(safeJsonParse).then(function(data) {
-              if (data && data.ok && Array.isArray(data.results)) { cachedDiceResults = data.results; N98.renderDiceResultsGrid(); }
+              if (data && data.ok && Array.isArray(data.results)) { 
+                cachedDiceResults = data.results; 
+                N98.renderDiceResultsGrid(); 
+                if (currentHistoryTab === 'results-dice') renderHistoryTableDice();
+              }
             }).catch(function(e) { console.error('fetchDiceResults:', e); });
         },
         renderDiceResultsGrid: function() {
           var grid = $('diceResultsGrid'); if (!grid) return;
-          if (!cachedDiceResults || cachedDiceResults.length === 0) { grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:20px; color:#a0a8b8;">មិនទាន់មានលទ្ធផល</div>'; return; }
+          if (!cachedDiceResults || cachedDiceResults.length === 0) { 
+            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:20px; color:#a0a8b8;">មិនទាន់មានលទ្ធផល</div>'; 
+            return; 
+          }
           var html = '';
-          for (var i = 0; i < Math.min(3, cachedDiceResults.length); i++) {
-            var r = cachedDiceResults[i]; var isNew = (i === 0); var emoji = '';
-            if (r.result === 1) emoji = '🔴'; else if (r.result === 2) emoji = '🔵🔵'; else if (r.result === 3) emoji = '🔵🔵🔵'; else if (r.result === 4) emoji = '🔴🔴🔴🔴'; else if (r.result === 5) emoji = '🔵🔵🔵🔵🔵'; else if (r.result === 6) emoji = '🔵🔵🔵🔵🔵🔵';
-            html += '<div class="result-card' + (isNew ? ' new-result' : '') + '" style="border-color: #6f42c1; background: linear-gradient(135deg, #2d1b3d, #1a0f1f);"><div class="header"><span class="draw-id">#' + esc(r.drawId) + '</span><span class="time" style="background: rgba(111,66,193,0.3);">' + esc(r.time) + '</span></div><div style="text-align:center; padding:15px 0;"><div style="font-size:40px; margin-bottom:5px;">' + emoji + '</div><div style="font-size:32px; font-weight:800; color:#d8b4fe;">' + r.result + '</div></div></div>';
+          for (var i = 0; i < Math.min(4, cachedDiceResults.length); i++) {
+            var r = cachedDiceResults[i]; 
+            var isNew = (i === 0); 
+            var emoji = '';
+            if (r.result === 1) emoji = '🔴'; 
+            else if (r.result === 2) emoji = '🔵🔵'; 
+            else if (r.result === 3) emoji = '🔵🔵🔵'; 
+            else if (r.result === 4) emoji = '🔴🔴🔴🔴'; 
+            else if (r.result === 5) emoji = '🔵🔵🔵🔵🔵'; 
+            else if (r.result === 6) emoji = '🔵🔵🔵🔵🔵🔵';
+            
+            html += '<div class="dice-result-card' + (isNew ? ' new-result' : '') + '">' +
+              '<div class="header">' +
+                '<span class="draw-id">#' + esc(r.drawId) + '</span>' +
+                '<span class="time">' + esc(r.time) + '</span>' +
+              '</div>' +
+              '<div style="text-align:center; padding:15px 0;">' +
+                '<div style="font-size:40px; margin-bottom:5px;">' + emoji + '</div>' +
+                '<div style="font-size:32px; font-weight:800; color:#d8b4fe;">' + r.result + '</div>' +
+              '</div>' +
+            '</div>';
           }
           grid.innerHTML = html;
         },
-        selectDiceOption: function(val, evt) {
-          diceSelectedType = (typeof val === 'number') ? 'exact' : val; diceSelectedValue = val;
-          var boxes = document.querySelectorAll('.dice-box'); for (var i = 0; i < boxes.length; i++) boxes[i].classList.remove('active');
-          if (evt && evt.target) { var b = evt.target.closest('.dice-box'); if (b) b.classList.add('active'); }
-          var label = (diceSelectedType === 'exact') ? 'ទាយគ្រាប់ ' + val : (diceSelectedType === 'thin' ? 'ស្តើង (1,2,3)' : 'ក្រាស់ (4,5,6)');
-          if ($('diceSelectedLabel')) $('diceSelectedLabel').textContent = label;
+        setDiceType: function(type, evt) {
+          diceTypeMode = type;
+          var btns = document.querySelectorAll('#diceMode .type-btn');
+          for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+          if (evt && evt.target) evt.target.classList.add('active');
+          
+          if (type === 'exact') {
+            $('diceExactPanel').style.display = 'block';
+            $('diceThinThickPanel').style.display = 'none';
+          } else {
+            $('diceExactPanel').style.display = 'none';
+            $('diceThinThickPanel').style.display = 'block';
+          }
+        },
+        toggleDiceSelection: function(val, evt) {
+          var type = 'exact';
+          var value = val;
+          var label = '';
+          var boxId = '';
+          if (val === 'thin') { type = 'thin'; label = 'ស្តើង (1,2,3)'; boxId = 'diceBoxThin'; }
+          else if (val === 'thick') { type = 'thick'; label = 'ក្រាស់ (4,5,6)'; boxId = 'diceBoxThick'; }
+          else { type = 'exact'; label = 'ទាយគ្រាប់ ' + val; boxId = 'diceBox' + val; }
+          
+          if (evt && evt.target) {
+            var b = evt.target.closest('.dice-box');
+            if (b) b.classList.toggle('active');
+          }
+          
+          var idx = -1;
+          for (var i = 0; i < diceSelectedOptions.length; i++) {
+            if (diceSelectedOptions[i].type === type && diceSelectedOptions[i].value === value) {
+              idx = i; break;
+            }
+          }
+          if (idx >= 0) {
+            diceSelectedOptions.splice(idx, 1);
+            if (evt && evt.target) {
+              var b2 = evt.target.closest('.dice-box');
+              if (b2) b2.classList.remove('active');
+            }
+          } else {
+            // ទាញយកចំនួនទឹកប្រាក់ពី input
+            var inputAmt = parseFloat($('diceBetAmountInput').value);
+            if (!inputAmt || inputAmt <= 0) {
+              showToast('សូមបញ្ចូលចំនួនទឹកប្រាក់ជាមុនសិន!', 'warning');
+              if (evt && evt.target) {
+                var b3 = evt.target.closest('.dice-box');
+                if (b3) b3.classList.remove('active');
+              }
+              return;
+            }
+            var cur = $('diceCurrencySelect').value;
+            diceSelectedOptions.push({ type: type, value: value, amount: inputAmt, currency: cur, label: label });
+          }
+          
+          N98.renderDiceSelectedList();
           N98.updateSubmitDiceButton();
         },
-        setAmountDice: function(val, sym) { $('amountInputDice').value = val; $('currencySelectDice').value = sym === '$' ? 'USD' : 'KHR'; N98.updateAmountDice(); },
-        updateAmountDice: function() { var v = parseFloat($('amountInputDice').value); diceAmount = isNaN(v) || v <= 0 ? 0 : v; diceCurrency = $('currencySelectDice').value; if ($('diceTotalAmount')) $('diceTotalAmount').textContent = fmtAmount(diceAmount, diceCurrency); N98.updateSubmitDiceButton(); },
+        addDiceSelectionToBet: function() {
+          showToast('សូមជ្រើសរើសគ្រាប់ជាមុនសិន ដើម្បីបន្ថែមចូលបញ្ជី!', 'info');
+        },
+        removeDiceSelection: function(idx) {
+          diceSelectedOptions.splice(idx, 1);
+          // ដោះ active ចេញពី box
+          var boxes = document.querySelectorAll('.dice-box');
+          for (var i = 0; i < boxes.length; i++) boxes[i].classList.remove('active');
+          // ដាក់ active ឡើងវិញសម្រាប់ជម្រើសដែលនៅសល់
+          for (var j = 0; j < diceSelectedOptions.length; j++) {
+            var opt = diceSelectedOptions[j];
+            var id = '';
+            if (opt.type === 'exact') id = 'diceBox' + opt.value;
+            else if (opt.type === 'thin') id = 'diceBoxThin';
+            else if (opt.type === 'thick') id = 'diceBoxThick';
+            var el = $(id);
+            if (el) el.classList.add('active');
+          }
+          N98.renderDiceSelectedList();
+          N98.updateSubmitDiceButton();
+        },
+        renderDiceSelectedList: function() {
+          var el = $('diceSelectionList');
+          if (!el) return;
+          if (diceSelectedOptions.length === 0) {
+            el.innerHTML = '<div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>';
+          } else {
+            var html = '';
+            var total = 0;
+            for (var i = 0; i < diceSelectedOptions.length; i++) {
+              var opt = diceSelectedOptions[i];
+              total += opt.amount;
+              html += '<span class="dice-selection-tag">' + esc(opt.label) + ' : ' + fmtAmount(opt.amount, opt.currency) +
+                      ' <span class="remove" onclick="N98.removeDiceSelection(' + i + ')">&times;</span></span>';
+            }
+            el.innerHTML = html;
+            if ($('diceTotalSelections')) $('diceTotalSelections').textContent = diceSelectedOptions.length;
+            if ($('diceTotalAmount')) {
+              var displayTotal = total.toFixed(2) + '$';
+              // បើ KHR ទាំងអស់
+              var allKHR = true;
+              for (var k = 0; k < diceSelectedOptions.length; k++) {
+                if (diceSelectedOptions[k].currency !== 'KHR') { allKHR = false; break; }
+              }
+              if (allKHR) displayTotal = Math.round(total).toLocaleString() + '៛';
+              $('diceTotalAmount').textContent = displayTotal;
+            }
+          }
+          N98.updateSubmitDiceButton();
+        },
         updateSubmitDiceButton: function() {
           var btn = $('btnSubmitDice'); if (!btn) return;
-          var validAmount = diceCurrency === 'USD' ? (diceAmount >= CFG.MIN_USD && diceAmount <= CFG.MAX_USD) : (diceAmount >= CFG.MIN_KHR && diceAmount <= CFG.MAX_KHR);
-          var balanceOk = diceCurrency === 'USD' ? balanceUSD >= diceAmount : balanceKHR >= diceAmount;
           var now = new Date(); var sec = now.getSeconds(); var min = now.getMinutes();
           var isClosed = ((min % 5) * 60 + sec) >= (5 * 60 - 10);
-          btn.disabled = !(validAmount && diceAmount > 0 && balanceOk && diceSelectedType !== '' && !isClosed);
+          var hasOptions = diceSelectedOptions.length > 0;
+          // គណនាតម្លៃសរុប តាមរូបិយប័ណ្ណ
+          var totalUSD = 0, totalKHR = 0;
+          for (var i = 0; i < diceSelectedOptions.length; i++) {
+            var opt = diceSelectedOptions[i];
+            if (opt.currency === 'USD') totalUSD += opt.amount;
+            else totalKHR += opt.amount;
+          }
+          var balanceOk = balanceUSD >= totalUSD && balanceKHR >= totalKHR;
+          btn.disabled = !(hasOptions && balanceOk && !isClosed);
         },
-        submitDiceBet: function() {
-          if (!diceSelectedType) { showToast('សូមជ្រើសរើសជម្រើសចាក់!', 'warning'); return; }
-          if (diceAmount <= 0) { showToast('សូមបញ្ចូលចំនួនទឹកប្រាក់!', 'warning'); return; }
-          var btn = $('btnSubmitDice'); btn.disabled = true; btn.innerHTML = '<span class="anim-spin">⏳</span> កំពុងបញ្ជូន...'; showLoading(true);
-          fetchWithTimeout(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'placeDiceBet', phone: fixPhoneNumber(currentUser.phone), userId: currentUser.userId, bets: [{ type: diceSelectedType, value: diceSelectedValue, amount: diceAmount }], currency: diceCurrency, drawId: currentDrawIdDice }), headers: { 'Content-Type': 'text/plain' } })
-          .then(safeJsonParse).then(function(data) {
-            btn.disabled = false; btn.innerHTML = '🎲 ដាក់ភ្នាល់ឥឡូវ'; showLoading(false);
-            if (data.ok) { showToast('ការចាក់អាប៉ោងត្រូវបានទទួលយក!', 'success', '🎉'); diceSelectedType = ''; diceSelectedValue = ''; var boxes = document.querySelectorAll('.dice-box'); for (var i=0; i<boxes.length; i++) boxes[i].classList.remove('active'); $('diceSelectedLabel').textContent = 'មិនទាន់ជ្រើស'; fetchBalance(currentUser.phone); N98.updateSubmitDiceButton(); }
-            else showToast(data.error || 'មានបញ្ហា!', 'error');
-          }).catch(function(err) { console.error(err); btn.disabled = false; btn.innerHTML = '🎲 ដាក់ភ្នាល់ឥឡូវ'; showLoading(false); showToast('មានបញ្ហាតភ្ជាប់!', 'error'); });
+        submitDiceBets: function() {
+          if (diceSelectedOptions.length === 0) { showToast('សូមជ្រើសរើសជម្រើសចាក់!', 'warning'); return; }
+          var now = new Date(); var sec = now.getSeconds(); var min = now.getMinutes();
+          if (((min % 5) * 60 + sec) >= (5 * 60 - 10)) { showToast('ការចាក់ត្រូវបានបិទ (ចុងក្រោយ 10 វិនាទី)!', 'warning', '🔒'); return; }
+          
+          var totalUSD = 0, totalKHR = 0;
+          for (var i = 0; i < diceSelectedOptions.length; i++) {
+            var opt = diceSelectedOptions[i];
+            if (opt.currency === 'USD') totalUSD += opt.amount;
+            else totalKHR += opt.amount;
+          }
+          if (balanceUSD < totalUSD) { showToast('សមតុល្យ USD មិនគ្រប់គ្រាន់!', 'error', '💰'); return; }
+          if (balanceKHR < totalKHR) { showToast('សមតុល្យ KHR មិនគ្រប់គ្រាន់!', 'error', '💰'); return; }
+          
+          var infoRows = [];
+          for (var j = 0; j < diceSelectedOptions.length; j++) {
+            var o = diceSelectedOptions[j];
+            infoRows.push({ label: '🎲 ' + o.label, value: fmtAmount(o.amount, o.currency) });
+          }
+          var totalDisplay = '';
+          if (totalUSD > 0) totalDisplay += totalUSD.toFixed(2) + '$ ';
+          if (totalKHR > 0) totalDisplay += totalKHR.toLocaleString() + '៛';
+          infoRows.push({ label: '💰 សរុប', value: totalDisplay.trim(), isTotal: true });
+          
+          showConfirm({
+            icon: '🎲',
+            title: 'បញ្ជាក់ការចាក់អាប៉ោង',
+            message: 'តើអ្នកប្រាកដជាចង់ដាក់ភ្នាល់ឬ?',
+            infoRows: infoRows,
+            okText: '✓ បញ្ជាក់',
+            cancelText: '✕ បោះបង់'
+          }, function(confirmed) {
+            if (!confirmed) return;
+            var btn = $('btnSubmitDice');
+            btn.disabled = true; btn.innerHTML = '<span class="anim-spin">⏳</span> កំពុងបញ្ជូន...'; showLoading(true);
+            var betsArray = [];
+            for (var k = 0; k < diceSelectedOptions.length; k++) {
+              var op = diceSelectedOptions[k];
+              betsArray.push({ type: op.type, value: op.value, amount: op.amount, currency: op.currency });
+            }
+            // បញ្ជូនបញ្ជី
+            fetchWithTimeout(WEB_APP_URL, { 
+              method: 'POST', 
+              body: JSON.stringify({ action: 'placeDiceBet', phone: fixPhoneNumber(currentUser.phone), userId: currentUser.userId, bets: betsArray, drawId: currentDrawIdDice }), 
+              headers: { 'Content-Type': 'text/plain' } 
+            })
+            .then(safeJsonParse).then(function(data) {
+              btn.disabled = false; btn.innerHTML = '🎲 ដាក់ភ្នាល់ឥឡូវ'; showLoading(false);
+              if (data.ok) { 
+                showToast('ការចាក់អាប៉ោងត្រូវបានទទួលយក!', 'success', '🎉'); 
+                diceSelectedOptions = []; 
+                var boxes = document.querySelectorAll('.dice-box'); 
+                for (var i=0; i<boxes.length; i++) boxes[i].classList.remove('active'); 
+                N98.renderDiceSelectedList();
+                fetchBalance(currentUser.phone); 
+                N98.updateSubmitDiceButton(); 
+              }
+              else showToast(data.error || 'មានបញ្ហា!', 'error');
+            }).catch(function(err) { 
+              console.error(err); btn.disabled = false; btn.innerHTML = '🎲 ដាក់ភ្នាល់ឥឡូវ'; showLoading(false); showToast('មានបញ្ហាតភ្ជាប់!', 'error'); 
+            });
+          });
         },
         showPromoPopup: function() {
           if (hasShownPromoPopup) return; var modal = $('promoModal'); if (!modal) return;
@@ -3962,7 +4329,14 @@
         updateBalanceUI: updateBalanceUI,
         downloadQR: downloadQR,
         enableScreenshotUpload: enableScreenshotUpload,
-        checkContinueButtonState: checkContinueButtonState
+        checkContinueButtonState: checkContinueButtonState,
+        updateSubmitDiceButton: N98.updateSubmitDiceButton,
+        renderDiceSelectedList: N98.renderDiceSelectedList,
+        removeDiceSelection: N98.removeDiceSelection,
+        setDiceType: N98.setDiceType,
+        toggleDiceSelection: N98.toggleDiceSelection,
+        addDiceSelectionToBet: N98.addDiceSelectionToBet,
+        submitDiceBets: N98.submitDiceBets
       };
 
       if (document.readyState === 'loading') {
