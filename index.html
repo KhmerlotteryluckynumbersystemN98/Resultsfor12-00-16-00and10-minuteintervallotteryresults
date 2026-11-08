@@ -1,4 +1,1290 @@
-  <script>
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#0078D7">
+  <title>🎲 ឆ្នោតខ្មែរ N98</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Kantumruy Pro', sans-serif !important; background: linear-gradient(135deg, #f0f4f8 0%, #e8f4fd 50%, #f0f4f8 100%); background-attachment: fixed; -webkit-font-smoothing: antialiased; overflow-x: hidden; color: #1e293b; }
+    button, input, select, textarea, .btn, .btn-amount, .reg-btn, .group-btn, .history-tab { font-family: 'Kantumruy Pro', sans-serif !important; }
+    
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    @keyframes shake { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes glow { 0%, 100% { box-shadow: 0 0 5px rgba(0,120,215,0.4); } 50% { box-shadow: 0 0 25px rgba(0,120,215,0.9); } }
+    @keyframes glowGreen { 0%, 100% { box-shadow: 0 0 5px rgba(40,167,69,0.4); } 50% { box-shadow: 0 0 25px rgba(40,167,69,0.9); } }
+    @keyframes glowRed { 0%, 100% { box-shadow: 0 0 5px rgba(220,53,69,0.4); } 50% { box-shadow: 0 0 25px rgba(220,53,69,0.9); } }
+    @keyframes glowPink { 0%, 100% { box-shadow: 0 0 5px rgba(233,30,99,0.4); } 50% { box-shadow: 0 0 25px rgba(233,30,99,0.9); } }
+    @keyframes glowPurple { 0%, 100% { box-shadow: 0 0 5px rgba(111,66,193,0.4); } 50% { box-shadow: 0 0 25px rgba(111,66,193,0.9); } }
+    @keyframes slideInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes badgePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    @keyframes winGlow { 0% { box-shadow: 0 0 5px rgba(40,167,69,0.4); } 100% { box-shadow: 0 0 18px rgba(40,167,69,0.9); } }
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes particleFloat { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
+    @keyframes livePulse { 0%, 100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.05); filter: brightness(1.3); } }
+    @keyframes purplePulse { 0%, 100% { box-shadow: 0 0 10px rgba(111,66,193,0.6); transform: scale(1); } 50% { box-shadow: 0 0 25px rgba(111,66,193,1); transform: scale(1.05); } }
+
+    .anim-bounce { animation: bounce 1.5s ease-in-out infinite; display: inline-block; }
+    .anim-pulse { animation: pulse 1.2s ease-in-out infinite; display: inline-block; }
+    .anim-shake { animation: shake 0.8s ease-in-out infinite; display: inline-block; }
+    .anim-spin { animation: spin 1.5s linear infinite; display: inline-block; }
+    .emoji-dice { animation: spin 4s linear infinite; display: inline-block; }
+    .emoji-money { animation: bounce 1.5s ease-in-out infinite; display: inline-block; }
+    .emoji-trophy { animation: bounce 1.2s ease-in-out infinite; display: inline-block; }
+    .emoji-rocket { animation: pulse 1.2s ease-in-out infinite; display: inline-block; }
+
+    .particles-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
+    .particle { position: absolute; font-size: 20px; opacity: 0; animation: particleFloat 15s linear infinite; }
+
+    header { background: linear-gradient(135deg, #0078D7 0%, #005fa3 50%, #6f42c1 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; color: white; padding: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,120,215,0.3); transition: all 0.5s; }
+    header.mode-10 { background: linear-gradient(135deg, #e91e63 0%, #c2185b 50%, #880e4f 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(233,30,99,0.4); }
+    header.mode-dice { background: linear-gradient(135deg, #6f42c1 0%, #4a148c 50%, #311b92 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(111,66,193,0.4); }
+    header h1 { font-size: clamp(24px, 5vw, 38px); font-weight: 800; margin: 8px 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); position: relative; z-index: 1; }
+    header p { font-size: clamp(13px, 2vw, 16px); opacity: 0.95; position: relative; z-index: 1; font-weight: 600; }
+
+    .mode-tabs { background: white; padding: 12px 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 110; box-shadow: 0 2px 12px rgba(0,0,0,0.1); border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #0078D7, #28a745, #ff9800, #6f42c1, #e91e63, #0078D7) 1; }
+    .mode-tab { flex: 1; min-width: 140px; max-width: 240px; padding: 14px 16px; border: 3px solid #dee2e6; background: white; border-radius: 14px; font-weight: 800; font-size: clamp(13px, 1.6vw, 15px); cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: #2d3748; display: flex; align-items: center; justify-content: center; gap: 8px; position: relative; }
+    .mode-tab:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .mode-tab.active[data-mode="classic"] { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; border-color: #0078D7; box-shadow: 0 6px 20px rgba(0,120,215,0.5); animation: glow 2s ease-in-out infinite; }
+    .mode-tab.active[data-mode="rapid"] { background: linear-gradient(135deg, #e91e63, #880e4f); color: white; border-color: #e91e63; box-shadow: 0 6px 20px rgba(233,30,99,0.5); animation: glowPink 2s ease-in-out infinite; }
+    .mode-tab.active[data-mode="dice"] { background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; border-color: #6f42c1; box-shadow: 0 6px 20px rgba(111,66,193,0.5); animation: glowPurple 2s ease-in-out infinite; }
+    .mode-tab .badge-live { background: #ff1744; color: white; font-size: 9px; padding: 2px 6px; border-radius: 6px; animation: blink 1s linear infinite; font-weight: 800; }
+
+    .nav-bar { background: white; padding: 10px 15px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; position: sticky; top: 62px; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .nav-bar a, .nav-bar button { color: #333; text-decoration: none; font-weight: 700; padding: 8px 14px; border-radius: 8px; font-size: clamp(12px, 1.4vw, 13px); cursor: pointer; border: none; background: none; transition: all 0.3s; }
+    .nav-bar a:hover, .nav-bar button:hover { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; transform: translateY(-2px); }
+    .nav-bar a.active { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; }
+    .btn-share { background: linear-gradient(135deg, #ff9800, #e65100) !important; color: white !important; }
+    .btn-group { background: linear-gradient(135deg, #0088cc, #006699) !important; color: white !important; }
+    .btn-logout { background: linear-gradient(135deg, #dc3545, #a71d2a) !important; color: white !important; }
+    .btn-theme { background: linear-gradient(135deg, #6f42c1, #5a32a3) !important; color: white !important; }
+    .btn-contact-admin { background: linear-gradient(135deg, #17a2b8, #117a8b) !important; color: white !important; }
+    .btn-tv { background: linear-gradient(135deg, #ff1744, #d50000) !important; color: white !important; box-shadow: 0 0 10px rgba(255,23,68,0.5); animation: pulse 2s infinite; }
+
+    .section { padding: 12px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .user-info-bar { background: linear-gradient(135deg, #d4edda, #a8e6c0); padding: 12px 16px; border-radius: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border: 2px solid #28a745; box-shadow: 0 4px 14px rgba(40,167,69,0.2); }
+    .user-info-bar .label { color: #155724; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; }
+    .user-info-bar .value { color: #28a745; font-size: clamp(13px, 1.5vw, 16px); font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 1px; }
+
+    .clock-box { background: linear-gradient(135deg, #ffffff, #e8f4fd); border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 2px solid #0078D7; flex-wrap: wrap; gap: 10px; box-shadow: 0 4px 16px rgba(0,120,215,0.15); }
+    .clock-title { color: #4a5568; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; }
+    .clock-time { color: #0078D7; font-size: clamp(22px, 3.5vw, 30px); font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 12px rgba(0,120,215,0.3); }
+    .clock-date { color: #2d3748; font-size: clamp(11px, 1.3vw, 13px); font-weight: 700; }
+
+    .status-bar { background: linear-gradient(135deg, #e8f4fd, #d4edda); padding: 8px 12px; border-radius: 10px; margin: 6px 0; border-left: 4px solid #0078D7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-weight: 700; }
+    .status-bar .label { font-weight: 800; color: #005fa3; font-size: clamp(11px, 1.3vw, 13px); }
+    .status-bar .value { font-weight: 800; color: #28a745; font-size: clamp(12px, 1.4vw, 14px); }
+    .status-bar .pending { color: #dc3545; animation: pulse 1.5s ease-in-out infinite; }
+
+    .countdown { background: linear-gradient(135deg, #ffffff, #fff5f5); padding: 16px; border-radius: 14px; margin: 10px 0; border: 3px solid #dc3545; text-align: center; box-shadow: 0 4px 18px rgba(220,53,69,0.2); }
+    .countdown .time-display { font-size: clamp(32px, 6vw, 46px); color: #dc3545; background: #fff5f5; padding: 6px 18px; border-radius: 10px; display: inline-block; margin-top: 6px; font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(220,53,69,0.4); animation: pulse 2s ease-in-out infinite; }
+    .countdown .next-time { font-size: clamp(12px, 1.4vw, 14px); color: #4a5568; margin-top: 6px; font-weight: 800; }
+    .countdown .status-time { font-size: clamp(11px, 1.3vw, 13px); color: #0078D7; margin-top: 4px; font-weight: 700; }
+
+    .countdown-rapid { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 3px solid #e91e63; border-radius: 20px; padding: 20px; margin: 12px 0; text-align: center; box-shadow: 0 8px 32px rgba(233,30,99,0.4); animation: glowPink 2s ease-in-out infinite; }
+    .countdown-rapid .label { color: #ff8bb5; font-size: clamp(12px, 1.5vw, 14px); font-weight: 800; margin-bottom: 8px; }
+    .countdown-rapid .time-display { font-size: clamp(44px, 9vw, 72px); color: #ff1744; background: #1a0f1f; padding: 12px 24px; border-radius: 16px; display: inline-block; font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 25px rgba(255,23,68,0.7); letter-spacing: 2px; animation: pulse 2s ease-in-out infinite; }
+    .countdown-rapid .next-draw { color: #e8eaf0; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; margin-top: 10px; }
+    .countdown-rapid .draw-number { color: #ff8bb5; font-weight: 800; }
+
+    .ring-container { position: relative; width: 160px; height: 160px; margin: 12px auto; }
+    .ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 8; }
+    .ring-progress { fill: none; stroke: url(#ringGradient); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+    .ring-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .ring-text .time { font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); }
+    .ring-text .label { font-size: 11px; color: #ff8bb5; font-weight: 700; margin-top: 2px; }
+
+    .lottery-box { background: white; padding: 16px; margin: 12px 0; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.04); animation: slideInUp 0.5s ease-out; transition: all 0.3s ease; }
+    .lottery-box:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .time-box { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px dashed #cbd5e1; }
+
+    .badge { font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+    .badge-completed { background: #f0fdf4; color: #15803d; border: 1px solid #86efac; box-shadow: 0 0 10px rgba(34, 197, 94, 0.2); animation: pulse 2s infinite; }
+    .badge-waiting { background: #fff7ed; color: #c2410c; border: 1px solid #fdba74; }
+
+    .numbers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px; }
+    .numbers div { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 12px 8px; text-align: center; font-weight: 800; font-size: 16px; color: #0f172a; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+    .numbers div:hover { background: #f1f5f9; border-color: #cbd5e1; transform: translateY(-2px); }
+    .numbers div .letter { color: #64748b; font-size: 14px; font-weight: 700; }
+    .number-result { color: #2563eb; font-size: 20px; font-weight: 800; text-shadow: 0 2px 4px rgba(37, 99, 235, 0.15); font-family: 'Courier New', monospace; }
+
+    .lottery-box.new-result { border: 3px solid #4ade80; box-shadow: 0 0 25px rgba(74,222,128,0.5); animation: glowGreen 2s infinite alternate; background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%); }
+    .lottery-box.new-result .time-box { border-bottom: 2px dashed #4ade80; color: #15803d; }
+    .lottery-box.new-result .number-result { color: #15803d; text-shadow: 0 0 10px rgba(74,222,128,0.6); animation: livePulse 2s infinite; }
+    .latest-badge { font-size: 10px; color: #15803d; background: #dcfce7; padding: 3px 8px; border-radius: 6px; margin-left: 8px; border: 1px solid #86efac; font-weight: 800; animation: badgePulse 1.5s infinite; }
+
+    .bet-box { background: white; border-radius: 16px; padding: 16px; margin: 12px 0; border: 2px solid #0078D7; box-shadow: 0 4px 20px rgba(0,120,215,0.12); position: relative; overflow: hidden; }
+    .bet-box.rapid { border-color: #e91e63; box-shadow: 0 4px 20px rgba(233,30,99,0.25); background: linear-gradient(135deg, #2d1b3d, #1a0f1f); color: #e8eaf0; }
+    .bet-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #0078D7, #28a745, #ff9800, #6f42c1, #e91e63); background-size: 200% 100%; animation: gradientShift 3s ease infinite; }
+    .bet-box h2 { color: #0078D7; font-size: clamp(16px, 2.2vw, 20px); border-bottom: 2px solid #f0f4f8; padding-bottom: 10px; margin-bottom: 12px; font-weight: 800; }
+    .bet-box.rapid h2 { color: #ff8bb5; border-bottom-color: rgba(233,30,99,0.3); }
+
+    .reward-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden; font-size: clamp(11px, 1.3vw, 13px); }
+    .reward-table th { background: linear-gradient(135deg, #e8f4fd, #d4edda); color: #0078D7; padding: 8px 6px; font-weight: 800; }
+    .reward-table td { padding: 7px 6px; text-align: center; font-weight: 700; border: 1px solid #dee2e6; }
+    .text-respond { color: #d63000; font-weight: 800; }
+
+    .mode-selector, .type-selector, .time-selector { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .mode-btn, .type-btn, .time-btn { flex: 1; min-width: 80px; padding: 10px 8px; border: 2px solid #dee2e6; background: white; font-weight: 800; border-radius: 10px; cursor: pointer; font-size: clamp(12px, 1.5vw, 14px); transition: all 0.3s; }
+    .mode-btn:hover, .type-btn:hover, .time-btn:hover:not(.closed) { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,120,215,0.2); border-color: #0078D7; }
+    .mode-btn.active, .type-btn.active, .time-btn.active { border-color: #0078D7; background: linear-gradient(135deg, #e8f4fd, #d4edda); color: #0078D7; }
+    .time-btn.closed { opacity: 0.45; cursor: not-allowed; background: #f8f9fa !important; color: #999 !important; }
+
+    .balance-box { background: linear-gradient(135deg, #d4edda, #a8e6c0); border: 2px solid #28a745; border-radius: 14px; padding: 14px; margin: 12px 0; text-align: center; box-shadow: 0 4px 14px rgba(40,167,69,0.2); }
+    .balance-item { flex: 1; min-width: 130px; background: linear-gradient(135deg, #ffffff, #d4edda); border: 2px solid #28a745; border-radius: 10px; padding: 10px; text-align: center; }
+    .balance-buttons-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+    .balance-buttons-row .btn { flex: 1; min-width: 130px; padding: 12px; font-size: 14px; border-radius: 10px; }
+
+    .letter-selector { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .letter-circle { width: clamp(42px, 6vw, 52px); height: clamp(42px, 6vw, 52px); border-radius: 50%; border: 3px solid #dee2e6; background: linear-gradient(135deg, #f8f9fa, #e9ecef); color: #2d3748; font-size: clamp(15px, 2vw, 18px); font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.35s; }
+    .letter-circle:hover { border-color: #0078D7; background: linear-gradient(135deg, #e8f4fd, #d4edda); transform: translateY(-3px) scale(1.05); }
+    .letter-circle.active { background: linear-gradient(135deg, #0078D7, #6f42c1); color: white; border-color: #0078D7; transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,120,215,0.5); animation: glow 2s ease-in-out infinite; }
+    .bet-box.rapid .letter-circle { border-color: rgba(233,30,99,0.4); background: rgba(255,255,255,0.05); color: #e8eaf0; }
+    .bet-box.rapid .letter-circle.active { background: linear-gradient(135deg, #e91e63, #880e4f); border-color: #e91e63; }
+
+    .input-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; background: #f8f9fa; padding: 10px; border-radius: 10px; border: 2px dashed #0078D7; flex-wrap: wrap; }
+    .bet-box.rapid .input-row { background: rgba(255,255,255,0.05); border-color: rgba(233,30,99,0.4); }
+    .input-row input { flex: 1 1 120px; padding: 12px 14px; border: 2px solid #dee2e6; border-radius: 8px; font-size: clamp(14px, 1.5vw, 16px); font-weight: 800; min-width: 80px; letter-spacing: 2px; background: white; }
+    .bet-box.rapid .input-row input { background: rgba(0,0,0,0.3); color: #ffffff; border-color: rgba(233,30,99,0.3); text-align: center; }
+    .input-row input:focus { border-color: #0078D7; outline: none; box-shadow: 0 0 0 4px rgba(0,120,215,0.15); }
+
+    .selected-display { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; min-height: 36px; padding: 8px; background: #f8f9fa; border-radius: 8px; border: 2px dashed #dee2e6; align-items: center; }
+    .bet-box.rapid .selected-display { background: rgba(255,255,255,0.05); border-color: rgba(233,30,99,0.4); }
+    .selected-tag { background: linear-gradient(135deg, #0078D7, #6f42c1); color: white; padding: 4px 12px; border-radius: 14px; font-size: clamp(12px, 1.4vw, 13px); display: inline-flex; align-items: center; gap: 5px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,120,215,0.3); animation: fadeIn 0.3s ease-out; }
+    .bet-box.rapid .selected-tag { background: linear-gradient(135deg, #e91e63, #880e4f); }
+    .selected-tag .remove { cursor: pointer; font-weight: 800; color: #ff6b6b; font-size: 16px; background: rgba(255,255,255,0.25); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+    .selected-tag .remove:hover { background: #ff1744; color: white; transform: rotate(90deg); }
+
+    .amount-buttons { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+    .btn-amount { background: linear-gradient(135deg, #17a2b8, #117a8b); color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 800; transition: all 0.3s; }
+    .btn-amount:hover { transform: translateY(-2px) scale(1.05); }
+    .bet-box.rapid .btn-amount { background: linear-gradient(135deg, #e91e63, #c2185b); }
+    .custom-amount { display: flex; gap: 8px; margin-top: 8px; background: linear-gradient(135deg, #ffffff, #e8f4fd); padding: 8px; border-radius: 10px; border: 2px solid #0078D7; flex-wrap: wrap; }
+    .bet-box.rapid .custom-amount { background: rgba(255,255,255,0.05); border-color: rgba(233,30,99,0.4); }
+    .custom-amount input { flex: 2 1 100px; padding: 8px 10px; border: 2px solid #dee2e6; border-radius: 8px; font-size: 14px; font-weight: 800; min-width: 70px; }
+    .bet-box.rapid .custom-amount input { background: rgba(0,0,0,0.3); color: #fff; border-color: rgba(233,30,99,0.3); }
+    .custom-amount select { flex: 1 1 70px; padding: 8px; border: 2px solid #dee2e6; border-radius: 8px; background: #f8f9fa; color: #0078D7; font-weight: 800; cursor: pointer; }
+
+    .bet-summary { background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 10px 14px; border-radius: 10px; margin: 10px 0; border: 2px solid #0078D7; }
+    .bet-box.rapid .bet-summary { background: rgba(255,255,255,0.05); border-color: rgba(233,30,99,0.4); }
+    .bet-summary-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #dee2e6; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; }
+    .bet-box.rapid .bet-summary-item { border-bottom-color: rgba(233,30,99,0.2); color: #e8eaf0; }
+    .bet-summary-item:last-child { border-bottom: none; }
+    .bet-summary .total { font-weight: 800; color: #d63000; font-size: clamp(15px, 1.8vw, 17px); }
+    .bet-box.rapid .bet-summary .total { color: #ff8bb5; }
+
+    .balance-status-box { margin-top: 12px; padding: 12px 14px; border-radius: 12px; border: 2px solid; display: none; animation: slideInUp 0.4s ease-out; }
+    .balance-status-box.ok { background: linear-gradient(135deg, #d4edda, #a8e6c0); border-color: #28a745; }
+    .balance-status-box.warn { background: linear-gradient(135deg, #fff5f5, #ffe0e0); border-color: #dc3545; animation: shake 0.5s ease-out; }
+    .balance-status-box .header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-weight: 800; font-size: 13px; }
+    .balance-status-box.ok .header-row { color: #155724; }
+    .balance-status-box.warn .header-row { color: #721c24; }
+    .balance-status-box .rows { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 12px; font-weight: 700; }
+    .balance-status-box .rows .label { color: #4a5568; }
+    .balance-status-box .rows .value { color: #2d3748; font-family: 'Courier New', monospace; }
+    .balance-status-box .rows .value.success { color: #28a745; }
+    .balance-status-box .rows .value.danger { color: #dc3545; }
+    .balance-status-box .progress-bar { margin-top: 10px; height: 8px; background: rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden; }
+    .balance-status-box .progress-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+    .balance-status-box.ok .progress-fill { background: linear-gradient(90deg, #28a745, #4ade80); }
+    .balance-status-box.warn .progress-fill { background: linear-gradient(90deg, #dc3545, #a71d2a); }
+    .balance-status-box .hint { margin-top: 8px; font-size: 11px; font-weight: 700; text-align: center; padding: 6px; border-radius: 8px; background: rgba(255,255,255,0.5); animation: none !important; }
+    .balance-status-box.warn .hint { color: #721c24; }
+
+    .btn { color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: clamp(12px, 1.4vw, 13px); margin: 3px; font-weight: 800; transition: all 0.3s; }
+    .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+    .btn:disabled { background: #ced4da !important; color: #6c757d !important; cursor: not-allowed; }
+    .btn-success { background: linear-gradient(135deg, #28a745, #1e7e34); width: 100%; padding: 14px; font-size: clamp(13px, 1.5vw, 15px); }
+    .btn-withdraw { background: linear-gradient(135deg, #6f42c1, #5a32a3); }
+    .btn-primary { background: linear-gradient(135deg, #0078D7, #005fa3); }
+    .btn-telegram { background: linear-gradient(135deg, #0088cc, #006699); }
+
+    .guide-box { background: linear-gradient(135deg, #eef7ff, #e8f4fd); border: 1px solid #b6d4fe; padding: 10px 12px; border-radius: 10px; margin-bottom: 10px; font-size: clamp(11px, 1.3vw, 13px); color: #084298; line-height: 1.7; font-weight: 600; }
+    .bet-box.rapid .guide-box { background: rgba(233,30,99,0.15); border-color: rgba(233,30,99,0.4); color: #ff8bb5; }
+
+    .history-tabs-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; padding: 8px; background: #f8fafc; border-radius: 12px; border: 2px solid #e2e8f0; }
+    @media (max-width: 600px) { .history-tabs-container { grid-template-columns: repeat(2, 1fr); } }
+    .history-tab { padding: 10px 8px; border: 2px solid transparent; background: white; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; transition: all 0.3s; color: #475569; display: flex; align-items: center; justify-content: center; gap: 6px; text-align: center; }
+    .history-tab:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .history-tab.active { color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .history-tab[data-tab="bets-classic"].active { background: linear-gradient(135deg, #0078D7, #005fa3); }
+    .history-tab[data-tab="bets-rapid"].active { background: linear-gradient(135deg, #e91e63, #880e4f); }
+    .history-tab[data-tab="withdrawals"].active { background: linear-gradient(135deg, #6f42c1, #5a32a3); }
+    .history-tab[data-tab="deposits"].active { background: linear-gradient(135deg, #28a745, #1e7e34); }
+    .history-tab[data-tab="results-classic"].active { background: linear-gradient(135deg, #ff9800, #e65100); }
+    .history-tab[data-tab="results-rapid"].active { background: linear-gradient(135deg, #ff1744, #d50000); }
+    .history-tab[data-tab="bets-dice"].active { background: linear-gradient(135deg, #6f42c1, #4a148c); }
+    .history-tab[data-tab="results-dice"].active { background: linear-gradient(135deg, #9c27b0, #6a1b9a); }
+
+    .history-panel { display: none; animation: fadeIn 0.4s ease-out; }
+    .history-panel.active { display: block; }
+
+    .history-table { width: 100%; border-collapse: collapse; margin-top: 6px; border-radius: 8px; overflow: hidden; font-size: clamp(10px, 1.2vw, 12px); }
+    .history-table th { background: linear-gradient(135deg, #0078D7, #005fa3); color: white; padding: 8px 5px; text-align: center; font-weight: 800; }
+    .history-table td { padding: 8px 5px; text-align: center; border-bottom: 1px solid #e9ecef; font-weight: 600; }
+    .history-table tbody tr:hover { background: #f8f9fa; }
+
+    .status-badge { padding: 3px 8px; border-radius: 6px; font-weight: 800; font-size: 10px; display: inline-block; white-space: nowrap; }
+    .status-pending { background: #ffeeba; color: #856404; }
+    .status-win { background: #d4edda; color: #155724; animation: winGlow 1s infinite alternate; }
+    .status-loss { background: #f8d7da; color: #721c24; }
+    .status-paid { background: #cce5ff; color: #004085; }
+    .status-approved { background: #d4edda; color: #155724; }
+    .status-rejected { background: #f8d7da; color: #721c24; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 14px 0; }
+    .result-card { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 2px solid #e91e63; border-radius: 14px; padding: 16px; box-shadow: 0 6px 20px rgba(233,30,99,0.25); position: relative; }
+    .result-card.new-result { border-color: #4ade80; box-shadow: 0 0 20px rgba(74,222,128,0.6); animation: glowGreen 3s infinite alternate; background: linear-gradient(135deg, #1a3d2f, #0f1f1a); }
+    .result-card .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid rgba(233,30,99,0.4); }
+    .result-card .draw-id { color: #ff8bb5; font-weight: 800; font-size: 15px; letter-spacing: 0.5px; }
+    .result-card .time { color: #ffffff; font-size: 14px; font-weight: 800; background: rgba(233,30,99,0.3); padding: 3px 10px; border-radius: 8px; }
+    .result-card .numbers-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 8px; }
+    .result-card .num-cell { background: linear-gradient(135deg, rgba(233,30,99,0.25), rgba(136,14,79,0.25)); border: 2px solid rgba(233,30,99,0.5); border-radius: 10px; padding: 10px 4px; text-align: center; font-weight: 800; color: #ff8bb5; transition: all 0.3s; }
+    .result-card .num-cell:hover { transform: scale(1.08); background: linear-gradient(135deg, rgba(233,30,99,0.4), rgba(136,14,79,0.4)); }
+    .result-card .num-cell .letter { display: block; font-size: 11px; color: #ff1744; margin-bottom: 4px; font-weight: 800; }
+    .result-card .num-cell .value { color: #ffffff; font-size: 20px; text-shadow: 0 0 12px rgba(255,255,255,0.5); font-family: 'Courier New', monospace; font-weight: 800; }
+    .result-card .type-label { font-size: 13px; color: #ff8bb5; font-weight: 800; margin-top: 12px; margin-bottom: 4px; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); overflow-y: auto; }
+    .modal-content { background: white; margin: 4% auto; padding: 22px; border-radius: 20px; max-width: 480px; width: 94%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: slideInUp 0.4s ease-out; position: relative; }
+    .modal-content h2 { color: #0078D7; font-size: clamp(18px, 2.3vw, 22px); margin-bottom: 14px; text-align: center; font-weight: 800; }
+    .modal-content label { display: block; margin: 12px 0 6px; font-weight: 800; font-size: clamp(12px, 1.4vw, 14px); color: #2d3748; }
+    .modal-content input, .modal-content select { width: 100%; padding: 12px 14px; border: 2px solid #dee2e6; border-radius: 10px; font-size: clamp(13px, 1.5vw, 14px); margin-bottom: 6px; font-weight: 700; }
+    .close { position: absolute; top: 12px; right: 16px; font-size: 32px; font-weight: 800; cursor: pointer; color: #adb5bd; line-height: 1; z-index: 10; }
+    .close:hover { color: #dc3545; transform: rotate(90deg) scale(1.2); }
+
+    .alert-modal { text-align: center; padding: 28px 24px; max-width: 400px; border-radius: 24px; }
+    .alert-icon { font-size: 60px; margin-bottom: 14px; display: block; animation: bounce 1.5s ease-in-out infinite; }
+    .alert-title { font-size: clamp(18px, 2.3vw, 22px); font-weight: 800; margin-bottom: 10px; color: #2d3748; }
+    .alert-message { font-size: clamp(13px, 1.5vw, 15px); color: #4a5568; margin-bottom: 20px; line-height: 1.6; font-weight: 600; white-space: pre-line; }
+
+    .confirm-modal-content { max-width: 440px; border-radius: 24px; padding: 28px 24px; text-align: center; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
+    .confirm-icon { font-size: 64px; margin-bottom: 16px; display: inline-block; }
+    .confirm-title { font-size: clamp(18px, 2.2vw, 22px); font-weight: 800; margin-bottom: 14px; color: #1e293b; }
+    .confirm-info-box { background: linear-gradient(135deg, #e8f4fd, #d4edda); border: 2px dashed #0078D7; border-radius: 14px; padding: 16px; margin-bottom: 18px; text-align: left; }
+    .confirm-info-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(0,120,215,0.15); font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; }
+    .confirm-info-row:last-child { border-bottom: none; }
+    .confirm-info-row .label { color: #475569; }
+    .confirm-info-row .value { color: #0078D7; font-weight: 800; font-family: 'Courier New', monospace; }
+    .confirm-info-row.total .value { color: #d63000; font-size: clamp(15px, 1.7vw, 17px); }
+    .confirm-message { font-size: clamp(13px, 1.5vw, 15px); color: #4a5568; margin-bottom: 20px; line-height: 1.6; font-weight: 600; white-space: pre-line; }
+    .confirm-buttons { display: flex; gap: 10px; }
+    .confirm-buttons .btn { flex: 1; padding: 14px; font-size: clamp(13px, 1.5vw, 15px); border-radius: 12px; font-weight: 800; }
+    .btn-confirm-ok { background: linear-gradient(135deg, #28a745, #1e7e34); }
+    .btn-confirm-cancel { background: linear-gradient(135deg, #dc3545, #a71d2a); }
+
+    .reg-modal-content { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-radius: 24px; box-shadow: 0 25px 70px rgba(0,0,0,0.35); }
+    .reg-step { display: none; animation: fadeIn 0.4s ease-out; }
+    .reg-step.active { display: block; }
+    .reg-header { text-align: center; margin-bottom: 20px; }
+    .reg-header .icon { font-size: 70px; margin-bottom: 10px; display: inline-block; animation: bounce 2s ease-in-out infinite; }
+    .reg-header h2 { color: #0078D7; font-size: clamp(20px, 2.6vw, 26px); margin-bottom: 6px; font-weight: 800; }
+    .reg-header p { color: #64748b; font-size: clamp(12px, 1.4vw, 14px); font-weight: 600; }
+    .reg-input-group { margin: 16px 0; }
+    .reg-input-group label { display: block; font-weight: 800; margin-bottom: 8px; color: #2d3748; font-size: clamp(12px, 1.4vw, 14px); }
+    .reg-input-group input { width: 100%; padding: 14px 16px; border: 2px solid #dee2e6; border-radius: 12px; font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; text-align: center; letter-spacing: 3px; }
+    .reg-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #0078D7, #6f42c1); color: white; border: none; border-radius: 12px; font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; cursor: pointer; margin-top: 12px; box-shadow: 0 6px 20px rgba(0,120,215,0.35); }
+    .reg-btn.success { background: linear-gradient(135deg, #28a745, #1e7e34); }
+
+    .id-display-box { background: linear-gradient(135deg, #fff3cd, #ffe69c); border: 3px solid #ffc107; border-radius: 16px; padding: 22px; text-align: center; margin: 16px 0; animation: glow 2s ease-in-out infinite; }
+    .id-display-box .label { color: #856404; font-size: clamp(12px, 1.4vw, 14px); font-weight: 800; margin-bottom: 10px; }
+    .id-display-box .id-value { color: #856404; font-size: clamp(34px, 6.5vw, 46px); font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 8px; background: white; padding: 14px; border-radius: 12px; margin: 10px 0; }
+    .id-display-box .warning { color: #721c24; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; margin-top: 12px; padding: 10px; background: #fff5f5; border-radius: 8px; }
+
+    .code-input { width: 100%; padding: 22px; border: 3px solid #0078D7; border-radius: 14px; font-size: clamp(26px, 4.5vw, 34px); font-weight: 800; text-align: center; letter-spacing: 12px; font-family: 'Courier New', monospace; text-transform: uppercase; }
+
+    .forgot-pin-box { text-align: center; margin-top: 16px; padding: 12px; background: #fff5f5; border: 1px dashed #ffb3b3; border-radius: 10px; font-size: 12px; font-weight: 700; }
+    .forgot-pin-box a { color: #dc3545; font-weight: 800; text-decoration: none; }
+
+    .group-buttons-box { margin-top: 18px; padding: 16px; background: linear-gradient(135deg, #e8f4fd, #d4edda); border-radius: 14px; border: 1px solid #b6d4fe; }
+    .group-buttons-box .title { font-weight: 800; color: #005fa3; font-size: 14px; margin-bottom: 12px; text-align: center; animation: pulse 2s ease-in-out infinite; }
+    .group-btn { display: block; text-decoration: none; padding: 14px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 13px; color: white; margin-bottom: 10px; transition: all 0.3s; line-height: 1.5; }
+    .group-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .group-btn.main { background: linear-gradient(135deg, #0088cc, #006699); }
+    .group-btn.channel { background: linear-gradient(135deg, #28a745, #1e7e34); }
+    .group-btn.dice-channel { background: linear-gradient(135deg, #6f42c1, #4a148c); }
+    .group-btn.get-code { background: linear-gradient(135deg, #ff9800, #e65100); }
+    .group-btn small { display: block; font-size: 11px; opacity: 0.95; font-weight: 500; margin-top: 3px; }
+
+    .betting-closed-compact { display: none; background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%); border: 2px solid #EF4444; border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; animation: slideInDown 0.4s ease-out; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15); }
+    .betting-closed-compact .left-side { display: flex; align-items: center; gap: 10px; }
+    .betting-closed-compact .icon { font-size: 24px; animation: shake 0.8s ease-in-out infinite; }
+    .betting-closed-compact .title { color: #991B1B; font-weight: 800; font-size: clamp(12px, 1.4vw, 14px); }
+    .betting-closed-compact .right-side { background: white; padding: 6px 12px; border-radius: 8px; border: 1px solid #FCA5A5; display: flex; align-items: center; gap: 6px; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; color: #991B1B; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .betting-closed-compact .right-side span.time { font-family: 'Courier New', monospace; font-size: clamp(13px, 1.5vw, 15px); color: #dc2626; }
+
+    .win-badge { display: inline-block; background: linear-gradient(135deg, #ff1744, #d50000); color: white; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 10px; margin-left: 6px; animation: badgePulse 1.5s ease-in-out infinite; box-shadow: 0 0 12px rgba(255,23,68,0.7); }
+    .btn-withdraw.has-win { background: linear-gradient(135deg, #ff1744, #d50000) !important; animation: glowRed 1.5s ease-in-out infinite; }
+
+    .amount-tag { background: linear-gradient(135deg, #28a745, #1e7e34); color: white; padding: 2px 10px; border-radius: 10px; font-size: 10px; font-weight: 800; display: inline-block; margin-top: 3px; }
+    .date-badge { background: linear-gradient(135deg, #e8f4fd, #d4edda); color: #005fa3; padding: 2px 10px; border-radius: 8px; font-size: 10px; font-weight: 800; display: inline-block; margin-top: 3px; }
+    .time-badge { background: linear-gradient(135deg, #ff9800, #e65100); color: white; padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; display: inline-block; }
+
+    .footer { background: linear-gradient(135deg, #1a2634, #0f1420); color: #adb5bd; text-align: center; padding: 16px; margin-top: 14px; border-top: 3px solid transparent; border-image: linear-gradient(90deg, #0078D7, #28a745, #ff9800, #6f42c1, #e91e63) 1; font-size: clamp(11px, 1.3vw, 13px); font-weight: 600; }
+
+    .toast-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+    .toast { background: white; color: #2d3748; padding: 14px 18px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13px; min-width: 260px; max-width: 360px; pointer-events: auto; animation: slideInDown 0.4s ease-out; border-left: 4px solid #0078D7; }
+    .toast.success { border-left-color: #28a745; }
+    .toast.error { border-left-color: #dc3545; }
+    .toast.warning { border-left-color: #ffc107; }
+    .toast.info { border-left-color: #17a2b8; }
+    .toast .toast-icon { font-size: 22px; flex-shrink: 0; animation: bounce 1.5s ease-in-out infinite; }
+    .toast .toast-text { flex: 1; line-height: 1.4; }
+
+    .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 9998; }
+    .loading-overlay.active { display: flex; }
+    .loading-spinner { width: 60px; height: 60px; border: 5px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite; }
+
+    .sound-toggle { background: linear-gradient(135deg, #17a2b8, #117a8b) !important; color: white !important; }
+    .sound-toggle.muted { background: linear-gradient(135deg, #6c757d, #495057) !important; }
+
+    body.dark-mode { background: linear-gradient(135deg, #0f1420 0%, #1a1f2e 50%, #0f1420 100%); color: #e8eaf0; }
+    body.dark-mode .lottery-box, body.dark-mode .bet-box, body.dark-mode .modal-content, body.dark-mode .clock-box, body.dark-mode .nav-bar, body.dark-mode .mode-tabs { background: #252b3d; color: #e8eaf0; }
+    body.dark-mode .numbers div, body.dark-mode .input-row, body.dark-mode .selected-display, body.dark-mode .bet-summary { background: #2f3548; border-color: #4a5268; color: #e8eaf0; }
+    body.dark-mode .history-tab { background: #2f3548; color: #e8eaf0; }
+    body.dark-mode .mode-btn, body.dark-mode .type-btn, body.dark-mode .time-btn { background: #2f3548; color: #e8eaf0; }
+    body.dark-mode .history-table td { color: #e8eaf0; border-color: #3a4255; }
+    body.dark-mode .guide-box { background: #1e2a3f; color: #a0c8e8; }
+    body.dark-mode .confirm-modal-content { background: linear-gradient(135deg, #252b3d 0%, #1a1f2e 100%); }
+    body.dark-mode .confirm-title { color: #e8eaf0; }
+    body.dark-mode .confirm-info-box { background: linear-gradient(135deg, #1e2a3f, #163d29); border-color: #4a8bc7; }
+    body.dark-mode .betting-closed-compact { background: linear-gradient(135deg, #3f1d1d, #2a1313); border-color: #7f1d1d; }
+    body.dark-mode .betting-closed-compact .right-side { background: #1a0f1f; border-color: #7f1d1d; color: #fca5a5; }
+    body.dark-mode .betting-closed-compact .title { color: #fca5a5; }
+
+    /* ===== CSS សម្រាប់ DICE MODE ===== */
+    .dice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
+    .dice-box { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; }
+    .dice-box:hover { border-color: #6f42c1; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(111,66,193,0.2); }
+    .dice-box.active { border-color: #6f42c1; background: #f3e8ff; box-shadow: 0 0 15px rgba(111,66,193,0.4); }
+    .dice-box .dice-title { font-weight: 800; color: #4a148c; font-size: 14px; margin-bottom: 8px; }
+    .dice-box .dice-dots { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+    .dice-dot { width: 18px; height: 18px; border-radius: 50%; box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2); }
+    .dice-dot.red { background: #ef4444; }
+    .dice-dot.blue { background: #3b82f6; }
+    .dice-box .dice-sub { font-size: 11px; color: #64748b; margin-top: 6px; font-weight: 700; }
+    .bet-box.dice { border-color: #6f42c1; box-shadow: 0 4px 20px rgba(111,66,193,0.25); background: linear-gradient(135deg, #2d1b3d, #1a0f1f); color: #e8eaf0; }
+    .bet-box.dice h2 { color: #d8b4fe; border-bottom-color: rgba(111,66,193,0.3); }
+    .bet-box.dice .type-btn { background: rgba(255,255,255,0.05); color: #e8eaf0; border-color: rgba(111,66,193,0.4); }
+    .bet-box.dice .type-btn.active { background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; border-color: #6f42c1; }
+
+    /* ===== CSS សម្រាប់ DICE SELECTION MULTI ===== */
+    .dice-selection-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; min-height: 40px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; border: 2px dashed rgba(111,66,193,0.5); }
+    .dice-selection-tag { background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; padding: 6px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(111,66,193,0.4); }
+    .dice-selection-tag .remove { cursor: pointer; font-weight: 800; color: #ff6b6b; font-size: 16px; background: rgba(255,255,255,0.25); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+    .dice-selection-tag .remove:hover { background: #ff1744; color: white; transform: rotate(90deg); }
+    .dice-selection-empty { color: #a0a8b8; font-size: 12px; font-weight: 600; }
+    
+    /* ===== CSS សម្រាប់ DICE RESULT CARD ===== */
+    .dice-result-card { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 2px solid #6f42c1; border-radius: 14px; padding: 16px; box-shadow: 0 6px 20px rgba(111,66,193,0.25); position: relative; }
+    .dice-result-card.new-result { border-color: #4ade80; box-shadow: 0 0 20px rgba(74,222,128,0.6); animation: glowGreen 3s infinite alternate; background: linear-gradient(135deg, #1a3d2f, #0f1f1a); }
+    .dice-result-card .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid rgba(111,66,193,0.4); }
+    .dice-result-card .draw-id { color: #d8b4fe; font-weight: 800; font-size: 15px; letter-spacing: 0.5px; }
+    .dice-result-card .time { color: #ffffff; font-size: 14px; font-weight: 800; background: rgba(111,66,193,0.3); padding: 3px 10px; border-radius: 8px; }
+    .dice-result-card .result-number { text-align: center; padding: 15px 0; font-size: 48px; font-weight: 800; color: #d8b4fe; text-shadow: 0 0 20px rgba(216,180,254,0.6); }
+    .dice-result-card .dice-dots-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 10px 0; }
+    .dice-result-card .dice-dot-lg { width: 28px; height: 28px; border-radius: 50%; box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(0,0,0,0.5); }
+    .dice-result-card .dice-dot-lg.red { background: #ef4444; }
+    .dice-result-card .dice-dot-lg.blue { background: #3b82f6; }
+    
+    /* ===== CSS សម្រាប់ DICE HISTORY TABLE ===== */
+    .dice-history-dots { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; }
+    .dice-history-dot { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset -1px -1px 2px rgba(0,0,0,0.2); }
+    .dice-history-dot.red { background: #ef4444; }
+    .dice-history-dot.blue { background: #3b82f6; }
+    
+    /* ===== ស្លាកលទ្ធផលចុងក្រោយ ===== */
+    .latest-dice-badge { display: inline-block; background: linear-gradient(135deg, #9c27b0, #6a1b9a); color: white; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 10px; margin-left: 8px; animation: purplePulse 1.5s ease-in-out infinite; box-shadow: 0 0 12px rgba(156,39,176,0.7); vertical-align: middle; }
+
+    /* ===== CSS សម្រាប់ DICE INPUT ROW ===== */
+    .dice-input-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; border: 2px dashed rgba(111,66,193,0.4); flex-wrap: wrap; }
+    .dice-input-row input { flex: 1 1 100px; padding: 10px 14px; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; font-size: 14px; font-weight: 800; min-width: 80px; background: rgba(0,0,0,0.3); color: #ffffff; text-align: center; }
+    .dice-input-row input:focus { border-color: #6f42c1; outline: none; box-shadow: 0 0 0 4px rgba(111,66,193,0.2); }
+    .dice-input-row button { padding: 10px 16px; background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; }
+    .dice-input-row button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(111,66,193,0.5); }
+
+    @media (max-width: 768px) {
+      .numbers div { padding: 10px 4px; font-size: 14px; }
+      .numbers div .number-result { font-size: 18px; }
+      .clock-box { flex-direction: column; text-align: center; }
+      .type-selector, .time-selector { flex-direction: column; }
+      .type-btn, .time-btn { min-width: 100%; }
+      .history-tab { font-size: 11px; padding: 8px 4px; }
+      .toast-container { top: 10px; right: 10px; left: 10px; }
+      .toast { min-width: auto; width: 100%; }
+      .mode-tab { min-width: 120px; font-size: 12px; padding: 12px; }
+      .nav-bar { top: 60px; }
+      .results-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+      .result-card .num-cell .value { font-size: 18px; }
+      .betting-closed-compact { flex-direction: column; align-items: flex-start; }
+      .betting-closed-compact .right-side { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .countdown .time-display { font-size: 28px; }
+      .nav-bar a, .nav-bar button { padding: 6px 10px; font-size: 11px; }
+      .mode-tab { min-width: 100px; padding: 10px 8px; font-size: 11px; }
+      .ring-container { width: 120px; height: 120px; }
+      .ring-text .time { font-size: 26px; }
+      .results-grid { grid-template-columns: 1fr; }
+      .result-card .num-cell .value { font-size: 16px; }
+      .result-card .num-cell { padding: 8px 3px; }
+    }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #0078D7, #6f42c1); border-radius: 4px; }
+
+    .tv-mode-active #tvModeExitBtn { display: block; position: fixed; top: 20px; right: 20px; z-index: 9999; }
+    #tvModeExitBtn { display: none; position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 15px 30px; font-size: 20px; border-radius: 50px; background: #dc3545; color: white; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(220,53,69,0.5); }
+  </style>
+</head>
+<body>
+
+  <div class="particles-bg" id="particlesBg"></div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div></div>
+
+  <button id="tvModeExitBtn" onclick="N98.toggleTVMode()">❌ ចាកចេញពី TV Mode</button>
+
+  <div class="modal" id="registerModal" style="display:block;">
+    <div class="modal-content reg-modal-content" style="max-width:520px;">
+      <div class="reg-step active" id="regStep1">
+        <div class="reg-header">
+          <div class="icon">🎲</div>
+          <h2>ឆ្នោតខ្មែរ N98</h2>
+          <p>សូមស្វាគមន៍! ចុះឈ្មោះដើម្បីចាប់ផ្តើម</p>
+        </div>
+        <div class="reg-input-group">
+          <label>📱 បញ្ចូលលេខទូរស័ព្ទ</label>
+          <input type="tel" id="regPhone" placeholder="012345678" maxlength="10" inputmode="numeric">
+        </div>
+        <div class="reg-input-group">
+          <label>🔐 បង្កើតលេខ PIN 4 ខ្ទង់</label>
+          <input type="tel" id="regPin" placeholder="----" maxlength="4" inputmode="numeric">
+        </div>
+        
+        <div style="background:linear-gradient(135deg,#d4edda,#a8e6c0); border:2px solid #28a745; border-radius:10px; padding:12px; margin-top:10px; font-size:12px; color:#155724; line-height:1.7; font-weight:700; text-align:center;">
+          🎁 <b>ប្រាក់រង្វាន់ស្វាគមន៍!</b><br>
+          គណនីថ្មីទទួលបាន <b style="color:#d63000;">10.00$ និង 40,000៛</b> ភ្លាមៗ!<br>
+          <span style="font-size:11px; color:#856404; font-weight:600;">💰 សមតុល្យចាប់ផ្តើម: 10.00$ / 40,000៛</span>
+        </div>
+        
+        <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:10px; font-size:11.5px; color:#856404; line-height:1.7; font-weight:600;">
+          ⚠️ <b>ការព្រមាន!</b><br>• អ្នកត្រូវចងចាំ <b>PIN 4 ខ្ទង់</b><br>• <b>កុំប្រាប់អ្នកដទៃ</b> អំពី PIN
+        </div>
+        <button class="reg-btn" id="regNextBtn" onclick="N98.handleRegister()">បន្ត → <span class="emoji-rocket">🚀</span></button>
+        
+        <div class="group-buttons-box">
+          <div class="title">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98</div>
+          <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98<small>ចុចទីនេះដើម្បីទទួល Code</small></a>
+        </div>
+        
+        <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មានគណនីរួចហើយ? <a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7; font-weight:800;">ចូលប្រើ</a></div>
+      </div>
+      <div class="reg-step" id="regStep2">
+        <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមចំណាំ ID នេះទុក</p></div>
+        <div class="id-display-box"><div class="label">🆔 ID របស់អ្នក</div><div class="id-value" id="displayUserId">------</div><div class="warning">⚠️ សូមចំណាំ ID នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div></div>
+        <button class="reg-btn success" onclick="N98.showVerifyStep()" style="margin-top:12px;">បញ្ជាក់ Code ឥឡូវ → 🔑</button>
+        
+        <div class="group-buttons-box" style="margin-top:16px;">
+          <div class="title">🔑 ទទួល Code ចុះឈ្មោះ</div>
+          <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ចុចទីនេះដើម្បីទទួល Code<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
+        </div>
+      </div>
+      <div class="reg-step" id="regStep3">
+        <div class="reg-header"><div class="icon">🔑</div><h2>បញ្ជាក់ Code</h2><p>វាយ Code 4 ខ្ទង់ដែលបានពី Channel</p></div>
+        <div class="reg-input-group"><label>🔑 Code 4 ខ្ទង់</label><input type="text" class="code-input" id="regCode" placeholder="----" maxlength="4" autocomplete="off"></div>
+        <button class="reg-btn" id="regVerifyBtn" onclick="N98.handleVerify()">បញ្ជាក់ ✓</button>
+        
+        <div class="group-buttons-box" style="margin-top:16px;">
+          <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 មិនទាន់មាន Code? ចុចទីនេះ<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
+        </div>
+        <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;"><a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7;">← ត្រឡប់ក្រោយ</a></div>
+      </div>
+      <div class="reg-step" id="regLoginStep">
+        <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
+        <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
+        <div class="reg-input-group"><label>🔐 PIN 4 ខ្ទង់</label><input type="tel" id="loginPin" placeholder="----" maxlength="4" inputmode="numeric"></div>
+        <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
+        <div class="forgot-pin-box">🔐 ភ្លេច PIN? <a href="#" onclick="N98.contactAdmin(); return false;">ទាក់ទង Admin</a></div>
+        <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មិនមានគណនី? <a href="#" onclick="N98.showRegisterStep(); return false;" style="color:#0078D7; font-weight:800;">ចុះឈ្មោះ</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mainApp" style="display:none;">
+    <header id="mainHeader">
+      <h1><span class="emoji-dice">🎲</span> ឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></h1>
+      <p id="headerSubtitle"><span class="anim-pulse">🎯</span> ប្រព័ន្ធចាក់ឆ្នោត 12:00 / 16:00 <span class="anim-pulse">🎉</span></p>
+    </header>
+
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="classic" onclick="N98.switchMainMode('classic', event)">🕛 12:00 / 🕓 16:00</button>
+      <button class="mode-tab" data-mode="rapid" onclick="N98.switchMainMode('rapid', event)">🎯 10 នាទី <span class="badge-live">LIVE</span></button>
+      <button class="mode-tab" data-mode="dice" onclick="N98.switchMainMode('dice', event)">🎲 អាប៉ោង <span class="badge-live">5 នាទី</span></button>
+    </div>
+
+    <nav class="nav-bar">
+      <a href="#" class="active" onclick="N98.showSection('home', event); return false;"><span class="anim-pulse">🏠</span> ទំព័រដើម</a>
+      <a href="#" onclick="N98.showSection('rules', event); return false;"><span class="anim-pulse">📋</span> ច្បាប់</a>
+      <button class="btn-theme" onclick="N98.toggleTheme()" id="themeBtn">🌙 <span class="theme-label">Dark</span></button>
+      <button class="btn-contact-admin" onclick="N98.contactAdmin()">✉️ ទាក់ទង Admin</button>
+      <button class="btn-share" onclick="N98.copyLink()">🔗 ចែករំលែក</button>
+      <button class="btn-group" onclick="N98.openGroup()">💬 ចូលក្រុម</button>
+      <button class="sound-toggle" id="soundToggleBtn" onclick="N98.toggleSound()">🔊 សំឡេង</button>
+      <button class="btn-tv" onclick="N98.toggleTVMode()">📺 TV Mode</button>
+      <button class="btn-logout" onclick="N98.handleLogout()">🚪 ចាកចេញ</button>
+    </nav>
+
+    <div class="section">
+      <div class="user-info-bar">
+        <div><span class="label"><span class="anim-pulse">🆔</span> ID: </span><span class="value" id="displayCurrentUserId">------</span></div>
+        <div><span class="label"><span class="anim-bounce">📱</span> Phone: </span><span class="value" id="displayCurrentPhone">---</span></div>
+      </div>
+
+      <div class="clock-box">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:26px;" class="anim-spin">⏰</span>
+          <div><div class="clock-title">🕒 ម៉ោងបច្ចុប្បន្ន</div><div class="clock-time" id="widgetTime">00:00:00</div></div>
+        </div>
+        <div><div class="clock-date" id="widgetDate">កំពុងផ្ទុក...</div></div>
+      </div>
+
+      <div class="status-bar"><span class="label">📊 ស្ថានភាព</span><span class="value" id="resultStatusText">កំពុងផ្ទុក...</span></div>
+
+      <div id="classicMode">
+        <div class="countdown">
+          <div style="display:flex; justify-content:center; align-items:center; gap:8px;"><span style="font-size:26px;" class="emoji-dice">🎲</span><span style="font-size:16px; color:#dc3545; font-weight:800;"><span class="anim-pulse">⏳</span> ម៉ោងប្រកាសលទ្ធផលបន្ទាប់</span></div>
+          <div class="time-display" id="countdownDisplay">--:--:--</div>
+          <div class="next-time" id="nextTimeLabel">🎯 ពេលបន្ទាប់...</div>
+          <div class="status-time" id="statusTimeLabel"></div>
+        </div>
+
+        <div class="lottery-box" id="box12Container">
+          <div class="time-box"><span class="anim-pulse">🕛</span> លទ្ធផល 12:00 <span class="badge" id="badge12">ព្រឹកពីរ</span> <span id="badge12Latest"></span></div>
+          <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
+          <div class="numbers" id="box12">
+            <div><span class="letter">A:</span> <span id="r12_A">--</span></div><div><span class="letter">B:</span> <span id="r12_B">--</span></div>
+            <div><span class="letter">C:</span> <span id="r12_C">--</span></div><div><span class="letter">D:</span> <span id="r12_D">--</span></div>
+            <div><span class="letter">E:</span> <span id="r12_E">--</span></div>
+          </div>
+          <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
+          <div class="numbers" id="box12_3d">
+            <div><span class="letter">A:</span> <span id="r12_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r12_3d_B">--</span></div>
+            <div><span class="letter">C:</span> <span id="r12_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r12_3d_D">--</span></div>
+            <div><span class="letter">E:</span> <span id="r12_3d_E">--</span></div>
+          </div>
+          <div style="margin-top:8px;" id="date12"></div>
+        </div>
+
+        <div class="lottery-box" id="box16Container">
+          <div class="time-box"><span class="anim-pulse">🕓</span> លទ្ធផល 16:00 <span class="badge" id="badge16">ល្ងាចបី</span> <span id="badge16Latest"></span></div>
+          <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
+          <div class="numbers" id="box16">
+            <div><span class="letter">A:</span> <span id="r16_A">--</span></div><div><span class="letter">B:</span> <span id="r16_B">--</span></div>
+            <div><span class="letter">C:</span> <span id="r16_C">--</span></div><div><span class="letter">D:</span> <span id="r16_D">--</span></div>
+            <div><span class="letter">E:</span> <span id="r16_E">--</span></div>
+          </div>
+          <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
+          <div class="numbers" id="box16_3d">
+            <div><span class="letter">A:</span> <span id="r16_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r16_3d_B">--</span></div>
+            <div><span class="letter">C:</span> <span id="r16_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r16_3d_D">--</span></div>
+            <div><span class="letter">E:</span> <span id="r16_3d_E">--</span></div>
+          </div>
+          <div style="margin-top:8px;" id="date16"></div>
+        </div>
+
+        <div class="bet-box">
+          <h2>🎯 ទិញលេខចាក់ (A, B, C, D, E)</h2>
+          
+          <div class="balance-box" id="balanceBox">
+            <div style="margin-bottom:10px; font-weight:800; color:#155724; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceAmountUSD" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+              <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceAmountKHR" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+            </div>
+            <div class="balance-buttons-row">
+              <button class="btn btn-primary" onclick="N98.openDepositModal()">💰 បញ្ចូលទឹកប្រាក់</button>
+              <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
+            </div>
+          </div>
+
+          <div class="guide-box">💡 <strong>របៀបប្រើ៖</strong><br>១. ជ្រើស <strong>ពេលវេលា</strong> និង <strong>ប្រភេទ</strong><br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01,02,03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+
+          <table class="reward-table">
+            <thead><tr><th>ប្រភេទ</th><th>ម៉ោង</th><th>អត្រា</th></tr></thead>
+            <tbody>
+              <tr><td>២ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">70$</span></td></tr>
+              <tr><td>៣ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">500$</span></td></tr>
+            </tbody>
+          </table>
+
+          <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ffb3b3; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;"><span style="color:#d63000; font-weight:800; font-size:13px;">⚠️ ចាក់ពី 500៛/0.25$ ដល់ 40,000៛/10$</span></div>
+
+          <div class="betting-closed-compact" id="bettingClosedCompact">
+            <div class="left-side">
+              <span class="icon">🔒</span>
+              <span class="title" id="bettingClosedText">ការចាក់ត្រូវបានបិទជាបណ្ដោះអាសន្ន!</span>
+            </div>
+            <div class="right-side">
+              ⏰ បើកវិញ <span class="time" id="reopenCountdown">--:--:--</span>
+            </div>
+          </div>
+
+          <div style="font-weight:800; color:#0078D7; font-size:14px; margin-bottom:8px;">⏰ ជ្រើសរើស ពេលវេលា និង ប្រភេទ</div>
+          <div class="time-selector">
+            <button class="time-btn active" data-time="12:00" onclick="N98.setTime('12:00', event)">🕛 12:00</button>
+            <button class="time-btn" data-time="16:00" onclick="N98.setTime('16:00', event)">🕓 16:00</button>
+          </div>
+          <div class="type-selector">
+            <button class="type-btn active" data-type="two" onclick="N98.setType('two', event)">🔢 ២ខ្ទង់</button>
+            <button class="type-btn" data-type="three" onclick="N98.setType('three', event)">🔢 ៣ខ្ទង់</button>
+          </div>
+
+          <div style="font-weight:800; color:#0078D7; font-size:14px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, E</div>
+          <div class="letter-selector">
+            <div class="letter-circle" data-letter="A" onclick="N98.selectLetter('A', event)">A</div>
+            <div class="letter-circle" data-letter="B" onclick="N98.selectLetter('B', event)">B</div>
+            <div class="letter-circle" data-letter="C" onclick="N98.selectLetter('C', event)">C</div>
+            <div class="letter-circle" data-letter="D" onclick="N98.selectLetter('D', event)">D</div>
+            <div class="letter-circle" data-letter="E" onclick="N98.selectLetter('E', event)">E</div>
+          </div>
+
+          <div class="input-row"><input type="text" id="numInput" placeholder="បញ្ចូលលេខ (ឧ. 01,02,03)" disabled inputmode="numeric"></div>
+          <div class="selected-display" id="selectedDisplay"><span style="color:#6c757d; font-size:12px; font-weight:600;">មិនទាន់មានលេខ</span></div>
+          <div style="color:#6c757d; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay" style="color:#0078D7; font-size:15px;">0</strong> / 10</div>
+
+          <label style="font-weight:800; color:#0078D7; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
+          <div class="amount-buttons">
+            <button class="btn-amount" onclick="N98.setAmount(500,'៛')">500៛</button><button class="btn-amount" onclick="N98.setAmount(1000,'៛')">1000៛</button>
+            <button class="btn-amount" onclick="N98.setAmount(5000,'៛')">5000៛</button><button class="btn-amount" onclick="N98.setAmount(10000,'៛')">10000៛</button>
+            <button class="btn-amount" onclick="N98.setAmount(0.25,'$')">0.25$</button><button class="btn-amount" onclick="N98.setAmount(1,'$')">1$</button>
+            <button class="btn-amount" onclick="N98.setAmount(5,'$')">5$</button><button class="btn-amount" onclick="N98.setAmount(10,'$')">10$</button>
+          </div>
+          <div class="custom-amount">
+            <input type="number" id="amountInput" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmount()">
+            <select id="currencySelect" onchange="N98.updateAmount()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
+          </div>
+
+          <div class="bet-summary">
+            <div class="bet-summary-item"><span>📊 ចំនួនលេខសរុប៖</span><span id="totalCount">0</span></div>
+            <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="totalAmountDisplay">0</span></div>
+          </div>
+
+          <button class="btn btn-success" id="btnSubmit" onclick="N98.submitBet()" disabled>💳 ដាក់ភ្នាល់ឥឡូវ</button>
+
+          <div class="balance-status-box" id="balanceStatusBox">
+            <div class="header-row"><span id="balanceStatusIcon">💰</span><span id="balanceStatusTitle">ស្ថានភាពសមតុល្យ</span></div>
+            <div class="rows">
+              <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrent">0៛</span>
+              <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeeded">0៛</span>
+              <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShort">0៛</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill" style="width:0%;"></div></div>
+            <div class="hint" id="balanceStatusHint" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="rapidMode" style="display:none;">
+        <div class="countdown-rapid">
+          <div class="label">⚡ ការប្រកាសលទ្ធផលបន្ទាប់</div>
+          <div class="ring-container">
+            <svg class="ring-svg" viewBox="0 0 160 160">
+              <defs><linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff1744;stop-opacity:1" /><stop offset="50%" style="stop-color:#e91e63;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
+              <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
+              <circle class="ring-progress" id="ringProgress" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0"></circle>
+            </svg>
+            <div class="ring-text"><div class="time" id="ringTime">10:00</div><div class="label">នាទី:វិនាទី</div></div>
+          </div>
+          <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumber">#------</span></div>
+        </div>
+
+        <div class="bet-box rapid">
+          <h2>🎯 លទ្ធផល ៣ វគ្គចុងក្រោយ</h2>
+          <div class="results-grid" id="resultsGrid"><div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div></div>
+        </div>
+
+        <div class="bet-box rapid">
+          <h2>⚡ ចាក់លេខវគ្គបន្ទាប់</h2>
+          <div class="balance-box" id="balanceBoxRapid" style="background:linear-gradient(135deg,#1e3a2f,#163d29); border-color:#4ade80;">
+            <div style="margin-bottom:10px; font-weight:800; color:#7dd89a; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceRapidUSD" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceRapidKHR" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+            </div>
+            <div class="balance-buttons-row">
+              <button class="btn btn-primary" onclick="N98.openDepositModal()" style="background:linear-gradient(135deg,#e91e63,#880e4f);">💰 បញ្ចូលទឹកប្រាក់</button>
+              <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
+            </div>
+          </div>
+
+          <div class="guide-box">💡 <strong>របៀបចាក់ 10 នាទី៖</strong><br>១. ជ្រើស <strong>ប្រភេទ</strong> (២ ឬ ៣ ខ្ទង់)<br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01, 02, 03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+
+          <div id="bettingClosedBox10" style="display:none; background:linear-gradient(135deg,rgba(255,23,68,0.15),rgba(136,14,79,0.15)); border:2px solid #ff1744; border-radius:12px; padding:12px; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#ff8b95; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#ff8b95; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTime10" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--:--</strong></div></div></div>
+          </div>
+
+          <div class="type-selector">
+            <button class="type-btn active" data-type10="two" onclick="N98.setType10('two', event)">🔢 ២ខ្ទង់</button>
+            <button class="type-btn" data-type10="three" onclick="N98.setType10('three', event)">🔢 ៣ខ្ទង់</button>
+          </div>
+
+          <div style="color:#ff8bb5; font-weight:800; font-size:13px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសប៉ុស្តិ៍ A-E</div>
+          <div class="letter-selector">
+            <div class="letter-circle" data-letter10="A" onclick="N98.selectLetter10('A', event)">A</div>
+            <div class="letter-circle" data-letter10="B" onclick="N98.selectLetter10('B', event)">B</div>
+            <div class="letter-circle" data-letter10="C" onclick="N98.selectLetter10('C', event)">C</div>
+            <div class="letter-circle" data-letter10="D" onclick="N98.selectLetter10('D', event)">D</div>
+            <div class="letter-circle" data-letter10="E" onclick="N98.selectLetter10('E', event)">E</div>
+          </div>
+
+          <div class="input-row"><input type="text" id="numInput10" placeholder="បញ្ចូលលេខ (ឧ. 01,02,03)" disabled inputmode="numeric"></div>
+          <div class="selected-display" id="selectedDisplay10"><span style="color:#a0a8b8; font-size:12px; font-weight:600;">មិនទាន់មានលេខ</span></div>
+          <div style="color:#a0a8b8; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay10" style="color:#ff8bb5; font-size:14px;">0</strong> / 10</div>
+
+          <label style="color:#ff8bb5; font-weight:800; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
+          <div class="amount-buttons">
+            <button class="btn-amount" onclick="N98.setAmount10(500,'៛')">500៛</button><button class="btn-amount" onclick="N98.setAmount10(1000,'៛')">1000៛</button>
+            <button class="btn-amount" onclick="N98.setAmount10(5000,'៛')">5000៛</button><button class="btn-amount" onclick="N98.setAmount10(10000,'៛')">10000៛</button>
+            <button class="btn-amount" onclick="N98.setAmount10(0.25,'$')">0.25$</button><button class="btn-amount" onclick="N98.setAmount10(1,'$')">1$</button>
+            <button class="btn-amount" onclick="N98.setAmount10(5,'$')">5$</button><button class="btn-amount" onclick="N98.setAmount10(10,'$')">10$</button>
+          </div>
+          <div class="custom-amount">
+            <input type="number" id="amountInput10" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmount10()">
+            <select id="currencySelect10" onchange="N98.updateAmount10()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
+          </div>
+
+          <div class="bet-summary">
+            <div class="bet-summary-item"><span>📊 ចំនួនលេខសរុប៖</span><span id="totalCount10">0</span></div>
+            <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="totalAmount10">0</span></div>
+          </div>
+
+          <button class="btn btn-success" id="btnSubmit10" onclick="N98.submitBet10()" disabled style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ដាក់ភ្នាល់ឥឡូវ</button>
+
+          <div class="balance-status-box" id="balanceStatusBox10">
+            <div class="header-row"><span id="balanceStatusIcon10">💰</span><span id="balanceStatusTitle10">ស្ថានភាពសមតុល្យ</span></div>
+            <div class="rows">
+              <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrent10">0៛</span>
+              <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeeded10">0៛</span>
+              <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShort10">0៛</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill10" style="width:0%;"></div></div>
+            <div class="hint" id="balanceStatusHint10" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= DICE MODE (កែថ្មី) ================= -->
+      <div id="diceMode" style="display:none;">
+        <div class="countdown-rapid" style="border-color: #6f42c1; background: linear-gradient(135deg, #1a0f1f, #2d1b3d); box-shadow: 0 8px 32px rgba(111,66,193,0.4);">
+          <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
+          <div class="ring-container">
+            <svg class="ring-svg" viewBox="0 0 160 160">
+              <defs><linearGradient id="ringGradientDice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6f42c1;stop-opacity:1" /><stop offset="50%" style="stop-color:#9c27b0;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
+              <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
+              <circle class="ring-progress" id="ringProgressDice" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0" stroke="url(#ringGradientDice)"></circle>
+            </svg>
+            <div class="ring-text"><div class="time" id="ringTimeDice" style="color:#d8b4fe;">05:00</div><div class="label" style="color:#d8b4fe;">នាទី:វិនាទី</div></div>
+          </div>
+          <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumberDice">#------</span></div>
+        </div>
+
+        <div class="bet-box dice">
+          <h2>🎲 លទ្ធផលអាប៉ោង ៤ វគ្គចុងក្រោយ</h2>
+          <div class="results-grid" id="diceResultsGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+            <div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div>
+          </div>
+        </div>
+
+        <div class="bet-box dice">
+          <h2>🎲 ចាក់អាប៉ោងវគ្គបន្ទាប់</h2>
+          
+          <div class="balance-box" id="balanceBoxDice" style="background:linear-gradient(135deg,#1e3a2f,#163d29); border-color:#4ade80;">
+            <div style="margin-bottom:10px; font-weight:800; color:#7dd89a; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceDiceUSD" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceDiceKHR" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+            </div>
+            <div class="balance-buttons-row">
+              <button class="btn btn-primary" onclick="N98.openDepositModal()" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">💰 បញ្ចូលទឹកប្រាក់</button>
+              <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
+            </div>
+          </div>
+
+          <div id="bettingClosedBoxDice" style="display:none; background:linear-gradient(135deg,rgba(111,66,193,0.15),rgba(74,20,140,0.15)); border:2px solid #6f42c1; border-radius:12px; padding:12px; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#d8b4fe; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#d8b4fe; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTimeDice" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--</strong></div></div></div>
+          </div>
+
+          <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (អាចជ្រើសបានច្រើន)<br>២. បញ្ចូលចំនួនទឹកប្រាក់សម្រាប់ជម្រើសនីមួយៗ<br>៣. ចុច <strong>"បន្ថែមចូលបញ្ជី"</strong> រួចចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+
+          <div class="type-selector" style="margin-bottom:10px;">
+            <button class="type-btn active" data-dice-type="exact" onclick="N98.setDiceType('exact', event)">🎯 ទាយគ្រាប់</button>
+            <button class="type-btn" data-dice-type="thin_thick" onclick="N98.setDiceType('thin_thick', event)">📊 ស្តើង / ក្រាស់</button>
+          </div>
+
+          <div id="diceExactPanel">
+            <!-- រៀបចំថ្មីតាមតម្រូវការ: ១ និង ៦ ខាងលើ, ២ ៣ ក្រោម ១, ៤ ៥ ក្រោម ៦ -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+              <!-- ជួរទី១: គ្រាប់ 1 (ក្រហម) និង គ្រាប់ 6 (ខៀវ) -->
+              <div class="dice-box" id="diceBox1" onclick="N98.toggleDiceSelection(1, event)">
+                <div class="dice-title">ទាយគ្រាប់ 1</div>
+                <div class="dice-dots"><div class="dice-dot red"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+              <div class="dice-box" id="diceBox6" onclick="N98.toggleDiceSelection(6, event)">
+                <div class="dice-title">ទាយគ្រាប់ 6</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+              <!-- ជួរទី២: គ្រាប់ 2,3 (ខៀវ) ក្រោមគ្រាប់ 1 -->
+              <div class="dice-box" id="diceBox2" onclick="N98.toggleDiceSelection(2, event)">
+                <div class="dice-title">ទាយគ្រាប់ 2</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+              <!-- ជួរទី២: គ្រាប់ 4,5 (ក្រហម/ខៀវ) ក្រោមគ្រាប់ 6 -->
+              <div class="dice-box" id="diceBox4" onclick="N98.toggleDiceSelection(4, event)">
+                <div class="dice-title">ទាយគ្រាប់ 4</div>
+                <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+              <div class="dice-box" id="diceBox3" onclick="N98.toggleDiceSelection(3, event)">
+                <div class="dice-title">ទាយគ្រាប់ 3</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+              <div class="dice-box" id="diceBox5" onclick="N98.toggleDiceSelection(5, event)">
+                <div class="dice-title">ទាយគ្រាប់ 5</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x5</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="diceThinThickPanel" style="display:none;">
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+              <div class="dice-box" id="diceBoxThin" onclick="N98.toggleDiceSelection('thin', event)" style="flex:1;">
+                <div class="dice-title">ស្តើង (1,2,3)</div>
+                <div class="dice-dots"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+                <div class="dice-sub">អត្រា x0.85</div>
+              </div>
+              <div class="dice-box" id="diceBoxThick" onclick="N98.toggleDiceSelection('thick', event)" style="flex:1;">
+                <div class="dice-title">ក្រាស់ (4,5,6)</div>
+                <div class="dice-dots"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
+                <div class="dice-sub">អត្រា x0.85</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ប្រអប់បញ្ចូលទឹកប្រាក់ -->
+          <div style="margin-top: 15px;">
+            <label style="color:#d8b4fe; font-weight:800; font-size:13px; display:block; margin-bottom:6px;">💰 ចំនួនទឹកប្រាក់សម្រាប់ជម្រើសដែលបានជ្រើស</label>
+            <div class="dice-input-row">
+              <input type="number" id="diceBetAmountInput" placeholder="បញ្ចូលចំនួន" min="0.01" step="any">
+              <select id="diceCurrencySelect" style="background: rgba(0,0,0,0.3); color: white; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; padding: 10px; font-weight:800;">
+                <option value="USD">ដុល្លារ ($)</option>
+                <option value="KHR">រៀល (៛)</option>
+              </select>
+              <button onclick="N98.addDiceSelectionToBet()">➕ បន្ថែមចូលបញ្ជី</button>
+            </div>
+          </div>
+
+          <!-- តារាងបញ្ជីជម្រើសដែលបានជ្រើស -->
+          <div style="margin-top: 15px;">
+            <div style="font-weight:800; color:#d8b4fe; font-size:13px; margin-bottom:8px;">📋 បញ្ជីជម្រើសដែលបានជ្រើស (អាចជ្រើសបានច្រើន)</div>
+            <div class="dice-selection-list" id="diceSelectionList">
+              <div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>
+            </div>
+          </div>
+
+          <div class="bet-summary" style="background: rgba(255,255,255,0.05); border-color: rgba(111,66,193,0.4);">
+            <div class="bet-summary-item" style="color:#d8b4fe;"><span>🎲 ចំនួនជម្រើសសរុប៖</span><span id="diceTotalSelections">0</span></div>
+            <div class="bet-summary-item total" style="color:#d8b4fe; border-bottom:none;"><span>💵 សរុប៖</span><span id="diceTotalAmount">0</span></div>
+          </div>
+
+          <button class="btn btn-success" id="btnSubmitDice" onclick="N98.submitDiceBets()" disabled style="background:linear-gradient(135deg,#6f42c1,#4a148c); width:100%; padding:14px; font-size:15px;">🎲 ដាក់ភ្នាល់ឥឡូវ</button>
+        </div>
+      </div>
+
+      <!-- ================= ADMIN PANEL ================= -->
+      <div class="lottery-box" id="adminPanel" style="display:none; border:2px solid #dc3545;">
+        <div class="time-box" style="color:#dc3545;"><span class="anim-pulse">👑</span> ADMIN PANEL</div>
+        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px dashed #ff8b8b; padding:10px; border-radius:10px; margin:10px 0; font-size:12px; color:#721c24; font-weight:700;">🔐 ផ្ទាំងនេះសម្រាប់ Admin ប៉ុណ្ណោះ</div>
+        
+        <div style="margin-top:12px;">
+          <label style="font-weight:800; color:#dc3545; font-size:13px;">💰 បញ្ចូលទឹកប្រាក់ជូនសមាជិក (ផ្ទាល់)</label>
+          <input type="tel" id="adminPhone" placeholder="លេខទូរស័ព្ទ (ឧ. 012345678)" inputmode="numeric" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; margin-top:6px;">
+          <div style="display:flex; gap:6px; margin-top:8px;">
+            <input type="number" id="adminAmount" placeholder="ចំនួន" step="any" min="0.01" style="flex:2; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700;">
+            <select id="adminCurrency" style="flex:1; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; background:#f8f9fa; color:#0078D7;"><option value="USD">$ USD</option><option value="KHR">៛ KHR</option></select>
+          </div>
+          <input type="text" id="adminNote" placeholder="ចំណាំ (ឧ. Bonus, Top-up)" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:13px; margin-top:8px;">
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;">
+            <button class="btn btn-success" onclick="N98.adminQuickAdd(0.25, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+0.25$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+1$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+5$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+1K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+5K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(10000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+10K៛</button>
+          </div>
+          <button class="btn" onclick="N98.adminAddDeposit()" style="width:100%; padding:14px; margin-top:12px; font-size:14px; background:linear-gradient(135deg,#dc3545,#a71d2a); color:white; font-weight:800; border:none; border-radius:8px; cursor:pointer;">💰 បញ្ចូលទឹកប្រាក់</button>
+          <div id="adminFeedback" style="margin-top:10px; padding:10px; border-radius:8px; font-weight:700; font-size:13px; display:none;"></div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:12px; border-radius:10px; margin-top:12px; border:1px solid #b6d4fe;">
+          <div style="font-weight:800; color:#005fa3; font-size:13px; margin-bottom:8px;">💰 គ្រប់គ្រងសំណើបញ្ចូលទឹកប្រាក់</div>
+          <button class="btn btn-primary" onclick="N98.adminLoadDepositRequests()" style="width:100%; padding:10px; font-size:13px;">📋 បង្ហាញបញ្ជីសំណើ</button>
+          <div id="adminDepositReqList" style="margin-top:8px; font-size:12px; font-weight:700; line-height:1.8;"></div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:12px; border-radius:10px; margin-top:12px;">
+          <div style="font-weight:800; color:#005fa3; font-size:13px; margin-bottom:8px;">📊 ស្ថិតិប្រព័ន្ធ</div>
+          <button class="btn btn-primary" onclick="N98.adminLoadStats()" style="width:100%; padding:10px; font-size:13px;">📈 ទាញស្ថិតិ</button>
+          <div id="adminStats" style="margin-top:8px; font-size:12px; font-weight:700; color:#005fa3; line-height:1.8;"></div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); padding:12px; border-radius:10px; margin-top:12px; border:1px solid #ff8b8b;">
+          <div style="font-weight:800; color:#721c24; font-size:13px; margin-bottom:8px;">🏦 គ្រប់គ្រងការដកប្រាក់</div>
+          <button class="btn" onclick="N98.adminLoadWithdrawals()" style="width:100%; padding:10px; font-size:13px; background:linear-gradient(135deg,#6f42c1,#5a32a3); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:800;">📋 បង្ហាញបញ្ជីដកប្រាក់</button>
+          <div id="adminWithdrawalsList" style="margin-top:8px; font-size:12px; font-weight:700; line-height:1.8;"></div>
+        </div>
+      </div>
+
+      <!-- ================= HISTORY SECTION ================= -->
+      <div class="lottery-box" id="historySection" style="display:block; margin-top:20px;">
+        <div class="time-box">📊 ប្រវត្តិទាំងអស់ <span style="font-size:10px; color:#dc3545; margin-left:8px; font-weight:800; background:#fee2e2; padding:2px 8px; border-radius:6px;">រក្សាទុក ២ ថ្ងៃ</span></div>
+        
+        <div class="history-tabs-container" id="historyTabsContainer">
+          <button class="history-tab active" data-tab="bets-classic" data-mode="classic" onclick="N98.switchHistoryTab('bets-classic', event)">📊 ប្រវត្តិចាក់ 12/16</button>
+          <button class="history-tab" data-tab="results-classic" data-mode="classic" onclick="N98.switchHistoryTab('results-classic', event)">🎯 លទ្ធផល 12/16</button>
+          <button class="history-tab" data-tab="deposits" data-mode="both" onclick="N98.switchHistoryTab('deposits', event)">💰 ប្រវត្តិដាក់ប្រាក់</button>
+          <button class="history-tab" data-tab="withdrawals" data-mode="both" onclick="N98.switchHistoryTab('withdrawals', event)">🏦 ប្រវត្តិដកប្រាក់</button>
+          <button class="history-tab" data-tab="bets-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('bets-rapid', event)" style="display:none;">⚡ ប្រវត្តិចាក់ 10នាទី</button>
+          <button class="history-tab" data-tab="results-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('results-rapid', event)" style="display:none;">🎯 លទ្ធផល 10នាទី</button>
+          <button class="history-tab" data-tab="bets-dice" data-mode="dice" onclick="N98.switchHistoryTab('bets-dice', event)" style="display:none;">🎲 ប្រវត្តិចាក់អាប៉ោង</button>
+          <button class="history-tab" data-tab="results-dice" data-mode="dice" onclick="N98.switchHistoryTab('results-dice', event)" style="display:none;">🎯 លទ្ធផលអាប៉ោង</button>
+        </div>
+
+        <div class="history-panel active" id="panel-bets-classic">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#0078D7,#005fa3);"><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លេខចាក់</th><th>ប្រភេទ</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyClassic"><tr><td colspan="7" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <div class="history-panel" id="panel-bets-rapid">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#e91e63,#880e4f);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លេខចាក់</th><th>ប្រភេទ</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyRapid"><tr><td colspan="7" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <div class="history-panel" id="panel-withdrawals">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#5a32a3);"><th>កាលបរិច្ឆេទ</th><th>លេខសំណើ</th><th>ចំនួនដក</th><th>រូបិយប័ណ្ណ</th><th>ស្ថានភាព</th></tr></thead><tbody id="userWithdrawBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <div class="history-panel" id="panel-deposits">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#28a745,#1e7e34);"><th>កាលបរិច្ឆេទ</th><th>ចំនួន</th><th>រូបិយប័ណ្ណ</th><th>សមតុល្យក្រោយ</th><th>កំណត់សម្គាល់</th></tr></thead><tbody id="userDepositBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <div class="history-panel" id="panel-results-classic">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff9800,#e65100);"><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyClassic"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <div class="history-panel" id="panel-results-rapid">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff1744,#d50000);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyRapid"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <!-- ប្រវត្តិចាក់អាប៉ោង -->
+        <div class="history-panel" id="panel-bets-dice">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#4a148c);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>ជម្រើសចាក់</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyDice"><tr><td colspan="6" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+
+        <!-- ប្រវត្តិលទ្ធផលអាប៉ោង -->
+        <div class="history-panel" id="panel-results-dice">
+          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#9c27b0,#6a1b9a);"><th>វគ្គ</th><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល</th><th>គ្រាប់</th></tr></thead><tbody id="historyBodyDice"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <div id="rulesSection" style="display:none;">
+        <div class="bet-box">
+          <h2>📋 ច្បាប់ និងរបៀបប្រើប្រាស់</h2>
+          <div style="padding:8px; font-size:13px; line-height:1.9; font-weight:600;">
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px;">🎯 ១. របៀបចាក់ឆ្នោត</h4>
+            <p>១. ជ្រើសរើសពេលវេលា (12:00 ឬ 16:00 ឬ 10 នាទី ឬ អាប៉ោង 5 នាទី)</p>
+            <p>២. ជ្រើសរើសប្រភេទ (២ ឬ ៣ ខ្ទង់)</p>
+            <p>៣. ចុចជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, ឬ E (ឬជ្រើសគ្រាប់អាប៉ោង)</p>
+            <p>៤. បញ្ចូលលេខ (ឧ. 01, 02, 03)</p>
+            <p>៥. ជ្រើសរើសចំនួនទឹកប្រាក់ក្នុងមួយលេខ</p>
+            <p>៦. ចុច "ដាក់ភ្នាល់"</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ២. អត្រារង្វាន់</h4>
+            <p>• <strong>២ខ្ទង់ (A-E)</strong> – 1$ → 70$</p>
+            <p>• <strong>៣ខ្ទង់ (A-E)</strong> – 1$ → 500$</p>
+            <p>• <strong>អាប៉ោង (ទាយគ្រាប់)</strong> – 1$ → 5$</p>
+            <p>• <strong>អាប៉ោង (ស្តើង/ក្រាស់)</strong> – 1$ → 0.85$</p>
+            <p>• ចាក់ពី 500៛/0.25$ ដល់ 40,000៛/10$</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚡ ៣. ឆ្នោត 10 នាទី និង អាប៉ោង 5 នាទី</h4>
+            <p>• ចុច Tab <strong>🎯 10 នាទី</strong> ឬ <strong>🎲 អាប៉ោង</strong> ខាងលើ</p>
+            <p>• ប្រកាសលទ្ធផលរៀងរាល់ 10 នាទី (ឆ្នោត) និង 5 នាទី (អាប៉ោង)</p>
+            <p>• ដំណើរការ 24/7</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🎁 ៤. ប្រាក់រង្វាន់ស្វាគមន៍</h4>
+            <p>• គណនីថ្មីទទួលបាន <strong style="color:#d63000;">10.00$ និង 40,000៛</strong> ភ្លាមៗ</p>
+            <p>• <strong style="color:#dc3545;">មិនអាចដកបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង និងរង់ចាំ ២៤ ម៉ោង</p>
+            <p>• <strong style="color:#dc3545;">មិនអាចចាក់អាប៉ោងបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🏦 ៥. របៀបដកប្រាក់</h4>
+            <p>• ដកប្រាក់បានគ្រប់ពេល 24/7</p>
+            <p>• <strong style="color:#d63000;">សមតុល្យអប្បបរមាសម្រាប់ដក: 10$ ឬ 40,000៛</strong></p>
+            <p>• លក្ខខណ្ឌដកប្រាក់៖ បញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង, រង់ចាំ ២៤ ម៉ោង</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ៦. របៀបបញ្ចូលប្រាក់</h4>
+            <p>• អប្បបរមា: 5.00$ ឬ 20,000៛</p>
+            <p>• ចុចប៊ូតុង "💰 បញ្ចូលទឹកប្រាក់"</p>
+            <p>• បង់តាម ABA Bank (KHQR)</p>
+            <p>• បញ្ជូន Screenshot → Admin នឹងអនុម័ត</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⏰ ៧. ការបិទចាក់</h4>
+            <p>• ម៉ោង 12:00: បិទនៅ 11:59 (១ នាទីមុនលទ្ធផល)</p>
+            <p>• ម៉ោង 16:00: បិទនៅ 15:59 (១ នាទីមុនលទ្ធផល)</p>
+            <p>• ឆ្នោត 10 នាទី: បិទ ១ នាទីមុនលទ្ធផល</p>
+            <p>• អាប៉ោង 5 នាទី: បិទ ១០ វិនាទីមុនលទ្ធផល</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">📊 ៨. ប្រវត្តិ និងលទ្ធផល</h4>
+            <p>• ប្រវត្តិចាក់ និងលទ្ធផលរក្សាទុក <strong>២ ថ្ងៃ</strong> ចុងក្រោយ</p>
+            <p>• លទ្ធផលចាស់ៗនឹងលុបដោយស្វ័យប្រវត្តិ</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🔐 ៩. សុវត្ថិភាព</h4>
+            <p>• PIN 4 ខ្ទង់ ត្រូវចងចាំ</p>
+            <p>• ភ្លេច PIN → ទាក់ទង Admin</p>
+            <p>• កុំប្រាប់ PIN អ្នកដទៃ</p>
+
+            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚠️ ១០. ការព្រមាន</h4>
+            <p>• ការចាក់ឆ្នោតមានហានិភ័យ — សូមលេងដោយការទទួលខុសត្រូវ</p>
+            <p>• មិនអនុញ្ញាតឱ្យអ្នកក្រោមអាយុ 18 ឆ្នាំ</p>
+            <p>• ការកេងប្រវ័ញ្ចនឹងត្រូវបានផ្អាកគណនីភ្លាមៗ</p>
+          </div>
+        </div>
+      </div>
+
+    </div> 
+
+    <div class="footer"><span class="emoji-dice">🎲</span> © 2026 Khmer Lottery N98 — រក្សាសិទ្ធិគ្រប់យ៉ាងពីឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></div>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+  <div class="modal" id="depositModal">
+    <div class="modal-content">
+      <span class="close" onclick="N98.closeModal('depositModal')">&times;</span>
+      <h2>💰 បញ្ចូលទឹកប្រាក់ (ABA Bank)</h2>
+      <form id="depositForm">
+        <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); border:2px dashed #0078D7; padding:16px; border-radius:12px; text-align:center; margin-top:12px;">
+          <div style="font-weight:800; color:#005fa3; font-size:14px; margin-bottom:12px;">👇 ចុចខាងក្រោមដើម្បីបង់ប្រាក់</div>
+          <a href="https://pay.ababank.com/oRF8/yhtm93ei" target="_blank" rel="noopener" id="abaBankBtn" onclick="N98.handleAbaClick(event)" style="font-size:15px; padding:16px; display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,#005fa3,#0078D7); color:white; text-decoration:none; border-radius:10px; font-weight:800;">
+            <span style="font-size:22px;">🏦</span><span>បង់ប្រាក់តាម ABA Bank</span><span style="background:rgba(255,255,255,0.25); padding:3px 10px; border-radius:8px; font-size:11px;">KHQR</span>
+          </a>
+          
+          <button type="button" onclick="N98.downloadQR()" style="margin-top:10px; width:100%; padding:12px; background:linear-gradient(135deg,#28a745,#1e7e34); color:white; border:none; border-radius:10px; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 10px rgba(40,167,69,0.3);">
+            <span style="font-size:18px;">📥</span> ទាញយករូបភាព QR Code
+          </button>
+
+          <div style="font-size:11.5px; color:#005fa3; margin-top:12px; font-weight:700;">⚡ បង់រួច សូមថតរូប (Screenshot)</div>
+        </div>
+        
+        <label>លេខទូរស័ព្ទ *</label>
+        <input type="tel" id="depPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" minlength="9" maxlength="10" inputmode="numeric">
+        
+        <label>រូបិយប័ណ្ណ *</label>
+        <select id="depCurrency" required style="width:100%; padding:12px; border:2px solid #dee2e6; border-radius:10px; font-size:14px; font-weight:800; background:#f8f9fa; margin-bottom:6px;">
+          <option value="USD">ដុល្លារ ($ USD)</option>
+          <option value="KHR">រៀល (៛ KHR)</option>
+        </select>
+        
+        <label>បញ្ជាក់ចំនួនទឹកប្រាក់របស់អ្នក *</label>
+        <input type="number" id="depAmount" required placeholder="បញ្ចូលចំនួន" step="any" min="0.01" oninput="N98.checkContinueButtonState()">
+        <div style="font-size:11px; color:#dc3545; font-weight:800; margin-bottom:8px; text-align:left;" id="depMinHint">⚠️ ចំនួនអប្បបរមា USD ≥ 5.00$</div>
+        
+        <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:14px; text-align:left;">
+            <div style="font-weight:800; color:#856404; font-size:12px; margin-bottom:8px;">បន្ទាប់ពីបង់ប្រាក់រួច សូមចុចបន្ត ដើម្បីបើកការបញ្ចូលរូបភាពនៃប្រតិបត្តិការបង់ប្រាក់របស់អ្នក!</div>
+            <button type="button" id="depContinueBtn" onclick="N98.enableScreenshotUpload()" disabled style="width:100%; padding:12px; background:#ced4da; color:#6c757d; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:not-allowed;">👉 បន្ត</button>
+        </div>
+
+        <label id="depScreenshotLabel" style="opacity:0.5; pointer-events:none; margin-top:14px; display:block;">បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) *</label>
+        <input type="file" id="depScreenshot" accept="image/*" required disabled style="width:100%; padding:10px; border:2px solid #dee2e6; border-radius:10px;">
+        
+        <button type="submit" class="btn btn-success" id="depSubmitBtn" disabled style="margin-top:12px;">🚀 បញ្ជាក់ការបញ្ចូលប្រាក់</button>
+        
+        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ff8b8b; border-radius:10px; padding:12px 14px; margin-top:12px; font-size:11.5px; color:#721c24; line-height:1.7; text-align:left; font-weight:600;"><span class="anim-shake">⚠️</span> <strong>ការព្រមាន!</strong><br>• ការបង់ប្រាក់ត្រូវធ្វើតាម ABA Bank ជាមុន<br>• បញ្ជូនរូបភាព Screenshot ជូន Admin<br>• ប្រសិនបើមិនបង់ → Admin នឹងមិនអនុម័ត</div>
+        
+        <div style="font-size:11.5px; color:#dc3545; font-weight:800; text-align:center; margin-top:8px;">សូមផ្ទៀងផ្ទាត់លទ្ធផលឆ្នោតជាមួយនឹងការចាក់ឆ្នោតរបស់អ្នក!</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="directBetModal">
+    <div class="modal-content">
+      <span class="close" onclick="N98.closeModal('directBetModal')">&times;</span>
+      <h2 style="color:#28a745;">💵 បញ្ជាក់ការចាក់ផ្ទាល់</h2>
+      <form id="directBetForm">
+        <div class="bet-summary">
+          <div class="bet-summary-item"><span>🔢 លេខ៖</span><span id="directConfirmNumbers">-</span></div>
+          <div class="bet-summary-item total"><span>💰 សរុប៖</span><span id="directConfirmTotal">-</span></div>
+        </div>
+        <label>លេខទូរស័ព្ទ *</label>
+        <input type="tel" id="directPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" inputmode="numeric">
+        <div style="margin-top:14px;">
+          <div style="font-weight:800; color:#155724; font-size:13px; margin-bottom:8px;">💰 សមតុល្យរបស់អ្នក</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">💵 USD</div><div id="directBalanceUSD" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+            <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">🇰🇭 KHR</div><div id="directBalanceKHR" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success" style="margin-top:14px;">✅ បញ្ជាក់ការចាក់</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="withdrawModal">
+    <div class="modal-content">
+      <span class="close" onclick="N98.closeModal('withdrawModal')">&times;</span>
+      <h2>🏦 ដកប្រាក់</h2>
+      
+      <form id="withdrawNewForm">
+        <label>💰 សមតុល្យរបស់អ្នក</label>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+          <div class="balance-item" id="wdBalUSDBtn" onclick="N98.selectWithdrawCurrency('USD')" style="cursor:pointer; opacity:0.5;">
+            <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">💵 USD</div>
+            <div id="wdBalanceUSD" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div>
+            <div style="font-size:10px; color:#155724; margin-top:4px;">ចុចដើម្បីជ្រើស</div>
+          </div>
+          <div class="balance-item" id="wdBalKHRBtn" onclick="N98.selectWithdrawCurrency('KHR')" style="cursor:pointer; opacity:0.5;">
+            <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">🇰🇭 KHR</div>
+            <div id="wdBalanceKHR" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div>
+            <div style="font-size:10px; color:#155724; margin-top:4px;">ចុចដើម្បីជ្រើស</div>
+          </div>
+        </div>
+        <input type="hidden" id="wdCurrency" value="">
+        <label>💰 ចំនួនទឹកប្រាក់ដក *</label>
+        <input type="number" id="wdAmount" required placeholder="បញ្ចូលចំនួន" min="0.01" step="any">
+        <label>📱 លេខទូរស័ព្ទ *</label>
+        <input type="tel" id="wdPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" inputmode="numeric">
+        <label>📷 បញ្ចូលរូបភាព QR Code ទទួលប្រាក់របស់អ្នក *</label>
+        <input type="file" id="wdQrCode" accept="image/*" required>
+        <button type="submit" class="btn btn-withdraw" id="wdSubmitBtn" style="width:100%; margin-top:12px; padding:14px;">🏦 បញ្ជាក់ការដកប្រាក់</button>
+        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ff8b8b; border-radius:10px; padding:10px; margin-top:12px; font-size:11.5px; color:#721c24; line-height:1.7; font-weight:600;">⚠️ ប្រាក់នឹងកាត់ចេញពីសមតុល្យភ្លាមៗ<br>ប្រសិនបើ Admin បដិសេធ → ប្រាក់នឹងបង្វិលចូលវិញ</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="groupModal">
+    <div class="modal-content" style="text-align:center;">
+      <span class="close" onclick="N98.closeModal('groupModal')">&times;</span>
+      <div style="font-size:60px;" class="anim-bounce">📢</div>
+      <h2>ចូលក្រុម និង Channel</h2>
+      <p style="font-size:13px; color:#4a5568; margin:12px 0; font-weight:600;">ទទួលបានព័ត៌មានថ្មីៗ!</p>
+      
+      <a href="https://t.me/lekhchhnaotN98" target="_blank" rel="noopener" class="group-btn dice-channel">🎲 Channel ប្រកាសលទ្ធផលអាប៉ោង<small>ចេញលទ្ធផលរៀងរាល់ 5 នាទី</small></a>
+      
+      <a href="https://t.me/+ErJaYtpHWwE1YWI1" target="_blank" rel="noopener" class="group-btn main">🎯 ចូលក្រុមចាក់សម្រាប់ឆ្នោត 12:00 / 16:00 / ឆ្នោត 10 នាទី<small>ពិភាក្សា និងចាក់លេខឆ្នោត</small></a>
+      
+      <a href="https://t.me/lekhchhnaotN98" target="_blank" rel="noopener" class="group-btn channel">📢 ចូល Channel ប្រកាសលទ្ធផលឆ្នោត 12:00 / 16:00</a>
+      
+      <a href="https://t.me/Livelotteryevery10minutes" target="_blank" rel="noopener" class="group-btn" style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ចូល Channel លទ្ធផលឆ្នោត N98 រៀងរាល់ 10 នាទី<small>ចេញលទ្ធផលរៀងរាល់ 10 នាទី</small></a>
+      
+      <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ទទួលលេខ Code ចុះឈ្មោះ N98<small>Channel ផ្តល់ Code ចុះឈ្មោះ</small></a>
+    </div>
+  </div>
+
+  <div class="modal" id="alertModal">
+    <div class="modal-content alert-modal">
+      <span class="alert-icon" id="alertIcon">🔔</span>
+      <h3 class="alert-title" id="alertTitle">ការជូនដំណឹង</h3>
+      <p class="alert-message" id="alertMessage">សារ...</p>
+      <button class="btn btn-primary" onclick="N98.closeModal('alertModal')" style="padding:12px 32px; border-radius:22px; font-size:14px;">យល់ព្រម</button>
+    </div>
+  </div>
+
+  <div class="modal" id="confirmModal">
+    <div class="modal-content confirm-modal-content">
+      <span class="confirm-icon" id="confirmIcon">❓</span>
+      <h3 class="confirm-title" id="confirmTitle">តើអ្នកប្រាកដឬ?</h3>
+      <div id="confirmInfoContainer" style="display:none;">
+        <div class="confirm-info-box" id="confirmInfoBox"></div>
+      </div>
+      <p class="confirm-message" id="confirmMessage"></p>
+      <div class="confirm-buttons">
+        <button class="btn btn-confirm-cancel" onclick="N98.closeConfirm(false)" id="confirmCancelBtn">✕ បោះបង់</button>
+        <button class="btn btn-confirm-ok" onclick="N98.closeConfirm(true)" id="confirmOkBtn">✓ បញ្ជាក់</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROMO POPUP ================= -->
+  <div class="modal" id="promoModal" style="display:none; align-items:center; justify-content:center; z-index: 2000;">
+    <div class="modal-content" style="max-width: 420px; background: linear-gradient(135deg, #0f1420, #1a1f2e); border: 3px solid #0078D7; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,120,215,0.4); padding: 25px; position: relative;">
+      <span class="close" onclick="N98.closePromoPopup()" style="color: #adb5bd; position: absolute; top: 15px; right: 20px;">&times;</span>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 60px; margin-bottom: 10px;" class="anim-bounce">🎲</div>
+        <h2 style="color: #ffffff; font-size: 24px; font-weight: 800; margin-bottom: 5px;">ឆ្នោតខ្មែរ N98</h2>
+        <p style="color: #adb5bd; font-size: 14px; font-weight: 600;">សូមស្វាគមន៍! ស្ថានភាពចាក់បច្ចុប្បន្ន</p>
+      </div>
+
+      <div style="display: grid; gap: 12px; margin-bottom: 20px;">
+        <!-- Classic 12:00 -->
+        <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 24px;">🕛</span>
+            <div>
+              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 12:00</div>
+              <div style="color: #adb5bd; font-size: 11px;" id="promoStatus12">បើកចាក់</div>
+            </div>
+          </div>
+          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown12">00:00:00</div>
+        </div>
+
+        <!-- Classic 16:00 -->
+        <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 24px;">🕓</span>
+            <div>
+              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 16:00</div>
+              <div style="color: #adb5bd; font-size: 11px;" id="promoStatus16">បើកចាក់</div>
+            </div>
+          </div>
+          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown16">00:00:00</div>
+        </div>
+
+        <!-- Rapid 10 Min -->
+        <div style="background: rgba(233,30,99,0.1); border: 1px solid rgba(233,30,99,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 24px;">🎯</span>
+            <div>
+              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">10 នាទី LIVE</div>
+              <div style="color: #adb5bd; font-size: 11px;" id="promoStatus10">កំពុងដំណើរការ</div>
+            </div>
+          </div>
+          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #ff8bb5;" id="promoCountdown10">00:00</div>
+        </div>
+      </div>
+
+      <button onclick="N98.closePromoPopup()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(40,167,69,0.4);">
+        ចាប់ផ្តើមចាក់ឥឡូវ 🚀
+      </button>
+    </div>
+  </div>
+
+<script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
