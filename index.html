@@ -4008,7 +4008,7 @@
         });
       }
 
-      // ===== DICE LOGIC (កែថ្មី) =====
+      // ===== DICE LOGIC & N98 GLOBAL OBJECT =====
       window.N98 = {
         handleRegister: handleRegister,
         handleVerify: handleVerify,
@@ -4121,10 +4121,9 @@
           var type = 'exact';
           var value = val;
           var label = '';
-          var boxId = '';
-          if (val === 'thin') { type = 'thin'; label = 'ស្តើង (1,2,3)'; boxId = 'diceBoxThin'; }
-          else if (val === 'thick') { type = 'thick'; label = 'ក្រាស់ (4,5,6)'; boxId = 'diceBoxThick'; }
-          else { type = 'exact'; label = 'ទាយគ្រាប់ ' + val; boxId = 'diceBox' + val; }
+          if (val === 'thin') { type = 'thin'; label = 'ស្តើង (1,2,3)'; }
+          else if (val === 'thick') { type = 'thick'; label = 'ក្រាស់ (4,5,6)'; }
+          else { type = 'exact'; label = 'ទាយគ្រាប់ ' + val; }
           
           if (evt && evt.target) {
             var b = evt.target.closest('.dice-box');
@@ -4144,7 +4143,6 @@
               if (b2) b2.classList.remove('active');
             }
           } else {
-            // ទាញយកចំនួនទឹកប្រាក់ពី input
             var inputAmt = parseFloat($('diceBetAmountInput').value);
             if (!inputAmt || inputAmt <= 0) {
               showToast('សូមបញ្ចូលចំនួនទឹកប្រាក់ជាមុនសិន!', 'warning');
@@ -4166,10 +4164,8 @@
         },
         removeDiceSelection: function(idx) {
           diceSelectedOptions.splice(idx, 1);
-          // ដោះ active ចេញពី box
           var boxes = document.querySelectorAll('.dice-box');
           for (var i = 0; i < boxes.length; i++) boxes[i].classList.remove('active');
-          // ដាក់ active ឡើងវិញសម្រាប់ជម្រើសដែលនៅសល់
           for (var j = 0; j < diceSelectedOptions.length; j++) {
             var opt = diceSelectedOptions[j];
             var id = '';
@@ -4200,7 +4196,6 @@
             if ($('diceTotalSelections')) $('diceTotalSelections').textContent = diceSelectedOptions.length;
             if ($('diceTotalAmount')) {
               var displayTotal = total.toFixed(2) + '$';
-              // បើ KHR ទាំងអស់
               var allKHR = true;
               for (var k = 0; k < diceSelectedOptions.length; k++) {
                 if (diceSelectedOptions[k].currency !== 'KHR') { allKHR = false; break; }
@@ -4216,7 +4211,6 @@
           var now = new Date(); var sec = now.getSeconds(); var min = now.getMinutes();
           var isClosed = ((min % 5) * 60 + sec) >= (5 * 60 - 10);
           var hasOptions = diceSelectedOptions.length > 0;
-          // គណនាតម្លៃសរុប តាមរូបិយប័ណ្ណ
           var totalUSD = 0, totalKHR = 0;
           for (var i = 0; i < diceSelectedOptions.length; i++) {
             var opt = diceSelectedOptions[i];
@@ -4266,7 +4260,6 @@
               var op = diceSelectedOptions[k];
               betsArray.push({ type: op.type, value: op.value, amount: op.amount, currency: op.currency });
             }
-            // បញ្ជូនបញ្ជី
             fetchWithTimeout(WEB_APP_URL, { 
               method: 'POST', 
               body: JSON.stringify({ action: 'placeDiceBet', phone: fixPhoneNumber(currentUser.phone), userId: currentUser.userId, bets: betsArray, drawId: currentDrawIdDice }), 
@@ -4329,14 +4322,7 @@
         updateBalanceUI: updateBalanceUI,
         downloadQR: downloadQR,
         enableScreenshotUpload: enableScreenshotUpload,
-        checkContinueButtonState: checkContinueButtonState,
-        updateSubmitDiceButton: N98.updateSubmitDiceButton,
-        renderDiceSelectedList: N98.renderDiceSelectedList,
-        removeDiceSelection: N98.removeDiceSelection,
-        setDiceType: N98.setDiceType,
-        toggleDiceSelection: N98.toggleDiceSelection,
-        addDiceSelectionToBet: N98.addDiceSelectionToBet,
-        submitDiceBets: N98.submitDiceBets
+        checkContinueButtonState: checkContinueButtonState
       };
 
       if (document.readyState === 'loading') {
