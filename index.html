@@ -2121,42 +2121,49 @@
         
         // ✅ កែសម្រួលឲ្យ Ring អាប៉ោងវិលថយក្រោយត្រឹមត្រូវ
         intervals.dice = setInterval(function() {
+          // យើងដក mainMode === 'dice' ចេញ ដើម្បីឲ្យវា Update ជានិច្ចទោះនៅ Tab ណាក៏ដោយ
+          var now = new Date();
+          var sec = now.getSeconds();
+          var min = now.getMinutes();
+          var secondsIntoCycle = (min % 5) * 60 + sec;
+          var secondsLeft = (5 * 60) - secondsIntoCycle;
+          if (secondsLeft < 0) secondsLeft = 0;
+          
+          var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
+          var ss = String(secondsLeft % 60).padStart(2, '0');
+          if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
+          
+          // ✅ គណនា និង Update រង្វង់វិលថយក្រោយ
+          var totalDiceCycle = 5 * 60;
+          var percentDice = secondsIntoCycle / totalDiceCycle;
+          var circumferenceDice = 2 * Math.PI * 70; // 439.82
+          var offsetDice = circumferenceDice * percentDice;
+          
+          if ($('ringProgressDice')) {
+            // ដាក់ style ផ្ទាល់ដើម្បីឲ្យវា Update លើ DOM ភ្លាមៗ
+            $('ringProgressDice').style.strokeDashoffset = offsetDice;
+          }
+          
+          var yy = String(now.getFullYear()).slice(-2);
+          var startOfYear = new Date(now.getFullYear(), 0, 0);
+          var dayOfYear = Math.floor((now - startOfYear) / 86400000);
+          var slotIndex = Math.floor((now.getHours() * 60 + now.getMinutes()) / 5);
+          currentDrawIdDice = yy + String(dayOfYear).padStart(3, '0') + String(slotIndex).padStart(3, '0');
+          
+          if ($('nextDrawNumberDice')) $('nextDrawNumberDice').textContent = '#' + currentDrawIdDice;
+          
+          var closedDice = secondsIntoCycle >= (5 * 60 - 10);
+          if ($('bettingClosedBoxDice')) $('bettingClosedBoxDice').style.display = closedDice ? 'block' : 'none';
+          if (closedDice) {
+            var reopenSec = (5 * 60) - secondsIntoCycle;
+            if ($('reopenTimeDice')) $('reopenTimeDice').textContent = '00:' + String(reopenSec).padStart(2, '0');
+          }
+          
+          // ហៅ function ទាំងនេះតែពេលនៅ Tab អាប៉ោងទេ ដើម្បីកាត់បន្ថយការយឺត
           if (mainMode === 'dice') {
             N98.fetchDiceResults();
-            var now = new Date();
-            var sec = now.getSeconds();
-            var min = now.getMinutes();
-            var secondsIntoCycle = (min % 5) * 60 + sec;
-            var secondsLeft = (5 * 60) - secondsIntoCycle;
-            if (secondsLeft < 0) secondsLeft = 0;
-            var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
-            var ss = String(secondsLeft % 60).padStart(2, '0');
-            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
-            
-            // ✅ Update ring វិលថយក្រោយ (កែតម្រូវឲ្យដំណើរការត្រឹមត្រូវ)
-            var totalDiceCycle = 5 * 60;
-            var percentDice = secondsIntoCycle / totalDiceCycle;
-            var circumferenceDice = 2 * Math.PI * 70; // 439.82
-            var offsetDice = circumferenceDice * percentDice;
-            if ($('ringProgressDice')) {
-              $('ringProgressDice').style.strokeDashoffset = offsetDice;
-            }
-            
-            var yy = String(now.getFullYear()).slice(-2);
-            var startOfYear = new Date(now.getFullYear(), 0, 0);
-            var dayOfYear = Math.floor((now - startOfYear) / 86400000);
-            var slotIndex = Math.floor((now.getHours() * 60 + now.getMinutes()) / 5);
-            currentDrawIdDice = yy + String(dayOfYear).padStart(3, '0') + String(slotIndex).padStart(3, '0');
-            if ($('nextDrawNumberDice')) $('nextDrawNumberDice').textContent = '#' + currentDrawIdDice;
-            
-            var closedDice = secondsIntoCycle >= (5 * 60 - 10);
-            if ($('bettingClosedBoxDice')) $('bettingClosedBoxDice').style.display = closedDice ? 'block' : 'none';
-            if (closedDice) {
-              var reopenSec = (5 * 60) - secondsIntoCycle;
-              if ($('reopenTimeDice')) $('reopenTimeDice').textContent = '00:' + String(reopenSec).padStart(2, '0');
-            }
             N98.updateSubmitDiceButton();
-            N98.updateBalanceStatusBoxDice(); // ✅ Update balance box រៀងរាល់វិនាទី
+            N98.updateBalanceStatusBoxDice();
           }
         }, 1000);
         
