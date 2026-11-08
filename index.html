@@ -2124,18 +2124,15 @@
             var secondsIntoCycle = (min % 5) * 60 + sec;
             var secondsLeft = (5 * 60) - secondsIntoCycle;
             if (secondsLeft < 0) secondsLeft = 0;
-            
-            // បង្ហាញលេខរាប់ថយក្រោយ
             var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
             var ss = String(secondsLeft % 60).padStart(2, '0');
             if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
             
-            // ✅ កែសម្រួលរង្វង់វិលថយក្រោយ (ដូច 10 នាទី)
+            // Update ring វិលថយក្រោយ
             var totalDiceCycle = 5 * 60;
             var percentDice = secondsIntoCycle / totalDiceCycle;
-            var circumferenceDice = 2 * Math.PI * 70; // 439.82
+            var circumferenceDice = 2 * Math.PI * 70; // រង្វង់មានកាំ 70
             var offsetDice = circumferenceDice * percentDice;
-            
             if ($('ringProgressDice')) {
               $('ringProgressDice').style.strokeDashoffset = offsetDice;
             }
@@ -4357,7 +4354,6 @@
             var secondsIntoCycle = (m % 10) * 60 + s; var secondsLeft10 = (10 * 60) - secondsIntoCycle; if (secondsLeft10 < 0) secondsLeft10 = 0;
             if ($('promoCountdown10')) $('promoCountdown10').textContent = String(Math.floor(secondsLeft10 / 60)).padStart(2, '0') + ':' + String(secondsLeft10 % 60).padStart(2, '0');
             
-            // ✅ បន្ថែម 🎲 អាប៉ោង 5 នាទី
             var secondsIntoCycleDice = (m % 5) * 60 + s;
             var secondsLeftDice = (5 * 60) - secondsIntoCycleDice;
             if (secondsLeftDice < 0) secondsLeftDice = 0;
