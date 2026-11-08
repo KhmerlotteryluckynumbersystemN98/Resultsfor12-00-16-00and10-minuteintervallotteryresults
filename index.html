@@ -365,7 +365,6 @@
     body.dark-mode .betting-closed-compact .right-side { background: #1a0f1f; border-color: #7f1d1d; color: #fca5a5; }
     body.dark-mode .betting-closed-compact .title { color: #fca5a5; }
 
-    /* ===== CSS សម្រាប់ DICE MODE ===== */
     .dice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
     .dice-box { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; }
     .dice-box:hover { border-color: #6f42c1; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(111,66,193,0.2); }
@@ -381,14 +380,12 @@
     .bet-box.dice .type-btn { background: rgba(255,255,255,0.05); color: #e8eaf0; border-color: rgba(111,66,193,0.4); }
     .bet-box.dice .type-btn.active { background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; border-color: #6f42c1; }
 
-    /* ===== CSS សម្រាប់ DICE SELECTION MULTI ===== */
     .dice-selection-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; min-height: 40px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; border: 2px dashed rgba(111,66,193,0.5); }
     .dice-selection-tag { background: linear-gradient(135deg, #6f42c1, #4a148c); color: white; padding: 6px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(111,66,193,0.4); }
     .dice-selection-tag .remove { cursor: pointer; font-weight: 800; color: #ff6b6b; font-size: 16px; background: rgba(255,255,255,0.25); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
     .dice-selection-tag .remove:hover { background: #ff1744; color: white; transform: rotate(90deg); }
     .dice-selection-empty { color: #a0a8b8; font-size: 12px; font-weight: 600; }
     
-    /* ===== CSS សម្រាប់ DICE RESULT CARD ===== */
     .dice-result-card { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 2px solid #6f42c1; border-radius: 14px; padding: 16px; box-shadow: 0 6px 20px rgba(111,66,193,0.25); position: relative; }
     .dice-result-card.new-result { border-color: #4ade80; box-shadow: 0 0 20px rgba(74,222,128,0.6); animation: glowGreen 3s infinite alternate; background: linear-gradient(135deg, #1a3d2f, #0f1f1a); }
     .dice-result-card .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid rgba(111,66,193,0.4); }
@@ -400,16 +397,8 @@
     .dice-result-card .dice-dot-lg.red { background: #ef4444; }
     .dice-result-card .dice-dot-lg.blue { background: #3b82f6; }
     
-    /* ===== CSS សម្រាប់ DICE HISTORY TABLE ===== */
-    .dice-history-dots { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; }
-    .dice-history-dot { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset -1px -1px 2px rgba(0,0,0,0.2); }
-    .dice-history-dot.red { background: #ef4444; }
-    .dice-history-dot.blue { background: #3b82f6; }
-    
-    /* ===== ស្លាកលទ្ធផលចុងក្រោយ ===== */
     .latest-dice-badge { display: inline-block; background: linear-gradient(135deg, #9c27b0, #6a1b9a); color: white; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 10px; margin-left: 8px; animation: purplePulse 1.5s ease-in-out infinite; box-shadow: 0 0 12px rgba(156,39,176,0.7); vertical-align: middle; }
 
-    /* ===== CSS សម្រាប់ DICE INPUT ROW ===== */
     .dice-input-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; border: 2px dashed rgba(111,66,193,0.4); flex-wrap: wrap; }
     .dice-input-row input { flex: 1 1 100px; padding: 10px 14px; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; font-size: 14px; font-weight: 800; min-width: 80px; background: rgba(0,0,0,0.3); color: #ffffff; text-align: center; }
     .dice-input-row input:focus { border-color: #6f42c1; outline: none; box-shadow: 0 0 0 4px rgba(111,66,193,0.2); }
@@ -460,7 +449,7 @@
 
   <button id="tvModeExitBtn" onclick="N98.toggleTVMode()">❌ ចាកចេញពី TV Mode</button>
 
-    <!-- ================= REGISTER / LOGIN MODAL ================= -->
+  <!-- ================= REGISTER / LOGIN MODAL ================= -->
   <div class="modal" id="registerModal" style="display:block;">
     <div class="modal-content reg-modal-content" style="max-width:520px;">
       <div class="reg-step active" id="regStep1">
@@ -1231,11 +1220,9 @@
       <h2>ចូលក្រុម និង Channel</h2>
       <p style="font-size:13px; color:#4a5568; margin:12px 0; font-weight:600;">ទទួលបានព័ត៌មានថ្មីៗ!</p>
       
-      <a href="https://t.me/lekhchhnaotN98" target="_blank" rel="noopener" class="group-btn dice-channel">🎲 Channel ប្រកាសលទ្ធផលអាប៉ោង<small>ចេញលទ្ធផលរៀងរាល់ 5 នាទី</small></a>
+      <a href="https://t.me/AhpongN98" target="_blank" rel="noopener" class="group-btn dice-channel">🎲 Channel ប្រកាសលទ្ធផលអាប៉ោង<small>ចេញលទ្ធផលរៀងរាល់ 5 នាទី</small></a>
       
-      <a href="https://t.me/+ErJaYtpHWwE1YWI1" target="_blank" rel="noopener" class="group-btn main">🎯 ចូលក្រុមចាក់សម្រាប់ឆ្នោត 12:00 / 16:00 / ឆ្នោត 10 នាទី<small>ពិភាក្សា និងចាក់លេខឆ្នោត</small></a>
-      
-      <a href="https://t.me/lekhchhnaotN98" target="_blank" rel="noopener" class="group-btn channel">📢 ចូល Channel ប្រកាសលទ្ធផលឆ្នោត 12:00 / 16:00</a>
+      <a href="https://t.me/KhmerlotteryresultsN98" target="_blank" rel="noopener" class="group-btn channel">📢 ចូល Channel ប្រកាសលទ្ធផលឆ្នោត 12:00 / 16:00</a>
       
       <a href="https://t.me/Livelotteryevery10minutes" target="_blank" rel="noopener" class="group-btn" style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ចូល Channel លទ្ធផលឆ្នោត N98 រៀងរាល់ 10 នាទី<small>ចេញលទ្ធផលរៀងរាល់ 10 នាទី</small></a>
       
@@ -1334,7 +1321,7 @@
     </div>
   </div>
 
-    <script>
+  <script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
@@ -2121,7 +2108,6 @@
         
         // ✅ កែសម្រួលឲ្យ Ring អាប៉ោងវិលថយក្រោយត្រឹមត្រូវ
         intervals.dice = setInterval(function() {
-          // យើងដក mainMode === 'dice' ចេញ ដើម្បីឲ្យវា Update ជានិច្ចទោះនៅ Tab ណាក៏ដោយ
           var now = new Date();
           var sec = now.getSeconds();
           var min = now.getMinutes();
@@ -2129,41 +2115,40 @@
           var secondsLeft = (5 * 60) - secondsIntoCycle;
           if (secondsLeft < 0) secondsLeft = 0;
           
-          var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
-          var ss = String(secondsLeft % 60).padStart(2, '0');
-          if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
-          
-          // ✅ គណនា និង Update រង្វង់វិលថយក្រោយ
+          // ✅ គណនា និង Update រង្វង់វិលថយក្រោយ (ដាក់នៅខាងក្រៅ if ដើម្បីឲ្យវា update ជានិច្ច)
           var totalDiceCycle = 5 * 60;
           var percentDice = secondsIntoCycle / totalDiceCycle;
           var circumferenceDice = 2 * Math.PI * 70; // 439.82
           var offsetDice = circumferenceDice * percentDice;
           
           if ($('ringProgressDice')) {
-            // ដាក់ style ផ្ទាល់ដើម្បីឲ្យវា Update លើ DOM ភ្លាមៗ
             $('ringProgressDice').style.strokeDashoffset = offsetDice;
           }
           
-          var yy = String(now.getFullYear()).slice(-2);
-          var startOfYear = new Date(now.getFullYear(), 0, 0);
-          var dayOfYear = Math.floor((now - startOfYear) / 86400000);
-          var slotIndex = Math.floor((now.getHours() * 60 + now.getMinutes()) / 5);
-          currentDrawIdDice = yy + String(dayOfYear).padStart(3, '0') + String(slotIndex).padStart(3, '0');
-          
-          if ($('nextDrawNumberDice')) $('nextDrawNumberDice').textContent = '#' + currentDrawIdDice;
-          
-          var closedDice = secondsIntoCycle >= (5 * 60 - 10);
-          if ($('bettingClosedBoxDice')) $('bettingClosedBoxDice').style.display = closedDice ? 'block' : 'none';
-          if (closedDice) {
-            var reopenSec = (5 * 60) - secondsIntoCycle;
-            if ($('reopenTimeDice')) $('reopenTimeDice').textContent = '00:' + String(reopenSec).padStart(2, '0');
-          }
-          
-          // ហៅ function ទាំងនេះតែពេលនៅ Tab អាប៉ោងទេ ដើម្បីកាត់បន្ថយការយឺត
           if (mainMode === 'dice') {
             N98.fetchDiceResults();
+            
+            var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
+            var ss = String(secondsLeft % 60).padStart(2, '0');
+            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
+            
+            var yy = String(now.getFullYear()).slice(-2);
+            var startOfYear = new Date(now.getFullYear(), 0, 0);
+            var dayOfYear = Math.floor((now - startOfYear) / 86400000);
+            var slotIndex = Math.floor((now.getHours() * 60 + now.getMinutes()) / 5);
+            currentDrawIdDice = yy + String(dayOfYear).padStart(3, '0') + String(slotIndex).padStart(3, '0');
+            
+            if ($('nextDrawNumberDice')) $('nextDrawNumberDice').textContent = '#' + currentDrawIdDice;
+            
+            var closedDice = secondsIntoCycle >= (5 * 60 - 10);
+            if ($('bettingClosedBoxDice')) $('bettingClosedBoxDice').style.display = closedDice ? 'block' : 'none';
+            if (closedDice) {
+              var reopenSec = (5 * 60) - secondsIntoCycle;
+              if ($('reopenTimeDice')) $('reopenTimeDice').textContent = '00:' + String(reopenSec).padStart(2, '0');
+            }
+            
             N98.updateSubmitDiceButton();
-            N98.updateBalanceStatusBoxDice();
+            N98.updateBalanceStatusBoxDice(); // ✅ Update balance box រៀងរាល់វិនាទី
           }
         }, 1000);
         
@@ -4312,7 +4297,6 @@
           }
           box.style.display = 'block';
           
-          // ពិនិត្យថាតើមានជម្រើសណា (USD ឬ KHR) ដែលខ្វះ
           var hasUSD = totalUSD > 0;
           var hasKHR = totalKHR > 0;
           
@@ -4326,7 +4310,6 @@
           
           var isEnough = shortUSD === 0 && shortKHR === 0;
           
-          // បង្ហាញព័ត៌មាន
           var fmt = function(v, cur) {
             return cur === 'USD' ? Number(v).toFixed(2) + '$' : Math.round(v).toLocaleString() + '៛';
           };
@@ -4357,7 +4340,6 @@
               $('balanceStatusHintDice').textContent = '💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់';
               $('balanceStatusHintDice').style.animation = 'none';
             }
-            // គណនា percent សម្រាប់ progress
             var totalNeeded = neededUSD + (neededKHR / 4100);
             var totalCurrent = currentUSD + (currentKHR / 4100);
             var percent = totalNeeded > 0 ? Math.min(100, (totalCurrent / totalNeeded) * 100) : 0;
