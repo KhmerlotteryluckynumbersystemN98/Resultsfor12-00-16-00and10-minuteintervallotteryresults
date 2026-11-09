@@ -34,9 +34,6 @@
     @keyframes particleFloat { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
     @keyframes livePulse { 0%, 100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.05); filter: brightness(1.3); } }
     @keyframes purplePulse { 0%, 100% { box-shadow: 0 0 10px rgba(111,66,193,0.6); transform: scale(1); } 50% { box-shadow: 0 0 25px rgba(111,66,193,1); transform: scale(1.05); } }
-    
-    /* ✅ បន្ថែម Animation សម្រាប់រង្វង់អាប៉ោងវិល */
-    @keyframes spinDice { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 439.82; } }
 
     .anim-bounce { animation: bounce 1.5s ease-in-out infinite; display: inline-block; }
     .anim-pulse { animation: pulse 1.2s ease-in-out infinite; display: inline-block; }
@@ -109,16 +106,6 @@
     .ring-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
     .ring-text .time { font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); }
     .ring-text .label { font-size: 11px; color: #ff8bb5; font-weight: 700; margin-top: 2px; }
-
-    /* ✅ បន្ថែម CSS សម្រាប់រង្វង់អាប៉ោងវិល */
-    #ringProgressDice {
-      fill: none;
-      stroke: url(#ringGradientDice);
-      stroke-width: 8;
-      stroke-linecap: round;
-      stroke-dasharray: 439.82;
-      animation: spinDice 300s linear infinite; /* ៥ នាទី = ៣០០ វិនាទី */
-    }
 
     .lottery-box { background: white; padding: 16px; margin: 12px 0; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.04); animation: slideInUp 0.5s ease-out; transition: all 0.3s ease; }
     .lottery-box:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
@@ -463,876 +450,875 @@
   <button id="tvModeExitBtn" onclick="N98.toggleTVMode()">❌ ចាកចេញពី TV Mode</button>
 
   <!-- ================= REGISTER / LOGIN MODAL ================= -->
-  <div class="modal" id="registerModal" style="display:block;">
-    <div class="modal-content reg-modal-content" style="max-width:520px;">
-      <div class="reg-step active" id="regStep1">
-        <div class="reg-header">
-          <div class="icon">🎲</div>
-          <h2>ឆ្នោតខ្មែរ N98</h2>
-          <p>សូមស្វាគមន៍! ចុះឈ្មោះដើម្បីចាប់ផ្តើម</p>
-        </div>
-        <div class="reg-input-group">
-          <label>📱 បញ្ចូលលេខទូរស័ព្ទ</label>
-          <input type="tel" id="regPhone" placeholder="012345678" maxlength="10" inputmode="numeric">
-        </div>
-        <div class="reg-input-group">
-          <label>🔐 បង្កើតលេខ PIN 4 ខ្ទង់</label>
-          <input type="tel" id="regPin" placeholder="----" maxlength="4" inputmode="numeric">
-        </div>
-        
-        <div style="background:linear-gradient(135deg,#d4edda,#a8e6c0); border:2px solid #28a745; border-radius:10px; padding:12px; margin-top:10px; font-size:12px; color:#155724; line-height:1.7; font-weight:700; text-align:center;">
-          🎁 <b>ប្រាក់រង្វាន់ស្វាគមន៍!</b><br>
-          គណនីថ្មីទទួលបាន <b style="color:#d63000;">5.00$ និង 20,000៛</b> ភ្លាមៗ!<br>
-          <span style="font-size:11px; color:#856404; font-weight:600;">💰 សមតុល្យចាប់ផ្តើម: 5.00$ / 20,000៛</span>
-        </div>
-        
-        <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:10px; font-size:11.5px; color:#856404; line-height:1.7; font-weight:600;">
-          ⚠️ <b>ការព្រមាន!</b><br>• អ្នកត្រូវចងចាំ <b>PIN 4 ខ្ទង់</b><br>• <b>កុំប្រាប់អ្នកដទៃ</b> អំពី PIN
-        </div>
-        <button class="reg-btn" id="regNextBtn" onclick="N98.handleRegister()">បន្ត → <span class="emoji-rocket">🚀</span></button>
-        
-        <div class="group-buttons-box">
-          <div class="title">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98</div>
-          <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98<small>ចុចទីនេះដើម្បីទទួល Code</small></a>
-        </div>
-        
-        <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មានគណនីរួចហើយ? <a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7; font-weight:800;">ចូលប្រើ</a></div>
+<div class="modal" id="registerModal" style="display:block;">
+  <div class="modal-content reg-modal-content" style="max-width:520px;">
+    <div class="reg-step active" id="regStep1">
+      <div class="reg-header">
+        <div class="icon">🎲</div>
+        <h2>ឆ្នោតខ្មែរ N98</h2>
+        <p>សូមស្វាគមន៍! ចុះឈ្មោះដើម្បីចាប់ផ្តើម</p>
       </div>
-      <div class="reg-step" id="regStep2">
-        <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមចំណាំ ID នេះទុក</p></div>
-        <div class="id-display-box"><div class="label">🆔 ID របស់អ្នក</div><div class="id-value" id="displayUserId">------</div><div class="warning">⚠️ សូមចំណាំ ID នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div></div>
-        <button class="reg-btn success" onclick="N98.showVerifyStep()" style="margin-top:12px;">បញ្ជាក់ Code ឥឡូវ → 🔑</button>
-        
-        <div class="group-buttons-box" style="margin-top:16px;">
-          <div class="title">🔑 ទទួល Code ចុះឈ្មោះ</div>
-          <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ចុចទីនេះដើម្បីទទួល Code<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
-        </div>
+      <div class="reg-input-group">
+        <label>📱 បញ្ចូលលេខទូរស័ព្ទ</label>
+        <input type="tel" id="regPhone" placeholder="012345678" maxlength="10" inputmode="numeric">
       </div>
-      <div class="reg-step" id="regStep3">
-        <div class="reg-header"><div class="icon">🔑</div><h2>បញ្ជាក់ Code</h2><p>វាយ Code 4 ខ្ទង់ដែលបានពី Channel</p></div>
-        <div class="reg-input-group"><label>🔑 Code 4 ខ្ទង់</label><input type="text" class="code-input" id="regCode" placeholder="----" maxlength="4" autocomplete="off"></div>
-        <button class="reg-btn" id="regVerifyBtn" onclick="N98.handleVerify()">បញ្ជាក់ ✓</button>
-        
-        <div class="group-buttons-box" style="margin-top:16px;">
-          <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 មិនទាន់មាន Code? ចុចទីនេះ<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
-        </div>
-        <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;"><a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7;">← ត្រឡប់ក្រោយ</a></div>
+      <div class="reg-input-group">
+        <label>🔐 បង្កើតលេខ PIN 4 ខ្ទង់</label>
+        <input type="tel" id="regPin" placeholder="----" maxlength="4" inputmode="numeric">
       </div>
-      <div class="reg-step" id="regLoginStep">
-        <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
-        <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
-        <div class="reg-input-group"><label>🔐 PIN 4 ខ្ទង់</label><input type="tel" id="loginPin" placeholder="----" maxlength="4" inputmode="numeric"></div>
-        <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
-        <div class="forgot-pin-box">🔐 ភ្លេច PIN? <a href="#" onclick="N98.contactAdmin(); return false;">ទាក់ទង Admin</a></div>
-        <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មិនមានគណនី? <a href="#" onclick="N98.showRegisterStep(); return false;" style="color:#0078D7; font-weight:800;">ចុះឈ្មោះ</a></div>
+      
+      <div style="background:linear-gradient(135deg,#d4edda,#a8e6c0); border:2px solid #28a745; border-radius:10px; padding:12px; margin-top:10px; font-size:12px; color:#155724; line-height:1.7; font-weight:700; text-align:center;">
+        🎁 <b>ប្រាក់រង្វាន់ស្វាគមន៍!</b><br>
+        គណនីថ្មីទទួលបាន <b style="color:#d63000;">5.00$ និង 20,000៛</b> ភ្លាមៗ!<br>
+        <span style="font-size:11px; color:#856404; font-weight:600;">💰 សមតុល្យចាប់ផ្តើម: 5.00$ / 20,000៛</span>
+      </div>
+      
+      <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:10px; font-size:11.5px; color:#856404; line-height:1.7; font-weight:600;">
+        ⚠️ <b>ការព្រមាន!</b><br>• អ្នកត្រូវចងចាំ <b>PIN 4 ខ្ទង់</b><br>• <b>កុំប្រាប់អ្នកដទៃ</b> អំពី PIN
+      </div>
+      <button class="reg-btn" id="regNextBtn" onclick="N98.handleRegister()">បន្ត → <span class="emoji-rocket">🚀</span></button>
+      
+      <div class="group-buttons-box">
+        <div class="title">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98</div>
+        <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98<small>ចុចទីនេះដើម្បីទទួល Code</small></a>
+      </div>
+      
+      <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មានគណនីរួចហើយ? <a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7; font-weight:800;">ចូលប្រើ</a></div>
+    </div>
+    <div class="reg-step" id="regStep2">
+      <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមចំណាំ ID នេះទុក</p></div>
+      <div class="id-display-box"><div class="label">🆔 ID របស់អ្នក</div><div class="id-value" id="displayUserId">------</div><div class="warning">⚠️ សូមចំណាំ ID នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div></div>
+      <button class="reg-btn success" onclick="N98.showVerifyStep()" style="margin-top:12px;">បញ្ជាក់ Code ឥឡូវ → 🔑</button>
+      
+      <div class="group-buttons-box" style="margin-top:16px;">
+        <div class="title">🔑 ទទួល Code ចុះឈ្មោះ</div>
+        <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ចុចទីនេះដើម្បីទទួល Code<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
       </div>
     </div>
-  </div>
-
-  <!-- ================= MAIN APP ================= -->
-  <div id="mainApp" style="display:none;">
-    <header id="mainHeader">
-      <h1><span class="emoji-dice">🎲</span> ឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></h1>
-      <p id="headerSubtitle"><span class="anim-pulse">🎯</span> ប្រព័ន្ធចាក់ឆ្នោត 12:00 / 16:00 <span class="anim-pulse">🎉</span></p>
-    </header>
-
-    <div class="mode-tabs">
-      <button class="mode-tab active" data-mode="classic" onclick="N98.switchMainMode('classic', event)">🕛 12:00 / 🕓 16:00</button>
-      <button class="mode-tab" data-mode="rapid" onclick="N98.switchMainMode('rapid', event)">🎯 10 នាទី <span class="badge-live">LIVE</span></button>
-      <button class="mode-tab" data-mode="dice" onclick="N98.switchMainMode('dice', event)">🎲 អាប៉ោង <span class="badge-live">5 នាទី</span></button>
+    <div class="reg-step" id="regStep3">
+      <div class="reg-header"><div class="icon">🔑</div><h2>បញ្ជាក់ Code</h2><p>វាយ Code 4 ខ្ទង់ដែលបានពី Channel</p></div>
+      <div class="reg-input-group"><label>🔑 Code 4 ខ្ទង់</label><input type="text" class="code-input" id="regCode" placeholder="----" maxlength="4" autocomplete="off"></div>
+      <button class="reg-btn" id="regVerifyBtn" onclick="N98.handleVerify()">បញ្ជាក់ ✓</button>
+      
+      <div class="group-buttons-box" style="margin-top:16px;">
+        <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 មិនទាន់មាន Code? ចុចទីនេះ<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
+      </div>
+      <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;"><a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7;">← ត្រឡប់ក្រោយ</a></div>
     </div>
-
-    <nav class="nav-bar">
-      <a href="#" class="active" onclick="N98.showSection('home', event); return false;"><span class="anim-pulse">🏠</span> ទំព័រដើម</a>
-      <a href="#" onclick="N98.showSection('rules', event); return false;"><span class="anim-pulse">📋</span> ច្បាប់</a>
-      <button class="btn-theme" onclick="N98.toggleTheme()" id="themeBtn">🌙 <span class="theme-label">Dark</span></button>
-      <button class="btn-contact-admin" onclick="N98.contactAdmin()">✉️ ទាក់ទង Admin</button>
-      <button class="btn-share" onclick="N98.copyLink()">🔗 ចែករំលែក</button>
-      <button class="btn-group" onclick="N98.openGroup()">💬 ចូលក្រុម</button>
-      <button class="sound-toggle" id="soundToggleBtn" onclick="N98.toggleSound()">🔊 សំឡេង</button>
-      <button class="btn-tv" onclick="N98.toggleTVMode()">📺 TV Mode</button>
-      <button class="btn-logout" onclick="N98.handleLogout()">🚪 ចាកចេញ</button>
-    </nav>
-
-    <div class="section">
-      <div class="user-info-bar">
-        <div><span class="label"><span class="anim-pulse">🆔</span> ID: </span><span class="value" id="displayCurrentUserId">------</span></div>
-        <div><span class="label"><span class="anim-bounce">📱</span> Phone: </span><span class="value" id="displayCurrentPhone">---</span></div>
-      </div>
-
-      <div class="clock-box">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:26px;" class="anim-spin">⏰</span>
-          <div><div class="clock-title">🕒 ម៉ោងបច្ចុប្បន្ន</div><div class="clock-time" id="widgetTime">00:00:00</div></div>
-        </div>
-        <div><div class="clock-date" id="widgetDate">កំពុងផ្ទុក...</div></div>
-      </div>
-
-      <div class="status-bar"><span class="label">📊 ស្ថានភាព</span><span class="value" id="resultStatusText">កំពុងផ្ទុក...</span></div>
-
-      <!-- ================= CLASSIC MODE (12:00 / 16:00) ================= -->
-      <div id="classicMode">
-        <div class="countdown">
-          <div style="display:flex; justify-content:center; align-items:center; gap:8px;"><span style="font-size:26px;" class="emoji-dice">🎲</span><span style="font-size:16px; color:#dc3545; font-weight:800;"><span class="anim-pulse">⏳</span> ម៉ោងប្រកាសលទ្ធផលបន្ទាប់</span></div>
-          <div class="time-display" id="countdownDisplay">--:--:--</div>
-          <div class="next-time" id="nextTimeLabel">🎯 ពេលបន្ទាប់...</div>
-          <div class="status-time" id="statusTimeLabel"></div>
-        </div>
-
-        <div class="lottery-box" id="box12Container">
-          <div class="time-box"><span class="anim-pulse">🕛</span> លទ្ធផល 12:00 <span class="badge" id="badge12">ព្រឹកពីរ</span> <span id="badge12Latest"></span></div>
-          <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
-          <div class="numbers" id="box12">
-            <div><span class="letter">A:</span> <span id="r12_A">--</span></div><div><span class="letter">B:</span> <span id="r12_B">--</span></div>
-            <div><span class="letter">C:</span> <span id="r12_C">--</span></div><div><span class="letter">D:</span> <span id="r12_D">--</span></div>
-            <div><span class="letter">E:</span> <span id="r12_E">--</span></div>
-          </div>
-          <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
-          <div class="numbers" id="box12_3d">
-            <div><span class="letter">A:</span> <span id="r12_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r12_3d_B">--</span></div>
-            <div><span class="letter">C:</span> <span id="r12_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r12_3d_D">--</span></div>
-            <div><span class="letter">E:</span> <span id="r12_3d_E">--</span></div>
-          </div>
-          <div style="margin-top:8px;" id="date12"></div>
-        </div>
-
-        <div class="lottery-box" id="box16Container">
-          <div class="time-box"><span class="anim-pulse">🕓</span> លទ្ធផល 16:00 <span class="badge" id="badge16">ល្ងាចបី</span> <span id="badge16Latest"></span></div>
-          <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
-          <div class="numbers" id="box16">
-            <div><span class="letter">A:</span> <span id="r16_A">--</span></div><div><span class="letter">B:</span> <span id="r16_B">--</span></div>
-            <div><span class="letter">C:</span> <span id="r16_C">--</span></div><div><span class="letter">D:</span> <span id="r16_D">--</span></div>
-            <div><span class="letter">E:</span> <span id="r16_E">--</span></div>
-          </div>
-          <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
-          <div class="numbers" id="box16_3d">
-            <div><span class="letter">A:</span> <span id="r16_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r16_3d_B">--</span></div>
-            <div><span class="letter">C:</span> <span id="r16_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r16_3d_D">--</span></div>
-            <div><span class="letter">E:</span> <span id="r16_3d_E">--</span></div>
-          </div>
-          <div style="margin-top:8px;" id="date16"></div>
-        </div>
-
-        <div class="bet-box">
-          <h2>🎯 ទិញលេខចាក់ (A, B, C, D, E)</h2>
-          
-          <div class="balance-box" id="balanceBox">
-            <div style="margin-bottom:10px; font-weight:800; color:#155724; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceAmountUSD" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
-              <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceAmountKHR" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
-            </div>
-            <div class="balance-buttons-row">
-              <button class="btn btn-primary" onclick="N98.openDepositModal()">💰 បញ្ចូលទឹកប្រាក់</button>
-              <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
-            </div>
-          </div>
-
-          <div class="guide-box">💡 <strong>របៀបប្រើ៖</strong><br>១. ជ្រើស <strong>ពេលវេលា</strong> និង <strong>ប្រភេទ</strong><br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01,02,03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
-
-          <table class="reward-table">
-            <thead><tr><th>ប្រភេទ</th><th>ម៉ោង</th><th>អត្រា</th></tr></thead>
-            <tbody>
-              <tr><td>២ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">70$</span></td></tr>
-              <tr><td>៣ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">500$</span></td></tr>
-            </tbody>
-          </table>
-
-          <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ffb3b3; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;"><span style="color:#d63000; font-weight:800; font-size:13px;">⚠️ ចាក់ពី 500៛/0.25$ ដល់ 200,000៛/50$</span></div>
-
-          <div class="betting-closed-compact" id="bettingClosedCompact">
-            <div class="left-side">
-              <span class="icon">🔒</span>
-              <span class="title" id="bettingClosedText">ការចាក់ត្រូវបានបិទជាបណ្ដោះអាសន្ន!</span>
-            </div>
-            <div class="right-side">
-              ⏰ បើកវិញ <span class="time" id="reopenCountdown">--:--:--</span>
-            </div>
-          </div>
-
-          <div style="font-weight:800; color:#0078D7; font-size:14px; margin-bottom:8px;">⏰ ជ្រើសរើស ពេលវេលា និង ប្រភេទ</div>
-          <div class="time-selector">
-            <button class="time-btn active" data-time="12:00" onclick="N98.setTime('12:00', event)">🕛 12:00</button>
-            <button class="time-btn" data-time="16:00" onclick="N98.setTime('16:00', event)">🕓 16:00</button>
-          </div>
-          <div class="type-selector">
-            <button class="type-btn active" data-type="two" onclick="N98.setType('two', event)">🔢 ២ខ្ទង់</button>
-            <button class="type-btn" data-type="three" onclick="N98.setType('three', event)">🔢 ៣ខ្ទង់</button>
-          </div>
-
-          <div style="font-weight:800; color:#0078D7; font-size:14px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, E</div>
-          <div class="letter-selector">
-            <div class="letter-circle" data-letter="A" onclick="N98.selectLetter('A', event)">A</div>
-            <div class="letter-circle" data-letter="B" onclick="N98.selectLetter('B', event)">B</div>
-            <div class="letter-circle" data-letter="C" onclick="N98.selectLetter('C', event)">C</div>
-            <div class="letter-circle" data-letter="D" onclick="N98.selectLetter('D', event)">D</div>
-            <div class="letter-circle" data-letter="E" onclick="N98.selectLetter('E', event)">E</div>
-          </div>
-
-          <div class="input-row"><input type="text" id="numInput" placeholder="បញ្ចូលលេខ (ឧ. 01,02,03)" disabled inputmode="numeric"></div>
-          <div class="selected-display" id="selectedDisplay"><span style="color:#6c757d; font-size:12px; font-weight:600;">មិនទាន់មានលេខ</span></div>
-          <div style="color:#6c757d; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay" style="color:#0078D7; font-size:15px;">0</strong> / 10</div>
-
-          <label style="font-weight:800; color:#0078D7; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
-          <div class="amount-buttons">
-            <button class="btn-amount" onclick="N98.setAmount(500,'៛')">500៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(1000,'៛')">1000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(5000,'៛')">5000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(10000,'៛')">10000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(20000,'៛')">20000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(40000,'៛')">40000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(100000,'៛')">100000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(200000,'៛')">200000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount(0.25,'$')">0.25$</button>
-            <button class="btn-amount" onclick="N98.setAmount(1,'$')">1$</button>
-            <button class="btn-amount" onclick="N98.setAmount(5,'$')">5$</button>
-            <button class="btn-amount" onclick="N98.setAmount(10,'$')">10$</button>
-            <button class="btn-amount" onclick="N98.setAmount(20,'$')">20$</button>
-            <button class="btn-amount" onclick="N98.setAmount(50,'$')">50$</button>
-          </div>
-          <div class="custom-amount">
-            <input type="number" id="amountInput" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmount()">
-            <select id="currencySelect" onchange="N98.updateAmount()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
-          </div>
-
-          <div class="bet-summary">
-            <div class="bet-summary-item"><span>📊 ចំនួនលេខសរុប៖</span><span id="totalCount">0</span></div>
-            <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="totalAmountDisplay">0</span></div>
-          </div>
-
-          <button class="btn btn-success" id="btnSubmit" onclick="N98.submitBet()" disabled>💳 ដាក់ភ្នាល់ឥឡូវ</button>
-
-          <div class="balance-status-box" id="balanceStatusBox">
-            <div class="header-row"><span id="balanceStatusIcon">💰</span><span id="balanceStatusTitle">ស្ថានភាពសមតុល្យ</span></div>
-            <div class="rows">
-              <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrent">0៛</span>
-              <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeeded">0៛</span>
-              <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShort">0៛</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill" style="width:0%;"></div></div>
-            <div class="hint" id="balanceStatusHint" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= RAPID MODE (10 នាទី) ================= -->
-      <div id="rapidMode" style="display:none;">
-        <div class="countdown-rapid">
-          <div class="label">⚡ ការប្រកាសលទ្ធផលបន្ទាប់</div>
-          <div class="ring-container">
-            <svg class="ring-svg" viewBox="0 0 160 160">
-              <defs><linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff1744;stop-opacity:1" /><stop offset="50%" style="stop-color:#e91e63;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
-              <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
-              <circle class="ring-progress" id="ringProgress" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0"></circle>
-            </svg>
-            <div class="ring-text"><div class="time" id="ringTime">10:00</div><div class="label">នាទី:វិនាទី</div></div>
-          </div>
-          <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumber">#------</span></div>
-        </div>
-
-        <div class="bet-box rapid">
-          <h2>🎯 លទ្ធផល ៣ វគ្គចុងក្រោយ</h2>
-          <div class="results-grid" id="resultsGrid"><div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div></div>
-        </div>
-
-        <div class="bet-box rapid">
-          <h2>⚡ ចាក់លេខវគ្គបន្ទាប់</h2>
-          <div class="balance-box" id="balanceBoxRapid" style="background:linear-gradient(135deg,#1e3a2f,#163d29); border-color:#4ade80;">
-            <div style="margin-bottom:10px; font-weight:800; color:#7dd89a; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceRapidUSD" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
-              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceRapidKHR" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
-            </div>
-            <div class="balance-buttons-row">
-              <button class="btn btn-primary" onclick="N98.openDepositModal()" style="background:linear-gradient(135deg,#e91e63,#880e4f);">💰 បញ្ចូលទឹកប្រាក់</button>
-              <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
-            </div>
-          </div>
-
-          <div class="guide-box">💡 <strong>របៀបចាក់ 10 នាទី៖</strong><br>១. ជ្រើស <strong>ប្រភេទ</strong> (២ ឬ ៣ ខ្ទង់)<br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01, 02, 03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
-
-          <div id="bettingClosedBox10" style="display:none; background:linear-gradient(135deg,rgba(255,23,68,0.15),rgba(136,14,79,0.15)); border:2px solid #ff1744; border-radius:12px; padding:12px; margin-bottom:12px;">
-            <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#ff8b95; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#ff8b95; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTime10" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--:--</strong></div></div></div>
-          </div>
-
-          <div class="type-selector">
-            <button class="type-btn active" data-type10="two" onclick="N98.setType10('two', event)">🔢 ២ខ្ទង់</button>
-            <button class="type-btn" data-type10="three" onclick="N98.setType10('three', event)">🔢 ៣ខ្ទង់</button>
-          </div>
-
-          <div style="color:#ff8bb5; font-weight:800; font-size:13px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសប៉ុស្តិ៍ A-E</div>
-          <div class="letter-selector">
-            <div class="letter-circle" data-letter10="A" onclick="N98.selectLetter10('A', event)">A</div>
-            <div class="letter-circle" data-letter10="B" onclick="N98.selectLetter10('B', event)">B</div>
-            <div class="letter-circle" data-letter10="C" onclick="N98.selectLetter10('C', event)">C</div>
-            <div class="letter-circle" data-letter10="D" onclick="N98.selectLetter10('D', event)">D</div>
-            <div class="letter-circle" data-letter10="E" onclick="N98.selectLetter10('E', event)">E</div>
-          </div>
-
-          <div class="input-row"><input type="text" id="numInput10" placeholder="បញ្ចូលលេខ (ឧ. 01,02,03)" disabled inputmode="numeric"></div>
-          <div class="selected-display" id="selectedDisplay10"><span style="color:#a0a8b8; font-size:12px; font-weight:600;">មិនទាន់មានលេខ</span></div>
-          <div style="color:#a0a8b8; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay10" style="color:#ff8bb5; font-size:14px;">0</strong> / 10</div>
-
-          <label style="color:#ff8bb5; font-weight:800; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
-          <div class="amount-buttons">
-            <button class="btn-amount" onclick="N98.setAmount10(500,'៛')">500៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(1000,'៛')">1000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(5000,'៛')">5000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(10000,'៛')">10000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(20000,'៛')">20000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(40000,'៛')">40000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(100000,'៛')">100000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(200000,'៛')">200000៛</button>
-            <button class="btn-amount" onclick="N98.setAmount10(0.25,'$')">0.25$</button>
-            <button class="btn-amount" onclick="N98.setAmount10(1,'$')">1$</button>
-            <button class="btn-amount" onclick="N98.setAmount10(5,'$')">5$</button>
-            <button class="btn-amount" onclick="N98.setAmount10(10,'$')">10$</button>
-            <button class="btn-amount" onclick="N98.setAmount10(20,'$')">20$</button>
-            <button class="btn-amount" onclick="N98.setAmount10(50,'$')">50$</button>
-          </div>
-          <div class="custom-amount">
-            <input type="number" id="amountInput10" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmount10()">
-            <select id="currencySelect10" onchange="N98.updateAmount10()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
-          </div>
-
-          <div class="bet-summary">
-            <div class="bet-summary-item"><span>📊 ចំនួនលេខសរុប៖</span><span id="totalCount10">0</span></div>
-            <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="totalAmount10">0</span></div>
-          </div>
-
-          <button class="btn btn-success" id="btnSubmit10" onclick="N98.submitBet10()" disabled style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ដាក់ភ្នាល់ឥឡូវ</button>
-
-          <div class="balance-status-box" id="balanceStatusBox10">
-            <div class="header-row"><span id="balanceStatusIcon10">💰</span><span id="balanceStatusTitle10">ស្ថានភាពសមតុល្យ</span></div>
-            <div class="rows">
-              <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrent10">0៛</span>
-              <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeeded10">0៛</span>
-              <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShort10">0៛</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill10" style="width:0%;"></div></div>
-            <div class="hint" id="balanceStatusHint10" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= DICE MODE (អាប៉ោង 5 នាទី) ================= -->
-      <div id="diceMode" style="display:none;">
-        <div class="countdown-rapid" style="border-color: #6f42c1; background: linear-gradient(135deg, #1a0f1f, #2d1b3d); box-shadow: 0 8px 32px rgba(111,66,193,0.4);">
-          <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
-          <div class="ring-container">
-            <svg class="ring-svg" viewBox="0 0 160 160">
-              <defs><linearGradient id="ringGradientDice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6f42c1;stop-opacity:1" /><stop offset="50%" style="stop-color:#9c27b0;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
-              <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
-              <circle class="ring-progress" id="ringProgressDice" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0" stroke="url(#ringGradientDice)"></circle>
-            </svg>
-            <div class="ring-text"><div class="time" id="ringTimeDice" style="color:#d8b4fe;">05:00</div><div class="label" style="color:#d8b4fe;">នាទី:វិនាទី</div></div>
-          </div>
-          <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumberDice">#------</span></div>
-        </div>
-
-        <div class="bet-box dice">
-          <h2>🎲 លទ្ធផលអាប៉ោង ៤ វគ្គចុងក្រោយ</h2>
-          <div class="results-grid" id="diceResultsGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
-            <div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div>
-          </div>
-        </div>
-
-        <div class="bet-box dice">
-          <h2>🎲 ចាក់អាប៉ោងវគ្គបន្ទាប់</h2>
-          
-          <div class="balance-box" id="balanceBoxDice" style="background:linear-gradient(135deg,#1e3a2f,#163d29); border-color:#4ade80;">
-            <div style="margin-bottom:10px; font-weight:800; color:#7dd89a; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceDiceUSD" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
-              <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceDiceKHR" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
-            </div>
-            <div class="balance-buttons-row">
-              <button class="btn btn-primary" onclick="N98.openDepositModal()" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">💰 បញ្ចូលទឹកប្រាក់</button>
-              <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
-            </div>
-          </div>
-
-          <div id="bettingClosedBoxDice" style="display:none; background:linear-gradient(135deg,rgba(111,66,193,0.15),rgba(74,20,140,0.15)); border:2px solid #6f42c1; border-radius:12px; padding:12px; margin-bottom:12px;">
-            <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#d8b4fe; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#d8b4fe; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTimeDice" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--</strong></div></div></div>
-          </div>
-
-          <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. បញ្ចូល <strong>ចំនួនទឹកប្រាក់</strong> ខាងក្រោម<br>២. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (អាចជ្រើសបានច្រើន)<br>៣. ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
-
-          <!-- តារាងចាក់អាប៉ោង -->
-          <div class="dice-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div class="dice-box" id="diceBox1" onclick="N98.toggleDiceSelection(1, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
-              <div class="dice-title" style="color: #ef4444;">1</div>
-              <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
-              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div></div>
-            </div>
-            <div class="dice-box" id="diceBox6" onclick="N98.toggleDiceSelection(6, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
-              <div class="dice-title" style="color: #ef4444;">6</div>
-              <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
-              <div class="dice-dots" style="margin-top: 5px;">
-                <div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div>
-              </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <div class="dice-box" id="diceBox2" onclick="N98.toggleDiceSelection(2, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
-                <div class="dice-title" style="color: #3b82f6;">2</div>
-                <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
-                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              </div>
-              <div class="dice-box" id="diceBox3" onclick="N98.toggleDiceSelection(3, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
-                <div class="dice-title" style="color: #3b82f6;">3</div>
-                <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
-                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              </div>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <div class="dice-box" id="diceBox4" onclick="N98.toggleDiceSelection(4, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
-                <div class="dice-title" style="color: #ef4444;">4</div>
-                <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
-                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
-              </div>
-              <div class="dice-box" id="diceBox5" onclick="N98.toggleDiceSelection(5, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
-                <div class="dice-title" style="color: #3b82f6;">5</div>
-                <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
-                <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
-              </div>
-            </div>
-
-            <div class="dice-box" id="diceBoxThin" onclick="N98.toggleDiceSelection('thin', event)" style="border: 2px solid #6f42c1; background: #f3e8ff;">
-              <div class="dice-title" style="color: #6f42c1; font-size: 13px;">ស្តើង (1-3)</div>
-              <div class="dice-sub" style="color: #6f42c1; font-size: 10px;">1x0.85</div>
-              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div></div>
-            </div>
-            <div class="dice-box" id="diceBoxThick" onclick="N98.toggleDiceSelection('thick', event)" style="border: 2px solid #6f42c1; background: #f3e8ff;">
-              <div class="dice-title" style="color: #6f42c1; font-size: 13px;">ក្រាស់ (4-6)</div>
-              <div class="dice-sub" style="color: #6f42c1; font-size: 10px;">1x0.85</div>
-              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div></div>
-            </div>
-          </div>
-
-          <div style="margin-top: 15px;">
-            <div style="font-weight:800; color:#d8b4fe; font-size:13px; margin-bottom:8px;">📋 បញ្ជីជម្រើសដែលបានជ្រើស (អាចជ្រើសបានច្រើន)</div>
-            <div class="dice-selection-list" id="diceSelectionList">
-              <div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>
-            </div>
-          </div>
-
-          <div class="bet-summary" style="background: rgba(255,255,255,0.05); border-color: rgba(111,66,193,0.4);">
-            <div class="bet-summary-item" style="color:#d8b4fe;"><span>🎲 ចំនួនជម្រើសសរុប៖</span><span id="diceTotalSelections">0</span></div>
-            <div class="bet-summary-item total" style="color:#d8b4fe; border-bottom:none;"><span>💵 សរុប៖</span><span id="diceTotalAmount">0</span></div>
-          </div>
-
-          <div style="margin-top: 15px;">
-            <label style="color:#d8b4fe; font-weight:800; font-size:13px; display:block; margin-bottom:6px;">💰 ចំនួនទឹកប្រាក់សម្រាប់ជម្រើសដែលបានជ្រើស</label>
-            <div class="dice-input-row">
-              <input type="number" id="diceBetAmountInput" placeholder="បញ្ចូលចំនួន" min="0.01" step="any" style="flex: 2;">
-              <select id="diceCurrencySelect" style="flex: 1; background: rgba(0,0,0,0.3); color: white; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; padding: 10px; font-weight:800;">
-                <option value="USD">ដុល្លារ ($)</option>
-                <option value="KHR">រៀល (៛)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="amount-buttons" style="margin-top: 10px; margin-bottom: 10px;">
-            <button class="btn-amount" onclick="N98.setDiceAmount(500,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">500៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(1000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">1000៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(5000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">5000៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(10000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">10000៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(20000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">20000៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(40000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">40000៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(100000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">100000៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(200000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">200000៛</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(0.25,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">0.25$</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(1,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">1$</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(5,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">5$</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(10,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">10$</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(20,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">20$</button>
-            <button class="btn-amount" onclick="N98.setDiceAmount(50,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">50$</button>
-          </div>
-
-          <button class="btn btn-success" id="btnSubmitDice" onclick="N98.submitDiceBets()" disabled style="background:linear-gradient(135deg,#6f42c1,#4a148c); width:100%; padding:14px; font-size:15px;">🎲 ដាក់ភ្នាល់ឥឡូវ</button>
-
-          <div class="balance-status-box" id="balanceStatusBoxDice">
-            <div class="header-row"><span id="balanceStatusIconDice">💰</span><span id="balanceStatusTitleDice">ស្ថានភាពសមតុល្យ</span></div>
-            <div class="rows">
-              <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrentDice">0៛</span>
-              <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeededDice">0៛</span>
-              <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShortDice">0៛</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" id="balanceProgressFillDice" style="width:0%;"></div></div>
-            <div class="hint" id="balanceStatusHintDice" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= ADMIN PANEL ================= -->
-      <div class="lottery-box" id="adminPanel" style="display:none; border:2px solid #dc3545;">
-        <div class="time-box" style="color:#dc3545;"><span class="anim-pulse">👑</span> ADMIN PANEL</div>
-        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px dashed #ff8b8b; padding:10px; border-radius:10px; margin:10px 0; font-size:12px; color:#721c24; font-weight:700;">🔐 ផ្ទាំងនេះសម្រាប់ Admin ប៉ុណ្ណោះ</div>
-        
-        <div style="margin-top:12px;">
-          <label style="font-weight:800; color:#dc3545; font-size:13px;">💰 បញ្ចូលទឹកប្រាក់ជូនសមាជិក (ផ្ទាល់)</label>
-          <input type="tel" id="adminPhone" placeholder="លេខទូរស័ព្ទ (ឧ. 012345678)" inputmode="numeric" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; margin-top:6px;">
-          <div style="display:flex; gap:6px; margin-top:8px;">
-            <input type="number" id="adminAmount" placeholder="ចំនួន" step="any" min="0.01" style="flex:2; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700;">
-            <select id="adminCurrency" style="flex:1; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; background:#f8f9fa; color:#0078D7;"><option value="USD">$ USD</option><option value="KHR">៛ KHR</option></select>
-          </div>
-          <input type="text" id="adminNote" placeholder="ចំណាំ (ឧ. Bonus, Top-up)" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:13px; margin-top:8px;">
-          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;">
-            <button class="btn btn-success" onclick="N98.adminQuickAdd(0.25, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+0.25$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+1$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+5$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+1K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+5K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(10000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+10K៛</button>
-          </div>
-          <button class="btn" onclick="N98.adminAddDeposit()" style="width:100%; padding:14px; margin-top:12px; font-size:14px; background:linear-gradient(135deg,#dc3545,#a71d2a); color:white; font-weight:800; border:none; border-radius:8px; cursor:pointer;">💰 បញ្ចូលទឹកប្រាក់</button>
-          <div id="adminFeedback" style="margin-top:10px; padding:10px; border-radius:8px; font-weight:700; font-size:13px; display:none;"></div>
-        </div>
-
-        <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:12px; border-radius:10px; margin-top:12px; border:1px solid #b6d4fe;">
-          <div style="font-weight:800; color:#005fa3; font-size:13px; margin-bottom:8px;">💰 គ្រប់គ្រងសំណើបញ្ចូលទឹកប្រាក់</div>
-          <button class="btn btn-primary" onclick="N98.adminLoadDepositRequests()" style="width:100%; padding:10px; font-size:13px;">📋 បង្ហាញបញ្ជីសំណើ</button>
-          <div id="adminDepositReqList" style="margin-top:8px; font-size:12px; font-weight:700; line-height:1.8;"></div>
-        </div>
-
-        <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:12px; border-radius:10px; margin-top:12px;">
-          <div style="font-weight:800; color:#005fa3; font-size:13px; margin-bottom:8px;">📊 ស្ថិតិប្រព័ន្ធ</div>
-          <button class="btn btn-primary" onclick="N98.adminLoadStats()" style="width:100%; padding:10px; font-size:13px;">📈 ទាញស្ថិតិ</button>
-          <div id="adminStats" style="margin-top:8px; font-size:12px; font-weight:700; color:#005fa3; line-height:1.8;"></div>
-        </div>
-
-        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); padding:12px; border-radius:10px; margin-top:12px; border:1px solid #ff8b8b;">
-          <div style="font-weight:800; color:#721c24; font-size:13px; margin-bottom:8px;">🏦 គ្រប់គ្រងការដកប្រាក់</div>
-          <button class="btn" onclick="N98.adminLoadWithdrawals()" style="width:100%; padding:10px; font-size:13px; background:linear-gradient(135deg,#6f42c1,#5a32a3); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:800;">📋 បង្ហាញបញ្ជីដកប្រាក់</button>
-          <div id="adminWithdrawalsList" style="margin-top:8px; font-size:12px; font-weight:700; line-height:1.8;"></div>
-        </div>
-      </div>
-
-      <!-- ================= HISTORY SECTION ================= -->
-      <div class="lottery-box" id="historySection" style="display:block; margin-top:20px;">
-        <div class="time-box">📊 ប្រវត្តិទាំងអស់ <span style="font-size:10px; color:#dc3545; margin-left:8px; font-weight:800; background:#fee2e2; padding:2px 8px; border-radius:6px;">រក្សាទុក ២ ថ្ងៃ</span></div>
-        
-        <div class="history-tabs-container" id="historyTabsContainer">
-          <button class="history-tab active" data-tab="bets-classic" data-mode="classic" onclick="N98.switchHistoryTab('bets-classic', event)">📊 ប្រវត្តិចាក់ 12/16</button>
-          <button class="history-tab" data-tab="results-classic" data-mode="classic" onclick="N98.switchHistoryTab('results-classic', event)">🎯 លទ្ធផល 12/16</button>
-          <button class="history-tab" data-tab="deposits" data-mode="both" onclick="N98.switchHistoryTab('deposits', event)">💰 ប្រវត្តិដាក់ប្រាក់</button>
-          <button class="history-tab" data-tab="withdrawals" data-mode="both" onclick="N98.switchHistoryTab('withdrawals', event)">🏦 ប្រវត្តិដកប្រាក់</button>
-          <button class="history-tab" data-tab="bets-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('bets-rapid', event)" style="display:none;">⚡ ប្រវត្តិចាក់ 10នាទី</button>
-          <button class="history-tab" data-tab="results-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('results-rapid', event)" style="display:none;">🎯 លទ្ធផល 10នាទី</button>
-          <button class="history-tab" data-tab="bets-dice" data-mode="dice" onclick="N98.switchHistoryTab('bets-dice', event)" style="display:none;">🎲 ប្រវត្តិចាក់អាប៉ោង</button>
-          <button class="history-tab" data-tab="results-dice" data-mode="dice" onclick="N98.switchHistoryTab('results-dice', event)" style="display:none;">🎯 លទ្ធផលអាប៉ោង</button>
-        </div>
-
-        <div class="history-panel active" id="panel-bets-classic">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#0078D7,#005fa3);"><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លេខចាក់</th><th>ប្រភេទ</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyClassic"><tr><td colspan="7" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-
-        <div class="history-panel" id="panel-bets-rapid">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#e91e63,#880e4f);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លេខចាក់</th><th>ប្រភេទ</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyRapid"><tr><td colspan="7" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-
-        <div class="history-panel" id="panel-withdrawals">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#5a32a3);"><th>កាលបរិច្ឆេទ</th><th>លេខសំណើ</th><th>ចំនួនដក</th><th>រូបិយប័ណ្ណ</th><th>ស្ថានភាព</th></tr></thead><tbody id="userWithdrawBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-
-        <div class="history-panel" id="panel-deposits">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#28a745,#1e7e34);"><th>កាលបរិច្ឆេទ</th><th>ចំនួន</th><th>រូបិយប័ណ្ណ</th><th>សមតុល្យក្រោយ</th><th>កំណត់សម្គាល់</th></tr></thead><tbody id="userDepositBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-
-        <div class="history-panel" id="panel-results-classic">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff9800,#e65100);"><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyClassic"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-
-        <div class="history-panel" id="panel-results-rapid">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff1744,#d50000);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyRapid"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-
-        <div class="history-panel" id="panel-bets-dice">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#4a148c);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>ជម្រើសចាក់</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyDice"><tr><td colspan="6" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-
-        <div class="history-panel" id="panel-results-dice">
-          <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#9c27b0,#6a1b9a);"><th>វគ្គ</th><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល</th><th>គ្រាប់</th></tr></thead><tbody id="historyBodyDice"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
-        </div>
-      </div>
-
-      <div id="rulesSection" style="display:none;">
-        <div class="bet-box">
-          <h2>📋 ច្បាប់ និងរបៀបប្រើប្រាស់</h2>
-          <div style="padding:8px; font-size:13px; line-height:1.9; font-weight:600;">
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px;">🎯 ១. របៀបចាក់ឆ្នោត</h4>
-            <p>១. ជ្រើសរើសពេលវេលា (12:00 ឬ 16:00 ឬ 10 នាទី ឬ អាប៉ោង 5 នាទី)</p>
-            <p>២. ជ្រើសរើសប្រភេទ (២ ឬ ៣ ខ្ទង់)</p>
-            <p>៣. ចុចជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, ឬ E (ឬជ្រើសគ្រាប់អាប៉ោង)</p>
-            <p>៤. បញ្ចូលលេខ (ឧ. 01, 02, 03)</p>
-            <p>៥. ជ្រើសរើសចំនួនទឹកប្រាក់ក្នុងមួយលេខ</p>
-            <p>៦. ចុច "ដាក់ភ្នាល់"</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ២. អត្រារង្វាន់</h4>
-            <p>• <strong>២ខ្ទង់ (A-E)</strong> – 1$ → 70$</p>
-            <p>• <strong>៣ខ្ទង់ (A-E)</strong> – 1$ → 500$</p>
-            <p>• <strong>អាប៉ោង (ទាយគ្រាប់)</strong> – 1$ → 5$</p>
-            <p>• <strong>អាប៉ោង (ស្តើង/ក្រាស់)</strong> – 1$ → 0.85$</p>
-            <p>• ចាក់ពី 500៛/0.25$ ដល់ 200,000៛/50$</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚡ ៣. ឆ្នោត 10 នាទី និង អាប៉ោង 5 នាទី</h4>
-            <p>• ចុច Tab <strong>🎯 10 នាទី</strong> ឬ <strong>🎲 អាប៉ោង</strong> ខាងលើ</p>
-            <p>• ប្រកាសលទ្ធផលរៀងរាល់ 10 នាទី (ឆ្នោត) និង 5 នាទី (អាប៉ោង)</p>
-            <p>• ដំណើរការ 24/7</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🎁 ៤. ប្រាក់រង្វាន់ស្វាគមន៍</h4>
-            <p>• គណនីថ្មីទទួលបាន <strong style="color:#d63000;">5.00$ និង 20,000៛</strong> ភ្លាមៗ</p>
-            <p>• <strong style="color:#dc3545;">មិនអាចដកបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង និងរង់ចាំ ២៤ ម៉ោង</p>
-            <p>• <strong style="color:#dc3545;">អាចចាក់អាប៉ោងបាន</strong> បន្ទាប់ពីបញ្ចូលប្រាក់ពិតប្រាកដ</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🏦 ៥. របៀបដកប្រាក់</h4>
-            <p>• ដកប្រាក់បានគ្រប់ពេល 24/7</p>
-            <p>• <strong style="color:#d63000;">សមតុល្យអប្បបរមាសម្រាប់ដក: 10$ ឬ 40,000៛</strong></p>
-            <p>• លក្ខខណ្ឌដកប្រាក់៖ បញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង, រង់ចាំ ២៤ ម៉ោង</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ៦. របៀបបញ្ចូលប្រាក់</h4>
-            <p>• អប្បបរមា: 5.00$ ឬ 20,000៛</p>
-            <p>• ចុចប៊ូតុង "💰 បញ្ចូលទឹកប្រាក់"</p>
-            <p>• បង់តាម ABA Bank (KHQR)</p>
-            <p>• បញ្ជូន Screenshot → Admin នឹងអនុម័ត</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⏰ ៧. ការបិទចាក់</h4>
-            <p>• ម៉ោង 12:00: បិទនៅ 11:59 (១ នាទីមុនលទ្ធផល)</p>
-            <p>• ម៉ោង 16:00: បិទនៅ 15:59 (១ នាទីមុនលទ្ធផល)</p>
-            <p>• ឆ្នោត 10 នាទី: បិទ ១ នាទីមុនលទ្ធផល</p>
-            <p>• អាប៉ោង 5 នាទី: បិទ ១០ វិនាទីមុនលទ្ធផល</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">📊 ៨. ប្រវត្តិ និងលទ្ធផល</h4>
-            <p>• ប្រវត្តិចាក់ និងលទ្ធផលរក្សាទុក <strong>២ ថ្ងៃ</strong> ចុងក្រោយ</p>
-            <p>• លទ្ធផលចាស់ៗនឹងលុបដោយស្វ័យប្រវត្តិ</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🔐 ៩. សុវត្ថិភាព</h4>
-            <p>• PIN 4 ខ្ទង់ ត្រូវចងចាំ</p>
-            <p>• ភ្លេច PIN → ទាក់ទង Admin</p>
-            <p>• កុំប្រាប់ PIN អ្នកដទៃ</p>
-
-            <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚠️ ១០. ការព្រមាន</h4>
-            <p>• ការចាក់ឆ្នោតមានហានិភ័យ — សូមលេងដោយការទទួលខុសត្រូវ</p>
-            <p>• មិនអនុញ្ញាតឱ្យអ្នកក្រោមអាយុ 18 ឆ្នាំ</p>
-            <p>• ការកេងប្រវ័ញ្ចនឹងត្រូវបានផ្អាកគណនីភ្លាមៗ</p>
-          </div>
-        </div>
-      </div>
-
-    </div> 
-
-    <div class="footer"><span class="emoji-dice">🎲</span> © 2026 Khmer Lottery N98 — រក្សាសិទ្ធិគ្រប់យ៉ាងពីឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></div>
-  </div>
-
-  <!-- ================= MODALS ================= -->
-  <div class="modal" id="depositModal">
-    <div class="modal-content">
-      <span class="close" onclick="N98.closeModal('depositModal')">&times;</span>
-      <h2>💰 បញ្ចូលទឹកប្រាក់ (ABA Bank)</h2>
-      <form id="depositForm">
-        <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); border:2px dashed #0078D7; padding:16px; border-radius:12px; text-align:center; margin-top:12px;">
-          <div style="font-weight:800; color:#005fa3; font-size:14px; margin-bottom:12px;">👇 ចុចខាងក្រោមដើម្បីបង់ប្រាក់</div>
-          <a href="https://pay.ababank.com/oRF8/yhtm93ei" target="_blank" rel="noopener" id="abaBankBtn" onclick="N98.handleAbaClick(event)" style="font-size:15px; padding:16px; display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,#005fa3,#0078D7); color:white; text-decoration:none; border-radius:10px; font-weight:800;">
-            <span style="font-size:22px;">🏦</span><span>បង់ប្រាក់តាម ABA Bank</span><span style="background:rgba(255,255,255,0.25); padding:3px 10px; border-radius:8px; font-size:11px;">KHQR</span>
-          </a>
-          
-          <button type="button" onclick="N98.downloadQR()" style="margin-top:10px; width:100%; padding:12px; background:linear-gradient(135deg,#28a745,#1e7e34); color:white; border:none; border-radius:10px; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 10px rgba(40,167,69,0.3);">
-            <span style="font-size:18px;">📥</span> ទាញយករូបភាព QR Code
-          </button>
-
-          <div style="font-size:11.5px; color:#005fa3; margin-top:12px; font-weight:700;">⚡ បង់រួច សូមថតរូប (Screenshot)</div>
-        </div>
-        
-        <label>លេខទូរស័ព្ទ *</label>
-        <input type="tel" id="depPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" minlength="9" maxlength="10" inputmode="numeric">
-        
-        <label>រូបិយប័ណ្ណ *</label>
-        <select id="depCurrency" required style="width:100%; padding:12px; border:2px solid #dee2e6; border-radius:10px; font-size:14px; font-weight:800; background:#f8f9fa; margin-bottom:6px;">
-          <option value="USD">ដុល្លារ ($ USD)</option>
-          <option value="KHR">រៀល (៛ KHR)</option>
-        </select>
-        
-        <label>បញ្ជាក់ចំនួនទឹកប្រាក់របស់អ្នក *</label>
-        <input type="number" id="depAmount" required placeholder="បញ្ចូលចំនួន" step="any" min="0.01" oninput="N98.checkContinueButtonState()">
-        <div style="font-size:11px; color:#dc3545; font-weight:800; margin-bottom:8px; text-align:left;" id="depMinHint">⚠️ ចំនួនអប្បបរមា USD ≥ 5.00$</div>
-        
-        <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:14px; text-align:left;">
-            <div style="font-weight:800; color:#856404; font-size:12px; margin-bottom:8px;">បន្ទាប់ពីបង់ប្រាក់រួច សូមចុចបន្ត ដើម្បីបើកការបញ្ចូលរូបភាពនៃប្រតិបត្តិការបង់ប្រាក់របស់អ្នក!</div>
-            <button type="button" id="depContinueBtn" onclick="N98.enableScreenshotUpload()" disabled style="width:100%; padding:12px; background:#ced4da; color:#6c757d; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:not-allowed;">👉 បន្ត</button>
-        </div>
-
-        <label id="depScreenshotLabel" style="opacity:0.5; pointer-events:none; margin-top:14px; display:block;">បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) *</label>
-        <input type="file" id="depScreenshot" accept="image/*" required disabled style="width:100%; padding:10px; border:2px solid #dee2e6; border-radius:10px;">
-        
-        <button type="submit" class="btn btn-success" id="depSubmitBtn" disabled style="margin-top:12px;">🚀 បញ្ជាក់ការបញ្ចូលប្រាក់</button>
-        
-        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ff8b8b; border-radius:10px; padding:12px 14px; margin-top:12px; font-size:11.5px; color:#721c24; line-height:1.7; text-align:left; font-weight:600;"><span class="anim-shake">⚠️</span> <strong>ការព្រមាន!</strong><br>• ការបង់ប្រាក់ត្រូវធ្វើតាម ABA Bank ជាមុន<br>• បញ្ជូនរូបភាព Screenshot ជូន Admin<br>• ប្រសិនបើមិនបង់ → Admin នឹងមិនអនុម័ត</div>
-        
-        <div style="font-size:11.5px; color:#dc3545; font-weight:800; text-align:center; margin-top:8px;">សូមផ្ទៀងផ្ទាត់លទ្ធផលឆ្នោតជាមួយនឹងការចាក់ឆ្នោតរបស់អ្នក!</div>
-      </form>
+    <div class="reg-step" id="regLoginStep">
+      <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
+      <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
+      <div class="reg-input-group"><label>🔐 PIN 4 ខ្ទង់</label><input type="tel" id="loginPin" placeholder="----" maxlength="4" inputmode="numeric"></div>
+      <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
+      <div class="forgot-pin-box">🔐 ភ្លេច PIN? <a href="#" onclick="N98.contactAdmin(); return false;">ទាក់ទង Admin</a></div>
+      <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មិនមានគណនី? <a href="#" onclick="N98.showRegisterStep(); return false;" style="color:#0078D7; font-weight:800;">ចុះឈ្មោះ</a></div>
     </div>
   </div>
+</div>
 
-  <div class="modal" id="directBetModal">
-    <div class="modal-content">
-      <span class="close" onclick="N98.closeModal('directBetModal')">&times;</span>
-      <h2 style="color:#28a745;">💵 បញ្ជាក់ការចាក់ផ្ទាល់</h2>
-      <form id="directBetForm">
-        <div class="bet-summary">
-          <div class="bet-summary-item"><span>🔢 លេខ៖</span><span id="directConfirmNumbers">-</span></div>
-          <div class="bet-summary-item total"><span>💰 សរុប៖</span><span id="directConfirmTotal">-</span></div>
+<!-- ================= MAIN APP ================= -->
+<div id="mainApp" style="display:none;">
+  <header id="mainHeader">
+    <h1><span class="emoji-dice">🎲</span> ឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></h1>
+    <p id="headerSubtitle"><span class="anim-pulse">🎯</span> ប្រព័ន្ធចាក់ឆ្នោត 12:00 / 16:00 <span class="anim-pulse">🎉</span></p>
+  </header>
+
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="classic" onclick="N98.switchMainMode('classic', event)">🕛 12:00 / 🕓 16:00</button>
+    <button class="mode-tab" data-mode="rapid" onclick="N98.switchMainMode('rapid', event)">🎯 10 នាទី <span class="badge-live">LIVE</span></button>
+    <button class="mode-tab" data-mode="dice" onclick="N98.switchMainMode('dice', event)">🎲 អាប៉ោង <span class="badge-live">5 នាទី</span></button>
+  </div>
+
+  <nav class="nav-bar">
+    <a href="#" class="active" onclick="N98.showSection('home', event); return false;"><span class="anim-pulse">🏠</span> ទំព័រដើម</a>
+    <a href="#" onclick="N98.showSection('rules', event); return false;"><span class="anim-pulse">📋</span> ច្បាប់</a>
+    <button class="btn-theme" onclick="N98.toggleTheme()" id="themeBtn">🌙 <span class="theme-label">Dark</span></button>
+    <button class="btn-contact-admin" onclick="N98.contactAdmin()">✉️ ទាក់ទង Admin</button>
+    <button class="btn-share" onclick="N98.copyLink()">🔗 ចែករំលែក</button>
+    <button class="btn-group" onclick="N98.openGroup()">💬 ចូលក្រុម</button>
+    <button class="sound-toggle" id="soundToggleBtn" onclick="N98.toggleSound()">🔊 សំឡេង</button>
+    <button class="btn-tv" onclick="N98.toggleTVMode()">📺 TV Mode</button>
+    <button class="btn-logout" onclick="N98.handleLogout()">🚪 ចាកចេញ</button>
+  </nav>
+
+  <div class="section">
+    <div class="user-info-bar">
+      <div><span class="label"><span class="anim-pulse">🆔</span> ID: </span><span class="value" id="displayCurrentUserId">------</span></div>
+      <div><span class="label"><span class="anim-bounce">📱</span> Phone: </span><span class="value" id="displayCurrentPhone">---</span></div>
+    </div>
+
+    <div class="clock-box">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:26px;" class="anim-spin">⏰</span>
+        <div><div class="clock-title">🕒 ម៉ោងបច្ចុប្បន្ន</div><div class="clock-time" id="widgetTime">00:00:00</div></div>
+      </div>
+      <div><div class="clock-date" id="widgetDate">កំពុងផ្ទុក...</div></div>
+    </div>
+
+    <div class="status-bar"><span class="label">📊 ស្ថានភាព</span><span class="value" id="resultStatusText">កំពុងផ្ទុក...</span></div>
+
+    <!-- ================= CLASSIC MODE (12:00 / 16:00) ================= -->
+    <div id="classicMode">
+      <div class="countdown">
+        <div style="display:flex; justify-content:center; align-items:center; gap:8px;"><span style="font-size:26px;" class="emoji-dice">🎲</span><span style="font-size:16px; color:#dc3545; font-weight:800;"><span class="anim-pulse">⏳</span> ម៉ោងប្រកាសលទ្ធផលបន្ទាប់</span></div>
+        <div class="time-display" id="countdownDisplay">--:--:--</div>
+        <div class="next-time" id="nextTimeLabel">🎯 ពេលបន្ទាប់...</div>
+        <div class="status-time" id="statusTimeLabel"></div>
+      </div>
+
+      <div class="lottery-box" id="box12Container">
+        <div class="time-box"><span class="anim-pulse">🕛</span> លទ្ធផល 12:00 <span class="badge" id="badge12">ព្រឹកពីរ</span> <span id="badge12Latest"></span></div>
+        <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
+        <div class="numbers" id="box12">
+          <div><span class="letter">A:</span> <span id="r12_A">--</span></div><div><span class="letter">B:</span> <span id="r12_B">--</span></div>
+          <div><span class="letter">C:</span> <span id="r12_C">--</span></div><div><span class="letter">D:</span> <span id="r12_D">--</span></div>
+          <div><span class="letter">E:</span> <span id="r12_E">--</span></div>
         </div>
-        <label>លេខទូរស័ព្ទ *</label>
-        <input type="tel" id="directPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" inputmode="numeric">
-        <div style="margin-top:14px;">
-          <div style="font-weight:800; color:#155724; font-size:13px; margin-bottom:8px;">💰 សមតុល្យរបស់អ្នក</div>
+        <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
+        <div class="numbers" id="box12_3d">
+          <div><span class="letter">A:</span> <span id="r12_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r12_3d_B">--</span></div>
+          <div><span class="letter">C:</span> <span id="r12_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r12_3d_D">--</span></div>
+          <div><span class="letter">E:</span> <span id="r12_3d_E">--</span></div>
+        </div>
+        <div style="margin-top:8px;" id="date12"></div>
+      </div>
+
+      <div class="lottery-box" id="box16Container">
+        <div class="time-box"><span class="anim-pulse">🕓</span> លទ្ធផល 16:00 <span class="badge" id="badge16">ល្ងាចបី</span> <span id="badge16Latest"></span></div>
+        <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
+        <div class="numbers" id="box16">
+          <div><span class="letter">A:</span> <span id="r16_A">--</span></div><div><span class="letter">B:</span> <span id="r16_B">--</span></div>
+          <div><span class="letter">C:</span> <span id="r16_C">--</span></div><div><span class="letter">D:</span> <span id="r16_D">--</span></div>
+          <div><span class="letter">E:</span> <span id="r16_E">--</span></div>
+        </div>
+        <div style="font-weight:800;color:#6f42c1;font-size:13px;margin-top:10px;">🔢 ៣ខ្ទង់</div>
+        <div class="numbers" id="box16_3d">
+          <div><span class="letter">A:</span> <span id="r16_3d_A">--</span></div><div><span class="letter">B:</span> <span id="r16_3d_B">--</span></div>
+          <div><span class="letter">C:</span> <span id="r16_3d_C">--</span></div><div><span class="letter">D:</span> <span id="r16_3d_D">--</span></div>
+          <div><span class="letter">E:</span> <span id="r16_3d_E">--</span></div>
+        </div>
+        <div style="margin-top:8px;" id="date16"></div>
+      </div>
+
+      <div class="bet-box">
+        <h2>🎯 ទិញលេខចាក់ (A, B, C, D, E)</h2>
+        
+        <div class="balance-box" id="balanceBox">
+          <div style="margin-bottom:10px; font-weight:800; color:#155724; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">💵 USD</div><div id="directBalanceUSD" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
-            <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">🇰🇭 KHR</div><div id="directBalanceKHR" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+            <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceAmountUSD" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+            <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceAmountKHR" style="font-size:24px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+          </div>
+          <div class="balance-buttons-row">
+            <button class="btn btn-primary" onclick="N98.openDepositModal()">💰 បញ្ចូលទឹកប្រាក់</button>
+            <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
           </div>
         </div>
-        <button type="submit" class="btn btn-success" style="margin-top:14px;">✅ បញ្ជាក់ការចាក់</button>
-      </form>
-    </div>
-  </div>
 
-  <div class="modal" id="withdrawModal">
-    <div class="modal-content">
-      <span class="close" onclick="N98.closeModal('withdrawModal')">&times;</span>
-      <h2>🏦 ដកប្រាក់</h2>
-      
-      <form id="withdrawNewForm">
-        <label>💰 សមតុល្យរបស់អ្នក</label>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
-          <div class="balance-item" id="wdBalUSDBtn" onclick="N98.selectWithdrawCurrency('USD')" style="cursor:pointer; opacity:0.5;">
-            <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">💵 USD</div>
-            <div id="wdBalanceUSD" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div>
-            <div style="font-size:10px; color:#155724; margin-top:4px;">ចុចដើម្បីជ្រើស</div>
+        <div class="guide-box">💡 <strong>របៀបប្រើ៖</strong><br>១. ជ្រើស <strong>ពេលវេលា</strong> និង <strong>ប្រភេទ</strong><br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01,02,03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+
+        <table class="reward-table">
+          <thead><tr><th>ប្រភេទ</th><th>ម៉ោង</th><th>អត្រា</th></tr></thead>
+          <tbody>
+            <tr><td>២ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">70$</span></td></tr>
+            <tr><td>៣ខ្ទង់ (A-E)</td><td>12:00 & 16:00</td><td>1$ → <span class="text-respond">500$</span></td></tr>
+          </tbody>
+        </table>
+
+        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ffb3b3; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;"><span style="color:#d63000; font-weight:800; font-size:13px;">⚠️ ចាក់ពី 500៛/0.25$ ដល់ 200,000៛/50$</span></div>
+
+        <div class="betting-closed-compact" id="bettingClosedCompact">
+          <div class="left-side">
+            <span class="icon">🔒</span>
+            <span class="title" id="bettingClosedText">ការចាក់ត្រូវបានបិទជាបណ្ដោះអាសន្ន!</span>
           </div>
-          <div class="balance-item" id="wdBalKHRBtn" onclick="N98.selectWithdrawCurrency('KHR')" style="cursor:pointer; opacity:0.5;">
-            <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">🇰🇭 KHR</div>
-            <div id="wdBalanceKHR" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div>
-            <div style="font-size:10px; color:#155724; margin-top:4px;">ចុចដើម្បីជ្រើស</div>
+          <div class="right-side">
+            ⏰ បើកវិញ <span class="time" id="reopenCountdown">--:--:--</span>
           </div>
         </div>
-        <input type="hidden" id="wdCurrency" value="">
-        <label>💰 ចំនួនទឹកប្រាក់ដក *</label>
-        <input type="number" id="wdAmount" required placeholder="បញ្ចូលចំនួន" min="0.01" step="any">
-        <label>📱 លេខទូរស័ព្ទ *</label>
-        <input type="tel" id="wdPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" inputmode="numeric">
-        <label>📷 បញ្ចូលរូបភាព QR Code ទទួលប្រាក់របស់អ្នក *</label>
-        <input type="file" id="wdQrCode" accept="image/*" required>
-        <button type="submit" class="btn btn-withdraw" id="wdSubmitBtn" style="width:100%; margin-top:12px; padding:14px;">🏦 បញ្ជាក់ការដកប្រាក់</button>
-        <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ff8b8b; border-radius:10px; padding:10px; margin-top:12px; font-size:11.5px; color:#721c24; line-height:1.7; font-weight:600;">⚠️ ប្រាក់នឹងកាត់ចេញពីសមតុល្យភ្លាមៗ<br>ប្រសិនបើ Admin បដិសេធ → ប្រាក់នឹងបង្វិលចូលវិញ</div>
-      </form>
-    </div>
-  </div>
 
-  <div class="modal" id="groupModal">
-    <div class="modal-content" style="text-align:center;">
-      <span class="close" onclick="N98.closeModal('groupModal')">&times;</span>
-      <div style="font-size:60px;" class="anim-bounce">📢</div>
-      <h2>ចូលក្រុម និង Channel</h2>
-      <p style="font-size:13px; color:#4a5568; margin:12px 0; font-weight:600;">ទទួលបានព័ត៌មានថ្មីៗ!</p>
-      
-      <a href="https://t.me/AhpongN98" target="_blank" rel="noopener" class="group-btn dice-channel">🎲 Channel ប្រកាសលទ្ធផលអាប៉ោង<small>ចេញលទ្ធផលរៀងរាល់ 5 នាទី</small></a>
-      
-      <a href="https://t.me/KhmerlotteryresultsN98" target="_blank" rel="noopener" class="group-btn channel">📢 ចូល Channel ប្រកាសលទ្ធផលឆ្នោត 12:00 / 16:00</a>
-      
-      <a href="https://t.me/Livelotteryevery10minutes" target="_blank" rel="noopener" class="group-btn" style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ចូល Channel លទ្ធផលឆ្នោត N98 រៀងរាល់ 10 នាទី<small>ចេញលទ្ធផលរៀងរាល់ 10 នាទី</small></a>
-      
-      <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ទទួលលេខ Code ចុះឈ្មោះ N98<small>Channel ផ្តល់ Code ចុះឈ្មោះ</small></a>
-    </div>
-  </div>
-
-  <div class="modal" id="alertModal">
-    <div class="modal-content alert-modal">
-      <span class="alert-icon" id="alertIcon">🔔</span>
-      <h3 class="alert-title" id="alertTitle">ការជូនដំណឹង</h3>
-      <p class="alert-message" id="alertMessage">សារ...</p>
-      <button class="btn btn-primary" onclick="N98.closeModal('alertModal')" style="padding:12px 32px; border-radius:22px; font-size:14px;">យល់ព្រម</button>
-    </div>
-  </div>
-
-  <div class="modal" id="confirmModal">
-    <div class="modal-content confirm-modal-content">
-      <span class="confirm-icon" id="confirmIcon">❓</span>
-      <h3 class="confirm-title" id="confirmTitle">តើអ្នកប្រាកដឬ?</h3>
-      <div id="confirmInfoContainer" style="display:none;">
-        <div class="confirm-info-box" id="confirmInfoBox"></div>
-      </div>
-      <p class="confirm-message" id="confirmMessage"></p>
-      <div class="confirm-buttons">
-        <button class="btn btn-confirm-cancel" onclick="N98.closeConfirm(false)" id="confirmCancelBtn">✕ បោះបង់</button>
-        <button class="btn btn-confirm-ok" onclick="N98.closeConfirm(true)" id="confirmOkBtn">✓ បញ្ជាក់</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= PROMO POPUP ================= -->
-  <div class="modal" id="promoModal" style="display:none; align-items:center; justify-content:center; z-index: 2000;">
-    <div class="modal-content" style="max-width: 420px; background: linear-gradient(135deg, #0f1420, #1a1f2e); border: 3px solid #0078D7; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,120,215,0.4); padding: 25px; position: relative;">
-      <span class="close" onclick="N98.closePromoPopup()" style="color: #adb5bd; position: absolute; top: 15px; right: 20px;">&times;</span>
-      
-      <div style="text-align: center; margin-bottom: 20px;">
-        <div style="font-size: 60px; margin-bottom: 10px;" class="anim-bounce">🎲</div>
-        <h2 style="color: #ffffff; font-size: 24px; font-weight: 800; margin-bottom: 5px;">ឆ្នោតខ្មែរ N98</h2>
-        <p style="color: #adb5bd; font-size: 14px; font-weight: 600;">សូមស្វាគមន៍! ស្ថានភាពចាក់បច្ចុប្បន្ន</p>
-      </div>
-
-      <div style="display: grid; gap: 12px; margin-bottom: 20px;">
-        <!-- Classic 12:00 -->
-        <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 24px;">🕛</span>
-            <div>
-              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 12:00</div>
-              <div style="color: #adb5bd; font-size: 11px;" id="promoStatus12">បើកចាក់</div>
-            </div>
-          </div>
-          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown12">00:00:00</div>
+        <div style="font-weight:800; color:#0078D7; font-size:14px; margin-bottom:8px;">⏰ ជ្រើសរើស ពេលវេលា និង ប្រភេទ</div>
+        <div class="time-selector">
+          <button class="time-btn active" data-time="12:00" onclick="N98.setTime('12:00', event)">🕛 12:00</button>
+          <button class="time-btn" data-time="16:00" onclick="N98.setTime('16:00', event)">🕓 16:00</button>
+        </div>
+        <div class="type-selector">
+          <button class="type-btn active" data-type="two" onclick="N98.setType('two', event)">🔢 ២ខ្ទង់</button>
+          <button class="type-btn" data-type="three" onclick="N98.setType('three', event)">🔢 ៣ខ្ទង់</button>
         </div>
 
-        <!-- Classic 16:00 -->
-        <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 24px;">🕓</span>
-            <div>
-              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 16:00</div>
-              <div style="color: #adb5bd; font-size: 11px;" id="promoStatus16">បើកចាក់</div>
-            </div>
-          </div>
-          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown16">00:00:00</div>
+        <div style="font-weight:800; color:#0078D7; font-size:14px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, E</div>
+        <div class="letter-selector">
+          <div class="letter-circle" data-letter="A" onclick="N98.selectLetter('A', event)">A</div>
+          <div class="letter-circle" data-letter="B" onclick="N98.selectLetter('B', event)">B</div>
+          <div class="letter-circle" data-letter="C" onclick="N98.selectLetter('C', event)">C</div>
+          <div class="letter-circle" data-letter="D" onclick="N98.selectLetter('D', event)">D</div>
+          <div class="letter-circle" data-letter="E" onclick="N98.selectLetter('E', event)">E</div>
         </div>
 
-        <!-- Rapid 10 Min -->
-        <div style="background: rgba(233,30,99,0.1); border: 1px solid rgba(233,30,99,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 24px;">🎯</span>
-            <div>
-              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">10 នាទី LIVE</div>
-              <div style="color: #adb5bd; font-size: 11px;" id="promoStatus10">កំពុងដំណើរការ</div>
-            </div>
-          </div>
-          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #ff8bb5;" id="promoCountdown10">00:00</div>
+        <div class="input-row"><input type="text" id="numInput" placeholder="បញ្ចូលលេខ (ឧ. 01,02,03)" disabled inputmode="numeric"></div>
+        <div class="selected-display" id="selectedDisplay"><span style="color:#6c757d; font-size:12px; font-weight:600;">មិនទាន់មានលេខ</span></div>
+        <div style="color:#6c757d; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay" style="color:#0078D7; font-size:15px;">0</strong> / 10</div>
+
+        <label style="font-weight:800; color:#0078D7; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
+        <div class="amount-buttons">
+          <button class="btn-amount" onclick="N98.setAmount(500,'៛')">500៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(1000,'៛')">1000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(5000,'៛')">5000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(10000,'៛')">10000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(20000,'៛')">20000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(40000,'៛')">40000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(100000,'៛')">100000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(200000,'៛')">200000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount(0.25,'$')">0.25$</button>
+          <button class="btn-amount" onclick="N98.setAmount(1,'$')">1$</button>
+          <button class="btn-amount" onclick="N98.setAmount(5,'$')">5$</button>
+          <button class="btn-amount" onclick="N98.setAmount(10,'$')">10$</button>
+          <button class="btn-amount" onclick="N98.setAmount(20,'$')">20$</button>
+          <button class="btn-amount" onclick="N98.setAmount(50,'$')">50$</button>
+        </div>
+        <div class="custom-amount">
+          <input type="number" id="amountInput" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmount()">
+          <select id="currencySelect" onchange="N98.updateAmount()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
         </div>
 
-        <!-- 🎲 អាប៉ោង 5 នាទី -->
-        <div style="background: rgba(111,66,193,0.1); border: 1px solid rgba(111,66,193,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 24px;">🎲</span>
-            <div>
-              <div style="color: #ffffff; font-weight: 800; font-size: 14px;">អាប៉ោង 5 នាទី</div>
-              <div style="color: #adb5bd; font-size: 11px;" id="promoStatusDice">កំពុងដំណើរការ</div>
-            </div>
+        <div class="bet-summary">
+          <div class="bet-summary-item"><span>📊 ចំនួនលេខសរុប៖</span><span id="totalCount">0</span></div>
+          <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="totalAmountDisplay">0</span></div>
+        </div>
+
+        <button class="btn btn-success" id="btnSubmit" onclick="N98.submitBet()" disabled>💳 ដាក់ភ្នាល់ឥឡូវ</button>
+
+        <div class="balance-status-box" id="balanceStatusBox">
+          <div class="header-row"><span id="balanceStatusIcon">💰</span><span id="balanceStatusTitle">ស្ថានភាពសមតុល្យ</span></div>
+          <div class="rows">
+            <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrent">0៛</span>
+            <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeeded">0៛</span>
+            <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShort">0៛</span>
           </div>
-          <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #d8b4fe;" id="promoCountdownDice">00:00</div>
+          <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill" style="width:0%;"></div></div>
+          <div class="hint" id="balanceStatusHint" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
         </div>
       </div>
+    </div>
 
-      <button onclick="N98.closePromoPopup()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(40,167,69,0.4);">
-        ចាប់ផ្តើមចាក់ឥឡូវ 🚀
-      </button>
+    <!-- ================= RAPID MODE (10 នាទី) ================= -->
+    <div id="rapidMode" style="display:none;">
+      <div class="countdown-rapid">
+        <div class="label">⚡ ការប្រកាសលទ្ធផលបន្ទាប់</div>
+        <div class="ring-container">
+          <svg class="ring-svg" viewBox="0 0 160 160">
+            <defs><linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff1744;stop-opacity:1" /><stop offset="50%" style="stop-color:#e91e63;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
+            <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
+            <circle class="ring-progress" id="ringProgress" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0"></circle>
+          </svg>
+          <div class="ring-text"><div class="time" id="ringTime">10:00</div><div class="label">នាទី:វិនាទី</div></div>
+        </div>
+        <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumber">#------</span></div>
+      </div>
+
+      <div class="bet-box rapid">
+        <h2>🎯 លទ្ធផល ៣ វគ្គចុងក្រោយ</h2>
+        <div class="results-grid" id="resultsGrid"><div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div></div>
+      </div>
+
+      <div class="bet-box rapid">
+        <h2>⚡ ចាក់លេខវគ្គបន្ទាប់</h2>
+        <div class="balance-box" id="balanceBoxRapid" style="background:linear-gradient(135deg,#1e3a2f,#163d29); border-color:#4ade80;">
+          <div style="margin-bottom:10px; font-weight:800; color:#7dd89a; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceRapidUSD" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+            <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceRapidKHR" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+          </div>
+          <div class="balance-buttons-row">
+            <button class="btn btn-primary" onclick="N98.openDepositModal()" style="background:linear-gradient(135deg,#e91e63,#880e4f);">💰 បញ្ចូលទឹកប្រាក់</button>
+            <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
+          </div>
+        </div>
+
+        <div class="guide-box">💡 <strong>របៀបចាក់ 10 នាទី៖</strong><br>១. ជ្រើស <strong>ប្រភេទ</strong> (២ ឬ ៣ ខ្ទង់)<br>២. ចុច <strong>ប៉ុស្តិ៍ A, B, C, D, E</strong><br>៣. បញ្ចូលលេខ (ឧ. 01, 02, 03)<br>៤. ជ្រើសទឹកប្រាក់ → ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+
+        <div id="bettingClosedBox10" style="display:none; background:linear-gradient(135deg,rgba(255,23,68,0.15),rgba(136,14,79,0.15)); border:2px solid #ff1744; border-radius:12px; padding:12px; margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#ff8b95; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#ff8b95; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTime10" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--:--</strong></div></div></div>
+        </div>
+
+        <div class="type-selector">
+          <button class="type-btn active" data-type10="two" onclick="N98.setType10('two', event)">🔢 ២ខ្ទង់</button>
+          <button class="type-btn" data-type10="three" onclick="N98.setType10('three', event)">🔢 ៣ខ្ទង់</button>
+        </div>
+
+        <div style="color:#ff8bb5; font-weight:800; font-size:13px; text-align:center; margin-bottom:8px;">🎯 ជ្រើសប៉ុស្តិ៍ A-E</div>
+        <div class="letter-selector">
+          <div class="letter-circle" data-letter10="A" onclick="N98.selectLetter10('A', event)">A</div>
+          <div class="letter-circle" data-letter10="B" onclick="N98.selectLetter10('B', event)">B</div>
+          <div class="letter-circle" data-letter10="C" onclick="N98.selectLetter10('C', event)">C</div>
+          <div class="letter-circle" data-letter10="D" onclick="N98.selectLetter10('D', event)">D</div>
+          <div class="letter-circle" data-letter10="E" onclick="N98.selectLetter10('E', event)">E</div>
+        </div>
+
+        <div class="input-row"><input type="text" id="numInput10" placeholder="បញ្ចូលលេខ (ឧ. 01,02,03)" disabled inputmode="numeric"></div>
+        <div class="selected-display" id="selectedDisplay10"><span style="color:#a0a8b8; font-size:12px; font-weight:600;">មិនទាន់មានលេខ</span></div>
+        <div style="color:#a0a8b8; font-size:12px; font-weight:700; margin-bottom:8px;">ចំនួន៖ <strong id="countDisplay10" style="color:#ff8bb5; font-size:14px;">0</strong> / 10</div>
+
+        <label style="color:#ff8bb5; font-weight:800; font-size:13px;">💰 ចំនួនទឹកប្រាក់</label>
+        <div class="amount-buttons">
+          <button class="btn-amount" onclick="N98.setAmount10(500,'៛')">500៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(1000,'៛')">1000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(5000,'៛')">5000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(10000,'៛')">10000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(20000,'៛')">20000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(40000,'៛')">40000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(100000,'៛')">100000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(200000,'៛')">200000៛</button>
+          <button class="btn-amount" onclick="N98.setAmount10(0.25,'$')">0.25$</button>
+          <button class="btn-amount" onclick="N98.setAmount10(1,'$')">1$</button>
+          <button class="btn-amount" onclick="N98.setAmount10(5,'$')">5$</button>
+          <button class="btn-amount" onclick="N98.setAmount10(10,'$')">10$</button>
+          <button class="btn-amount" onclick="N98.setAmount10(20,'$')">20$</button>
+          <button class="btn-amount" onclick="N98.setAmount10(50,'$')">50$</button>
+        </div>
+        <div class="custom-amount">
+          <input type="number" id="amountInput10" placeholder="✍️ បញ្ចូលចំនួន" min="0.01" step="any" oninput="N98.updateAmount10()">
+          <select id="currencySelect10" onchange="N98.updateAmount10()"><option value="USD">ដុល្លារ ($)</option><option value="KHR">រៀល (៛)</option></select>
+        </div>
+
+        <div class="bet-summary">
+          <div class="bet-summary-item"><span>📊 ចំនួនលេខសរុប៖</span><span id="totalCount10">0</span></div>
+          <div class="bet-summary-item total"><span>💵 សរុប៖</span><span id="totalAmount10">0</span></div>
+        </div>
+
+        <button class="btn btn-success" id="btnSubmit10" onclick="N98.submitBet10()" disabled style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ដាក់ភ្នាល់ឥឡូវ</button>
+
+        <div class="balance-status-box" id="balanceStatusBox10">
+          <div class="header-row"><span id="balanceStatusIcon10">💰</span><span id="balanceStatusTitle10">ស្ថានភាពសមតុល្យ</span></div>
+          <div class="rows">
+            <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrent10">0៛</span>
+            <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeeded10">0៛</span>
+            <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShort10">0៛</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="balanceProgressFill10" style="width:0%;"></div></div>
+          <div class="hint" id="balanceStatusHint10" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= DICE MODE (អាប៉ោង 5 នាទី) ================= -->
+    <div id="diceMode" style="display:none;">
+      <div class="countdown-rapid" style="border-color: #6f42c1; background: linear-gradient(135deg, #1a0f1f, #2d1b3d); box-shadow: 0 8px 32px rgba(111,66,193,0.4);">
+        <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
+        <div class="ring-container">
+          <svg class="ring-svg" viewBox="0 0 160 160">
+            <defs><linearGradient id="ringGradientDice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6f42c1;stop-opacity:1" /><stop offset="50%" style="stop-color:#9c27b0;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
+            <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
+            <circle class="ring-progress" id="ringProgressDice" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0" stroke="url(#ringGradientDice)"></circle>
+          </svg>
+          <div class="ring-text"><div class="time" id="ringTimeDice" style="color:#d8b4fe;">05:00</div><div class="label" style="color:#d8b4fe;">នាទី:វិនាទី</div></div>
+        </div>
+        <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumberDice">#------</span></div>
+      </div>
+
+      <div class="bet-box dice">
+        <h2>🎲 លទ្ធផលអាប៉ោង ៤ វគ្គចុងក្រោយ</h2>
+        <div class="results-grid" id="diceResultsGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+          <div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div>
+        </div>
+      </div>
+
+      <div class="bet-box dice">
+        <h2>🎲 ចាក់អាប៉ោងវគ្គបន្ទាប់</h2>
+        
+        <div class="balance-box" id="balanceBoxDice" style="background:linear-gradient(135deg,#1e3a2f,#163d29); border-color:#4ade80;">
+          <div style="margin-bottom:10px; font-weight:800; color:#7dd89a; font-size:14px;">💰 សមតុល្យរបស់អ្នក</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">💵 USD</div><div id="balanceDiceUSD" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+            <div class="balance-item" style="background:rgba(255,255,255,0.05); border-color:rgba(40,167,69,0.5);"><div style="font-size:11px; color:#7dd89a; font-weight:800; margin-bottom:6px;">🇰🇭 KHR</div><div id="balanceDiceKHR" style="font-size:24px; color:#4ade80; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+          </div>
+          <div class="balance-buttons-row">
+            <button class="btn btn-primary" onclick="N98.openDepositModal()" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">💰 បញ្ចូលទឹកប្រាក់</button>
+            <button class="btn btn-withdraw" onclick="N98.openWithdrawModal()">🏦 ដកប្រាក់</button>
+          </div>
+        </div>
+
+        <div id="bettingClosedBoxDice" style="display:none; background:linear-gradient(135deg,rgba(111,66,193,0.15),rgba(74,20,140,0.15)); border:2px solid #6f42c1; border-radius:12px; padding:12px; margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:10px;"><div style="font-size:28px;" class="anim-shake">🔒</div><div><div style="color:#d8b4fe; font-weight:800; font-size:13px;">ការចាក់ត្រូវបានបិទ!</div><div style="color:#d8b4fe; font-size:12px; font-weight:700; margin-top:3px;">⏰ បើកវិញ <strong id="reopenTimeDice" style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">--:--</strong></div></div></div>
+        </div>
+
+        <div class="guide-box" style="background:rgba(111,66,193,0.15); border-color:rgba(111,66,193,0.4); color:#d8b4fe;">💡 <strong>របៀបចាក់អាប៉ោង៖</strong><br>១. បញ្ចូល <strong>ចំនួនទឹកប្រាក់</strong> ខាងក្រោម<br>២. ជ្រើសរើស <strong>ជម្រើសចាក់</strong> (អាចជ្រើសបានច្រើន)<br>៣. ចុច <strong>"ដាក់ភ្នាល់"</strong></div>
+
+        <div class="dice-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div class="dice-box" id="diceBox1" onclick="N98.toggleDiceSelection(1, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
+            <div class="dice-title" style="color: #ef4444;">1</div>
+            <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
+            <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div></div>
+          </div>
+          <div class="dice-box" id="diceBox6" onclick="N98.toggleDiceSelection(6, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
+            <div class="dice-title" style="color: #ef4444;">6</div>
+            <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
+            <div class="dice-dots" style="margin-top: 5px;">
+              <div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="dice-box" id="diceBox2" onclick="N98.toggleDiceSelection(2, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
+              <div class="dice-title" style="color: #3b82f6;">2</div>
+              <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
+              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+            </div>
+            <div class="dice-box" id="diceBox3" onclick="N98.toggleDiceSelection(3, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
+              <div class="dice-title" style="color: #3b82f6;">3</div>
+              <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
+              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="dice-box" id="diceBox4" onclick="N98.toggleDiceSelection(4, event)" style="border: 2px solid #ef4444; background: #fef2f2;">
+              <div class="dice-title" style="color: #ef4444;">4</div>
+              <div class="dice-sub" style="color: #ef4444; font-size: 10px;">1x5</div>
+              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div><div class="dice-dot red"></div></div>
+            </div>
+            <div class="dice-box" id="diceBox5" onclick="N98.toggleDiceSelection(5, event)" style="border: 2px solid #3b82f6; background: #eff6ff;">
+              <div class="dice-title" style="color: #3b82f6;">5</div>
+              <div class="dice-sub" style="color: #3b82f6; font-size: 10px;">1x5</div>
+              <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div><div class="dice-dot blue"></div></div>
+            </div>
+          </div>
+
+          <div class="dice-box" id="diceBoxThin" onclick="N98.toggleDiceSelection('thin', event)" style="border: 2px solid #6f42c1; background: #f3e8ff;">
+            <div class="dice-title" style="color: #6f42c1; font-size: 13px;">ស្តើង (1-3)</div>
+            <div class="dice-sub" style="color: #6f42c1; font-size: 10px;">1x0.85</div>
+            <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot blue"></div></div>
+          </div>
+          <div class="dice-box" id="diceBoxThick" onclick="N98.toggleDiceSelection('thick', event)" style="border: 2px solid #6f42c1; background: #f3e8ff;">
+            <div class="dice-title" style="color: #6f42c1; font-size: 13px;">ក្រាស់ (4-6)</div>
+            <div class="dice-sub" style="color: #6f42c1; font-size: 10px;">1x0.85</div>
+            <div class="dice-dots" style="margin-top: 5px;"><div class="dice-dot red"></div></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <div style="font-weight:800; color:#d8b4fe; font-size:13px; margin-bottom:8px;">📋 បញ្ជីជម្រើសដែលបានជ្រើស (អាចជ្រើសបានច្រើន)</div>
+          <div class="dice-selection-list" id="diceSelectionList">
+            <div class="dice-selection-empty">មិនទាន់មានជម្រើស</div>
+          </div>
+        </div>
+
+        <div class="bet-summary" style="background: rgba(255,255,255,0.05); border-color: rgba(111,66,193,0.4);">
+          <div class="bet-summary-item" style="color:#d8b4fe;"><span>🎲 ចំនួនជម្រើសសរុប៖</span><span id="diceTotalSelections">0</span></div>
+          <div class="bet-summary-item total" style="color:#d8b4fe; border-bottom:none;"><span>💵 សរុប៖</span><span id="diceTotalAmount">0</span></div>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <label style="color:#d8b4fe; font-weight:800; font-size:13px; display:block; margin-bottom:6px;">💰 ចំនួនទឹកប្រាក់សម្រាប់ជម្រើសដែលបានជ្រើស</label>
+          <div class="dice-input-row">
+            <input type="number" id="diceBetAmountInput" placeholder="បញ្ចូលចំនួន" min="0.01" step="any" style="flex: 2;">
+            <select id="diceCurrencySelect" style="flex: 1; background: rgba(0,0,0,0.3); color: white; border: 2px solid rgba(111,66,193,0.3); border-radius: 8px; padding: 10px; font-weight:800;">
+              <option value="USD">ដុល្លារ ($)</option>
+              <option value="KHR">រៀល (៛)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="amount-buttons" style="margin-top: 10px; margin-bottom: 10px;">
+          <button class="btn-amount" onclick="N98.setDiceAmount(500,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">500៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(1000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">1000៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(5000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">5000៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(10000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">10000៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(20000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">20000៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(40000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">40000៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(100000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">100000៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(200000,'KHR')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">200000៛</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(0.25,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">0.25$</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(1,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">1$</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(5,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">5$</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(10,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">10$</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(20,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">20$</button>
+          <button class="btn-amount" onclick="N98.setDiceAmount(50,'USD')" style="background:linear-gradient(135deg,#6f42c1,#4a148c);">50$</button>
+        </div>
+
+        <button class="btn btn-success" id="btnSubmitDice" onclick="N98.submitDiceBets()" disabled style="background:linear-gradient(135deg,#6f42c1,#4a148c); width:100%; padding:14px; font-size:15px;">🎲 ដាក់ភ្នាល់ឥឡូវ</button>
+
+        <div class="balance-status-box" id="balanceStatusBoxDice">
+          <div class="header-row"><span id="balanceStatusIconDice">💰</span><span id="balanceStatusTitleDice">ស្ថានភាពសមតុល្យ</span></div>
+          <div class="rows">
+            <span class="label">💰 សមតុល្យបច្ចុប្បន្ន៖</span><span class="value" id="balanceStatusCurrentDice">0៛</span>
+            <span class="label">💵 ត្រូវការ៖</span><span class="value" id="balanceStatusNeededDice">0៛</span>
+            <span class="label">📊 ខ្វះ៖</span><span class="value danger" id="balanceStatusShortDice">0៛</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="balanceProgressFillDice" style="width:0%;"></div></div>
+          <div class="hint" id="balanceStatusHintDice" style="animation: none !important;">💡 សូមទាក់ទង Admin ដើម្បីបញ្ចូលប្រាក់</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ADMIN PANEL ================= -->
+    <div class="lottery-box" id="adminPanel" style="display:none; border:2px solid #dc3545;">
+      <div class="time-box" style="color:#dc3545;"><span class="anim-pulse">👑</span> ADMIN PANEL</div>
+      <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px dashed #ff8b8b; padding:10px; border-radius:10px; margin:10px 0; font-size:12px; color:#721c24; font-weight:700;">🔐 ផ្ទាំងនេះសម្រាប់ Admin ប៉ុណ្ណោះ</div>
+      
+      <div style="margin-top:12px;">
+        <label style="font-weight:800; color:#dc3545; font-size:13px;">💰 បញ្ចូលទឹកប្រាក់ជូនសមាជិក (ផ្ទាល់)</label>
+        <input type="tel" id="adminPhone" placeholder="លេខទូរស័ព្ទ (ឧ. 012345678)" inputmode="numeric" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; margin-top:6px;">
+        <div style="display:flex; gap:6px; margin-top:8px;">
+          <input type="number" id="adminAmount" placeholder="ចំនួន" step="any" min="0.01" style="flex:2; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700;">
+          <select id="adminCurrency" style="flex:1; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:14px; font-weight:700; background:#f8f9fa; color:#0078D7;"><option value="USD">$ USD</option><option value="KHR">៛ KHR</option></select>
+        </div>
+        <input type="text" id="adminNote" placeholder="ចំណាំ (ឧ. Bonus, Top-up)" style="width:100%; padding:10px 12px; border:2px solid #dee2e6; border-radius:8px; font-size:13px; margin-top:8px;">
+        <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;">
+          <button class="btn btn-success" onclick="N98.adminQuickAdd(0.25, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+0.25$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+1$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5, 'USD')" style="padding:6px 10px; font-size:12px; width:auto;">+5$</button><button class="btn btn-success" onclick="N98.adminQuickAdd(1000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+1K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(5000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+5K៛</button><button class="btn btn-success" onclick="N98.adminQuickAdd(10000, 'KHR')" style="padding:6px 10px; font-size:12px; width:auto;">+10K៛</button>
+        </div>
+        <button class="btn" onclick="N98.adminAddDeposit()" style="width:100%; padding:14px; margin-top:12px; font-size:14px; background:linear-gradient(135deg,#dc3545,#a71d2a); color:white; font-weight:800; border:none; border-radius:8px; cursor:pointer;">💰 បញ្ចូលទឹកប្រាក់</button>
+        <div id="adminFeedback" style="margin-top:10px; padding:10px; border-radius:8px; font-weight:700; font-size:13px; display:none;"></div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:12px; border-radius:10px; margin-top:12px; border:1px solid #b6d4fe;">
+        <div style="font-weight:800; color:#005fa3; font-size:13px; margin-bottom:8px;">💰 គ្រប់គ្រងសំណើបញ្ចូលទឹកប្រាក់</div>
+        <button class="btn btn-primary" onclick="N98.adminLoadDepositRequests()" style="width:100%; padding:10px; font-size:13px;">📋 បង្ហាញបញ្ជីសំណើ</button>
+        <div id="adminDepositReqList" style="margin-top:8px; font-size:12px; font-weight:700; line-height:1.8;"></div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:12px; border-radius:10px; margin-top:12px;">
+        <div style="font-weight:800; color:#005fa3; font-size:13px; margin-bottom:8px;">📊 ស្ថិតិប្រព័ន្ធ</div>
+        <button class="btn btn-primary" onclick="N98.adminLoadStats()" style="width:100%; padding:10px; font-size:13px;">📈 ទាញស្ថិតិ</button>
+        <div id="adminStats" style="margin-top:8px; font-size:12px; font-weight:700; color:#005fa3; line-height:1.8;"></div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); padding:12px; border-radius:10px; margin-top:12px; border:1px solid #ff8b8b;">
+        <div style="font-weight:800; color:#721c24; font-size:13px; margin-bottom:8px;">🏦 គ្រប់គ្រងការដកប្រាក់</div>
+        <button class="btn" onclick="N98.adminLoadWithdrawals()" style="width:100%; padding:10px; font-size:13px; background:linear-gradient(135deg,#6f42c1,#5a32a3); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:800;">📋 បង្ហាញបញ្ជីដកប្រាក់</button>
+        <div id="adminWithdrawalsList" style="margin-top:8px; font-size:12px; font-weight:700; line-height:1.8;"></div>
+      </div>
+    </div>
+
+    <!-- ================= HISTORY SECTION ================= -->
+    <div class="lottery-box" id="historySection" style="display:block; margin-top:20px;">
+      <div class="time-box">📊 ប្រវត្តិទាំងអស់ <span style="font-size:10px; color:#dc3545; margin-left:8px; font-weight:800; background:#fee2e2; padding:2px 8px; border-radius:6px;">រក្សាទុក ២ ថ្ងៃ</span></div>
+      
+      <div class="history-tabs-container" id="historyTabsContainer">
+        <button class="history-tab active" data-tab="bets-classic" data-mode="classic" onclick="N98.switchHistoryTab('bets-classic', event)">📊 ប្រវត្តិចាក់ 12/16</button>
+        <button class="history-tab" data-tab="results-classic" data-mode="classic" onclick="N98.switchHistoryTab('results-classic', event)">🎯 លទ្ធផល 12/16</button>
+        <button class="history-tab" data-tab="deposits" data-mode="both" onclick="N98.switchHistoryTab('deposits', event)">💰 ប្រវត្តិដាក់ប្រាក់</button>
+        <button class="history-tab" data-tab="withdrawals" data-mode="both" onclick="N98.switchHistoryTab('withdrawals', event)">🏦 ប្រវត្តិដកប្រាក់</button>
+        <button class="history-tab" data-tab="bets-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('bets-rapid', event)" style="display:none;">⚡ ប្រវត្តិចាក់ 10នាទី</button>
+        <button class="history-tab" data-tab="results-rapid" data-mode="rapid" onclick="N98.switchHistoryTab('results-rapid', event)" style="display:none;">🎯 លទ្ធផល 10នាទី</button>
+        <button class="history-tab" data-tab="bets-dice" data-mode="dice" onclick="N98.switchHistoryTab('bets-dice', event)" style="display:none;">🎲 ប្រវត្តិចាក់អាប៉ោង</button>
+        <button class="history-tab" data-tab="results-dice" data-mode="dice" onclick="N98.switchHistoryTab('results-dice', event)" style="display:none;">🎯 លទ្ធផលអាប៉ោង</button>
+      </div>
+
+      <div class="history-panel active" id="panel-bets-classic">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#0078D7,#005fa3);"><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លេខចាក់</th><th>ប្រភេទ</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyClassic"><tr><td colspan="7" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+
+      <div class="history-panel" id="panel-bets-rapid">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#e91e63,#880e4f);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លេខចាក់</th><th>ប្រភេទ</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyRapid"><tr><td colspan="7" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+
+      <div class="history-panel" id="panel-withdrawals">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#5a32a3);"><th>កាលបរិច្ឆេទ</th><th>លេខសំណើ</th><th>ចំនួនដក</th><th>រូបិយប័ណ្ណ</th><th>ស្ថានភាព</th></tr></thead><tbody id="userWithdrawBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+
+      <div class="history-panel" id="panel-deposits">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#28a745,#1e7e34);"><th>កាលបរិច្ឆេទ</th><th>ចំនួន</th><th>រូបិយប័ណ្ណ</th><th>សមតុល្យក្រោយ</th><th>កំណត់សម្គាល់</th></tr></thead><tbody id="userDepositBody"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+
+      <div class="history-panel" id="panel-results-classic">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff9800,#e65100);"><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyClassic"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+
+      <div class="history-panel" id="panel-results-rapid">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#ff1744,#d50000);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>លទ្ធផល ២ខ្ទង់</th><th>លទ្ធផល ៣ខ្ទង់</th><th>ចេញលទ្ធផលនៅ</th></tr></thead><tbody id="historyBodyRapid"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+
+      <div class="history-panel" id="panel-bets-dice">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#6f42c1,#4a148c);"><th>កាលបរិច្ឆេទ</th><th>វគ្គ</th><th>ជម្រើសចាក់</th><th>ចំនួន</th><th>ស្ថានភាព</th><th>រង្វាន់</th></tr></thead><tbody id="userHistoryBodyDice"><tr><td colspan="6" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+
+      <div class="history-panel" id="panel-results-dice">
+        <div style="overflow-x:auto;"><table class="history-table"><thead><tr style="background:linear-gradient(135deg,#9c27b0,#6a1b9a);"><th>វគ្គ</th><th>កាលបរិច្ឆេទ</th><th>ម៉ោង</th><th>លទ្ធផល</th><th>គ្រាប់</th></tr></thead><tbody id="historyBodyDice"><tr><td colspan="5" style="color:#6c757d; padding:12px;">កំពុងផ្ទុក...</td></tr></tbody></table></div>
+      </div>
+    </div>
+
+    <div id="rulesSection" style="display:none;">
+      <div class="bet-box">
+        <h2>📋 ច្បាប់ និងរបៀបប្រើប្រាស់</h2>
+        <div style="padding:8px; font-size:13px; line-height:1.9; font-weight:600;">
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px;">🎯 ១. របៀបចាក់ឆ្នោត</h4>
+          <p>១. ជ្រើសរើសពេលវេលា (12:00 ឬ 16:00 ឬ 10 នាទី ឬ អាប៉ោង 5 នាទី)</p>
+          <p>២. ជ្រើសរើសប្រភេទ (២ ឬ ៣ ខ្ទង់)</p>
+          <p>៣. ចុចជ្រើសរើស ប៉ុស្តិ៍ A, B, C, D, ឬ E (ឬជ្រើសគ្រាប់អាប៉ោង)</p>
+          <p>៤. បញ្ចូលលេខ (ឧ. 01, 02, 03)</p>
+          <p>៥. ជ្រើសរើសចំនួនទឹកប្រាក់ក្នុងមួយលេខ</p>
+          <p>៦. ចុច "ដាក់ភ្នាល់"</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ២. អត្រារង្វាន់</h4>
+          <p>• <strong>២ខ្ទង់ (A-E)</strong> – 1$ → 70$</p>
+          <p>• <strong>៣ខ្ទង់ (A-E)</strong> – 1$ → 500$</p>
+          <p>• <strong>អាប៉ោង (ទាយគ្រាប់)</strong> – 1$ → 5$</p>
+          <p>• <strong>អាប៉ោង (ស្តើង/ក្រាស់)</strong> – 1$ → 0.85$</p>
+          <p>• ចាក់ពី 500៛/0.25$ ដល់ 200,000៛/50$</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚡ ៣. ឆ្នោត 10 នាទី និង អាប៉ោង 5 នាទី</h4>
+          <p>• ចុច Tab <strong>🎯 10 នាទី</strong> ឬ <strong>🎲 អាប៉ោង</strong> ខាងលើ</p>
+          <p>• ប្រកាសលទ្ធផលរៀងរាល់ 10 នាទី (ឆ្នោត) និង 5 នាទី (អាប៉ោង)</p>
+          <p>• ដំណើរការ 24/7</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🎁 ៤. ប្រាក់រង្វាន់ស្វាគមន៍</h4>
+          <p>• គណនីថ្មីទទួលបាន <strong style="color:#d63000;">5.00$ និង 20,000៛</strong> ភ្លាមៗ</p>
+          <p>• <strong style="color:#dc3545;">មិនអាចដកបានទេ</strong> លុះត្រាតែបញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង និងរង់ចាំ ២៤ ម៉ោង</p>
+          <p>• <strong style="color:#dc3545;">អាចចាក់អាប៉ោងបាន</strong> បន្ទាប់ពីបញ្ចូលប្រាក់ពិតប្រាកដ</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🏦 ៥. របៀបដកប្រាក់</h4>
+          <p>• ដកប្រាក់បានគ្រប់ពេល 24/7</p>
+          <p>• <strong style="color:#d63000;">សមតុល្យអប្បបរមាសម្រាប់ដក: 10$ ឬ 40,000៛</strong></p>
+          <p>• លក្ខខណ្ឌដកប្រាក់៖ បញ្ចូលប្រាក់ពិតប្រាកដ, ចាក់យ៉ាងតិច ១ ដង, រង់ចាំ ២៤ ម៉ោង</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">💰 ៦. របៀបបញ្ចូលប្រាក់</h4>
+          <p>• អប្បបរមា: 5.00$ ឬ 20,000៛</p>
+          <p>• ចុចប៊ូតុង "💰 បញ្ចូលទឹកប្រាក់"</p>
+          <p>• បង់តាម ABA Bank (KHQR)</p>
+          <p>• បញ្ជូន Screenshot → Admin នឹងអនុម័ត</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⏰ ៧. ការបិទចាក់</h4>
+          <p>• ម៉ោង 12:00: បិទនៅ 11:59 (១ នាទីមុនលទ្ធផល)</p>
+          <p>• ម៉ោង 16:00: បិទនៅ 15:59 (១ នាទីមុនលទ្ធផល)</p>
+          <p>• ឆ្នោត 10 នាទី: បិទ ១ នាទីមុនលទ្ធផល</p>
+          <p>• អាប៉ោង 5 នាទី: បិទ ១០ វិនាទីមុនលទ្ធផល</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">📊 ៨. ប្រវត្តិ និងលទ្ធផល</h4>
+          <p>• ប្រវត្តិចាក់ និងលទ្ធផលរក្សាទុក <strong>២ ថ្ងៃ</strong> ចុងក្រោយ</p>
+          <p>• លទ្ធផលចាស់ៗនឹងលុបដោយស្វ័យប្រវត្តិ</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🔐 ៩. សុវត្ថិភាព</h4>
+          <p>• PIN 4 ខ្ទង់ ត្រូវចងចាំ</p>
+          <p>• ភ្លេច PIN → ទាក់ទង Admin</p>
+          <p>• កុំប្រាប់ PIN អ្នកដទៃ</p>
+
+          <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">⚠️ ១០. ការព្រមាន</h4>
+          <p>• ការចាក់ឆ្នោតមានហានិភ័យ — សូមលេងដោយការទទួលខុសត្រូវ</p>
+          <p>• មិនអនុញ្ញាតឱ្យអ្នកក្រោមអាយុ 18 ឆ្នាំ</p>
+          <p>• ការកេងប្រវ័ញ្ចនឹងត្រូវបានផ្អាកគណនីភ្លាមៗ</p>
+        </div>
+      </div>
+    </div>
+
+  </div> 
+
+  <div class="footer"><span class="emoji-dice">🎲</span> © 2026 Khmer Lottery N98 — រក្សាសិទ្ធិគ្រប់យ៉ាងពីឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></div>
+</div>
+
+<!-- ================= MODALS ================= -->
+<div class="modal" id="depositModal">
+  <div class="modal-content">
+    <span class="close" onclick="N98.closeModal('depositModal')">&times;</span>
+    <h2>💰 បញ្ចូលទឹកប្រាក់ (ABA Bank)</h2>
+    <form id="depositForm">
+      <div style="background:linear-gradient(135deg,#e8f4fd,#d4edda); border:2px dashed #0078D7; padding:16px; border-radius:12px; text-align:center; margin-top:12px;">
+        <div style="font-weight:800; color:#005fa3; font-size:14px; margin-bottom:12px;">👇 ចុចខាងក្រោមដើម្បីបង់ប្រាក់</div>
+        <a href="https://pay.ababank.com/oRF8/yhtm93ei" target="_blank" rel="noopener" id="abaBankBtn" onclick="N98.handleAbaClick(event)" style="font-size:15px; padding:16px; display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,#005fa3,#0078D7); color:white; text-decoration:none; border-radius:10px; font-weight:800;">
+          <span style="font-size:22px;">🏦</span><span>បង់ប្រាក់តាម ABA Bank</span><span style="background:rgba(255,255,255,0.25); padding:3px 10px; border-radius:8px; font-size:11px;">KHQR</span>
+        </a>
+        
+        <button type="button" onclick="N98.downloadQR()" style="margin-top:10px; width:100%; padding:12px; background:linear-gradient(135deg,#28a745,#1e7e34); color:white; border:none; border-radius:10px; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 10px rgba(40,167,69,0.3);">
+          <span style="font-size:18px;">📥</span> ទាញយករូបភាព QR Code
+        </button>
+
+        <div style="font-size:11.5px; color:#005fa3; margin-top:12px; font-weight:700;">⚡ បង់រួច សូមថតរូប (Screenshot)</div>
+      </div>
+      
+      <label>លេខទូរស័ព្ទ *</label>
+      <input type="tel" id="depPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" minlength="9" maxlength="10" inputmode="numeric">
+      
+      <label>រូបិយប័ណ្ណ *</label>
+      <select id="depCurrency" required style="width:100%; padding:12px; border:2px solid #dee2e6; border-radius:10px; font-size:14px; font-weight:800; background:#f8f9fa; margin-bottom:6px;">
+        <option value="USD">ដុល្លារ ($ USD)</option>
+        <option value="KHR">រៀល (៛ KHR)</option>
+      </select>
+      
+      <label>បញ្ជាក់ចំនួនទឹកប្រាក់របស់អ្នក *</label>
+      <input type="number" id="depAmount" required placeholder="បញ្ចូលចំនួន" step="any" min="0.01" oninput="N98.checkContinueButtonState()">
+      <div style="font-size:11px; color:#dc3545; font-weight:800; margin-bottom:8px; text-align:left;" id="depMinHint">⚠️ ចំនួនអប្បបរមា USD ≥ 5.00$</div>
+      
+      <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:14px; text-align:left;">
+          <div style="font-weight:800; color:#856404; font-size:12px; margin-bottom:8px;">បន្ទាប់ពីបង់ប្រាក់រួច សូមចុចបន្ត ដើម្បីបើកការបញ្ចូលរូបភាពនៃប្រតិបត្តិការបង់ប្រាក់របស់អ្នក!</div>
+          <button type="button" id="depContinueBtn" onclick="N98.enableScreenshotUpload()" disabled style="width:100%; padding:12px; background:#ced4da; color:#6c757d; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:not-allowed;">👉 បន្ត</button>
+      </div>
+
+      <label id="depScreenshotLabel" style="opacity:0.5; pointer-events:none; margin-top:14px; display:block;">បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) *</label>
+      <input type="file" id="depScreenshot" accept="image/*" required disabled style="width:100%; padding:10px; border:2px solid #dee2e6; border-radius:10px;">
+      
+      <button type="submit" class="btn btn-success" id="depSubmitBtn" disabled style="margin-top:12px;">🚀 បញ្ជាក់ការបញ្ចូលប្រាក់</button>
+      
+      <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ff8b8b; border-radius:10px; padding:12px 14px; margin-top:12px; font-size:11.5px; color:#721c24; line-height:1.7; text-align:left; font-weight:600;"><span class="anim-shake">⚠️</span> <strong>ការព្រមាន!</strong><br>• ការបង់ប្រាក់ត្រូវធ្វើតាម ABA Bank ជាមុន<br>• បញ្ជូនរូបភាព Screenshot ជូន Admin<br>• ប្រសិនបើមិនបង់ → Admin នឹងមិនអនុម័ត</div>
+      
+      <div style="font-size:11.5px; color:#dc3545; font-weight:800; text-align:center; margin-top:8px;">សូមផ្ទៀងផ្ទាត់លទ្ធផលឆ្នោតជាមួយនឹងការចាក់ឆ្នោតរបស់អ្នក!</div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="directBetModal">
+  <div class="modal-content">
+    <span class="close" onclick="N98.closeModal('directBetModal')">&times;</span>
+    <h2 style="color:#28a745;">💵 បញ្ជាក់ការចាក់ផ្ទាល់</h2>
+    <form id="directBetForm">
+      <div class="bet-summary">
+        <div class="bet-summary-item"><span>🔢 លេខ៖</span><span id="directConfirmNumbers">-</span></div>
+        <div class="bet-summary-item total"><span>💰 សរុប៖</span><span id="directConfirmTotal">-</span></div>
+      </div>
+      <label>លេខទូរស័ព្ទ *</label>
+      <input type="tel" id="directPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" inputmode="numeric">
+      <div style="margin-top:14px;">
+        <div style="font-weight:800; color:#155724; font-size:13px; margin-bottom:8px;">💰 សមតុល្យរបស់អ្នក</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">💵 USD</div><div id="directBalanceUSD" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div></div>
+          <div class="balance-item"><div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">🇰🇭 KHR</div><div id="directBalanceKHR" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div></div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" style="margin-top:14px;">✅ បញ្ជាក់ការចាក់</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="withdrawModal">
+  <div class="modal-content">
+    <span class="close" onclick="N98.closeModal('withdrawModal')">&times;</span>
+    <h2>🏦 ដកប្រាក់</h2>
+    
+    <form id="withdrawNewForm">
+      <label>💰 សមតុល្យរបស់អ្នក</label>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+        <div class="balance-item" id="wdBalUSDBtn" onclick="N98.selectWithdrawCurrency('USD')" style="cursor:pointer; opacity:0.5;">
+          <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">💵 USD</div>
+          <div id="wdBalanceUSD" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0.00$</div>
+          <div style="font-size:10px; color:#155724; margin-top:4px;">ចុចដើម្បីជ្រើស</div>
+        </div>
+        <div class="balance-item" id="wdBalKHRBtn" onclick="N98.selectWithdrawCurrency('KHR')" style="cursor:pointer; opacity:0.5;">
+          <div style="font-size:11px; color:#155724; font-weight:800; margin-bottom:4px;">🇰🇭 KHR</div>
+          <div id="wdBalanceKHR" style="font-size:20px; color:#28a745; font-weight:800; font-family:'Courier New',monospace;">0៛</div>
+          <div style="font-size:10px; color:#155724; margin-top:4px;">ចុចដើម្បីជ្រើស</div>
+        </div>
+      </div>
+      <input type="hidden" id="wdCurrency" value="">
+      <label>💰 ចំនួនទឹកប្រាក់ដក *</label>
+      <input type="number" id="wdAmount" required placeholder="បញ្ចូលចំនួន" min="0.01" step="any">
+      <label>📱 លេខទូរស័ព្ទ *</label>
+      <input type="tel" id="wdPhone" required placeholder="បញ្ចូលលេខទូរស័ព្ទ" inputmode="numeric">
+      <label>📷 បញ្ចូលរូបភាព QR Code ទទួលប្រាក់របស់អ្នក *</label>
+      <input type="file" id="wdQrCode" accept="image/*" required>
+      <button type="submit" class="btn btn-withdraw" id="wdSubmitBtn" style="width:100%; margin-top:12px; padding:14px;">🏦 បញ្ជាក់ការដកប្រាក់</button>
+      <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px solid #ff8b8b; border-radius:10px; padding:10px; margin-top:12px; font-size:11.5px; color:#721c24; line-height:1.7; font-weight:600;">⚠️ ប្រាក់នឹងកាត់ចេញពីសមតុល្យភ្លាមៗ<br>ប្រសិនបើ Admin បដិសេធ → ប្រាក់នឹងបង្វិលចូលវិញ</div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="groupModal">
+  <div class="modal-content" style="text-align:center;">
+    <span class="close" onclick="N98.closeModal('groupModal')">&times;</span>
+    <div style="font-size:60px;" class="anim-bounce">📢</div>
+    <h2>ចូលក្រុម និង Channel</h2>
+    <p style="font-size:13px; color:#4a5568; margin:12px 0; font-weight:600;">ទទួលបានព័ត៌មានថ្មីៗ!</p>
+    
+    <a href="https://t.me/AhpongN98" target="_blank" rel="noopener" class="group-btn dice-channel">🎲 Channel ប្រកាសលទ្ធផលអាប៉ោង<small>ចេញលទ្ធផលរៀងរាល់ 5 នាទី</small></a>
+    
+    <a href="https://t.me/KhmerlotteryresultsN98" target="_blank" rel="noopener" class="group-btn channel">📢 ចូល Channel ប្រកាសលទ្ធផលឆ្នោត 12:00 / 16:00</a>
+    
+    <a href="https://t.me/Livelotteryevery10minutes" target="_blank" rel="noopener" class="group-btn" style="background:linear-gradient(135deg,#e91e63,#880e4f);">⚡ ចូល Channel លទ្ធផលឆ្នោត N98 រៀងរាល់ 10 នាទី<small>ចេញលទ្ធផលរៀងរាល់ 10 នាទី</small></a>
+    
+    <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ទទួលលេខ Code ចុះឈ្មោះ N98<small>Channel ផ្តល់ Code ចុះឈ្មោះ</small></a>
+  </div>
+</div>
+
+<div class="modal" id="alertModal">
+  <div class="modal-content alert-modal">
+    <span class="alert-icon" id="alertIcon">🔔</span>
+    <h3 class="alert-title" id="alertTitle">ការជូនដំណឹង</h3>
+    <p class="alert-message" id="alertMessage">សារ...</p>
+    <button class="btn btn-primary" onclick="N98.closeModal('alertModal')" style="padding:12px 32px; border-radius:22px; font-size:14px;">យល់ព្រម</button>
+  </div>
+</div>
+
+<div class="modal" id="confirmModal">
+  <div class="modal-content confirm-modal-content">
+    <span class="confirm-icon" id="confirmIcon">❓</span>
+    <h3 class="confirm-title" id="confirmTitle">តើអ្នកប្រាកដឬ?</h3>
+    <div id="confirmInfoContainer" style="display:none;">
+      <div class="confirm-info-box" id="confirmInfoBox"></div>
+    </div>
+    <p class="confirm-message" id="confirmMessage"></p>
+    <div class="confirm-buttons">
+      <button class="btn btn-confirm-cancel" onclick="N98.closeConfirm(false)" id="confirmCancelBtn">✕ បោះបង់</button>
+      <button class="btn btn-confirm-ok" onclick="N98.closeConfirm(true)" id="confirmOkBtn">✓ បញ្ជាក់</button>
     </div>
   </div>
-  
-  <script>
+</div>
+
+<!-- ================= PROMO POPUP ================= -->
+<div class="modal" id="promoModal" style="display:none; align-items:center; justify-content:center; z-index: 2000;">
+  <div class="modal-content" style="max-width: 420px; background: linear-gradient(135deg, #0f1420, #1a1f2e); border: 3px solid #0078D7; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,120,215,0.4); padding: 25px; position: relative;">
+    <span class="close" onclick="N98.closePromoPopup()" style="color: #adb5bd; position: absolute; top: 15px; right: 20px;">&times;</span>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+      <div style="font-size: 60px; margin-bottom: 10px;" class="anim-bounce">🎲</div>
+      <h2 style="color: #ffffff; font-size: 24px; font-weight: 800; margin-bottom: 5px;">ឆ្នោតខ្មែរ N98</h2>
+      <p style="color: #adb5bd; font-size: 14px; font-weight: 600;">សូមស្វាគមន៍! ស្ថានភាពចាក់បច្ចុប្បន្ន</p>
+    </div>
+
+    <div style="display: grid; gap: 12px; margin-bottom: 20px;">
+      <!-- Classic 12:00 -->
+      <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">🕛</span>
+          <div>
+            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 12:00</div>
+            <div style="color: #adb5bd; font-size: 11px;" id="promoStatus12">បើកចាក់</div>
+          </div>
+        </div>
+        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown12">00:00:00</div>
+      </div>
+
+      <!-- Classic 16:00 -->
+      <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">🕓</span>
+          <div>
+            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 16:00</div>
+            <div style="color: #adb5bd; font-size: 11px;" id="promoStatus16">បើកចាក់</div>
+          </div>
+        </div>
+        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown16">00:00:00</div>
+      </div>
+
+      <!-- Rapid 10 Min -->
+      <div style="background: rgba(233,30,99,0.1); border: 1px solid rgba(233,30,99,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">🎯</span>
+          <div>
+            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">10 នាទី LIVE</div>
+            <div style="color: #adb5bd; font-size: 11px;" id="promoStatus10">កំពុងដំណើរការ</div>
+          </div>
+        </div>
+        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #ff8bb5;" id="promoCountdown10">00:00</div>
+      </div>
+
+      <!-- 🎲 អាប៉ោង 5 នាទី -->
+      <div style="background: rgba(111,66,193,0.1); border: 1px solid rgba(111,66,193,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">🎲</span>
+          <div>
+            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">អាប៉ោង 5 នាទី</div>
+            <div style="color: #adb5bd; font-size: 11px;" id="promoStatusDice">កំពុងដំណើរការ</div>
+          </div>
+        </div>
+        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #d8b4fe;" id="promoCountdownDice">00:00</div>
+      </div>
+    </div>
+
+    <button onclick="N98.closePromoPopup()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(40,167,69,0.4);">
+      ចាប់ផ្តើមចាក់ឥឡូវ 🚀
+    </button>
+  </div>
+</div>
+
+    <script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
@@ -1727,7 +1713,7 @@
         N98.updateSubmitDiceButton();
         updateBalanceStatusBox();
         updateBalanceStatusBox10();
-        N98.updateBalanceStatusBoxDice();
+        N98.updateBalanceStatusBoxDice(); // ✅ ហៅ update សម្រាប់អាប៉ោង
         updateWithdrawCurrencyButtons();
       }
 
@@ -2117,17 +2103,29 @@
           updateBettingClosed10();
         }, CFG.STATUS_MS);
         
-        // ✅ កែសម្រួលឲ្យ Ring អាប៉ោងវិលថយក្រោយត្រឹមត្រូវ (ដោយប្រើ CSS Animation ជំនួស)
-        // យើងមិនត្រូវការ setInterval សម្រាប់ update រង្វង់ទៀតទេ ព្រោះវាប្រើ CSS Animation
+        // ✅ កែសម្រួលឲ្យ Ring អាប៉ោងវិលថយក្រោយត្រឹមត្រូវ (គណនាតាម JavaScript)
         intervals.dice = setInterval(function() {
+          var now = new Date();
+          var sec = now.getSeconds();
+          var min = now.getMinutes();
+          var secondsIntoCycle = (min % 5) * 60 + sec;
+          var secondsLeft = (5 * 60) - secondsIntoCycle;
+          if (secondsLeft < 0) secondsLeft = 0;
+          
+          // គណនា និង Update រង្វង់វិលថយក្រោយ (ធ្វើវាទោះនៅ Tab ណាក៏ដោយ ដើម្បីឲ្យវាត្រូវនឹងម៉ោងពិត)
+          var totalDiceCycle = 5 * 60;
+          var percentDice = secondsIntoCycle / totalDiceCycle;
+          var circumferenceDice = 2 * Math.PI * 70; // 439.82
+          var offsetDice = circumferenceDice * percentDice;
+          
+          if ($('ringProgressDice')) {
+            $('ringProgressDice').style.transition = 'stroke-dashoffset 1s linear';
+            $('ringProgressDice').style.strokeDashoffset = offsetDice;
+          }
+
           if (mainMode === 'dice') {
             N98.fetchDiceResults();
-            var now = new Date();
-            var sec = now.getSeconds();
-            var min = now.getMinutes();
-            var secondsIntoCycle = (min % 5) * 60 + sec;
-            var secondsLeft = (5 * 60) - secondsIntoCycle;
-            if (secondsLeft < 0) secondsLeft = 0;
+            
             var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
             var ss = String(secondsLeft % 60).padStart(2, '0');
             if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
