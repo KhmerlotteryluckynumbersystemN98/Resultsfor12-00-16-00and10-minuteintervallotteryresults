@@ -47,11 +47,20 @@
     .particles-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
     .particle { position: absolute; font-size: 20px; opacity: 0; animation: particleFloat 15s linear infinite; }
 
-    header { background: linear-gradient(135deg, #0078D7 0%, #005fa3 50%, #6f42c1 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; color: white; padding: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,120,215,0.3); transition: all 0.5s; }
+    header { background: linear-gradient(135deg, #0078D7 0%, #005fa3 50%, #6f42c1 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; color: white; padding: 20px; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,120,215,0.3); transition: all 0.5s; }
     header.mode-10 { background: linear-gradient(135deg, #e91e63 0%, #c2185b 50%, #880e4f 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(233,30,99,0.4); }
     header.mode-dice { background: linear-gradient(135deg, #6f42c1 0%, #4a148c 50%, #311b92 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(111,66,193,0.4); }
-    header h1 { font-size: clamp(24px, 5vw, 38px); font-weight: 800; margin: 8px 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); position: relative; z-index: 1; }
-    header p { font-size: clamp(13px, 2vw, 16px); opacity: 0.95; position: relative; z-index: 1; font-weight: 600; }
+    
+    /* រៀបចំ Header ថ្មី */
+    .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; flex-wrap: wrap; gap: 15px; }
+    .header-title { text-align: center; flex: 1; min-width: 250px; }
+    .header-title h1 { font-size: clamp(24px, 5vw, 38px); font-weight: 800; margin: 8px 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .header-title p { font-size: clamp(13px, 2vw, 16px); opacity: 0.95; font-weight: 600; }
+    
+    /* ប្រអប់ ID និង Phone នៅលើ Header */
+    .header-user-info { display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.15); padding: 10px 15px; border-radius: 12px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3); min-width: 200px; }
+    .header-user-info .info-row { display: flex; justify-content: space-between; align-items: center; font-size: clamp(11px, 1.3vw, 13px); font-weight: 700; color: #fff; gap: 10px; }
+    .header-user-info .info-row .val { font-family: 'Courier New', monospace; font-size: clamp(13px, 1.5vw, 15px); font-weight: 800; background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 6px; }
 
     .mode-tabs { background: white; padding: 12px 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 110; box-shadow: 0 2px 12px rgba(0,0,0,0.1); border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #0078D7, #28a745, #ff9800, #6f42c1, #e91e63, #0078D7) 1; }
     .mode-tab { flex: 1; min-width: 140px; max-width: 240px; padding: 14px 16px; border: 3px solid #dee2e6; background: white; border-radius: 14px; font-weight: 800; font-size: clamp(13px, 1.6vw, 15px); cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: #2d3748; display: flex; align-items: center; justify-content: center; gap: 8px; position: relative; }
@@ -73,24 +82,22 @@
 
     .section { padding: 12px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 
-    .user-info-bar { background: linear-gradient(135deg, #d4edda, #a8e6c0); padding: 12px 16px; border-radius: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border: 2px solid #28a745; box-shadow: 0 4px 14px rgba(40,167,69,0.2); }
-    .user-info-bar .label { color: #155724; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; }
-    .user-info-bar .value { color: #28a745; font-size: clamp(13px, 1.5vw, 16px); font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 1px; }
-
-    .clock-box { background: linear-gradient(135deg, #ffffff, #e8f4fd); border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 2px solid #0078D7; flex-wrap: wrap; gap: 10px; box-shadow: 0 4px 16px rgba(0,120,215,0.15); }
-    .clock-title { color: #4a5568; font-size: clamp(11px, 1.3vw, 13px); font-weight: 800; }
-    .clock-time { color: #0078D7; font-size: clamp(22px, 3.5vw, 30px); font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 12px rgba(0,120,215,0.3); }
-    .clock-date { color: #2d3748; font-size: clamp(11px, 1.3vw, 13px); font-weight: 700; }
-
-    .status-bar { background: linear-gradient(135deg, #e8f4fd, #d4edda); padding: 8px 12px; border-radius: 10px; margin: 6px 0; border-left: 4px solid #0078D7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-weight: 700; }
-    .status-bar .label { font-weight: 800; color: #005fa3; font-size: clamp(11px, 1.3vw, 13px); }
-    .status-bar .value { font-weight: 800; color: #28a745; font-size: clamp(12px, 1.4vw, 14px); }
-    .status-bar .pending { color: #dc3545; animation: pulse 1.5s ease-in-out infinite; }
-
-    .countdown { background: linear-gradient(135deg, #ffffff, #fff5f5); padding: 16px; border-radius: 14px; margin: 10px 0; border: 3px solid #dc3545; text-align: center; box-shadow: 0 4px 18px rgba(220,53,69,0.2); }
+    /* ប្រអប់ Countdown ថ្មី (ដាក់ម៉ោង និងកាលបរិច្ឆេទខាងក្នុង) */
+    .countdown { background: linear-gradient(135deg, #ffffff, #fff5f5); padding: 16px; border-radius: 14px; margin: 10px 0; border: 3px solid #dc3545; text-align: center; box-shadow: 0 4px 18px rgba(220,53,69,0.2); position: relative; }
     .countdown .time-display { font-size: clamp(32px, 6vw, 46px); color: #dc3545; background: #fff5f5; padding: 6px 18px; border-radius: 10px; display: inline-block; margin-top: 6px; font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(220,53,69,0.4); animation: pulse 2s ease-in-out infinite; }
     .countdown .next-time { font-size: clamp(12px, 1.4vw, 14px); color: #4a5568; margin-top: 6px; font-weight: 800; }
     .countdown .status-time { font-size: clamp(11px, 1.3vw, 13px); color: #0078D7; margin-top: 4px; font-weight: 700; }
+    
+    /* ប្រអប់ Clock តូចនៅខាងក្នុង Countdown */
+    .inline-clock-box { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #ffffff, #e8f4fd); border: 2px solid #0078D7; border-radius: 12px; padding: 8px 16px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,120,215,0.15); flex-wrap: wrap; justify-content: center; }
+    .inline-clock-box .time { font-size: clamp(20px, 3vw, 26px); font-weight: 800; color: #0078D7; font-family: 'Courier New', monospace; text-shadow: 0 0 10px rgba(0,120,215,0.3); }
+    .inline-clock-box .date { font-size: clamp(11px, 1.3vw, 13px); color: #2d3748; font-weight: 700; }
+
+    /* ប្រអប់ Status Bar ថ្មី */
+    .status-bar { background: linear-gradient(135deg, #e8f4fd, #d4edda); padding: 10px 14px; border-radius: 10px; margin: 6px 0 12px 0; border-left: 4px solid #0078D7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-weight: 700; }
+    .status-bar .label { font-weight: 800; color: #005fa3; font-size: clamp(11px, 1.3vw, 13px); }
+    .status-bar .value { font-weight: 800; color: #28a745; font-size: clamp(12px, 1.4vw, 14px); }
+    .status-bar .pending { color: #dc3545; animation: pulse 1.5s ease-in-out infinite; }
 
     .countdown-rapid { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 3px solid #e91e63; border-radius: 20px; padding: 20px; margin: 12px 0; text-align: center; box-shadow: 0 8px 32px rgba(233,30,99,0.4); animation: glowPink 2s ease-in-out infinite; }
     .countdown-rapid .label { color: #ff8bb5; font-size: clamp(12px, 1.5vw, 14px); font-weight: 800; margin-bottom: 8px; }
@@ -98,6 +105,7 @@
     .countdown-rapid .next-draw { color: #e8eaf0; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; margin-top: 10px; }
     .countdown-rapid .draw-number { color: #ff8bb5; font-weight: 800; }
 
+    /* រៀបចំរង្វង់ (Ring) សម្រាប់ Rapid Mode */
     .ring-container { position: relative; width: 160px; height: 160px; margin: 12px auto; }
     .ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
     .ring-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 8; }
@@ -105,6 +113,10 @@
     .ring-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
     .ring-text .time { font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); }
     .ring-text .label { font-size: 11px; color: #ff8bb5; font-weight: 700; margin-top: 2px; }
+
+    /* បន្ទាត់ Progress សម្រាប់ អាប៉ោង (ជំនួសរង្វង់) */
+    .dice-progress-container { width: 100%; max-width: 300px; height: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 15px auto; overflow: hidden; border: 2px solid rgba(111,66,193,0.5); }
+    .dice-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ffc107, #ff9800, #ff1744); border-radius: 8px; transition: width 1s linear; box-shadow: 0 0 10px rgba(255,23,68,0.6); }
 
     .lottery-box { background: white; padding: 16px; margin: 12px 0; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.04); animation: slideInUp 0.5s ease-out; transition: all 0.3s ease; }
     .lottery-box:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
@@ -363,6 +375,8 @@
     body.dark-mode .betting-closed-compact { background: linear-gradient(135deg, #3f1d1d, #2a1313); border-color: #7f1d1d; }
     body.dark-mode .betting-closed-compact .right-side { background: #1a0f1f; border-color: #7f1d1d; color: #fca5a5; }
     body.dark-mode .betting-closed-compact .title { color: #fca5a5; }
+    body.dark-mode .inline-clock-box { background: #252b3d; border-color: #4a5268; }
+    body.dark-mode .inline-clock-box .date { color: #e8eaf0; }
 
     .dice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
     .dice-box { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; }
@@ -419,6 +433,7 @@
       .result-card .num-cell .value { font-size: 18px; }
       .betting-closed-compact { flex-direction: column; align-items: flex-start; }
       .betting-closed-compact .right-side { width: 100%; justify-content: center; }
+      .header-user-info { width: 100%; flex-direction: row; justify-content: space-around; }
     }
     @media (max-width: 480px) {
       .countdown .time-display { font-size: 28px; }
@@ -512,9 +527,21 @@
 
 <!-- ================= MAIN APP ================= -->
 <div id="mainApp" style="display:none;">
+  
   <header id="mainHeader">
-    <h1><span class="emoji-dice">🎲</span> ឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></h1>
-    <p id="headerSubtitle"><span class="anim-pulse">🎯</span> ប្រព័ន្ធចាក់ឆ្នោត 12:00 / 16:00 <span class="anim-pulse">🎉</span></p>
+    <div class="header-content">
+      <div style="width: 200px; display: none;" class="desktop-spacer"></div>
+      
+      <div class="header-title">
+        <h1><span class="emoji-dice">🎲</span> ឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></h1>
+        <p id="headerSubtitle"><span class="anim-pulse">🎯</span> ប្រព័ន្ធចាក់ឆ្នោត 12:00 / 16:00 <span class="anim-pulse">🎉</span></p>
+      </div>
+      
+      <div class="header-user-info">
+        <div class="info-row"><span>🆔 ID:</span><span class="val" id="displayCurrentUserId">------</span></div>
+        <div class="info-row"><span>📱 Phone:</span><span class="val" id="displayCurrentPhone">---</span></div>
+      </div>
+    </div>
   </header>
 
   <div class="mode-tabs">
@@ -535,29 +562,20 @@
   </nav>
 
   <div class="section">
-    <div class="user-info-bar">
-      <div><span class="label"><span class="anim-pulse">🆔</span> ID: </span><span class="value" id="displayCurrentUserId">------</span></div>
-      <div><span class="label"><span class="anim-bounce">📱</span> Phone: </span><span class="value" id="displayCurrentPhone">---</span></div>
-    </div>
-
-    <div class="clock-box">
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span style="font-size:26px;" class="anim-spin">⏰</span>
-        <div><div class="clock-title">🕒 ម៉ោងបច្ចុប្បន្ន</div><div class="clock-time" id="widgetTime">00:00:00</div></div>
-      </div>
-      <div><div class="clock-date" id="widgetDate">កំពុងផ្ទុក...</div></div>
-    </div>
-
-    <div class="status-bar"><span class="label">📊 ស្ថានភាព</span><span class="value" id="resultStatusText">កំពុងផ្ទុក...</span></div>
-
     <!-- ================= CLASSIC MODE (12:00 / 16:00) ================= -->
     <div id="classicMode">
       <div class="countdown">
+        <div class="inline-clock-box">
+          <span class="time" id="widgetTime">00:00:00</span>
+          <span class="date" id="widgetDate">កំពុងផ្ទុក...</span>
+        </div>
         <div style="display:flex; justify-content:center; align-items:center; gap:8px;"><span style="font-size:26px;" class="emoji-dice">🎲</span><span style="font-size:16px; color:#dc3545; font-weight:800;"><span class="anim-pulse">⏳</span> ម៉ោងប្រកាសលទ្ធផលបន្ទាប់</span></div>
         <div class="time-display" id="countdownDisplay">--:--:--</div>
         <div class="next-time" id="nextTimeLabel">🎯 ពេលបន្ទាប់...</div>
         <div class="status-time" id="statusTimeLabel"></div>
       </div>
+      
+      <div class="status-bar"><span class="label">📊 ស្ថានភាព</span><span class="value" id="resultStatusText">កំពុងផ្ទុក...</span></div>
 
       <div class="lottery-box" id="box12Container">
         <div class="time-box"><span class="anim-pulse">🕛</span> លទ្ធផល 12:00 <span class="badge" id="badge12">ព្រឹកពីរ</span> <span id="badge12Latest"></span></div>
@@ -698,6 +716,10 @@
     <!-- ================= RAPID MODE (10 នាទី) ================= -->
     <div id="rapidMode" style="display:none;">
       <div class="countdown-rapid">
+        <div class="inline-clock-box" style="background: rgba(255,255,255,0.1); border-color: rgba(233,30,99,0.5);">
+          <span class="time" id="widgetTimeRapid" style="color: #ff8bb5;">00:00:00</span>
+          <span class="date" id="widgetDateRapid" style="color: #e8eaf0;">កំពុងផ្ទុក...</span>
+        </div>
         <div class="label">⚡ ការប្រកាសលទ្ធផលបន្ទាប់</div>
         <div class="ring-container">
           <svg class="ring-svg" viewBox="0 0 160 160">
@@ -709,6 +731,8 @@
         </div>
         <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumber">#------</span></div>
       </div>
+      
+      <div class="status-bar" style="background: rgba(255,255,255,0.1); border-color: #e91e63;"><span class="label" style="color:#ff8bb5;">📊 ស្ថានភាព</span><span class="value" id="resultStatusTextRapid" style="color:#ff8bb5;">កំពុងផ្ទុក...</span></div>
 
       <div class="bet-box rapid">
         <h2>🎯 លទ្ធផល ៣ វគ្គចុងក្រោយ</h2>
@@ -798,18 +822,24 @@
     <!-- ================= DICE MODE (អាប៉ោង 5 នាទី) ================= -->
     <div id="diceMode" style="display:none;">
       <div class="countdown-rapid" style="border-color: #6f42c1; background: linear-gradient(135deg, #1a0f1f, #2d1b3d); box-shadow: 0 8px 32px rgba(111,66,193,0.4);">
-        <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
-        <div class="ring-container">
-          <svg class="ring-svg" viewBox="0 0 160 160">
-            <defs><linearGradient id="ringGradientDice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6f42c1;stop-opacity:1" /><stop offset="50%" style="stop-color:#9c27b0;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
-            <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
-            <!-- កែសម្រួល stroke-dasharray នៅទីនេះឱ្យត្រូវនឹង ៤៣៩.៨២ ដើម្បីឱ្យរង្វង់ដំណើរការ -->
-            <circle class="ring-progress" id="ringProgressDice" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0" stroke="url(#ringGradientDice)"></circle>
-          </svg>
-          <div class="ring-text"><div class="time" id="ringTimeDice" style="color:#d8b4fe;">05:00</div><div class="label" style="color:#d8b4fe;">នាទី:វិនាទី</div></div>
+        <div class="inline-clock-box" style="background: rgba(255,255,255,0.1); border-color: rgba(111,66,193,0.5);">
+          <span class="time" id="widgetTimeDice" style="color: #d8b4fe;">00:00:00</span>
+          <span class="date" id="widgetDateDice" style="color: #e8eaf0;">កំពុងផ្ទុក...</span>
         </div>
+        <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
+        
+        <!-- ប្រអប់បន្ទាត់ (Progress Bar) ជំនួសរង្វង់ -->
+        <div style="text-align: center; margin: 15px auto; position: relative;">
+          <div style="font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); margin-bottom: 10px;" id="diceTimeText">05:00</div>
+          <div class="dice-progress-container">
+            <div class="dice-progress-bar" id="diceProgressBar"></div>
+          </div>
+        </div>
+        
         <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumberDice">#------</span></div>
       </div>
+
+      <div class="status-bar" style="background: rgba(255,255,255,0.1); border-color: #6f42c1;"><span class="label" style="color:#d8b4fe;">📊 ស្ថានភាព</span><span class="value" id="resultStatusTextDice" style="color:#d8b4fe;">កំពុងផ្ទុក...</span></div>
 
       <div class="bet-box dice">
         <h2>🎲 លទ្ធផលអាប៉ោង ៤ វគ្គចុងក្រោយ</h2>
@@ -2004,13 +2034,10 @@
           var secondsIntoCycle = (min % 5) * 60 + sec;
           var totalDiceCycle = 5 * 60;
           
-          var circumferenceDice = 2 * Math.PI * 70; // 439.82
-          var percentDice = secondsIntoCycle / totalDiceCycle;
-          var offsetDice = circumferenceDice * percentDice;
-          
-          if ($('ringProgressDice')) {
-            $('ringProgressDice').style.transition = 'stroke-dashoffset 1s linear';
-            $('ringProgressDice').style.strokeDashoffset = offsetDice;
+          // គណនា និង Update បន្ទាត់ Progress ថយក្រោយ (ធ្វើវាទោះនៅ Tab ណាក៏ដោយ ដើម្បីឲ្យវាត្រូវនឹងម៉ោងពិត)
+          var percentDice = (secondsIntoCycle / totalDiceCycle) * 100;
+          if ($('diceProgressBar')) {
+            $('diceProgressBar').style.width = percentDice + '%';
           }
 
           if (mainMode === 'dice') {
@@ -2019,7 +2046,8 @@
             var secondsLeft = totalDiceCycle - secondsIntoCycle;
             var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
             var ss = String(secondsLeft % 60).padStart(2, '0');
-            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
+            if ($('diceTimeText')) $('diceTimeText').textContent = mm + ':' + ss;
+            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss; // រក្សាទុកសម្រាប់ករណីចាស់
             
             var yy = String(now.getFullYear()).slice(-2);
             var startOfYear = new Date(now.getFullYear(), 0, 0);
@@ -3350,6 +3378,9 @@
         }
 
         var statusEl = $('resultStatusText');
+        var statusElRapid = $('resultStatusTextRapid');
+        var statusElDice = $('resultStatusTextDice');
+        
         if (statusEl) {
           if (h >= 0 && h < 12) {
             if (show16) { statusEl.textContent = '✅ លទ្ធផល 16:00 ម្សិលមិញ'; statusEl.className = 'value'; }
@@ -3363,6 +3394,9 @@
             else { statusEl.textContent = '⏳ រង់ចាំ 16:00...'; statusEl.className = 'value pending'; }
           }
         }
+        
+        if (statusElRapid) statusElRapid.textContent = 'កំពុងដំណើរការ 24/7';
+        if (statusElDice) statusElDice.textContent = 'កំពុងដំណើរការ 24/7';
       }
 
       function renderHistoryTableClassic() {
@@ -3622,10 +3656,25 @@
 
       function updateClock() {
         var now = new Date();
+        
+        // Update Header Clock
         if ($('widgetTime')) $('widgetTime').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
-        if ($('widgetDate')) $('widgetDate').textContent = now.toLocaleDateString('km-KH', {
+        if ($('widgetDate')) $('widgetDate').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
+        
+        // Update Rapid Clock
+        if ($('widgetTimeRapid')) $('widgetTimeRapid').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
+        if ($('widgetDateRapid')) $('widgetDateRapid').textContent = now.toLocaleDateString('en-GB', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+        
+        // Update Dice Clock
+        if ($('widgetTimeDice')) $('widgetTimeDice').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
+        if ($('widgetDateDice')) $('widgetDateDice').textContent = now.toLocaleDateString('en-GB', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
         var h = now.getHours();
         var target = 12, label = '🕛 12:00';
         if (h >= 12 && h < 16) { target = 16; label = '🕓 16:00'; }
