@@ -51,16 +51,17 @@
     header.mode-10 { background: linear-gradient(135deg, #e91e63 0%, #c2185b 50%, #880e4f 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(233,30,99,0.4); }
     header.mode-dice { background: linear-gradient(135deg, #6f42c1 0%, #4a148c 50%, #311b92 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(111,66,193,0.4); }
     
-    /* រៀបចំ Header ថ្មី */
+    /* រៀបចំ Header ថ្មីឱ្យស្អាត */
     .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; flex-wrap: wrap; gap: 15px; }
     .header-title { text-align: center; flex: 1; min-width: 250px; }
     .header-title h1 { font-size: clamp(24px, 5vw, 38px); font-weight: 800; margin: 8px 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
     .header-title p { font-size: clamp(13px, 2vw, 16px); opacity: 0.95; font-weight: 600; }
     
     /* ប្រអប់ ID និង Phone នៅលើ Header */
-    .header-user-info { display: flex; flex-direction: column; gap: 6px; background: rgba(255,255,255,0.15); padding: 10px 15px; border-radius: 12px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3); min-width: 200px; }
-    .header-user-info .info-row { display: flex; justify-content: space-between; align-items: center; font-size: clamp(11px, 1.3vw, 13px); font-weight: 700; color: #fff; gap: 10px; }
-    .header-user-info .info-row .val { font-family: 'Courier New', monospace; font-size: clamp(13px, 1.5vw, 15px); font-weight: 800; background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 6px; }
+    .header-user-info { display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.15); padding: 12px 18px; border-radius: 16px; backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.4); min-width: 220px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .header-user-info .info-row { display: flex; justify-content: space-between; align-items: center; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; color: #fff; gap: 15px; }
+    .header-user-info .info-row .val { font-family: 'Courier New', monospace; font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 8px; color: #fff; letter-spacing: 1px; }
+    .header-user-info .info-row .label { color: #e2e8f0; }
 
     .mode-tabs { background: white; padding: 12px 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 110; box-shadow: 0 2px 12px rgba(0,0,0,0.1); border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #0078D7, #28a745, #ff9800, #6f42c1, #e91e63, #0078D7) 1; }
     .mode-tab { flex: 1; min-width: 140px; max-width: 240px; padding: 14px 16px; border: 3px solid #dee2e6; background: white; border-radius: 14px; font-weight: 800; font-size: clamp(13px, 1.6vw, 15px); cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: #2d3748; display: flex; align-items: center; justify-content: center; gap: 8px; position: relative; }
@@ -93,11 +94,12 @@
     .inline-clock-box .time { font-size: clamp(20px, 3vw, 26px); font-weight: 800; color: #0078D7; font-family: 'Courier New', monospace; text-shadow: 0 0 10px rgba(0,120,215,0.3); }
     .inline-clock-box .date { font-size: clamp(11px, 1.3vw, 13px); color: #2d3748; font-weight: 700; }
 
-    /* ប្រអប់ Status Bar ថ្មី */
-    .status-bar { background: linear-gradient(135deg, #e8f4fd, #d4edda); padding: 10px 14px; border-radius: 10px; margin: 6px 0 12px 0; border-left: 4px solid #0078D7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-weight: 700; }
-    .status-bar .label { font-weight: 800; color: #005fa3; font-size: clamp(11px, 1.3vw, 13px); }
-    .status-bar .value { font-weight: 800; color: #28a745; font-size: clamp(12px, 1.4vw, 14px); }
-    .status-bar .pending { color: #dc3545; animation: pulse 1.5s ease-in-out infinite; }
+    /* ប្រអប់ Status Bar ថ្មី (ដាក់នៅខាងក្នុងក្បាលលទ្ធផល) */
+    .inline-status-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed #cbd5e1; }
+    .inline-status-bar .title { font-size: 16px; font-weight: 800; color: #1e293b; display: flex; align-items: center; gap: 6px; }
+    .inline-status-bar .status-val { font-weight: 800; font-size: clamp(12px, 1.4vw, 14px); padding: 6px 12px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; }
+    .inline-status-bar .status-val.pending { color: #dc3545; animation: pulse 1.5s ease-in-out infinite; }
+    .inline-status-bar .status-val.success { color: #28a745; background: #f0fdf4; border-color: #86efac; }
 
     .countdown-rapid { background: linear-gradient(135deg, #2d1b3d, #1a0f1f); border: 3px solid #e91e63; border-radius: 20px; padding: 20px; margin: 12px 0; text-align: center; box-shadow: 0 8px 32px rgba(233,30,99,0.4); animation: glowPink 2s ease-in-out infinite; }
     .countdown-rapid .label { color: #ff8bb5; font-size: clamp(12px, 1.5vw, 14px); font-weight: 800; margin-bottom: 8px; }
@@ -377,6 +379,8 @@
     body.dark-mode .betting-closed-compact .title { color: #fca5a5; }
     body.dark-mode .inline-clock-box { background: #252b3d; border-color: #4a5268; }
     body.dark-mode .inline-clock-box .date { color: #e8eaf0; }
+    body.dark-mode .inline-status-bar .status-val { background: #2f3548; border-color: #4a5268; color: #e8eaf0; }
+    body.dark-mode .inline-status-bar .title { color: #e8eaf0; }
 
     .dice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
     .dice-box { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; }
@@ -433,7 +437,9 @@
       .result-card .num-cell .value { font-size: 18px; }
       .betting-closed-compact { flex-direction: column; align-items: flex-start; }
       .betting-closed-compact .right-side { width: 100%; justify-content: center; }
-      .header-user-info { width: 100%; flex-direction: row; justify-content: space-around; }
+      .header-user-info { width: 100%; flex-direction: row; justify-content: space-around; padding: 8px; }
+      .header-user-info .info-row { font-size: 11px; gap: 5px; }
+      .header-user-info .info-row .val { font-size: 12px; padding: 2px 6px; }
     }
     @media (max-width: 480px) {
       .countdown .time-display { font-size: 28px; }
@@ -472,8 +478,8 @@
         <input type="tel" id="regPhone" placeholder="012345678" maxlength="10" inputmode="numeric">
       </div>
       <div class="reg-input-group">
-        <label>🔐 បង្កើតលេខ PIN 4 ខ្ទង់</label>
-        <input type="tel" id="regPin" placeholder="----" maxlength="4" inputmode="numeric">
+        <label>🔐 បង្កើតលេខ PIN 4-6 ខ្ទង់</label>
+        <input type="tel" id="regPin" placeholder="----" maxlength="6" inputmode="numeric">
       </div>
       
       <div style="background:linear-gradient(135deg,#d4edda,#a8e6c0); border:2px solid #28a745; border-radius:10px; padding:12px; margin-top:10px; font-size:12px; color:#155724; line-height:1.7; font-weight:700; text-align:center;">
@@ -483,41 +489,21 @@
       </div>
       
       <div style="background:linear-gradient(135deg,#fff3cd,#ffe69c); border:1px solid #ffc107; border-radius:10px; padding:12px; margin-top:10px; font-size:11.5px; color:#856404; line-height:1.7; font-weight:600;">
-        ⚠️ <b>ការព្រមាន!</b><br>• អ្នកត្រូវចងចាំ <b>PIN 4 ខ្ទង់</b><br>• <b>កុំប្រាប់អ្នកដទៃ</b> អំពី PIN
+        ⚠️ <b>ការព្រមាន!</b><br>• អ្នកត្រូវចងចាំ <b>PIN 4-6 ខ្ទង់</b><br>• <b>កុំប្រាប់អ្នកដទៃ</b> អំពី PIN
       </div>
       <button class="reg-btn" id="regNextBtn" onclick="N98.handleRegister()">បន្ត → <span class="emoji-rocket">🚀</span></button>
-      
-      <div class="group-buttons-box">
-        <div class="title">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98</div>
-        <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🎯 ចូលក្រុមដើម្បីទទួលលេខ Code ចុះឈ្មោះ N98<small>ចុចទីនេះដើម្បីទទួល Code</small></a>
-      </div>
       
       <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មានគណនីរួចហើយ? <a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7; font-weight:800;">ចូលប្រើ</a></div>
     </div>
     <div class="reg-step" id="regStep2">
       <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមចំណាំ ID នេះទុក</p></div>
       <div class="id-display-box"><div class="label">🆔 ID របស់អ្នក</div><div class="id-value" id="displayUserId">------</div><div class="warning">⚠️ សូមចំណាំ ID នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div></div>
-      <button class="reg-btn success" onclick="N98.showVerifyStep()" style="margin-top:12px;">បញ្ជាក់ Code ឥឡូវ → 🔑</button>
-      
-      <div class="group-buttons-box" style="margin-top:16px;">
-        <div class="title">🔑 ទទួល Code ចុះឈ្មោះ</div>
-        <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 ចុចទីនេះដើម្បីទទួល Code<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
-      </div>
-    </div>
-    <div class="reg-step" id="regStep3">
-      <div class="reg-header"><div class="icon">🔑</div><h2>បញ្ជាក់ Code</h2><p>វាយ Code 4 ខ្ទង់ដែលបានពី Channel</p></div>
-      <div class="reg-input-group"><label>🔑 Code 4 ខ្ទង់</label><input type="text" class="code-input" id="regCode" placeholder="----" maxlength="4" autocomplete="off"></div>
-      <button class="reg-btn" id="regVerifyBtn" onclick="N98.handleVerify()">បញ្ជាក់ ✓</button>
-      
-      <div class="group-buttons-box" style="margin-top:16px;">
-        <a href="https://t.me/GetCodetouseN98" target="_blank" rel="noopener" class="group-btn get-code">🔑 មិនទាន់មាន Code? ចុចទីនេះ<small>Channel ផ្តល់ Code ចុះឈ្មោះ N98</small></a>
-      </div>
-      <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;"><a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7;">← ត្រឡប់ក្រោយ</a></div>
+      <button class="reg-btn success" onclick="N98.showLoginStep()" style="margin-top:12px;">បន្តទៅកាន់ការចូលប្រើ → 🔑</button>
     </div>
     <div class="reg-step" id="regLoginStep">
       <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
       <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
-      <div class="reg-input-group"><label>🔐 PIN 4 ខ្ទង់</label><input type="tel" id="loginPin" placeholder="----" maxlength="4" inputmode="numeric"></div>
+      <div class="reg-input-group"><label>🔐 PIN 4-6 ខ្ទង់</label><input type="tel" id="loginPin" placeholder="----" maxlength="6" inputmode="numeric"></div>
       <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
       <div class="forgot-pin-box">🔐 ភ្លេច PIN? <a href="#" onclick="N98.contactAdmin(); return false;">ទាក់ទង Admin</a></div>
       <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មិនមានគណនី? <a href="#" onclick="N98.showRegisterStep(); return false;" style="color:#0078D7; font-weight:800;">ចុះឈ្មោះ</a></div>
@@ -538,8 +524,8 @@
       </div>
       
       <div class="header-user-info">
-        <div class="info-row"><span>🆔 ID:</span><span class="val" id="displayCurrentUserId">------</span></div>
-        <div class="info-row"><span>📱 Phone:</span><span class="val" id="displayCurrentPhone">---</span></div>
+        <div class="info-row"><span class="label">🆔 ID:</span><span class="val" id="displayCurrentUserId">------</span></div>
+        <div class="info-row"><span class="label">📱 Phone:</span><span class="val" id="displayCurrentPhone">---</span></div>
       </div>
     </div>
   </header>
@@ -574,11 +560,17 @@
         <div class="next-time" id="nextTimeLabel">🎯 ពេលបន្ទាប់...</div>
         <div class="status-time" id="statusTimeLabel"></div>
       </div>
-      
-      <div class="status-bar"><span class="label">📊 ស្ថានភាព</span><span class="value" id="resultStatusText">កំពុងផ្ទុក...</span></div>
 
       <div class="lottery-box" id="box12Container">
-        <div class="time-box"><span class="anim-pulse">🕛</span> លទ្ធផល 12:00 <span class="badge" id="badge12">ព្រឹកពីរ</span> <span id="badge12Latest"></span></div>
+        <div class="inline-status-bar">
+          <span class="title"><span class="anim-pulse">🕛</span> លទ្ធផល 12:00</span>
+          <span class="status-val" id="resultStatusText12">កំពុងផ្ទុក...</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span class="badge" id="badge12">ព្រឹកពីរ</span>
+          <span id="badge12Latest"></span>
+        </div>
+        
         <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
         <div class="numbers" id="box12">
           <div><span class="letter">A:</span> <span id="r12_A">--</span></div><div><span class="letter">B:</span> <span id="r12_B">--</span></div>
@@ -595,7 +587,15 @@
       </div>
 
       <div class="lottery-box" id="box16Container">
-        <div class="time-box"><span class="anim-pulse">🕓</span> លទ្ធផល 16:00 <span class="badge" id="badge16">ល្ងាចបី</span> <span id="badge16Latest"></span></div>
+        <div class="inline-status-bar">
+          <span class="title"><span class="anim-pulse">🕓</span> លទ្ធផល 16:00</span>
+          <span class="status-val" id="resultStatusText16">កំពុងផ្ទុក...</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span class="badge" id="badge16">ល្ងាចបី</span>
+          <span id="badge16Latest"></span>
+        </div>
+
         <div style="font-weight:800;color:#0078D7;font-size:13px;margin-top:8px;">🔢 ២ខ្ទង់</div>
         <div class="numbers" id="box16">
           <div><span class="letter">A:</span> <span id="r16_A">--</span></div><div><span class="letter">B:</span> <span id="r16_B">--</span></div>
@@ -731,11 +731,12 @@
         </div>
         <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumber">#------</span></div>
       </div>
-      
-      <div class="status-bar" style="background: rgba(255,255,255,0.1); border-color: #e91e63;"><span class="label" style="color:#ff8bb5;">📊 ស្ថានភាព</span><span class="value" id="resultStatusTextRapid" style="color:#ff8bb5;">កំពុងផ្ទុក...</span></div>
 
       <div class="bet-box rapid">
-        <h2>🎯 លទ្ធផល ៣ វគ្គចុងក្រោយ</h2>
+        <div class="inline-status-bar">
+          <span class="title" style="color: #ff8bb5;"><span class="anim-pulse">🎯</span> លទ្ធផល ៣ វគ្គចុងក្រោយ</span>
+          <span class="status-val" id="resultStatusTextRapid" style="color: #ff8bb5; background: rgba(255,255,255,0.1); border-color: rgba(233,30,99,0.4);">កំពុងផ្ទុក...</span>
+        </div>
         <div class="results-grid" id="resultsGrid"><div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div></div>
       </div>
 
@@ -839,10 +840,11 @@
         <div class="next-draw">🎯 វគ្គបន្ទាប់៖ <span class="draw-number" id="nextDrawNumberDice">#------</span></div>
       </div>
 
-      <div class="status-bar" style="background: rgba(255,255,255,0.1); border-color: #6f42c1;"><span class="label" style="color:#d8b4fe;">📊 ស្ថានភាព</span><span class="value" id="resultStatusTextDice" style="color:#d8b4fe;">កំពុងផ្ទុក...</span></div>
-
       <div class="bet-box dice">
-        <h2>🎲 លទ្ធផលអាប៉ោង ៤ វគ្គចុងក្រោយ</h2>
+        <div class="inline-status-bar">
+          <span class="title" style="color: #d8b4fe;"><span class="anim-pulse">🎲</span> លទ្ធផលអាប៉ោង ៤ វគ្គចុងក្រោយ</span>
+          <span class="status-val" id="resultStatusTextDice" style="color: #d8b4fe; background: rgba(255,255,255,0.1); border-color: rgba(111,66,193,0.4);">កំពុងផ្ទុក...</span>
+        </div>
         <div class="results-grid" id="diceResultsGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
           <div style="grid-column: 1/-1; text-align:center; padding:20px; color:#a0a8b8;"><span class="anim-spin">⏳</span> កំពុងផ្ទុក...</div>
         </div>
@@ -1113,7 +1115,7 @@
           <p>• លទ្ធផលចាស់ៗនឹងលុបដោយស្វ័យប្រវត្តិ</p>
 
           <h4 style="color:#005fa3; background:linear-gradient(135deg,#e8f4fd,#d4edda); padding:8px 12px; border-radius:8px; margin-top:14px;">🔐 ៩. សុវត្ថិភាព</h4>
-          <p>• PIN 4 ខ្ទង់ ត្រូវចងចាំ</p>
+          <p>• PIN 4-6 ខ្ទង់ ត្រូវចងចាំ</p>
           <p>• ភ្លេច PIN → ទាក់ទង Admin</p>
           <p>• កុំប្រាប់ PIN អ្នកដទៃ</p>
 
@@ -1517,7 +1519,7 @@
       function playBeep() {
         if (!soundEnabled) return;
         var count = 0;
-        var maxBeeps = 3;
+        var maxBeeps = 3; // កំណត់ឱ្យលឺតែ ៣ ដងប៉ុណ្ណោះ
         function beepOnce() {
           if (count >= maxBeeps) return;
           count++;
@@ -1527,8 +1529,7 @@
             a.play().catch(function(e) {});
           } catch (e) {}
           if (count < maxBeeps) {
-            // ✅ កែពី 600 មីលីវិនាទី ទៅ 3000 មីលីវិនាទី (៣ វិនាទី)
-            setTimeout(beepOnce, 3000); 
+            setTimeout(beepOnce, 3000); // លឺរៀងរាល់ ៣ វិនាទី
           }
         }
         beepOnce();
@@ -1866,7 +1867,7 @@
         var btn = $('regNextBtn');
         if (!phone) { showToast('សូមបំពេញលេខទូរស័ព្ទ!', 'warning'); return; }
         if (!/^(0[1-9][0-9]{7,8})$/.test(phone)) { showToast('លេខទូរស័ព្ទមិនត្រឹមត្រូវ', 'warning'); return; }
-        if (!pin || pin.length !== 4 || !/^[0-9]{4}$/.test(pin)) { showToast('PIN ត្រូវមាន ៤ ខ្ទង់', 'warning'); return; }
+        if (!pin || pin.length < 4 || pin.length > 6 || !/^[0-9]{4,6}$/.test(pin)) { showToast('PIN ត្រូវមានពី ៤ ទៅ ៦ ខ្ទង់', 'warning'); return; }
         btn.disabled = true;
         btn.innerHTML = '<span class="anim-spin">⏳</span> កំពុងចុះឈ្មោះ...';
         showLoading(true);
@@ -1883,7 +1884,7 @@
           if (data.ok) { showToast('ចុះឈ្មោះជោគជ័យ!', 'success', '🎉'); showIdStep(data.userId); }
           else if (data.userId) {
             if (data.verified) { showToast('មានគណនីរួចហើយ', 'info'); showLoginStep(); $('loginUserId').value = data.userId; }
-            else { showToast('មានគណនីរួចហើយ — សូមបញ្ជាក់ Code', 'info'); showIdStep(data.userId); }
+            else { showToast('មានគណនីរួចហើយ — សូមចូលប្រើដោយប្រើ PIN', 'info'); showLoginStep(); $('loginUserId').value = data.userId; }
           } else showToast(data.error || 'មានបញ្ហា!', 'error');
         })
         .catch(function(err) {
@@ -1891,36 +1892,6 @@
           btn.innerHTML = 'បន្ត → <span class="emoji-rocket">🚀</span>';
           showLoading(false); 
           showAlert('មានបញ្ហាតភ្ជាប់', err.message || 'សូមពិនិត្យ WEB_APP_URL និង Deploy ឡើងវិញ', '❌');
-        });
-      }
-
-      function handleVerify() {
-        var userId = $('displayUserId').textContent;
-        var code = $('regCode').value.trim().toUpperCase();
-        var btn = $('regVerifyBtn');
-        if (!code || code.length !== 4) { showToast('សូមបំពេញ Code ៤ ខ្ទង់!', 'warning'); return; }
-        btn.disabled = true;
-        btn.innerHTML = '<span class="anim-spin">⏳</span> កំពុងផ្ទៀងផ្ទាត់...';
-        showLoading(true);
-        fetchWithTimeout(WEB_APP_URL, {
-          method: 'POST',
-          body: JSON.stringify({ action: 'verifyCode', userId: userId, code: code }),
-          headers: { 'Content-Type': 'text/plain' }
-        })
-        .then(safeJsonParse)
-        .then(function(data) {
-          btn.disabled = false; btn.innerHTML = 'បញ្ជាក់ ✓';
-          showLoading(false);
-          if (data.ok) {
-            currentUser = { userId: data.userId, phone: fixPhoneNumber(data.phone), verified: true };
-            localStorage.setItem('lottery_user', JSON.stringify(currentUser));
-            showToast('ការផ្ទៀងផ្ទាត់ជោគជ័យ!', 'success', '🎉');
-            setTimeout(enterApp, 1000);
-          } else showToast(data.error || 'Code មិនត្រឹមត្រូវ!', 'error');
-        })
-        .catch(function(err) {
-          console.error(err); btn.disabled = false; btn.innerHTML = 'បញ្ជាក់ ✓';
-          showLoading(false); showToast('មានបញ្ហាតភ្ជាប់!', 'error');
         });
       }
 
@@ -2034,7 +2005,6 @@
           var secondsIntoCycle = (min % 5) * 60 + sec;
           var totalDiceCycle = 5 * 60;
           
-          // គណនា និង Update បន្ទាត់ Progress ថយក្រោយ (ធ្វើវាទោះនៅ Tab ណាក៏ដោយ ដើម្បីឲ្យវាត្រូវនឹងម៉ោងពិត)
           var percentDice = (secondsIntoCycle / totalDiceCycle) * 100;
           if ($('diceProgressBar')) {
             $('diceProgressBar').style.width = percentDice + '%';
@@ -3315,9 +3285,15 @@
         var box12 = $('box12Container');
         var badge12Latest = $('badge12Latest');
         var badge12 = $('badge12');
+        var status12 = $('resultStatusText12');
+        
         if (show12 && badge12) {
           badge12.textContent = '✅ ចេញហើយ';
           badge12.className = 'badge badge-completed';
+          if (status12) {
+            status12.textContent = '✅ លទ្ធផលចេញហើយ!';
+            status12.className = 'status-val success';
+          }
           var results12 = (resultSource === 'today') ? today12 : yesterday12;
           var r12two = results12.find(function(r) { return String(r.type).toLowerCase() === 'two'; });
           fillSlot('r12_', r12two);
@@ -3338,6 +3314,10 @@
         } else if (badge12) {
           badge12.textContent = '⏳ រង់ចាំ';
           badge12.className = 'badge badge-waiting';
+          if (status12) {
+            status12.textContent = '⏳ រង់ចាំលទ្ធផល...';
+            status12.className = 'status-val pending';
+          }
           resetSlot('r12_');
           resetSlot('r12_3d_');
           if (box12) box12.classList.remove('new-result');
@@ -3348,9 +3328,15 @@
         var box16 = $('box16Container');
         var badge16Latest = $('badge16Latest');
         var badge16 = $('badge16');
+        var status16 = $('resultStatusText16');
+        
         if (show16 && badge16) {
           badge16.textContent = '✅ ចេញហើយ';
           badge16.className = 'badge badge-completed';
+          if (status16) {
+            status16.textContent = '✅ លទ្ធផលចេញហើយ!';
+            status16.className = 'status-val success';
+          }
           var results16 = (resultSource === 'today') ? today16 : yesterday16;
           var r16two = results16.find(function(r) { return String(r.type).toLowerCase() === 'two'; });
           fillSlot('r16_', r16two);
@@ -3370,6 +3356,10 @@
         } else if (badge16) {
           badge16.textContent = '⏳ រង់ចាំ';
           badge16.className = 'badge badge-waiting';
+          if (status16) {
+            status16.textContent = '⏳ រង់ចាំលទ្ធផល...';
+            status16.className = 'status-val pending';
+          }
           resetSlot('r16_');
           resetSlot('r16_3d_');
           if (box16) box16.classList.remove('new-result');
@@ -3377,23 +3367,8 @@
           if ($('date16')) $('date16').innerHTML = '';
         }
 
-        var statusEl = $('resultStatusText');
         var statusElRapid = $('resultStatusTextRapid');
         var statusElDice = $('resultStatusTextDice');
-        
-        if (statusEl) {
-          if (h >= 0 && h < 12) {
-            if (show16) { statusEl.textContent = '✅ លទ្ធផល 16:00 ម្សិលមិញ'; statusEl.className = 'value'; }
-            else if (show12) { statusEl.textContent = '✅ លទ្ធផល 12:00 ម្សិលមិញ'; statusEl.className = 'value'; }
-            else { statusEl.textContent = '⏳ រង់ចាំ 12:00 ថ្ងៃនេះ'; statusEl.className = 'value pending'; }
-          } else if (h >= 12 && h < 16) {
-            if (show12) { statusEl.textContent = '✅ លទ្ធផល 12:00 ចេញហើយ!'; statusEl.className = 'value'; }
-            else { statusEl.textContent = '⏳ រង់ចាំ 12:00...'; statusEl.className = 'value pending'; }
-          } else {
-            if (show16) { statusEl.textContent = '✅ លទ្ធផល 16:00 ចេញហើយ!'; statusEl.className = 'value'; }
-            else { statusEl.textContent = '⏳ រង់ចាំ 16:00...'; statusEl.className = 'value pending'; }
-          }
-        }
         
         if (statusElRapid) statusElRapid.textContent = 'កំពុងដំណើរការ 24/7';
         if (statusElDice) statusElDice.textContent = 'កំពុងដំណើរការ 24/7';
@@ -3657,7 +3632,7 @@
       function updateClock() {
         var now = new Date();
         
-        // Update Header Clock
+        // Update Classic Clock
         if ($('widgetTime')) $('widgetTime').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
         if ($('widgetDate')) $('widgetDate').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
