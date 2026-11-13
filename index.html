@@ -70,7 +70,6 @@
     .btn-logout { background: linear-gradient(135deg, #dc3545, #a71d2a) !important; color: white !important; }
     .btn-theme { background: linear-gradient(135deg, #6f42c1, #5a32a3) !important; color: white !important; }
     .btn-contact-admin { background: linear-gradient(135deg, #17a2b8, #117a8b) !important; color: white !important; }
-    .btn-tv { background: linear-gradient(135deg, #ff1744, #d50000) !important; color: white !important; box-shadow: 0 0 10px rgba(255,23,68,0.5); animation: pulse 2s infinite; }
 
     .section { padding: 12px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 
@@ -435,9 +434,6 @@
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #f0f4f8; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #0078D7, #6f42c1); border-radius: 4px; }
-
-    .tv-mode-active #tvModeExitBtn { display: block; position: fixed; top: 20px; right: 20px; z-index: 9999; }
-    #tvModeExitBtn { display: none; position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 15px 30px; font-size: 20px; border-radius: 50px; background: #dc3545; color: white; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(220,53,69,0.5); }
   </style>
 </head>
 <body>
@@ -446,8 +442,6 @@
 
   <div class="toast-container" id="toastContainer"></div>
   <div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div></div>
-
-  <button id="tvModeExitBtn" onclick="N98.toggleTVMode()">❌ ចាកចេញពី TV Mode</button>
 
   <!-- ================= REGISTER / LOGIN MODAL ================= -->
 <div class="modal" id="registerModal" style="display:block;">
@@ -537,7 +531,6 @@
     <button class="btn-share" onclick="N98.copyLink()">🔗 ចែករំលែក</button>
     <button class="btn-group" onclick="N98.openGroup()">💬 ចូលក្រុម</button>
     <button class="sound-toggle" id="soundToggleBtn" onclick="N98.toggleSound()">🔊 សំឡេង</button>
-    <button class="btn-tv" onclick="N98.toggleTVMode()">📺 TV Mode</button>
     <button class="btn-logout" onclick="N98.handleLogout()">🚪 ចាកចេញ</button>
   </nav>
 
@@ -810,6 +803,7 @@
           <svg class="ring-svg" viewBox="0 0 160 160">
             <defs><linearGradient id="ringGradientDice" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6f42c1;stop-opacity:1" /><stop offset="50%" style="stop-color:#9c27b0;stop-opacity:1" /><stop offset="100%" style="stop-color:#ffc107;stop-opacity:1" /></linearGradient></defs>
             <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
+            <!-- កែសម្រួល stroke-dasharray នៅទីនេះឱ្យត្រូវនឹង ៤៣៩.៨២ ដើម្បីឱ្យរង្វង់ដំណើរការ -->
             <circle class="ring-progress" id="ringProgressDice" cx="80" cy="80" r="70" stroke-dasharray="439.82" stroke-dashoffset="0" stroke="url(#ringGradientDice)"></circle>
           </svg>
           <div class="ring-text"><div class="time" id="ringTimeDice" style="color:#d8b4fe;">05:00</div><div class="label" style="color:#d8b4fe;">នាទី:វិនាទី</div></div>
@@ -1251,74 +1245,7 @@
   </div>
 </div>
 
-<!-- ================= PROMO POPUP ================= -->
-<div class="modal" id="promoModal" style="display:none; align-items:center; justify-content:center; z-index: 2000;">
-  <div class="modal-content" style="max-width: 420px; background: linear-gradient(135deg, #0f1420, #1a1f2e); border: 3px solid #0078D7; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,120,215,0.4); padding: 25px; position: relative;">
-    <span class="close" onclick="N98.closePromoPopup()" style="color: #adb5bd; position: absolute; top: 15px; right: 20px;">&times;</span>
-    
-    <div style="text-align: center; margin-bottom: 20px;">
-      <div style="font-size: 60px; margin-bottom: 10px;" class="anim-bounce">🎲</div>
-      <h2 style="color: #ffffff; font-size: 24px; font-weight: 800; margin-bottom: 5px;">ឆ្នោតខ្មែរ N98</h2>
-      <p style="color: #adb5bd; font-size: 14px; font-weight: 600;">សូមស្វាគមន៍! ស្ថានភាពចាក់បច្ចុប្បន្ន</p>
-    </div>
-
-    <div style="display: grid; gap: 12px; margin-bottom: 20px;">
-      <!-- Classic 12:00 -->
-      <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 24px;">🕛</span>
-          <div>
-            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 12:00</div>
-            <div style="color: #adb5bd; font-size: 11px;" id="promoStatus12">បើកចាក់</div>
-          </div>
-        </div>
-        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown12">00:00:00</div>
-      </div>
-
-      <!-- Classic 16:00 -->
-      <div style="background: rgba(0,120,215,0.1); border: 1px solid rgba(0,120,215,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 24px;">🕓</span>
-          <div>
-            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">ម៉ោង 16:00</div>
-            <div style="color: #adb5bd; font-size: 11px;" id="promoStatus16">បើកចាក់</div>
-          </div>
-        </div>
-        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #4ade80;" id="promoCountdown16">00:00:00</div>
-      </div>
-
-      <!-- Rapid 10 Min -->
-      <div style="background: rgba(233,30,99,0.1); border: 1px solid rgba(233,30,99,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 24px;">🎯</span>
-          <div>
-            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">10 នាទី LIVE</div>
-            <div style="color: #adb5bd; font-size: 11px;" id="promoStatus10">កំពុងដំណើរការ</div>
-          </div>
-        </div>
-        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #ff8bb5;" id="promoCountdown10">00:00</div>
-      </div>
-
-      <!-- 🎲 អាប៉ោង 5 នាទី -->
-      <div style="background: rgba(111,66,193,0.1); border: 1px solid rgba(111,66,193,0.3); border-radius: 12px; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 24px;">🎲</span>
-          <div>
-            <div style="color: #ffffff; font-weight: 800; font-size: 14px;">អាប៉ោង 5 នាទី</div>
-            <div style="color: #adb5bd; font-size: 11px;" id="promoStatusDice">កំពុងដំណើរការ</div>
-          </div>
-        </div>
-        <div style="font-family: 'Courier New', monospace; font-size: 20px; font-weight: 800; color: #d8b4fe;" id="promoCountdownDice">00:00</div>
-      </div>
-    </div>
-
-    <button onclick="N98.closePromoPopup()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 15px rgba(40,167,69,0.4);">
-      ចាប់ផ្តើមចាក់ឥឡូវ 🚀
-    </button>
-  </div>
-</div>
-
-    <script>
+<script>
     const beepAudio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
     
     (function() {
@@ -1355,7 +1282,6 @@
 
       var currentUser = null;
       var mainMode = 'classic';
-      var isTVMode = false;
 
       var selectedTime = '12:00';
       var betType = 'two';
@@ -1375,7 +1301,6 @@
       var currentDrawIdDice = '';
       var cachedDiceResults = [];
       var cachedDiceBets = [];
-      var hasShownPromoPopup = false;
 
       var cachedResults = [];
       var cachedResults10 = [];
@@ -1383,14 +1308,12 @@
       var balanceKHR = 0;
       var intervals = { clock: null, refresh: null, status: null, rapid: null, dice: null };
       var currentHistoryTab = 'bets-classic';
-      var lastDrawId10 = '';
       var soundEnabled = true;
       var withdrawCurrency = '';
       var lastBeepSlot12 = '';
       var lastBeepSlot16 = '';
       var lastBeepSlot10 = '';
       var lastBeepSlotDice = '';
-      var lastScreenshotTime = '';
 
       var confirmCallback = null;
       
@@ -1574,7 +1497,8 @@
             a.play().catch(function(e) {});
           } catch (e) {}
           if (count < maxBeeps) {
-            setTimeout(beepOnce, 600);
+            // ✅ កែពី 600 មីលីវិនាទី ទៅ 3000 មីលីវិនាទី (៣ វិនាទី)
+            setTimeout(beepOnce, 3000); 
           }
         }
         beepOnce();
@@ -1713,7 +1637,7 @@
         N98.updateSubmitDiceButton();
         updateBalanceStatusBox();
         updateBalanceStatusBox10();
-        N98.updateBalanceStatusBoxDice(); // ✅ ហៅ update សម្រាប់អាប៉ោង
+        N98.updateBalanceStatusBoxDice(); 
         updateWithdrawCurrencyButtons();
       }
 
@@ -1811,34 +1735,6 @@
           });
       }
 
-      function toggleTVMode() {
-        isTVMode = !isTVMode;
-        document.body.classList.toggle('tv-mode-active', isTVMode);
-        if (isTVMode) {
-          showToast('បានបើក TV Mode', 'success', '📺');
-          if ($('classicMode')) $('classicMode').style.display = 'block';
-          if ($('rapidMode')) $('rapidMode').style.display = 'block';
-          if ($('diceMode')) $('diceMode').style.display = 'block';
-          var betBoxes = document.querySelectorAll('.bet-box');
-          for (var i = 0; i < betBoxes.length; i++) betBoxes[i].style.display = 'block';
-        } else {
-          showToast('បានចាកចេញពី TV Mode', 'info', '🖥️');
-          if (mainMode === 'classic') {
-            if ($('classicMode')) $('classicMode').style.display = 'block';
-            if ($('rapidMode')) $('rapidMode').style.display = 'none';
-            if ($('diceMode')) $('diceMode').style.display = 'none';
-          } else if (mainMode === 'rapid') {
-            if ($('classicMode')) $('classicMode').style.display = 'none';
-            if ($('rapidMode')) $('rapidMode').style.display = 'block';
-            if ($('diceMode')) $('diceMode').style.display = 'none';
-          } else {
-            if ($('classicMode')) $('classicMode').style.display = 'none';
-            if ($('rapidMode')) $('rapidMode').style.display = 'none';
-            if ($('diceMode')) $('diceMode').style.display = 'block';
-          }
-        }
-      }
-
       function updateHistoryTabsForMode(mode) {
         var tabs = document.querySelectorAll('.history-tab');
         var activeTab = null;
@@ -1867,7 +1763,6 @@
       }
 
       function showSection(name, evt) {
-        if (isTVMode) return;
         var classicMode = $('classicMode'), rapidMode = $('rapidMode'), diceMode = $('diceMode'), rulesSection = $('rulesSection');
         if (name === 'home') {
           if (classicMode) classicMode.style.display = mainMode === 'classic' ? 'block' : 'none';
@@ -2041,7 +1936,6 @@
           if (!confirmed) return;
           localStorage.removeItem('lottery_user');
           currentUser = null; numbers = []; numbers10 = []; diceSelectedOptions = [];
-          if (isTVMode) toggleTVMode();
           clearIntervals();
           $('mainApp').style.display = 'none';
           $('registerModal').style.display = 'block';
@@ -2103,19 +1997,15 @@
           updateBettingClosed10();
         }, CFG.STATUS_MS);
         
-        // ✅ កែសម្រួលឲ្យ Ring អាប៉ោងវិលថយក្រោយត្រឹមត្រូវ (គណនាតាម JavaScript)
         intervals.dice = setInterval(function() {
           var now = new Date();
           var sec = now.getSeconds();
           var min = now.getMinutes();
           var secondsIntoCycle = (min % 5) * 60 + sec;
-          var secondsLeft = (5 * 60) - secondsIntoCycle;
-          if (secondsLeft < 0) secondsLeft = 0;
-          
-          // គណនា និង Update រង្វង់វិលថយក្រោយ (ធ្វើវាទោះនៅ Tab ណាក៏ដោយ ដើម្បីឲ្យវាត្រូវនឹងម៉ោងពិត)
           var totalDiceCycle = 5 * 60;
-          var percentDice = secondsIntoCycle / totalDiceCycle;
+          
           var circumferenceDice = 2 * Math.PI * 70; // 439.82
+          var percentDice = secondsIntoCycle / totalDiceCycle;
           var offsetDice = circumferenceDice * percentDice;
           
           if ($('ringProgressDice')) {
@@ -2126,6 +2016,7 @@
           if (mainMode === 'dice') {
             N98.fetchDiceResults();
             
+            var secondsLeft = totalDiceCycle - secondsIntoCycle;
             var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
             var ss = String(secondsLeft % 60).padStart(2, '0');
             if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
@@ -2163,8 +2054,6 @@
         }
 
         showSection('home', null);
-        
-        setTimeout(function() { N98.showPromoPopup(); }, 1500);
       }
 
       function isAdmin() {
@@ -4051,14 +3940,13 @@
         if (regPin) regPin.addEventListener('keypress', function(e) { if (e.key === 'Enter') handleRegister(); });
 
         window.addEventListener('click', function(e) {
-          if (e.target.classList && e.target.classList.contains('modal') && e.target.id !== 'registerModal' && e.target.id !== 'promoModal') {
+          if (e.target.classList && e.target.classList.contains('modal') && e.target.id !== 'registerModal') {
             e.target.style.display = 'none';
           }
         });
 
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape') {
-            if (isTVMode) return;
             var modals = document.querySelectorAll('.modal');
             for (var i = 0; i < modals.length; i++) {
               if (modals[i].style.display === 'block' && modals[i].id !== 'registerModal') {
@@ -4096,7 +3984,6 @@
         handleAbaClick: handleAbaClick,
         switchHistoryTab: switchHistoryTab,
         switchMainMode: function(mode, evt) {
-          if (isTVMode) return;
           mainMode = mode;
           var tabs = document.querySelectorAll('.mode-tab');
           for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
@@ -4405,32 +4292,8 @@
             });
           });
         },
-        showPromoPopup: function() {
-          if (hasShownPromoPopup) return; var modal = $('promoModal'); if (!modal) return;
-          modal.style.display = 'flex'; hasShownPromoPopup = true;
-          var timer = setInterval(function() {
-            var now = new Date(); var h = now.getHours(); var m = now.getMinutes(); var s = now.getSeconds();
-            var t12 = new Date(now); t12.setHours(12, 0, 0, 0); if (h >= 12) t12.setDate(t12.getDate() + 1);
-            var diff12 = Math.floor((t12 - now) / 1000); if (diff12 < 0) diff12 = 0;
-            if ($('promoCountdown12')) $('promoCountdown12').textContent = String(Math.floor(diff12 / 3600)).padStart(2, '0') + ':' + String(Math.floor((diff12 % 3600) / 60)).padStart(2, '0') + ':' + String(diff12 % 60).padStart(2, '0');
-            var t16 = new Date(now); t16.setHours(16, 0, 0, 0); if (h >= 16) t16.setDate(t16.getDate() + 1);
-            var diff16 = Math.floor((t16 - now) / 1000); if (diff16 < 0) diff16 = 0;
-            if ($('promoCountdown16')) $('promoCountdown16').textContent = String(Math.floor(diff16 / 3600)).padStart(2, '0') + ':' + String(Math.floor((diff16 % 3600) / 60)).padStart(2, '0') + ':' + String(diff16 % 60).padStart(2, '0');
-            var secondsIntoCycle = (m % 10) * 60 + s; var secondsLeft10 = (10 * 60) - secondsIntoCycle; if (secondsLeft10 < 0) secondsLeft10 = 0;
-            if ($('promoCountdown10')) $('promoCountdown10').textContent = String(Math.floor(secondsLeft10 / 60)).padStart(2, '0') + ':' + String(secondsLeft10 % 60).padStart(2, '0');
-            
-            var secondsIntoCycleDice = (m % 5) * 60 + s;
-            var secondsLeftDice = (5 * 60) - secondsIntoCycleDice;
-            if (secondsLeftDice < 0) secondsLeftDice = 0;
-            if ($('promoCountdownDice')) $('promoCountdownDice').textContent = String(Math.floor(secondsLeftDice / 60)).padStart(2, '0') + ':' + String(secondsLeftDice % 60).padStart(2, '0');
-            var closedDice = secondsIntoCycleDice >= (5 * 60 - 10);
-            if ($('promoStatusDice')) $('promoStatusDice').textContent = closedDice ? '🔒 បិទចាក់' : '✅ បើកចាក់';
-          }, 1000); modal._timer = timer;
-        },
-        closePromoPopup: function() { var modal = $('promoModal'); if (modal) { modal.style.display = 'none'; if (modal._timer) clearInterval(modal._timer); } },
         toggleTheme: toggleTheme,
         toggleSound: toggleSound,
-        toggleTVMode: toggleTVMode,
         showToast: showToast,
         setType10: setType10,
         selectLetter10: selectLetter10,
