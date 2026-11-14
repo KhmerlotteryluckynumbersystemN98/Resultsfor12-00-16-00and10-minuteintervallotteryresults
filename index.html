@@ -51,11 +51,13 @@
     header.mode-10 { background: linear-gradient(135deg, #e91e63 0%, #c2185b 50%, #880e4f 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(233,30,99,0.4); }
     header.mode-dice { background: linear-gradient(135deg, #6f42c1 0%, #4a148c 50%, #311b92 100%); background-size: 200% 200%; animation: gradientShift 8s ease infinite; box-shadow: 0 4px 20px rgba(111,66,193,0.4); }
     
+    /* រៀបចំ Header ថ្មីឱ្យស្អាត */
     .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; flex-wrap: wrap; gap: 15px; }
     .header-title { text-align: center; flex: 1; min-width: 250px; }
     .header-title h1 { font-size: clamp(24px, 5vw, 38px); font-weight: 800; margin: 8px 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
     .header-title p { font-size: clamp(13px, 2vw, 16px); opacity: 0.95; font-weight: 600; }
     
+    /* ប្រអប់ ID និង Phone នៅលើ Header */
     .header-user-info { display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.15); padding: 12px 18px; border-radius: 16px; backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.4); min-width: 220px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
     .header-user-info .info-row { display: flex; justify-content: space-between; align-items: center; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; color: #fff; gap: 15px; }
     .header-user-info .info-row .val { font-family: 'Courier New', monospace; font-size: clamp(14px, 1.6vw, 16px); font-weight: 800; background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 8px; color: #fff; letter-spacing: 1px; }
@@ -81,15 +83,18 @@
 
     .section { padding: 12px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 
+    /* ប្រអប់ Countdown ថ្មី (ដាក់ម៉ោង និងកាលបរិច្ឆេទខាងក្នុង) */
     .countdown { background: linear-gradient(135deg, #ffffff, #fff5f5); padding: 16px; border-radius: 14px; margin: 10px 0; border: 3px solid #dc3545; text-align: center; box-shadow: 0 4px 18px rgba(220,53,69,0.2); position: relative; }
     .countdown .time-display { font-size: clamp(32px, 6vw, 46px); color: #dc3545; background: #fff5f5; padding: 6px 18px; border-radius: 10px; display: inline-block; margin-top: 6px; font-weight: 800; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(220,53,69,0.4); animation: pulse 2s ease-in-out infinite; }
     .countdown .next-time { font-size: clamp(12px, 1.4vw, 14px); color: #4a5568; margin-top: 6px; font-weight: 800; }
     .countdown .status-time { font-size: clamp(11px, 1.3vw, 13px); color: #0078D7; margin-top: 4px; font-weight: 700; }
     
+    /* ប្រអប់ Clock តូចនៅខាងក្នុង Countdown */
     .inline-clock-box { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #ffffff, #e8f4fd); border: 2px solid #0078D7; border-radius: 12px; padding: 8px 16px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,120,215,0.15); flex-wrap: wrap; justify-content: center; }
     .inline-clock-box .time { font-size: clamp(20px, 3vw, 26px); font-weight: 800; color: #0078D7; font-family: 'Courier New', monospace; text-shadow: 0 0 10px rgba(0,120,215,0.3); }
     .inline-clock-box .date { font-size: clamp(11px, 1.3vw, 13px); color: #2d3748; font-weight: 700; }
 
+    /* ប្រអប់ Status Bar ថ្មី (ដាក់នៅខាងក្នុងក្បាលលទ្ធផល) */
     .inline-status-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed #cbd5e1; }
     .inline-status-bar .title { font-size: 16px; font-weight: 800; color: #1e293b; display: flex; align-items: center; gap: 6px; }
     .inline-status-bar .status-val { font-weight: 800; font-size: clamp(12px, 1.4vw, 14px); padding: 6px 12px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; }
@@ -102,6 +107,7 @@
     .countdown-rapid .next-draw { color: #e8eaf0; font-size: clamp(12px, 1.4vw, 14px); font-weight: 700; margin-top: 10px; }
     .countdown-rapid .draw-number { color: #ff8bb5; font-weight: 800; }
 
+    /* រៀបចំរង្វង់ (Ring) សម្រាប់ Rapid Mode */
     .ring-container { position: relative; width: 160px; height: 160px; margin: 12px auto; }
     .ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
     .ring-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 8; }
@@ -110,6 +116,7 @@
     .ring-text .time { font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); }
     .ring-text .label { font-size: 11px; color: #ff8bb5; font-weight: 700; margin-top: 2px; }
 
+    /* បន្ទាត់ Progress សម្រាប់ អាប៉ោង (ជំនួសរង្វង់) */
     .dice-progress-container { width: 100%; max-width: 300px; height: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 15px auto; overflow: hidden; border: 2px solid rgba(111,66,193,0.5); }
     .dice-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ffc107, #ff9800, #ff1744); border-radius: 8px; transition: width 1s linear; box-shadow: 0 0 10px rgba(255,23,68,0.6); }
 
@@ -375,6 +382,7 @@
     body.dark-mode .inline-status-bar .status-val { background: #2f3548; border-color: #4a5268; color: #e8eaf0; }
     body.dark-mode .inline-status-bar .title { color: #e8eaf0; }
     
+    /* ស្ទីលសម្រាប់ប្រអប់វាយ PIN និងភ្នែក */
     .password-wrapper { position: relative; display: flex; align-items: center; }
     .password-wrapper input { padding-right: 40px !important; }
     .toggle-password { position: absolute; right: 12px; cursor: pointer; font-size: 20px; color: #adb5bd; user-select: none; }
@@ -479,7 +487,7 @@
         <label>🔐 បង្កើតលេខ PIN 4-6 ខ្ទង់</label>
         <div class="password-wrapper">
           <input type="password" id="regPin" placeholder="----" maxlength="6" inputmode="numeric">
-          <span class="toggle-password" onclick="N98.togglePasswordVisibility('regPin')">👁️</span>
+          <span class="toggle-password" onclick="togglePasswordVisibility('regPin')">👁️</span>
         </div>
       </div>
       
@@ -496,31 +504,11 @@
       
       <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មានគណនីរួចហើយ? <a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7; font-weight:800;">ចូលប្រើ</a></div>
     </div>
-    
     <div class="reg-step" id="regStep2">
-      <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមរក្សាទុកព័ត៌មាននេះ</p></div>
-      
-      <div class="id-display-box" style="background:linear-gradient(135deg,#e8f4fd,#d4edda); border-color:#0078D7;">
-        <div class="label" style="color:#005fa3;">🆔 ID របស់អ្នក</div>
-        <div class="id-value" id="displayUserId" style="color:#005fa3;">------</div>
-        
-        <div class="label" style="color:#005fa3; margin-top:15px;">🔐 PIN របស់អ្នក</div>
-        <div class="id-value" id="displayUserPin" style="color:#d63000; font-size:32px; letter-spacing:5px;">------</div>
-        
-        <div style="display:flex; gap:10px; margin-top:15px;">
-          <button type="button" onclick="N98.copyCredentials()" style="flex:1; padding:12px; background:linear-gradient(135deg,#0078D7,#005fa3); color:white; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;">
-            📋 ចម្លង
-          </button>
-          <button type="button" onclick="N98.captureCredentials()" style="flex:1; padding:12px; background:linear-gradient(135deg,#28a745,#1e7e34); color:white; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;">
-            📸 ថតអេក្រង់
-          </button>
-        </div>
-        <div class="warning">⚠️ សូមចំណាំ ID និង PIN នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div>
-      </div>
-      
+      <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមចំណាំ ID នេះទុក</p></div>
+      <div class="id-display-box"><div class="label">🆔 ID របស់អ្នក</div><div class="id-value" id="displayUserId">------</div><div class="warning">⚠️ សូមចំណាំ ID នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div></div>
       <button class="reg-btn success" onclick="N98.showLoginStep()" style="margin-top:12px;">បន្តទៅកាន់ការចូលប្រើ → 🔑</button>
     </div>
-    
     <div class="reg-step" id="regLoginStep">
       <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
       <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
@@ -528,7 +516,7 @@
         <label>🔐 PIN 4-6 ខ្ទង់</label>
         <div class="password-wrapper">
           <input type="password" id="loginPin" placeholder="----" maxlength="6" inputmode="numeric">
-          <span class="toggle-password" onclick="N98.togglePasswordVisibility('loginPin')">👁️</span>
+          <span class="toggle-password" onclick="togglePasswordVisibility('loginPin')">👁️</span>
         </div>
       </div>
       <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
@@ -856,6 +844,7 @@
         </div>
         <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
         
+        <!-- ប្រអប់បន្ទាត់ (Progress Bar) ជំនួសរង្វង់ -->
         <div style="text-align: center; margin: 15px auto; position: relative;">
           <div style="font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); margin-bottom: 10px;" id="diceTimeText">05:00</div>
           <div class="dice-progress-container">
@@ -1312,7 +1301,7 @@
       var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwTIcX1Rg1pTzh41ODWZzaEIIeZhP1o3xDC4QyQGbAuCVDZ5xJ4PYrA2PaOuPoEnj65/exec';
       
       var CFG = {
-        REFRESH_MS: 30000, // ✅ Auto Refresh
+        REFRESH_MS: 30000,
         REFRESH_10_MS: 5000,
         CLOCK_MS: 1000,
         STATUS_MS: 1000,
@@ -1377,8 +1366,6 @@
       
       var hasClickedAba = false;
       var hasClickedDownload = false;
-      
-      var lastCredentials = { userId: '', pin: '' }; // ✅ សម្រាប់ចម្លង
 
       function $(id) { return document.getElementById(id); }
 
@@ -1389,42 +1376,6 @@
         } else {
           input.type = 'password';
         }
-      }
-      
-      function copyCredentials() {
-        var text = 'ID: ' + lastCredentials.userId + '\nPIN: ' + lastCredentials.pin;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function() {
-            showToast('បានចម្លង ID និង PIN!', 'success', '📋');
-          }).catch(function() { showAlert('ព័ត៌មាន', text, '📋'); });
-        } else {
-          showAlert('ព័ត៌មាន', text, '📋');
-        }
-      }
-      
-      function captureCredentials() {
-        var targetEl = $('regStep2');
-        if (!targetEl) return;
-        if (typeof html2canvas === 'undefined') {
-          showToast('html2canvas មិនទាន់ផ្ទុក', 'error');
-          return;
-        }
-        showToast('កំពុងថតអេក្រង់...', 'info', '📸');
-        html2canvas(targetEl, {
-          backgroundColor: '#ffffff',
-          scale: 2,
-          useCORS: true,
-          logging: false
-        }).then(function(canvas) {
-          var link = document.createElement('a');
-          link.download = 'N98_Account_' + lastCredentials.userId + '.png';
-          link.href = canvas.toDataURL('image/png');
-          link.click();
-          showToast('ថតអេក្រង់បានជោគជ័យ!', 'success', '📸');
-        }).catch(function(err) {
-          console.error(err);
-          showToast('មានបញ្ហាក្នុងការថតអេក្រង់!', 'error');
-        });
       }
 
       function fixPhoneNumber(phone) {
@@ -1932,12 +1883,7 @@
       function showLoginStep() { showRegStep('regLoginStep'); $('loginUserId').value = ''; $('loginPin').value = ''; }
       function showRegisterStep() { showRegStep('regStep1'); $('regPhone').value = ''; $('regPin').value = ''; }
       function showVerifyStep() { showRegStep('regStep3'); var c = $('regCode'); c.value = ''; c.focus(); }
-      function showIdStep(userId, pin) { 
-        $('displayUserId').textContent = userId; 
-        $('displayUserPin').textContent = pin; 
-        lastCredentials = { userId: userId, pin: pin };
-        showRegStep('regStep2'); 
-      }
+      function showIdStep(userId) { $('displayUserId').textContent = userId; showRegStep('regStep2'); }
 
       function handleRegister() {
         var phone = fixPhoneNumber($('regPhone').value);
@@ -1959,7 +1905,7 @@
           btn.disabled = false;
           btn.innerHTML = 'បន្ត → <span class="emoji-rocket">🚀</span>';
           showLoading(false);
-          if (data.ok) { showToast('ចុះឈ្មោះជោគជ័យ!', 'success', '🎉'); showIdStep(data.userId, pin); }
+          if (data.ok) { showToast('ចុះឈ្មោះជោគជ័យ!', 'success', '🎉'); showIdStep(data.userId); }
           else if (data.userId) {
             if (data.verified) { showToast('មានគណនីរួចហើយ', 'info'); showLoginStep(); $('loginUserId').value = data.userId; }
             else { showToast('មានគណនីរួចហើយ — សូមចូលប្រើដោយប្រើ PIN', 'info'); showLoginStep(); $('loginUserId').value = data.userId; }
@@ -1971,6 +1917,11 @@
           showLoading(false); 
           showAlert('មានបញ្ហាតភ្ជាប់', err.message || 'សូមពិនិត្យ WEB_APP_URL និង Deploy ឡើងវិញ', '❌');
         });
+      }
+
+      function handleVerify() {
+        // មិនប្រើទៀតទេ
+        showLoginStep();
       }
 
       function handleLogin() {
@@ -2013,16 +1964,6 @@
           cancelText: '✕ បោះបង់'
         }, function(confirmed) {
           if (!confirmed) return;
-          
-          // ✅ ហៅ API ដើម្បី Log ការចាកចេញ
-          if (currentUser) {
-            fetchWithTimeout(WEB_APP_URL, {
-              method: 'POST',
-              body: JSON.stringify({ action: 'logout', userId: currentUser.userId, phone: currentUser.phone }),
-              headers: { 'Content-Type': 'text/plain' }
-            }).catch(function(e) { console.log('Logout log error:', e); });
-          }
-          
           localStorage.removeItem('lottery_user');
           currentUser = null; numbers = []; numbers10 = []; diceSelectedOptions = [];
           clearIntervals();
@@ -4427,10 +4368,7 @@
         updateBalanceUI: updateBalanceUI,
         downloadQR: downloadQR,
         enableScreenshotUpload: enableScreenshotUpload,
-        checkContinueButtonState: checkContinueButtonState,
-        togglePasswordVisibility: togglePasswordVisibility,
-        copyCredentials: copyCredentials,
-        captureCredentials: captureCredentials
+        checkContinueButtonState: checkContinueButtonState
       };
 
       if (document.readyState === 'loading') {
