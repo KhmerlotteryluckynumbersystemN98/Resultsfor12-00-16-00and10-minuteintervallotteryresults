@@ -381,6 +381,12 @@
     body.dark-mode .inline-clock-box .date { color: #e8eaf0; }
     body.dark-mode .inline-status-bar .status-val { background: #2f3548; border-color: #4a5268; color: #e8eaf0; }
     body.dark-mode .inline-status-bar .title { color: #e8eaf0; }
+    
+    /* ស្ទីលសម្រាប់ប្រអប់វាយ PIN និងភ្នែក */
+    .password-wrapper { position: relative; display: flex; align-items: center; }
+    .password-wrapper input { padding-right: 40px !important; }
+    .toggle-password { position: absolute; right: 12px; cursor: pointer; font-size: 20px; color: #adb5bd; user-select: none; }
+    .toggle-password:hover { color: #0078D7; }
 
     .dice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
     .dice-box { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; }
@@ -479,7 +485,10 @@
       </div>
       <div class="reg-input-group">
         <label>🔐 បង្កើតលេខ PIN 4-6 ខ្ទង់</label>
-        <input type="tel" id="regPin" placeholder="----" maxlength="6" inputmode="numeric">
+        <div class="password-wrapper">
+          <input type="password" id="regPin" placeholder="----" maxlength="6" inputmode="numeric">
+          <span class="toggle-password" onclick="togglePasswordVisibility('regPin')">👁️</span>
+        </div>
       </div>
       
       <div style="background:linear-gradient(135deg,#d4edda,#a8e6c0); border:2px solid #28a745; border-radius:10px; padding:12px; margin-top:10px; font-size:12px; color:#155724; line-height:1.7; font-weight:700; text-align:center;">
@@ -503,7 +512,13 @@
     <div class="reg-step" id="regLoginStep">
       <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
       <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
-      <div class="reg-input-group"><label>🔐 PIN 4-6 ខ្ទង់</label><input type="tel" id="loginPin" placeholder="----" maxlength="6" inputmode="numeric"></div>
+      <div class="reg-input-group">
+        <label>🔐 PIN 4-6 ខ្ទង់</label>
+        <div class="password-wrapper">
+          <input type="password" id="loginPin" placeholder="----" maxlength="6" inputmode="numeric">
+          <span class="toggle-password" onclick="togglePasswordVisibility('loginPin')">👁️</span>
+        </div>
+      </div>
       <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
       <div class="forgot-pin-box">🔐 ភ្លេច PIN? <a href="#" onclick="N98.contactAdmin(); return false;">ទាក់ទង Admin</a></div>
       <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មិនមានគណនី? <a href="#" onclick="N98.showRegisterStep(); return false;" style="color:#0078D7; font-weight:800;">ចុះឈ្មោះ</a></div>
@@ -1354,6 +1369,15 @@
 
       function $(id) { return document.getElementById(id); }
 
+      function togglePasswordVisibility(inputId) {
+        var input = $(inputId);
+        if (input.type === 'password') {
+          input.type = 'text';
+        } else {
+          input.type = 'password';
+        }
+      }
+
       function fixPhoneNumber(phone) {
         var p = String(phone || '').trim().replace(/[^0-9]/g, '');
         if (p.length >= 9 && p.charAt(0) !== '0') p = '0' + p;
@@ -1519,7 +1543,7 @@
       function playBeep() {
         if (!soundEnabled) return;
         var count = 0;
-        var maxBeeps = 3; // កំណត់ឱ្យលឺតែ ៣ ដងប៉ុណ្ណោះ
+        var maxBeeps = 3;
         function beepOnce() {
           if (count >= maxBeeps) return;
           count++;
@@ -1529,7 +1553,7 @@
             a.play().catch(function(e) {});
           } catch (e) {}
           if (count < maxBeeps) {
-            setTimeout(beepOnce, 3000); // លឺរៀងរាល់ ៣ វិនាទី
+            setTimeout(beepOnce, 3000);
           }
         }
         beepOnce();
@@ -1895,6 +1919,11 @@
         });
       }
 
+      function handleVerify() {
+        // មិនប្រើទៀតទេ
+        showLoginStep();
+      }
+
       function handleLogin() {
         var userId = $('loginUserId').value.trim();
         var pin = $('loginPin').value.trim();
@@ -2017,7 +2046,7 @@
             var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
             var ss = String(secondsLeft % 60).padStart(2, '0');
             if ($('diceTimeText')) $('diceTimeText').textContent = mm + ':' + ss;
-            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss; // រក្សាទុកសម្រាប់ករណីចាស់
+            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
             
             var yy = String(now.getFullYear()).slice(-2);
             var startOfYear = new Date(now.getFullYear(), 0, 0);
