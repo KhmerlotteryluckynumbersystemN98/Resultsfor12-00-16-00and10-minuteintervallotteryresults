@@ -496,11 +496,31 @@
       
       <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មានគណនីរួចហើយ? <a href="#" onclick="N98.showLoginStep(); return false;" style="color:#0078D7; font-weight:800;">ចូលប្រើ</a></div>
     </div>
+    
     <div class="reg-step" id="regStep2">
-      <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមចំណាំ ID នេះទុក</p></div>
-      <div class="id-display-box"><div class="label">🆔 ID របស់អ្នក</div><div class="id-value" id="displayUserId">------</div><div class="warning">⚠️ សូមចំណាំ ID នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div></div>
+      <div class="reg-header"><div class="icon">✅</div><h2>ចុះឈ្មោះជោគជ័យ!</h2><p>សូមរក្សាទុកព័ត៌មាននេះ</p></div>
+      
+      <div class="id-display-box" style="background:linear-gradient(135deg,#e8f4fd,#d4edda); border-color:#0078D7;">
+        <div class="label" style="color:#005fa3;">🆔 ID របស់អ្នក</div>
+        <div class="id-value" id="displayUserId" style="color:#005fa3;">------</div>
+        
+        <div class="label" style="color:#005fa3; margin-top:15px;">🔐 PIN របស់អ្នក</div>
+        <div class="id-value" id="displayUserPin" style="color:#d63000; font-size:32px; letter-spacing:5px;">------</div>
+        
+        <div style="display:flex; gap:10px; margin-top:15px;">
+          <button type="button" onclick="N98.copyCredentials()" style="flex:1; padding:12px; background:linear-gradient(135deg,#0078D7,#005fa3); color:white; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;">
+            📋 ចម្លង
+          </button>
+          <button type="button" onclick="N98.captureCredentials()" style="flex:1; padding:12px; background:linear-gradient(135deg,#28a745,#1e7e34); color:white; border:none; border-radius:8px; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;">
+            📸 ថតអេក្រង់
+          </button>
+        </div>
+        <div class="warning">⚠️ សូមចំណាំ ID និង PIN នេះ<br>ប្រើសម្រាប់ចូលប្រើលើកក្រោយ</div>
+      </div>
+      
       <button class="reg-btn success" onclick="N98.showLoginStep()" style="margin-top:12px;">បន្តទៅកាន់ការចូលប្រើ → 🔑</button>
     </div>
+    
     <div class="reg-step" id="regLoginStep">
       <div class="reg-header"><div class="icon">🔐</div><h2>ចូលប្រើប្រាស់</h2><p>បញ្ចូល ID និង PIN</p></div>
       <div class="reg-input-group"><label>🆔 ID របស់អ្នក</label><input type="text" id="loginUserId" placeholder="------" maxlength="6" inputmode="numeric"></div>
@@ -836,7 +856,6 @@
         </div>
         <div class="label" style="color: #d8b4fe;">🎲 ការប្រកាសលទ្ធផលអាប៉ោងបន្ទាប់</div>
         
-        <!-- ប្រអប់បន្ទាត់ (Progress Bar) ជំនួសរង្វង់ -->
         <div style="text-align: center; margin: 15px auto; position: relative;">
           <div style="font-size: 36px; font-weight: 800; color: #ff1744; font-family: 'Courier New', monospace; text-shadow: 0 0 15px rgba(255,23,68,0.8); margin-bottom: 10px;" id="diceTimeText">05:00</div>
           <div class="dice-progress-container">
@@ -1293,7 +1312,7 @@
       var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwTIcX1Rg1pTzh41ODWZzaEIIeZhP1o3xDC4QyQGbAuCVDZ5xJ4PYrA2PaOuPoEnj65/exec';
       
       var CFG = {
-        REFRESH_MS: 30000,
+        REFRESH_MS: 30000, // ✅ Auto Refresh
         REFRESH_10_MS: 5000,
         CLOCK_MS: 1000,
         STATUS_MS: 1000,
@@ -1358,6 +1377,8 @@
       
       var hasClickedAba = false;
       var hasClickedDownload = false;
+      
+      var lastCredentials = { userId: '', pin: '' }; // ✅ សម្រាប់ចម្លង
 
       function $(id) { return document.getElementById(id); }
 
@@ -1368,6 +1389,42 @@
         } else {
           input.type = 'password';
         }
+      }
+      
+      function copyCredentials() {
+        var text = 'ID: ' + lastCredentials.userId + '\nPIN: ' + lastCredentials.pin;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            showToast('បានចម្លង ID និង PIN!', 'success', '📋');
+          }).catch(function() { showAlert('ព័ត៌មាន', text, '📋'); });
+        } else {
+          showAlert('ព័ត៌មាន', text, '📋');
+        }
+      }
+      
+      function captureCredentials() {
+        var targetEl = $('regStep2');
+        if (!targetEl) return;
+        if (typeof html2canvas === 'undefined') {
+          showToast('html2canvas មិនទាន់ផ្ទុក', 'error');
+          return;
+        }
+        showToast('កំពុងថតអេក្រង់...', 'info', '📸');
+        html2canvas(targetEl, {
+          backgroundColor: '#ffffff',
+          scale: 2,
+          useCORS: true,
+          logging: false
+        }).then(function(canvas) {
+          var link = document.createElement('a');
+          link.download = 'N98_Account_' + lastCredentials.userId + '.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          showToast('ថតអេក្រង់បានជោគជ័យ!', 'success', '📸');
+        }).catch(function(err) {
+          console.error(err);
+          showToast('មានបញ្ហាក្នុងការថតអេក្រង់!', 'error');
+        });
       }
 
       function fixPhoneNumber(phone) {
@@ -1875,7 +1932,12 @@
       function showLoginStep() { showRegStep('regLoginStep'); $('loginUserId').value = ''; $('loginPin').value = ''; }
       function showRegisterStep() { showRegStep('regStep1'); $('regPhone').value = ''; $('regPin').value = ''; }
       function showVerifyStep() { showRegStep('regStep3'); var c = $('regCode'); c.value = ''; c.focus(); }
-      function showIdStep(userId) { $('displayUserId').textContent = userId; showRegStep('regStep2'); }
+      function showIdStep(userId, pin) { 
+        $('displayUserId').textContent = userId; 
+        $('displayUserPin').textContent = pin; 
+        lastCredentials = { userId: userId, pin: pin };
+        showRegStep('regStep2'); 
+      }
 
       function handleRegister() {
         var phone = fixPhoneNumber($('regPhone').value);
@@ -1897,7 +1959,7 @@
           btn.disabled = false;
           btn.innerHTML = 'បន្ត → <span class="emoji-rocket">🚀</span>';
           showLoading(false);
-          if (data.ok) { showToast('ចុះឈ្មោះជោគជ័យ!', 'success', '🎉'); showIdStep(data.userId); }
+          if (data.ok) { showToast('ចុះឈ្មោះជោគជ័យ!', 'success', '🎉'); showIdStep(data.userId, pin); }
           else if (data.userId) {
             if (data.verified) { showToast('មានគណនីរួចហើយ', 'info'); showLoginStep(); $('loginUserId').value = data.userId; }
             else { showToast('មានគណនីរួចហើយ — សូមចូលប្រើដោយប្រើ PIN', 'info'); showLoginStep(); $('loginUserId').value = data.userId; }
@@ -1909,11 +1971,6 @@
           showLoading(false); 
           showAlert('មានបញ្ហាតភ្ជាប់', err.message || 'សូមពិនិត្យ WEB_APP_URL និង Deploy ឡើងវិញ', '❌');
         });
-      }
-
-      function handleVerify() {
-        // មិនប្រើទៀតទេ
-        showLoginStep();
       }
 
       function handleLogin() {
@@ -1956,6 +2013,16 @@
           cancelText: '✕ បោះបង់'
         }, function(confirmed) {
           if (!confirmed) return;
+          
+          // ✅ ហៅ API ដើម្បី Log ការចាកចេញ
+          if (currentUser) {
+            fetchWithTimeout(WEB_APP_URL, {
+              method: 'POST',
+              body: JSON.stringify({ action: 'logout', userId: currentUser.userId, phone: currentUser.phone }),
+              headers: { 'Content-Type': 'text/plain' }
+            }).catch(function(e) { console.log('Logout log error:', e); });
+          }
+          
           localStorage.removeItem('lottery_user');
           currentUser = null; numbers = []; numbers10 = []; diceSelectedOptions = [];
           clearIntervals();
@@ -2026,7 +2093,6 @@
           var secondsIntoCycle = (min % 5) * 60 + sec;
           var totalDiceCycle = 5 * 60;
           
-          // គណនាទិសដៅរង្វង់ និងបន្ទាត់ឱ្យដើរទៅមុខដូចគ្នា
           var percentDice = (secondsIntoCycle / totalDiceCycle) * 100;
           if ($('diceProgressBar')) {
             $('diceProgressBar').style.width = percentDice + '%';
@@ -4362,7 +4428,9 @@
         downloadQR: downloadQR,
         enableScreenshotUpload: enableScreenshotUpload,
         checkContinueButtonState: checkContinueButtonState,
-        togglePasswordVisibility: togglePasswordVisibility
+        togglePasswordVisibility: togglePasswordVisibility,
+        copyCredentials: copyCredentials,
+        captureCredentials: captureCredentials
       };
 
       if (document.readyState === 'loading') {
