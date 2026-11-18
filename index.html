@@ -78,6 +78,7 @@
     .btn-logout { background: linear-gradient(135deg, #dc3545, #a71d2a) !important; color: white !important; }
     .btn-theme { background: linear-gradient(135deg, #6f42c1, #5a32a3) !important; color: white !important; }
     .btn-contact-admin { background: linear-gradient(135deg, #17a2b8, #117a8b) !important; color: white !important; }
+    .btn-health { background: linear-gradient(135deg, #20c997, #0f5132) !important; color: white !important; }
 
     .section { padding: 12px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 
@@ -534,6 +535,9 @@
       <button class="reg-btn" id="loginBtn" onclick="N98.handleLogin()">ចូលប្រើ → <span class="emoji-rocket">🚀</span></button>
       <div class="forgot-pin-box">🔐 ភ្លេច PIN? <a href="#" onclick="N98.contactAdmin(); return false;">ទាក់ទង Admin</a></div>
       <div style="text-align:center; margin-top:16px; font-size:12px; color:#64748b; font-weight:600;">មិនមានគណនី? <a href="#" onclick="N98.showRegisterStep(); return false;" style="color:#0078D7; font-weight:800;">ចុះឈ្មោះ</a></div>
+      <div style="text-align:center; margin-top:12px; padding:10px; background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; font-size:11px; color:#0369a1; font-weight:700;">
+        🔧 <a href="#" onclick="N98.checkSystem(); return false;" style="color:#0369a1; text-decoration:underline;">ពិនិត្យស្ថានភាពប្រព័ន្ធ</a>
+      </div>
     </div>
   </div>
 </div>
@@ -570,6 +574,7 @@
     <button class="btn-contact-admin" onclick="N98.contactAdmin()">✉️ ទាក់ទង Admin</button>
     <button class="btn-share" onclick="N98.copyLink()">🔗 ចែករំលែក</button>
     <button class="btn-group" onclick="N98.openGroup()">💬 ចូលក្រុម</button>
+    <button class="btn-health" onclick="N98.checkSystem()" title="ពិនិត្យស្ថានភាពប្រព័ន្ធ">🩺 សុខភាព</button>
     <button class="sound-toggle" id="soundToggleBtn" onclick="N98.toggleSound()">🔊 សំឡេង</button>
     <button class="btn-logout" onclick="N98.handleLogout()">🚪 ចាកចេញ</button>
   </nav>
@@ -740,7 +745,7 @@
       </div>
     </div>
 
-    <!-- ================= RAPID MODE (10 នាទី) ================= -->
+        <!-- ================= RAPID MODE (10 នាទី) ================= -->
     <div id="rapidMode" style="display:none;">
       <div class="countdown-rapid">
         <div class="inline-clock-box" style="background: rgba(255,255,255,0.1); border-color: rgba(233,30,99,0.5);">
@@ -1003,7 +1008,7 @@
       </div>
     </div>
 
-    <!-- ================= ADMIN PANEL ================= -->
+        <!-- ================= ADMIN PANEL ================= -->
     <div class="lottery-box" id="adminPanel" style="display:none; border:2px solid #dc3545;">
       <div class="time-box" style="color:#dc3545;"><span class="anim-pulse">👑</span> ADMIN PANEL</div>
       <div style="background:linear-gradient(135deg,#fff5f5,#ffe0e0); border:1px dashed #ff8b8b; padding:10px; border-radius:10px; margin:10px 0; font-size:12px; color:#721c24; font-weight:700;">🔐 ផ្ទាំងនេះសម្រាប់ Admin ប៉ុណ្ណោះ</div>
@@ -1090,6 +1095,7 @@
       </div>
     </div>
 
+    <!-- ================= RULES SECTION ================= -->
     <div id="rulesSection" style="display:none;">
       <div class="bet-box">
         <h2>📋 ច្បាប់ និងរបៀបប្រើប្រាស់</h2>
@@ -1158,7 +1164,7 @@
   <div class="footer"><span class="emoji-dice">🎲</span> © 2026 Khmer Lottery N98 — រក្សាសិទ្ធិគ្រប់យ៉ាងពីឆ្នោតខ្មែរ N98 <span class="emoji-trophy">🏆</span></div>
 </div>
 
-<!-- ================= MODALS ================= -->
+  <!-- ================= MODALS ================= -->
 <div class="modal" id="depositModal">
   <div class="modal-content">
     <span class="close" onclick="N98.closeModal('depositModal')">&times;</span>
@@ -1309,10 +1315,12 @@
     (function() {
       'use strict';
       
+      // ⚠️ IMPORTANT: ត្រូវដាក់ Web App URL ថ្មីរបស់អ្នកនៅទីនេះ!
+      // បន្ទាប់ពី Deploy ជា Web App រួច សូមចម្លង URL មកដាក់ជំនួស
       var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwTIcX1Rg1pTzh41ODWZzaEIIeZhP1o3xDC4QyQGbAuCVDZ5xJ4PYrA2PaOuPoEnj65/exec';
       
       var CFG = {
-        REFRESH_MS: 30000, // ✅ Auto Refresh
+        REFRESH_MS: 30000,
         REFRESH_10_MS: 5000,
         CLOCK_MS: 1000,
         STATUS_MS: 1000,
@@ -1378,17 +1386,14 @@
       var hasClickedAba = false;
       var hasClickedDownload = false;
       
-      var lastCredentials = { userId: '', pin: '' }; // ✅ សម្រាប់ចម្លង
+      var lastCredentials = { userId: '', pin: '' };
 
       function $(id) { return document.getElementById(id); }
 
       function togglePasswordVisibility(inputId) {
         var input = $(inputId);
-        if (input.type === 'password') {
-          input.type = 'text';
-        } else {
-          input.type = 'password';
-        }
+        if (input.type === 'password') input.type = 'text';
+        else input.type = 'password';
       }
       
       function copyCredentials() {
@@ -1682,6 +1687,49 @@
         });
       }
 
+      // ✅ ពិនិត្យស្ថានភាពប្រព័ន្ធ
+      function checkSystem() {
+        showLoading(true);
+        fetchWithTimeout(WEB_APP_URL + '?action=health&t=' + Date.now(), { cache: 'no-store' })
+          .then(safeJsonParse)
+          .then(function(data) {
+            showLoading(false);
+            if (data.ok) {
+              var msg = '✅ ប្រព័ន្ធដំណើរការល្អ!\n\n';
+              msg += '📅 ' + data.timestamp + '\n';
+              msg += '📦 Version: ' + data.version + '\n\n';
+              msg += '📋 Sheets:\n';
+              if (data.sheets) {
+                for (var name in data.sheets) {
+                  if (data.sheets.hasOwnProperty(name)) {
+                    var status = data.sheets[name];
+                    var icon = status === 'OK' ? '✅' : '❌';
+                    var count = data.counts && data.counts[name] !== undefined ? ' (' + data.counts[name] + ')' : '';
+                    msg += icon + ' ' + name + count + '\n';
+                  }
+                }
+              }
+              if (data.warnings && data.warnings.length > 0) {
+                msg += '\n⚠️ ការព្រមាន:\n' + data.warnings.join('\n');
+              }
+              showAlert('🩺 ស្ថានភាពប្រព័ន្ធ', msg, '✅');
+            } else {
+              showAlert('❌ បញ្ហា', data.error || 'មិនអាចភ្ជាប់បាន', '❌');
+            }
+          })
+          .catch(function(err) {
+            showLoading(false);
+            showAlert('❌ បញ្ហាតភ្ជាប់', 
+              'មិនអាចភ្ជាប់ទៅ Server បានទេ!\n\n' +
+              'មូលហេតុដែលអាចកើតឡើង:\n' +
+              '1. WEB_APP_URL ខុស ឬផុតកំណត់\n' +
+              '2. មិនបាន Deploy ជា Web App\n' +
+              '3. Deploy ជា "Anyone" មិនត្រូវ\n\n' +
+              'Error: ' + (err.message || 'Unknown'), 
+              '❌');
+          });
+      }
+
       let abortController = null;
       function fetchResults() {
         if (abortController) abortController.abort();
@@ -1931,13 +1979,22 @@
       }
       function showLoginStep() { showRegStep('regLoginStep'); $('loginUserId').value = ''; $('loginPin').value = ''; }
       function showRegisterStep() { showRegStep('regStep1'); $('regPhone').value = ''; $('regPin').value = ''; }
-      function showVerifyStep() { showRegStep('regStep3'); var c = $('regCode'); c.value = ''; c.focus(); }
+      function showVerifyStep() { showRegStep('regStep1'); }
       function showIdStep(userId, pin) { 
         $('displayUserId').textContent = userId; 
         $('displayUserPin').textContent = pin; 
         lastCredentials = { userId: userId, pin: pin };
         showRegStep('regStep2'); 
       }
+
+      // Stub សម្រាប់ handleVerify (ដើម្បីកុំឱ្យ N98 object បែក)
+      function handleVerify() {
+        showToast('មុខងារនេះមិនត្រូវបានប្រើទេ', 'info');
+      }
+
+        /* ================================================================
+         AUTH: Register / Login / Logout
+         ================================================================ */
 
       function handleRegister() {
         var phone = fixPhoneNumber($('regPhone').value);
@@ -1992,7 +2049,7 @@
           showLoading(false);
           if (data.ok) {
             currentUser = { userId: data.userId, phone: fixPhoneNumber(data.phone), verified: true };
-            localStorage.setItem('lottery_user', JSON.stringify(currentUser));
+            try { localStorage.setItem('lottery_user', JSON.stringify(currentUser)); } catch (e) {}
             showToast('ចូលប្រើជោគជ័យ!', 'success', '🎉');
             setTimeout(enterApp, 800);
           } else showToast(data.error || 'ID ឬ PIN មិនត្រឹមត្រូវ!', 'error');
@@ -2000,7 +2057,8 @@
         .catch(function(err) {
           console.error(err); btn.disabled = false;
           btn.innerHTML = 'ចូលប្រើ → <span class="emoji-rocket">🚀</span>';
-          showLoading(false); showToast('មានបញ្ហាតភ្ជាប់!', 'error');
+          showLoading(false); 
+          showAlert('មានបញ្ហាតភ្ជាប់', err.message || 'សូមពិនិត្យ WEB_APP_URL និង Deploy ឡើងវិញ', '❌');
         });
       }
 
@@ -2014,7 +2072,6 @@
         }, function(confirmed) {
           if (!confirmed) return;
           
-          // ✅ ហៅ API ដើម្បី Log ការចាកចេញ
           if (currentUser) {
             fetchWithTimeout(WEB_APP_URL, {
               method: 'POST',
@@ -2023,7 +2080,7 @@
             }).catch(function(e) { console.log('Logout log error:', e); });
           }
           
-          localStorage.removeItem('lottery_user');
+          try { localStorage.removeItem('lottery_user'); } catch (e) {}
           currentUser = null; numbers = []; numbers10 = []; diceSelectedOptions = [];
           clearIntervals();
           $('mainApp').style.display = 'none';
@@ -2042,105 +2099,9 @@
         intervals = { clock: null, refresh: null, status: null, rapid: null, dice: null };
       }
 
-      function enterApp() {
-        if (!currentUser) return;
-        $('registerModal').style.display = 'none';
-        $('mainApp').style.display = 'block';
-        
-        if ($('displayCurrentUserId')) $('displayCurrentUserId').textContent = currentUser.userId;
-        if ($('displayCurrentPhone')) $('displayCurrentPhone').textContent = fixPhoneNumber(currentUser.phone);
-        
-        showAdminPanelIfNeeded();
-        
-        fetchBalance(currentUser.phone);
-        fetchResults();
-        fetchResults10();
-        fetchUserBets();
-        updateBettingStatus();
-        updateBettingClosed10();
-        
-        try {
-          updateHistoryTabsForMode('classic');
-        } catch (e) { updateHistoryTabsForMode('classic'); }
-
-        clearIntervals();
-        intervals.clock = setInterval(function() {
-          updateClock();
-          checkBeepBeforeDraw();
-          updateBettingStatus();
-        }, CFG.CLOCK_MS);
-        intervals.refresh = setInterval(function() {
-          fetchResults();
-          if (mainMode === 'rapid') fetchResults10();
-          if (mainMode === 'dice') N98.fetchDiceResults();
-          fetchBalance(currentUser.phone);
-        }, CFG.REFRESH_MS);
-        intervals.rapid = setInterval(function() {
-          if (mainMode === 'rapid') {
-            fetchResults10();
-            updateCountdown10();
-          }
-        }, CFG.REFRESH_10_MS);
-        intervals.status = setInterval(function() {
-          updateBettingStatus();
-          updateBettingClosed10();
-        }, CFG.STATUS_MS);
-        
-        intervals.dice = setInterval(function() {
-          var now = new Date();
-          var sec = now.getSeconds();
-          var min = now.getMinutes();
-          var secondsIntoCycle = (min % 5) * 60 + sec;
-          var totalDiceCycle = 5 * 60;
-          
-          var percentDice = (secondsIntoCycle / totalDiceCycle) * 100;
-          if ($('diceProgressBar')) {
-            $('diceProgressBar').style.width = percentDice + '%';
-          }
-
-          if (mainMode === 'dice') {
-            N98.fetchDiceResults();
-            
-            var secondsLeft = totalDiceCycle - secondsIntoCycle;
-            var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
-            var ss = String(secondsLeft % 60).padStart(2, '0');
-            if ($('diceTimeText')) $('diceTimeText').textContent = mm + ':' + ss;
-            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
-            
-            var yy = String(now.getFullYear()).slice(-2);
-            var startOfYear = new Date(now.getFullYear(), 0, 0);
-            var dayOfYear = Math.floor((now - startOfYear) / 86400000);
-            var slotIndex = Math.floor((now.getHours() * 60 + now.getMinutes()) / 5);
-            currentDrawIdDice = yy + String(dayOfYear).padStart(3, '0') + String(slotIndex).padStart(3, '0');
-            if ($('nextDrawNumberDice')) $('nextDrawNumberDice').textContent = '#' + currentDrawIdDice;
-            
-            var closedDice = secondsIntoCycle >= (5 * 60 - 10);
-            if ($('bettingClosedBoxDice')) $('bettingClosedBoxDice').style.display = closedDice ? 'block' : 'none';
-            if (closedDice) {
-              var reopenSec = (5 * 60) - secondsIntoCycle;
-              if ($('reopenTimeDice')) $('reopenTimeDice').textContent = '00:' + String(reopenSec).padStart(2, '0');
-            }
-            N98.updateSubmitDiceButton();
-            N98.updateBalanceStatusBoxDice();
-          }
-        }, 1000);
-        
-        updateClock();
-        updateCountdown10();
-        
-        var numInput = $('numInput');
-        if (numInput && !numInput._bound) {
-          numInput.addEventListener('input', autoAddNumbers);
-          numInput._bound = true;
-        }
-        var numInput10 = $('numInput10');
-        if (numInput10 && !numInput10._bound) {
-          numInput10.addEventListener('input', autoAddNumbers10);
-          numInput10._bound = true;
-        }
-
-        showSection('home', null);
-      }
+      /* ================================================================
+         ADMIN FUNCTIONS
+         ================================================================ */
 
       function isAdmin() {
         if (!currentUser || !currentUser.phone) return false;
@@ -2512,6 +2473,10 @@
         });
       }
 
+      /* ================================================================
+         CLASSIC BETTING FUNCTIONS
+         ================================================================ */
+
       function setTime(t, evt) {
         if (isBettingClosed(t)) {
           showToast('ការចាក់ម៉ោង ' + t + ' ត្រូវបានបិទ!', 'warning', '🔒');
@@ -2645,10 +2610,7 @@
         if (!box) return;
         var cnt = numbers.length;
         var total = cnt * amount;
-        if (cnt === 0 || amount <= 0) {
-          box.style.display = 'none';
-          return;
-        }
+        if (cnt === 0 || amount <= 0) { box.style.display = 'none'; return; }
         box.style.display = 'block';
         var current = currency === 'USD' ? balanceUSD : balanceKHR;
         var needed = total;
@@ -2704,158 +2666,31 @@
         $('directBetModal').style.display = 'block';
       }
 
-      function openDepositModal() {
-        $('depPhone').value = fixPhoneNumber(currentUser.phone);
-        $('depAmount').value = '';
-        $('depCurrency').value = 'USD';
-        updateDepositMinHint();
-        var fileInput = $('depScreenshot');
-        var label = $('depScreenshotLabel');
-        fileInput.value = '';
-        fileInput.disabled = true;
-        if (label) {
-          label.style.opacity = '0.5';
-          label.style.pointerEvents = 'none';
-          label.innerHTML = 'បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) *';
-        }
-        
-        hasClickedAba = false;
-        hasClickedDownload = false;
-        var btn = $('depContinueBtn');
-        if (btn) {
-          btn.disabled = true;
-          btn.style.background = '#ced4da';
-          btn.style.color = '#6c757d';
-          btn.style.cursor = 'not-allowed';
-        }
-
-        $('depositModal').style.display = 'block';
-        setTimeout(checkOnlineFormValidity, 100);
+      function resetBetForm() {
+        numbers = [];
+        selectedLetter = '';
+        var circles = document.querySelectorAll('#classicMode .letter-circle');
+        for (var i = 0; i < circles.length; i++) circles[i].classList.remove('active');
+        var inp = $('numInput');
+        if (inp) { inp.disabled = true; inp.value = ''; }
+        updateDisplay();
+        updateBalanceStatusBox();
       }
 
-      function updateDepositMinHint() {
-        var cur = $('depCurrency').value;
-        var hint = $('depMinHint');
-        if (hint) {
-          if (cur === 'USD') hint.textContent = '⚠️ ចំនួនអប្បបរមា USD ≥ ' + CFG.MIN_DEPOSIT_USD.toFixed(2) + '$';
-          else hint.textContent = '⚠️ ចំនួនអប្បបរមា KHR ≥ ' + CFG.MIN_DEPOSIT_KHR.toLocaleString() + '៛';
-        }
-        checkOnlineFormValidity();
-      }
+      /* ================================================================
+         BETTING CLOSED CHECK
+         ================================================================ */
 
-      function handleAbaClick(event) {
-        if (event) event.preventDefault();
-        window.open('https://pay.ababank.com/oRF8/yhtm93ei', '_blank', 'noopener');
-        hasClickedAba = true;
-        checkContinueButtonState();
-        setTimeout(function() {
-          showToast('អាចបើកប្រអប់បង់ប្រាក់ហើយ!', 'info', '📷');
-        }, 500);
-      }
-
-      function downloadQR() {
-        var qrUrl = 'https://i.ibb.co/twtR2CPg/photo-2026-10-24-21-09-28.jpg';
-        hasClickedDownload = true;
-        checkContinueButtonState();
-        showToast('កំពុងទាញយករូបភាព...', 'info', '⏳');
-        
-        fetch(qrUrl)
-          .then(response => response.blob())
-          .then(blob => {
-            var url = window.URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = 'ABA_KHQR_N98.jpg';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            showToast('ទាញយករូបភាពបានជោគជ័យ!', 'success', '📥');
-          })
-          .catch(err => {
-            console.error('Download error:', err);
-            showToast('មានបញ្ហាក្នុងការទាញយក!', 'error', '❌');
-            window.open(qrUrl, '_blank');
-          });
-      }
-
-      function checkContinueButtonState() {
-        var amountInput = $('depAmount');
-        var depAmount = parseFloat(amountInput.value) || 0;
-        var depCur = $('depCurrency').value;
-        
-        var amountOk = false;
-        if (depCur === 'USD') amountOk = depAmount >= CFG.MIN_DEPOSIT_USD;
-        else amountOk = depAmount >= CFG.MIN_DEPOSIT_KHR;
-
-        var btn = $('depContinueBtn');
-        if (!btn) return;
-
-        if ((hasClickedAba || hasClickedDownload) && amountOk) {
-          btn.disabled = false;
-          btn.style.background = 'linear-gradient(135deg,#ff9800,#e65100)';
-          btn.style.color = 'white';
-          btn.style.cursor = 'pointer';
-        } else {
-          btn.disabled = true;
-          btn.style.background = '#ced4da';
-          btn.style.color = '#6c757d';
-          btn.style.cursor = 'not-allowed';
-        }
-      }
-
-      function enableScreenshotUpload() {
-        var fileInput = $('depScreenshot');
-        var label = $('depScreenshotLabel');
-        var btn = $('depContinueBtn');
-        
-        if (fileInput) fileInput.disabled = false;
-        if (label) {
-          label.style.opacity = '1';
-          label.style.pointerEvents = 'auto';
-          label.innerHTML = 'បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) * <span style="font-size:11px; color:#28a745;"> ✅ អាចភ្ជាប់បាន</span>';
-        }
-        if (btn) {
-          btn.disabled = true;
-          btn.style.background = '#ced4da';
-          btn.style.color = '#6c757d';
-          btn.style.cursor = 'not-allowed';
-          btn.textContent = '✅ បានបើកដំណើរការ';
-        }
-        checkOnlineFormValidity();
-        showToast('អ្នកអាចភ្ជាប់រូបភាពបានហើយ!', 'info', '📷');
-      }
-
-      function checkOnlineFormValidity() {
-        var phone = fixPhoneNumber($('depPhone').value);
-        var depAmount = parseFloat($('depAmount').value) || 0;
-        var depCur = $('depCurrency').value;
-        var fileInput = $('depScreenshot');
-        var file = fileInput.files[0];
-        var btn = $('depSubmitBtn');
-        if (!btn) return;
-        
-        var hasPhone = phone && phone.length >= 9;
-        var hasFile = file && file.size > 0;
-        var isAbaEnabled = !fileInput.disabled;
-        
-        var amountOk = false;
-        if (depCur === 'USD') amountOk = depAmount >= CFG.MIN_DEPOSIT_USD;
-        else amountOk = depAmount >= CFG.MIN_DEPOSIT_KHR;
-        
-        var isValid = hasPhone && hasFile && isAbaEnabled && amountOk;
-        btn.disabled = !isValid;
-      }
-
+      // ✅ កែឱ្យត្រូវនឹង Code.gs: បិទតែ ១ នាទីមុនលទ្ធផល
       function isBettingClosed(timeSlot) {
         var now = new Date();
         var h = now.getHours();
         var m = now.getMinutes();
         if (timeSlot === '12:00') {
-          return (h > 12) || (h === 12) || (h === 11 && m >= 59);
+          return (h === 12) || (h === 11 && m >= 59);
         }
         if (timeSlot === '16:00') {
-          return (h > 16) || (h === 16) || (h === 15 && m >= 59);
+          return (h === 16) || (h === 15 && m >= 59);
         }
         return false;
       }
@@ -2932,6 +2767,153 @@
         }
       }
 
+      /* ================================================================
+         DEPOSIT / WITHDRAW MODAL FUNCTIONS
+         ================================================================ */
+
+      function openDepositModal() {
+        $('depPhone').value = fixPhoneNumber(currentUser.phone);
+        $('depAmount').value = '';
+        $('depCurrency').value = 'USD';
+        updateDepositMinHint();
+        var fileInput = $('depScreenshot');
+        var label = $('depScreenshotLabel');
+        fileInput.value = '';
+        fileInput.disabled = true;
+        if (label) {
+          label.style.opacity = '0.5';
+          label.style.pointerEvents = 'none';
+          label.innerHTML = 'បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) *';
+        }
+        
+        hasClickedAba = false;
+        hasClickedDownload = false;
+        var btn = $('depContinueBtn');
+        if (btn) {
+          btn.disabled = true;
+          btn.style.background = '#ced4da';
+          btn.style.color = '#6c757d';
+          btn.style.cursor = 'not-allowed';
+        }
+
+        $('depositModal').style.display = 'block';
+        setTimeout(checkOnlineFormValidity, 100);
+      }
+
+      function updateDepositMinHint() {
+        var cur = $('depCurrency').value;
+        var hint = $('depMinHint');
+        if (hint) {
+          if (cur === 'USD') hint.textContent = '⚠️ ចំនួនអប្បបរមា USD ≥ ' + CFG.MIN_DEPOSIT_USD.toFixed(2) + '$';
+          else hint.textContent = '⚠️ ចំនួនអប្បបរមា KHR ≥ ' + CFG.MIN_DEPOSIT_KHR.toLocaleString() + '៛';
+        }
+        checkOnlineFormValidity();
+      }
+
+      function handleAbaClick(event) {
+        if (event) event.preventDefault();
+        window.open('https://pay.ababank.com/oRF8/yhtm93ei', '_blank', 'noopener');
+        hasClickedAba = true;
+        checkContinueButtonState();
+        setTimeout(function() {
+          showToast('អាចបើកប្រអប់បង់ប្រាក់ហើយ!', 'info', '📷');
+        }, 500);
+      }
+
+      function downloadQR() {
+        var qrUrl = 'https://i.ibb.co/twtR2CPg/photo-2026-10-24-21-09-28.jpg';
+        hasClickedDownload = true;
+        checkContinueButtonState();
+        showToast('កំពុងទាញយករូបភាព...', 'info', '⏳');
+        
+        fetch(qrUrl)
+          .then(function(response) { return response.blob(); })
+          .then(function(blob) {
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'ABA_KHQR_N98.jpg';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            showToast('ទាញយករូបភាពបានជោគជ័យ!', 'success', '📥');
+          })
+          .catch(function(err) {
+            console.error('Download error:', err);
+            showToast('មានបញ្ហាក្នុងការទាញយក!', 'error', '❌');
+            window.open(qrUrl, '_blank');
+          });
+      }
+
+      function checkContinueButtonState() {
+        var amountInput = $('depAmount');
+        var depAmount = parseFloat(amountInput.value) || 0;
+        var depCur = $('depCurrency').value;
+        
+        var amountOk = false;
+        if (depCur === 'USD') amountOk = depAmount >= CFG.MIN_DEPOSIT_USD;
+        else amountOk = depAmount >= CFG.MIN_DEPOSIT_KHR;
+
+        var btn = $('depContinueBtn');
+        if (!btn) return;
+
+        if ((hasClickedAba || hasClickedDownload) && amountOk) {
+          btn.disabled = false;
+          btn.style.background = 'linear-gradient(135deg,#ff9800,#e65100)';
+          btn.style.color = 'white';
+          btn.style.cursor = 'pointer';
+        } else {
+          btn.disabled = true;
+          btn.style.background = '#ced4da';
+          btn.style.color = '#6c757d';
+          btn.style.cursor = 'not-allowed';
+        }
+      }
+
+      function enableScreenshotUpload() {
+        var fileInput = $('depScreenshot');
+        var label = $('depScreenshotLabel');
+        var btn = $('depContinueBtn');
+        
+        if (fileInput) fileInput.disabled = false;
+        if (label) {
+          label.style.opacity = '1';
+          label.style.pointerEvents = 'auto';
+          label.innerHTML = 'បញ្ចូលរូបថតអេក្រង់នៃប្រតិបត្តិការទូទាត់របស់អ្នក (Screenshot) * <span style="font-size:11px; color:#28a745;"> ✅ អាចភ្ជាប់បាន</span>';
+        }
+        if (btn) {
+          btn.disabled = true;
+          btn.style.background = '#ced4da';
+          btn.style.color = '#6c757d';
+          btn.style.cursor = 'not-allowed';
+          btn.textContent = '✅ បានបើកដំណើរការ';
+        }
+        checkOnlineFormValidity();
+        showToast('អ្នកអាចភ្ជាប់រូបភាពបានហើយ!', 'info', '📷');
+      }
+
+      function checkOnlineFormValidity() {
+        var phone = fixPhoneNumber($('depPhone').value);
+        var depAmount = parseFloat($('depAmount').value) || 0;
+        var depCur = $('depCurrency').value;
+        var fileInput = $('depScreenshot');
+        var file = fileInput.files[0];
+        var btn = $('depSubmitBtn');
+        if (!btn) return;
+        
+        var hasPhone = phone && phone.length >= 9;
+        var hasFile = file && file.size > 0;
+        var isAbaEnabled = !fileInput.disabled;
+        
+        var amountOk = false;
+        if (depCur === 'USD') amountOk = depAmount >= CFG.MIN_DEPOSIT_USD;
+        else amountOk = depAmount >= CFG.MIN_DEPOSIT_KHR;
+        
+        var isValid = hasPhone && hasFile && isAbaEnabled && amountOk;
+        btn.disabled = !isValid;
+      }
+
       function openWithdrawModal() {
         $('wdPhone').value = fixPhoneNumber(currentUser.phone);
         $('wdAmount').value = '';
@@ -2975,6 +2957,10 @@
           btnKHR.style.background = withdrawCurrency === 'KHR' ? 'linear-gradient(135deg,#e8f4fd,#d4edda)' : '';
         }
       }
+
+      /* ================================================================
+         RAPID MODE FUNCTIONS
+         ================================================================ */
 
       function setType10(t, evt) {
         betType10 = t;
@@ -3717,22 +3703,23 @@
         tbody.innerHTML = html;
       }
 
+      /* ================================================================
+         CLOCK
+         ================================================================ */
+
       function updateClock() {
         var now = new Date();
         
-        // Update Classic Clock
         if ($('widgetTime')) $('widgetTime').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
         if ($('widgetDate')) $('widgetDate').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
         
-        // Update Rapid Clock
         if ($('widgetTimeRapid')) $('widgetTimeRapid').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
         if ($('widgetDateRapid')) $('widgetDateRapid').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
         
-        // Update Dice Clock
         if ($('widgetTimeDice')) $('widgetTimeDice').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
         if ($('widgetDateDice')) $('widgetDateDice').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
@@ -3760,21 +3747,127 @@
         if (mainMode === 'rapid') updateCountdown10();
       }
 
+      /* ================================================================
+         INIT & ENTER APP
+         ================================================================ */
+
+      function enterApp() {
+        if (!currentUser) return;
+        $('registerModal').style.display = 'none';
+        $('mainApp').style.display = 'block';
+        
+        if ($('displayCurrentUserId')) $('displayCurrentUserId').textContent = currentUser.userId;
+        if ($('displayCurrentPhone')) $('displayCurrentPhone').textContent = fixPhoneNumber(currentUser.phone);
+        
+        showAdminPanelIfNeeded();
+        
+        fetchBalance(currentUser.phone);
+        fetchResults();
+        fetchResults10();
+        fetchUserBets();
+        updateBettingStatus();
+        updateBettingClosed10();
+        
+        try { updateHistoryTabsForMode('classic'); } catch (e) { updateHistoryTabsForMode('classic'); }
+
+        clearIntervals();
+        intervals.clock = setInterval(function() {
+          updateClock();
+          checkBeepBeforeDraw();
+          updateBettingStatus();
+        }, CFG.CLOCK_MS);
+        intervals.refresh = setInterval(function() {
+          fetchResults();
+          if (mainMode === 'rapid') fetchResults10();
+          if (mainMode === 'dice') N98.fetchDiceResults();
+          fetchBalance(currentUser.phone);
+        }, CFG.REFRESH_MS);
+        intervals.rapid = setInterval(function() {
+          if (mainMode === 'rapid') {
+            fetchResults10();
+            updateCountdown10();
+          }
+        }, CFG.REFRESH_10_MS);
+        intervals.status = setInterval(function() {
+          updateBettingStatus();
+          updateBettingClosed10();
+        }, CFG.STATUS_MS);
+        
+        intervals.dice = setInterval(function() {
+          var now = new Date();
+          var sec = now.getSeconds();
+          var min = now.getMinutes();
+          var secondsIntoCycle = (min % 5) * 60 + sec;
+          var totalDiceCycle = 5 * 60;
+          
+          var percentDice = (secondsIntoCycle / totalDiceCycle) * 100;
+          if ($('diceProgressBar')) {
+            $('diceProgressBar').style.width = percentDice + '%';
+          }
+
+          if (mainMode === 'dice') {
+            N98.fetchDiceResults();
+            
+            var secondsLeft = totalDiceCycle - secondsIntoCycle;
+            var mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
+            var ss = String(secondsLeft % 60).padStart(2, '0');
+            if ($('diceTimeText')) $('diceTimeText').textContent = mm + ':' + ss;
+            if ($('ringTimeDice')) $('ringTimeDice').textContent = mm + ':' + ss;
+            
+            var yy = String(now.getFullYear()).slice(-2);
+            var startOfYear = new Date(now.getFullYear(), 0, 0);
+            var dayOfYear = Math.floor((now - startOfYear) / 86400000);
+            var slotIndex = Math.floor((now.getHours() * 60 + now.getMinutes()) / 5);
+            currentDrawIdDice = yy + String(dayOfYear).padStart(3, '0') + String(slotIndex).padStart(3, '0');
+            if ($('nextDrawNumberDice')) $('nextDrawNumberDice').textContent = '#' + currentDrawIdDice;
+            
+            var closedDice = secondsIntoCycle >= (5 * 60 - 10);
+            if ($('bettingClosedBoxDice')) $('bettingClosedBoxDice').style.display = closedDice ? 'block' : 'none';
+            if (closedDice) {
+              var reopenSec = (5 * 60) - secondsIntoCycle;
+              if ($('reopenTimeDice')) $('reopenTimeDice').textContent = '00:' + String(reopenSec).padStart(2, '0');
+            }
+            N98.updateSubmitDiceButton();
+            N98.updateBalanceStatusBoxDice();
+          }
+        }, 1000);
+        
+        updateClock();
+        updateCountdown10();
+        
+        var numInput = $('numInput');
+        if (numInput && !numInput._bound) {
+          numInput.addEventListener('input', autoAddNumbers);
+          numInput._bound = true;
+        }
+        var numInput10 = $('numInput10');
+        if (numInput10 && !numInput10._bound) {
+          numInput10.addEventListener('input', autoAddNumbers10);
+          numInput10._bound = true;
+        }
+
+        showSection('home', null);
+      }
+
       function init() {
         initTheme();
         initSound();
         initParticles();
-        var saved = localStorage.getItem('lottery_user');
+        var saved = null;
+        try { saved = localStorage.getItem('lottery_user'); } catch (e) {}
         if (saved) {
           try {
             var user = JSON.parse(saved);
-            if (user && user.verified) {
+            if (user && user.verified && user.userId && user.phone) {
               currentUser = user;
               currentUser.phone = fixPhoneNumber(user.phone);
               enterApp();
               return;
             }
-          } catch (e) {}
+          } catch (e) { 
+            console.error('Invalid saved user:', e);
+            try { localStorage.removeItem('lottery_user'); } catch (er) {}
+          }
         }
         $('registerModal').style.display = 'block';
         $('mainApp').style.display = 'none';
@@ -3980,17 +4073,6 @@
         });
       }
 
-      function resetBetForm() {
-        numbers = [];
-        selectedLetter = '';
-        var circles = document.querySelectorAll('#classicMode .letter-circle');
-        for (var i = 0; i < circles.length; i++) circles[i].classList.remove('active');
-        var inp = $('numInput');
-        if (inp) { inp.disabled = true; inp.value = ''; }
-        updateDisplay();
-        updateBalanceStatusBox();
-      }
-
       function manualCaptureScreenshot(timeSlot) {
         var targetId = timeSlot === '12:00' ? 'box12Container' : 'box16Container';
         var targetEl = $(targetId);
@@ -4041,11 +4123,6 @@
         init();
         setupFormHandlers();
         
-        var regCode = $('regCode');
-        if (regCode) {
-          regCode.addEventListener('input', function() { this.value = this.value.toUpperCase(); });
-          regCode.addEventListener('keypress', function(e) { if (e.key === 'Enter') handleVerify(); });
-        }
         var loginPin = $('loginPin');
         if (loginPin) loginPin.addEventListener('keypress', function(e) { if (e.key === 'Enter') handleLogin(); });
         var regPin = $('regPin');
@@ -4069,7 +4146,10 @@
         });
       }
 
-      // ===== N98 GLOBAL OBJECT =====
+      /* ================================================================
+         N98 GLOBAL OBJECT
+         ================================================================ */
+
       window.N98 = {
         handleRegister: handleRegister,
         handleVerify: handleVerify,
@@ -4095,6 +4175,7 @@
         submitBet: submitBet,
         handleAbaClick: handleAbaClick,
         switchHistoryTab: switchHistoryTab,
+        checkSystem: checkSystem,
         switchMainMode: function(mode, evt) {
           mainMode = mode;
           var tabs = document.querySelectorAll('.mode-tab');
@@ -4142,13 +4223,6 @@
           for (var i = 0; i < Math.min(4, cachedDiceResults.length); i++) {
             var r = cachedDiceResults[i]; 
             var isNew = (i === 0); 
-            var emoji = '';
-            if (r.result === 1) emoji = '🔴'; 
-            else if (r.result === 2) emoji = '🔵🔵'; 
-            else if (r.result === 3) emoji = '🔵🔵🔵'; 
-            else if (r.result === 4) emoji = '🔴🔴🔴🔴'; 
-            else if (r.result === 5) emoji = '🔵🔵🔵🔵🔵'; 
-            else if (r.result === 6) emoji = '🔵🔵🔵🔵🔵🔵';
             
             var dotHtml = '';
             for (var k=0; k<r.result; k++) dotHtml += '<div class="dice-dot-lg ' + (r.result===1||r.result===4?'red':'blue') + '" style="width:20px;height:20px;margin:0 2px;"></div>';
@@ -4286,23 +4360,13 @@
             else totalKHR += opt.amount;
           }
           
-          if (diceSelectedOptions.length === 0) {
-            box.style.display = 'none';
-            return;
-          }
+          if (diceSelectedOptions.length === 0) { box.style.display = 'none'; return; }
           box.style.display = 'block';
           
-          var hasUSD = totalUSD > 0;
-          var hasKHR = totalKHR > 0;
-          
-          var currentUSD = balanceUSD;
-          var currentKHR = balanceKHR;
-          var neededUSD = totalUSD;
-          var neededKHR = totalKHR;
-          
+          var currentUSD = balanceUSD, currentKHR = balanceKHR;
+          var neededUSD = totalUSD, neededKHR = totalKHR;
           var shortUSD = Math.max(0, neededUSD - currentUSD);
           var shortKHR = Math.max(0, neededKHR - currentKHR);
-          
           var isEnough = shortUSD === 0 && shortKHR === 0;
           
           var fmt = function(v, cur) {
