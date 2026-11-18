@@ -1312,7 +1312,7 @@
       var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwTIcX1Rg1pTzh41ODWZzaEIIeZhP1o3xDC4QyQGbAuCVDZ5xJ4PYrA2PaOuPoEnj65/exec';
       
       var CFG = {
-        REFRESH_MS: 30000,
+        REFRESH_MS: 30000, // ✅ Auto Refresh
         REFRESH_10_MS: 5000,
         CLOCK_MS: 1000,
         STATUS_MS: 1000,
@@ -1378,7 +1378,7 @@
       var hasClickedAba = false;
       var hasClickedDownload = false;
       
-      var lastCredentials = { userId: '', pin: '' };
+      var lastCredentials = { userId: '', pin: '' }; // ✅ សម្រាប់ចម្លង
 
       function $(id) { return document.getElementById(id); }
 
@@ -2014,6 +2014,7 @@
         }, function(confirmed) {
           if (!confirmed) return;
           
+          // ✅ ហៅ API ដើម្បី Log ការចាកចេញ
           if (currentUser) {
             fetchWithTimeout(WEB_APP_URL, {
               method: 'POST',
@@ -3719,16 +3720,19 @@
       function updateClock() {
         var now = new Date();
         
+        // Update Classic Clock
         if ($('widgetTime')) $('widgetTime').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
         if ($('widgetDate')) $('widgetDate').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
         
+        // Update Rapid Clock
         if ($('widgetTimeRapid')) $('widgetTimeRapid').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
         if ($('widgetDateRapid')) $('widgetDateRapid').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
         
+        // Update Dice Clock
         if ($('widgetTimeDice')) $('widgetTimeDice').textContent = now.toLocaleTimeString('km-KH', { hour12: false });
         if ($('widgetDateDice')) $('widgetDateDice').textContent = now.toLocaleDateString('en-GB', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
